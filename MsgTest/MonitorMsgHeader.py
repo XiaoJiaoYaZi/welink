@@ -533,6 +533,9 @@ class SHeartBeat(Structure):
             self.node[i].fromBytes(b[l1+l2+i*l4:l1+l2+(i+1)*l4])
         self.alarm_module = bytes(b[l5+self.node[0].m_offset:l5+self.node[0].m_offset+self.node[0].m_size])
 
+    @property
+    def module(self):
+        return self.alarm_module.decode('utf-8')
 
 class log_struct_define(Structure):
     _fields_ = [
@@ -657,3 +660,9 @@ class log_struct(Structure):
         self.name = bytes(b[l5+self.node[0].m_offset:l5+self.node[0].m_offset+self.node[0].m_size])
         self.msg = bytes(b[l5 + self.node[1].m_offset:l5 + self.node[1].m_offset + self.node[1].m_size])
 
+    @property
+    def names(self):
+        return self.name.decode('utf-8')
+    @property
+    def msgs(self):
+        return self.msg.decode('utf-8')

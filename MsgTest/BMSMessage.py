@@ -788,6 +788,7 @@ class BMSSRepNotifyData(QtWidgets.QWidget,Ui_SRepNotifyData):
 
     def analyze(self, b):
         self.__data.fromBytes(b)
+        self.__analyze()
 
     def __analyze(self):
 
@@ -891,6 +892,20 @@ class BMSSHisMOData(QtWidgets.QWidget,Ui_SHisMOData):
 
     def analyze(self, b):
         self.__data.fromBytes(b)
+        self.__analyze()
+
+    def __analyze(self):
+        self.lineEdit_msgId.setText(str(self.__data.Data.msgId))
+        self.lineEdit_msgType.setText(str(self.__data.Data.msgType))
+        self.lineEdit_accId.setText(str(self.__data.Data.accId))
+        self.lineEdit_mobile.setText(str(self.__data.Data.mobile))
+        self.dateTimeEdit.setDateTime(QtCore.QDateTime.fromMSecsSinceEpoch(Datetime_dt(self.__data.moTime)))
+        self.lineEdit_resId.setText(str(self.__data.Data.resId))
+        self.lineEdit_dealTimes.setText(str(self.__data.Data.dealTimes))
+
+        self.textEdit.setText(self.__data.MoContent)
+        self.lineEdit_SpNum.setText(self.__data.SpNum)
+
 
 class BMSMoAccBlist(QtWidgets.QWidget,Ui_MoAccBlist):
     def __init__(self):
@@ -959,6 +974,16 @@ class BMSMoAccBlist(QtWidgets.QWidget,Ui_MoAccBlist):
     def analyze(self, b):
         self.__data.fromBytes(b)
 
+    def __analyze(self):
+        self.lineEdit_mobile.setText(str(self.__data.Data.mobile))
+        self.lineEdit_accid.setText(str(self.__data.Data.accid))
+        self.lineEdit_level.setText(str(self.__data.Data.level))
+        self.lineEdit_flag.setText(str(self.__data.Data.flag))
+
+        self.lineEdit_opertor.setText(self.__data.operator)
+        self.lineEdit_remark.setText(self.__data.remark)
+
+
 class BMSMonitor(QtWidgets.QWidget,Ui_Monitor):
     def __init__(self):
         super(BMSMonitor,self).__init__()
@@ -986,6 +1011,15 @@ class BMSMonitor(QtWidgets.QWidget,Ui_Monitor):
         self.__data['SHeartBeat'] = SHeartBeat()
         self.__data['log'] = log_struct()
         self.__data['DispatchMonitorMsg'] = DispatchMonitorMsg()
+
+        self.get_func = {}
+        self.get_func['SHeartBeat'] = self.__get_SHeartBeat
+        self.get_func['log'] = self.__get_log
+        self.get_func['DispatchMonitorMsg'] = self.__get_DispatchMonitorMsg
+        self.get_func['SResourceState'] = self.__get_SResourceState
+        self.get_func['HisCenterMonitorData'] = self.__get_HisCenterMonitorData
+        self.get_func['HisPreDealMonitorData'] = self.__get_HisPreDealMonitorData
+        self.get_func['SubmitMonitorMsg'] = self.__get_SubmitMonitorMsg
 
     def on_checkBox_SubmitMonitorMsg_stateChanged(self,a0):
         if a0 == QtCore.Qt.Checked:
@@ -1091,13 +1125,18 @@ class BMSMonitor(QtWidgets.QWidget,Ui_Monitor):
         else:
             return ''
 
-    def __set_SHeartBeat(self):
+    def __get_SHeartBeat(self):
         self.__data['SHeartBeat'].clear()
         self.__data['SHeartBeat'].define.timeInterval   = int(self.lineEdit_timeInterval.text())
         self.__data['SHeartBeat'].define.alarmTime      = int(time.time())
         self.__data['SHeartBeat'].define.stat           = int(self.lineEdit_stat.text())
         self.__data['SHeartBeat'].write_alarm_module(self.lineEdit_alarm_module.text())
         self.__data['SHeartBeat'].write_header()
+
+    def __setSHeartBeat(self):
+        self.lineEdit_timeInterval.setText(str(self.__data['SHeartBeat'].define.timeInterval))
+        self.lineEdit_stat.setText(str(self.__data['SHeartBeat'].define.stat))
+        self.lineEdit_alarm_module.setText(self.__data['SHeartBeat'].module)
 
     def __saveConfig_HeartBeat(self,config):
         if isinstance(config,ConfigParser):
@@ -1112,7 +1151,7 @@ class BMSMonitor(QtWidgets.QWidget,Ui_Monitor):
             self.lineEdit_stat.setText(config[m_section[10]][m_keys_HeartBeat[1]])
             self.lineEdit_alarm_module.setText(config[m_section[10]][m_keys_HeartBeat[2]])
 
-    def __set_log(self):
+    def __get_log(self):
         self.__data['log'].clear()
         self.__data['log'].define.level = int(self.lineEdit_level.text())
         self.__data['log'].define.ip    = bytes2int(socket.inet_aton(self.lineEdit_ip.text()))
@@ -1121,6 +1160,12 @@ class BMSMonitor(QtWidgets.QWidget,Ui_Monitor):
         self.__data['log'].write_name(self.lineEdit_name.text())
         self.__data['log'].write_msg(self.lineEdit_msg.text())
         self.__data['log'].write_header()
+
+    def __set_log(self):
+        self.lineEdit_level.setText(str(self.__data['log'].define.level))
+        self.lineEdit_ip.setText(str(socket.inet_ntoa(int2ipbyte(self.__data['log'].define.ip))))
+        self.lineEdit_name.setText(self.__data['log'].names)
+        self.lineEdit_msg.setText(self.__data['log'].msgs)
 
     def __saveConfig_log(self,config):
         if isinstance(config,ConfigParser):
@@ -1137,7 +1182,7 @@ class BMSMonitor(QtWidgets.QWidget,Ui_Monitor):
             self.lineEdit_name.setText(config[m_section[12]][m_keys_log[2]])
             self.lineEdit_msg.setText(config[m_section[12]][m_keys_log[3]])
 
-    def __set_DispatchMonitorMsg(self):
+    def __get_DispatchMonitorMsg(self):
         self.__data['DispatchMonitorMsg'].clear()
         self.__data['DispatchMonitorMsg'].baseheader._id = int(self.lineEdit_id.text())
         self.__data['DispatchMonitorMsg'].baseheader._time = int(time.time())
@@ -1152,6 +1197,10 @@ class BMSMonitor(QtWidgets.QWidget,Ui_Monitor):
             self.__data['DispatchMonitorMsg'].define.dispatch_province[i] = int(
                 self.tableWidget_dispatch.item(i, 5).text())
         self.__data['DispatchMonitorMsg'].write_header()
+
+    def __set_DispatchMonitorMsg(self):
+
+        pass
 
     def __saveConfig_DispatchMonitor(self,config):
         if isinstance(config,ConfigParser):
@@ -1191,7 +1240,7 @@ class BMSMonitor(QtWidgets.QWidget,Ui_Monitor):
             for i in range(36):
                 self.tableWidget_dispatch.item(i,5).setText(data[i].split(":")[1])
 
-    def __set_SResourceState(self):
+    def __get_SResourceState(self):
         self.__data['SResourceState'].clear()
         self.__data['SResourceState'].baseheader._id                = int(self.lineEdit_id.text())
         self.__data['SResourceState'].baseheader._time              = int(time.time())
@@ -1249,7 +1298,7 @@ class BMSMonitor(QtWidgets.QWidget,Ui_Monitor):
             self.lineEdit_currentMoTotal.setText(config[m_section[9]][m_keys_ResouseState[12]])
             self.lineEdit_state.setText(config[m_section[9]][m_keys_ResouseState[13]])
 
-    def __set_HisCenterMonitorData(self):
+    def __get_HisCenterMonitorData(self):
         self.__data['HisCenterMonitorData'].clear()
         self.__data['HisCenterMonitorData'].baseheader._id = int(self.lineEdit_id.text())
         self.__data['HisCenterMonitorData'].baseheader._time = int(time.time())
@@ -1285,7 +1334,7 @@ class BMSMonitor(QtWidgets.QWidget,Ui_Monitor):
             self.lineEdit_repDismtchCnt.setText(config[m_section[8]][m_keys_HisCenterMonitor[5]])
             self.lineEdit_moMsgCnt.setText(config[m_section[8]][m_keys_HisCenterMonitor[6]])
 
-    def __set_HisPreDealMonitorData(self):
+    def __get_HisPreDealMonitorData(self):
         self.__data['HisPreDealMonitorData'].clear()
         self.__data['HisPreDealMonitorData'].baseheader._id = int(self.lineEdit_id.text())
         self.__data['HisPreDealMonitorData'].baseheader._time = int(time.time())
@@ -1318,7 +1367,7 @@ class BMSMonitor(QtWidgets.QWidget,Ui_Monitor):
             self.lineEdit_repFldRsndCnt.setText(config[m_section[7]][m_keys_HisPreDealMonitor[4]])
             self.lineEdit_repTmoutRsndCnt.setText(config[m_section[7]][m_keys_HisPreDealMonitor[5]])
 
-    def __set_SubmitMonitorMsg(self):
+    def __get_SubmitMonitorMsg(self):
         self.__data['SubmitMonitorMsg'].clear()
         self.__data['SubmitMonitorMsg'].baseheader._id      = int(self.lineEdit_id.text())
         self.__data['SubmitMonitorMsg'].baseheader._time    = int(time.time())
@@ -1343,22 +1392,15 @@ class BMSMonitor(QtWidgets.QWidget,Ui_Monitor):
             self.lineEdit_fail.setText(config[m_section[6]][m_keys_SubmitMonitor[1]])
             self.lineEdit_fee.setText(config[m_section[6]][m_keys_SubmitMonitor[2]])
 
-    def __setValue(self):
-        self.__set_SHeartBeat()
-        self.__set_log()
-        self.__set_DispatchMonitorMsg()
-        self.__set_SResourceState()
-        self.__set_HisCenterMonitorData()
-        self.__set_HisPreDealMonitorData()
-        self.__set_SubmitMonitorMsg()
-
+    def __getValue(self):
+        self.get_func[self.getChecked()]()
 
     def updatedata(self):
         return self.__data[self.getChecked()].Value()
 
     def getValue(self):
         try:
-            self.__setValue()
+            self.__getValue()
         except:
             print('error')
         return self.__data[self.getChecked()].Value()
@@ -1405,4 +1447,4 @@ class BMSMonitor(QtWidgets.QWidget,Ui_Monitor):
 
     def analyze(self,b):
         self.__data[self.getChecked()].fromBytes(b)
-
+        pass
