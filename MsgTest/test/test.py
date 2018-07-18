@@ -91,8 +91,29 @@ if __name__ == '__main__':
         return msg.text
 
 
-    itchat.auto_login()
 
+def averager():
+    total = 0
+    count = 0
+    avg = None
+    while True:
+        num = yield avg
+        total += num
+        count += 1
+        avg = total/count
 
+ag = averager()
+print(next(ag))
+print(ag.send(10))
+print(ag.send(15))
 
-    itchat.search_friends()
+def gen():
+    for c in 'AB':
+        yield c
+
+print(list(gen()))
+print(gen())
+def gen_new():
+    yield from 'AB'
+
+print(list(gen_new()))

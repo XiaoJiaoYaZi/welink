@@ -1402,3 +1402,7 @@ class BMSMonitor(QtWidgets.QWidget,Ui_Monitor):
 
         except:
             print('load config error')
+
+    def analyze(self,b):
+        self.__data[self.getChecked()].fromBytes(b)
+

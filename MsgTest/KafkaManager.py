@@ -4,6 +4,7 @@ import threading
 from configparser import ConfigParser
 import queue
 import os
+import typing
 
 class KafkaManager(object):
     def __init__(self):
@@ -20,18 +21,22 @@ class KafkaManager(object):
 
 
     def create_producer(self,topic):
+        topic = topic.strip()
         topic = topic.lower()
         self._topick = topic
         self.__producer = KafkaProducer(bootstrap_servers=self.config['broker']['bootstrap_servers'])
 
     def settopic_producer(self,topic):
+        topic = topic.strip()
+        topic = topic.lower()
         self._topick = topic
 
     def send(self,data):
         if isinstance(data,bytes):
             self.__producer.send(self._topick,data)
 
-    def create_consumer(self,topic,groupid = None):
+    def create_consumer(self,topic:str,groupid:str = None):
+        topic = topic.strip()
         topic = topic.lower()
         if groupid is None or groupid == '':
             groupid = topic
