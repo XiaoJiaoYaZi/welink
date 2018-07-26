@@ -117,3 +117,15 @@ def gen_new():
     yield from 'AB'
 
 print(list(gen_new()))
+
+import qrcode
+import os
+n = os.path.getsize('test.png')
+f = open('test.png','rb')
+data = f.read(n)
+
+from qrcode import util
+var = util.QRData(data)
+q = qrcode.QRCode()
+q.add_data("核心勇")
+q.make_image().save('test.png')
