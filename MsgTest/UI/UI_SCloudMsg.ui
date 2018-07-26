@@ -775,7 +775,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="CommitIp"/>
+        <widget class="QLineEdit" name="CloudMsgTemplateID"/>
        </item>
       </layout>
      </item>
@@ -802,7 +802,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="CommitIp_2"/>
+        <widget class="QLineEdit" name="CommitIp"/>
        </item>
       </layout>
      </item>
