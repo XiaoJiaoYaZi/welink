@@ -3,6 +3,7 @@ from PyQt5 import QtWidgets,QtCore,Qt
 from SMessage import SBmsMessage, SHisSendData
 from UI_MainWindow import Ui_MainWindow
 from BMSMessage import BMSMessage,BMSSHisSendData,BMSSHisRepData,BMSSRepNotifyData,BMSSHisMOData,BMSMoAccBlist,BMSMonitor
+from CloudMsg import CloudMsg
 import sys
 
 import time
@@ -41,6 +42,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self._sendData.append(BMSSHisMOData())
         self._sendData.append(BMSMoAccBlist())
         self._sendData.append(BMSMonitor())
+        self._sendData.append(CloudMsg())
 
         self._recvData.append(BMSMessage)
         self._recvData.append(BMSSHisSendData)
@@ -49,6 +51,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self._recvData.append(BMSSHisMOData)
         self._recvData.append(BMSMoAccBlist)
         self._recvData.append(BMSMonitor)
+        self._recvData.append(CloudMsg)
 
         self.num_send = 0
         self.num_recv = 0
@@ -64,6 +67,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self.stackedWidget.insertWidget(4, self._sendData[4])
         self.stackedWidget.insertWidget(5, self._sendData[5])
         self.stackedWidget.insertWidget(6, self._sendData[6])
+        self.stackedWidget.insertWidget(7, self._sendData[7])
         self.stackedWidget.setCurrentIndex(0)
         self.pushButton_stoprecv.setEnabled(False)
         self.pushButton_stopsend.setEnabled(False)
@@ -99,12 +103,6 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
             self.stackedWidget.setCurrentIndex(a0)
 
     def on_pushButton_send_pressed(self):
-        # print(self.__BMSMessage.timeEdit_StartSendTime.time().toString("HH:mm:ss"))
-        # print(self.__BMSMessage.timeEdit_StartSendTime.time().toPyTime())
-        # t = self.__BMSMessage.dateTimeEdit_StartSendDateTime.dateTime().toPyDateTime().ctime()
-        # t = time.mktime(time.strptime(t))
-        # print(type(t))
-        # print(self.__BMSMessage.textEdit_content.toPlainText())
         data = self._sendData[self.comboBox_msgtype.currentIndex()].getValue()
         print(data)
         self._kafka.send(data)

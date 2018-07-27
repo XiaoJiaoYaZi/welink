@@ -39,7 +39,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="Priority"/>
+        <widget class="QLineEdit" name="Priority">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -66,7 +70,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="MsgId"/>
+        <widget class="QLineEdit" name="MsgId">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -93,7 +101,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="ProductExtendId"/>
+        <widget class="QLineEdit" name="ProductExtendId">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -120,7 +132,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="RealProductExtendId"/>
+        <widget class="QLineEdit" name="RealProductExtendId">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -271,7 +287,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="ChargeQuantity"/>
+        <widget class="QLineEdit" name="ChargeQuantity">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -430,7 +450,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="Package"/>
+        <widget class="QLineEdit" name="Package">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -457,7 +481,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="MobilesContentLen"/>
+        <widget class="QLineEdit" name="MobilesContentLen">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -484,7 +512,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="MsgContentLen"/>
+        <widget class="QLineEdit" name="MsgContentLen">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -511,7 +543,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="MobilesCount"/>
+        <widget class="QLineEdit" name="MobilesCount">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -538,7 +574,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="DispatchTimes"/>
+        <widget class="QLineEdit" name="DispatchTimes">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -613,7 +653,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="ProvinceId"/>
+        <widget class="QLineEdit" name="ProvinceId">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -640,7 +684,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="CityId"/>
+        <widget class="QLineEdit" name="CityId">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -667,7 +715,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="TPCBChecked"/>
+        <widget class="QLineEdit" name="TPCBChecked">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -694,7 +746,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="SendedTimes"/>
+        <widget class="QLineEdit" name="SendedTimes">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -721,7 +777,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="DispatchFailedState"/>
+        <widget class="QLineEdit" name="DispatchFailedState">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -748,7 +808,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="SubmitType"/>
+        <widget class="QLineEdit" name="SubmitType">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -775,7 +839,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="CloudMsgTemplateID"/>
+        <widget class="QLineEdit" name="CloudMsgTemplateID">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -802,7 +870,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="CommitIp"/>
+        <widget class="QLineEdit" name="CommitIp">
+         <property name="text">
+          <string>127.0.0.1</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -829,7 +901,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="m_old_struct"/>
+        <widget class="QLineEdit" name="m_old_struct">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -860,7 +936,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="pagetotal"/>
+        <widget class="QLineEdit" name="pagetotal">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -887,7 +967,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="packagetotal"/>
+        <widget class="QLineEdit" name="packagetotal">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -914,7 +998,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="typeComponentParam"/>
+        <widget class="QLineEdit" name="typeComponentParam">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -941,7 +1029,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="lastFailResourceId"/>
+        <widget class="QLineEdit" name="lastFailResourceId">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -1072,7 +1164,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="resourceSendTimes"/>
+        <widget class="QLineEdit" name="resourceSendTimes">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -1099,7 +1195,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="auditorId"/>
+        <widget class="QLineEdit" name="auditorId">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -1126,7 +1226,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="totalSendTimes"/>
+        <widget class="QLineEdit" name="totalSendTimes">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -1153,7 +1257,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="repResendTimeOut"/>
+        <widget class="QLineEdit" name="repResendTimeOut">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -1180,7 +1288,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="innerDispatchTimes"/>
+        <widget class="QLineEdit" name="innerDispatchTimes">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -1207,7 +1319,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="extComponentParam"/>
+        <widget class="QLineEdit" name="extComponentParam">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -1234,7 +1350,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="acc_name"/>
+        <widget class="QLineEdit" name="acc_name">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -1261,7 +1381,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="templateID"/>
+        <widget class="QLineEdit" name="templateID">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -1288,7 +1412,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="extnumber"/>
+        <widget class="QLineEdit" name="extnumber">
+         <property name="text">
+          <string>1069</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -1315,7 +1443,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="sign"/>
+        <widget class="QLineEdit" name="sign">
+         <property name="text">
+          <string>【微网通联】</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -1342,7 +1474,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="acc_msgid"/>
+        <widget class="QLineEdit" name="acc_msgid">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -1369,7 +1505,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="mms_title"/>
+        <widget class="QLineEdit" name="mms_title">
+         <property name="text">
+          <string>这是标题</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -1396,7 +1536,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="mms_path"/>
+        <widget class="QLineEdit" name="mms_path">
+         <property name="text">
+          <string>c://</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -1423,7 +1567,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QLineEdit" name="user_defid"/>
+        <widget class="QLineEdit" name="user_defid">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -1441,7 +1589,37 @@
         </widget>
        </item>
        <item>
-        <widget class="QTextEdit" name="mobile"/>
+        <widget class="QTextEdit" name="mobile">
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;13000000000&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_8">
+       <item>
+        <widget class="QLabel" name="label_52">
+         <property name="text">
+          <string>模板参数</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTextEdit" name="paramtemplate">
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;lt;&amp;gt;&amp;lt;&amp;gt;&amp;lt;&amp;gt;&amp;lt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -1455,7 +1633,15 @@
         </widget>
        </item>
        <item>
-        <widget class="QTextEdit" name="msgtemplate"/>
+        <widget class="QTextEdit" name="msgtemplate">
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;不好&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -1471,7 +1657,15 @@
       </widget>
      </item>
      <item>
-      <widget class="QTextEdit" name="message"/>
+      <widget class="QTextEdit" name="message">
+       <property name="html">
+        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;你好&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

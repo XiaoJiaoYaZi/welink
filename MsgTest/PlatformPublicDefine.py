@@ -127,7 +127,7 @@ class DispatchFixedHead(object):
 class DispatchFixedTail(object):
     __OneByte = struct.Struct('<BHiiBdHiBiii')
     def __init__(self):
-        self.pagetotalself          =0
+        self.pagetotal          =0
         self.packagetotal           =0
         self.typeComponentParam     =0
         self.lastFailResourceId     =0
@@ -142,7 +142,7 @@ class DispatchFixedTail(object):
 
     def Value(self):
         return self.__OneByte.pack(*(
-            self.pagetotalself,
+            self.pagetotal,
             self.packagetotal,
             self.typeComponentParam,
             self.lastFailResourceId,
@@ -158,7 +158,7 @@ class DispatchFixedTail(object):
 
     def fromBytes(self,b):
         data = self.__OneByte.unpack(b)
-        self.pagetotalself          = data[0]
+        self.pagetotal          = data[0]
         self.packagetotal           = data[1]
         self.typeComponentParam     = data[2]
         self.lastFailResourceId     = data[3]
@@ -219,43 +219,45 @@ class SCloudMessage(object):
         for i in range(self.ECloudMsgItem.ECMI_ITEM_COUNT.value):
             self.node.append(Node())
 
-        self._mobiles = ''
-        self._acc_name = ''
-        self._message = ''
-        self._templateID = ''
-        self._msgtemplate = ''
-        self._extnumer = ''
-        self._sign = ''
-        self._acc_msgid = ''
-        self._mms_title = ''
-        self._mms_filename = ''
-        self._usr_def_id = ''
+        self._mobiles = None
+        self._acc_name =None
+        self._message = None
+        self._templateID = None
+        self._msgtemplate = None
+        self._paramtemplate = None
+        self._extnumer = None
+        self._sign = None
+        self._acc_msgid =None
+        self._mms_title = None
+        self._mms_filename = None
+        self._usr_def_id = None
 
-        self.msgheader._item_count = self.ECloudMsgItem.EBMI_ITEM_COUNT.value
+        self.msgheader._item_count = self.ECloudMsgItem.ECMI_ITEM_COUNT.value
         self.msgheader._offset = len(self.msgheader)+len(self.FixHead)+len(self.FixTail)
 
     def Value(self):
         l = 0
-        for i in range(self.ECloudMsgItem.EBMI_ITEM_COUNT.value):
+        for i in range(self.ECloudMsgItem.ECMI_ITEM_COUNT.value):
             l+=self.node[i].m_size
         self.__OneByte = struct.Struct("<%ds" %(l,))
         #定长
         value = self.msgheader.Value()+self.FixHead.Value()+self.FixTail.Value()
         #动长node
-        for i in range(self.ECloudMsgItem.EBMI_ITEM_COUNT.value):
+        for i in range(self.ECloudMsgItem.ECMI_ITEM_COUNT.value):
             value += self.node[i].Value()
         #动长
         value +=self.__OneByte.pack(*(
-                            self._mobiles,
-                            self._acc_name,
-                            self._message,
-                            self._templateID,
-                            self._msgtemplate,
-                            self._extnumer,
-                            self._sign,
-                            self._acc_msgid,
-                            self._mms_title,
-                            self._mms_filename,
+                            self._mobiles+
+                            self._acc_name+
+                            self._message+
+                            self._templateID+
+                            self._msgtemplate+
+                            self._paramtemplate+
+                            self._extnumer+
+                            self._sign+
+                            self._acc_msgid+
+                            self._mms_title+
+                            self._mms_filename+
                             self._usr_def_id,))
         return value
 
@@ -276,12 +278,13 @@ class SCloudMessage(object):
         self._message           = bytes(b[l5+self.node[2].m_offset:l5+self.node[2].m_offset+self.node[2].m_size])
         self._templateID        = bytes(b[l5+self.node[3].m_offset:l5+self.node[3].m_offset+self.node[3].m_size])
         self._msgtemplate       = bytes(b[l5+self.node[4].m_offset:l5+self.node[4].m_offset+self.node[4].m_size])
-        self._extnumer          = bytes(b[l5+self.node[5].m_offset:l5+self.node[5].m_offset+self.node[5].m_size])
-        self._sign              = bytes(b[l5+self.node[6].m_offset:l5+self.node[6].m_offset+self.node[6].m_size])
-        self._acc_msgid         = bytes(b[l5+self.node[7].m_offset:l5+self.node[7].m_offset+self.node[7].m_size])
-        self._mms_title         = bytes(b[l5+self.node[8].m_offset:l5+self.node[8].m_offset+self.node[8].m_size])
-        self._mms_filename      = bytes(b[l5+self.node[9].m_offset:l5+self.node[9].m_offset+self.node[9].m_size])
-        self._usr_def_id        = bytes(b[l5+self.node[10].m_offset:l5+self.node[10].m_offset+self.node[10].m_size])
+        self._paramtemplate     = bytes(b[l5+self.node[5].m_offset:l5+self.node[5].m_offset+self.node[5].m_size])
+        self._extnumer          = bytes(b[l5+self.node[6].m_offset:l5+self.node[6].m_offset+self.node[6].m_size])
+        self._sign              = bytes(b[l5+self.node[7].m_offset:l5+self.node[7].m_offset+self.node[7].m_size])
+        self._acc_msgid         = bytes(b[l5+self.node[8].m_offset:l5+self.node[8].m_offset+self.node[8].m_size])
+        self._mms_title         = bytes(b[l5+self.node[9].m_offset:l5+self.node[9].m_offset+self.node[9].m_size])
+        self._mms_filename      = bytes(b[l5+self.node[10].m_offset:l5+self.node[10].m_offset+self.node[10].m_size])
+        self._usr_def_id        = bytes(b[l5+self.node[11].m_offset:l5+self.node[11].m_offset+self.node[11].m_size])
 
     def write_header(self):
         self.msgheader._type = self.impl_type
@@ -298,7 +301,7 @@ class SCloudMessage(object):
     def get_indexes_size(self):
         return self.msgheader._item_count*len(self.node[0])
 
-    def write_getsize(self,index,text):
+    def write_getsize(self,index:int,text):
         if index ==0:
             if isinstance(text,str):
                 self._mobiles = text.encode('utf-8')+b'\x00'
@@ -322,44 +325,50 @@ class SCloudMessage(object):
                 self._templateID = bytes(text,encoding='utf-8')+b'\x00'
             else:
                 raise TypeError(text)
-            return len(self._templateID)+1
+            return len(self._templateID)
         elif index == 4:
             if isinstance(text,str):
-                self._msgtemplate = bytes(text,encoding='utf-8')+b'\x00'
+                self._msgtemplate = bytes(text,encoding='utf_16_le')+b'\x00\x00'
             else:
                 raise TypeError(text)
             return len(self._msgtemplate)
         elif index == 5:
             if isinstance(text,str):
+                self._paramtemplate = bytes(text,encoding='utf-8')+b'\x00'
+            else:
+                raise TypeError(text)
+            return len(self._paramtemplate)
+        elif index == 6:
+            if isinstance(text,str):
                 self._extnumer = text.encode('utf-8')+b'\x00'
             else:
                 raise TypeError(text)
             return len(self._extnumer)
-        elif index == 6:
+        elif index == 7:
             if isinstance(text,str):
                 self._sign = bytes(text,encoding='utf_16_le')+b'\x00\x00'
             else:
                 raise TypeError(text)
             return len(self._sign)
-        elif index == 7:
+        elif index == 8:
             if isinstance(text,str):
                 self._acc_msgid = bytes(text,encoding='utf-8')+b'\x00'
             else:
                 raise TypeError(text)
             return len(self._acc_msgid)
-        elif index == 8:
+        elif index == 9:
             if isinstance(text,str):
                 self._mms_title = bytes(text,encoding='utf_16_le')+b'\x00\x00'
             else:
                 raise TypeError(text)
             return len(self._mms_title)
-        elif index == 9:
+        elif index == 10:
             if isinstance(text,str):
                 self._mms_filename = bytes(text,encoding='utf-8')+b'\x00'
             else:
                 raise TypeError(text)
             return len(self._mms_filename)
-        elif index == 10:
+        elif index == 11:
             if isinstance(text,str):
                 self._usr_def_id = bytes(text,encoding='utf-8')+b'\x00'
             else:
@@ -379,80 +388,87 @@ class SCloudMessage(object):
 
     @property
     def mobiles(self):
-        return self._mobiles
+        return self._mobiles.decode('utf-8')
     @mobiles.setter
     def mobiles(self,value):
-        self.__write_item(self.ECloudMsgItem.ECMI_MOBILE.value,value)
+        self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_MOBILE.value[0],value)
 
     @property
     def acc_name(self):
-        return self._acc_name
+        return self._acc_name.decode('utf-8')
     @acc_name.setter
     def acc_name(self,value):
-        self.__write_item(self.ECloudMsgItem.ECMI_ACC_NAME.value,value)
+        self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_ACC_NAME.value[0],value)
 
     @property
     def message(self):
-        return self._message
+        return self._message.decode('utf_16_le')
     @message.setter
     def message(self,value):
-        self.__write_item(self.ECloudMsgItem.ECMI_ITEM_COUNT.value,value)
+        self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_CONTENT.value[0],value)
 
     @property
     def templateID(self):
-        return self._templateID
+        return self._templateID.decode('utf-8')
     @templateID.setter
     def templateID(self,value):
-        self.__write_item(self.ECloudMsgItem.ECMI_TEMPLATE_ID.value,value)
+        self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_TEMPLATE_ID.value[0],value)
 
     @property
     def msgtemplate(self):
-        return self._msgtemplate
+        return self._msgtemplate.decode('utf_16_le')
     @msgtemplate.setter
     def msgtemplate(self,value):
-        self.__write_item(self.ECloudMsgItem.ECMI_MSG_TEMPLATE.value,value)
+        self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_MSG_TEMPLATE.value[0],value)
+
+    @property
+    def paramtemplate(self):
+        return self._msgtemplate.decode('utf-8')
+    @paramtemplate.setter
+    def paramtemplate(self,value):
+        self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_PARAM_TEMPLATE.value[0],value)
 
     @property
     def extnumer(self):
-        return self._extnumer
+        return self._extnumer.decode('utf-8')
     @extnumer.setter
     def extnumer(self,value):
-        self.__write_item(self.ECloudMsgItem.ECMI_EXT_NUMBER.value,value)
+        self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_EXT_NUMBER.value[0],value)
 
     @property
     def sign(self):
-        return self._sign
+        return self._sign.decode('utf_16_le')
     @sign.setter
     def sign(self,value):
-        self.__write_item(self.ECloudMsgItem.ECMI_SIGN.value,value)
+        self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_SIGN.value[0],value)
 
     @property
     def acc_msgid(self):
-        return self._acc_msgid
+        return self._acc_msgid.decode('utf-8')
     @acc_msgid.setter
     def acc_msgid(self,value):
-        self.__write_item(self.ECloudMsgItem.ECMI_ACC_MSGID.value,value)
+        self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_ACC_MSGID.value[0],value)
 
     @property
     def mms_title(self):
-        return self._mms_title
+        return self._mms_title.decode('utf_16_le')
     @mms_title.setter
     def mms_title(self,value):
-        self.__write_item(self.ECloudMsgItem.ECMI_MMS_TITLE.value,value)
+        self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_MMS_TITLE.value[0],value)
 
     @property
     def mms_filename(self):
-        return self.mms_filename
+        return self.mms_filename.decode('utf-8')
     @mms_filename.setter
     def mms_filename(self,value):
-        self.__write_item(self.ECloudMsgItem.ECMI_MMS_FILENAME.value,value)
+        self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_MMS_FILENAME.value[0],value)
 
     @property
     def usr_def_id(self):
-        return self._usr_def_id
+        return self._usr_def_id.decode('utf-8')
     @usr_def_id.setter
     def usr_def_id(self,value):
-        self.__write_item(self.ECloudMsgItem.ECMI_USER_DEF_ID.value,value)
+        self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_USER_DEF_ID.value[0],value)
 
 
 
