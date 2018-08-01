@@ -129,3 +129,30 @@ var = util.QRData(data)
 q = qrcode.QRCode()
 q.add_data("核心勇")
 q.make_image().save('test.png')
+
+import win32com.client
+
+import os
+qinfo = win32com.client.Dispatch('MSMQ.MSMQQueueInfo')
+print(type(qinfo))
+computer_name = os.getenv('COMPUTERNAME')
+qinfo.FormatName = 'direct=OS:.\private$\\test'
+queue = qinfo.Open(2,0)
+
+msg=win32com.client.Dispatch("MSMQ.MSMQMessage")
+msg.Label="TestMsg"
+msg.Body = bytes("The quick brown fox jumps over the lazy dog",encoding='utf-8')
+msg.Send(queue)
+queue.Close()
+
+
+qinfo=win32com.client.Dispatch("MSMQ.MSMQQueueInfo")
+qinfo.FormatName="direct=os:."+"\\PRIVATE$\\test"
+queue=qinfo.Open(1,0)   # Open a ref to queue to read(1)
+
+msg=queue.Receive()
+print ("Label:",msg.Label)
+
+print ("Body :",msg.Body)
+
+queue.Close()

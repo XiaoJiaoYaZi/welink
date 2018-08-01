@@ -5,6 +5,8 @@ from configparser import ConfigParser
 import queue
 import os
 import typing
+import win32com.client
+
 
 class KafkaManager(object):
     def __init__(self):
@@ -97,3 +99,50 @@ class KafkaManager(object):
             self.__producer.close()
         if self.__consumer is not None:
             self.__consumer.close()
+
+
+class MsMqManageer(object):
+    def __init__(self):
+        self._msg = win32com.client.Dispatch("MSMQ.MSMQMessage")
+
+    def create_producer(self,topic):
+        qinfo = win32com.client.Dispatch('MSMQ.MSMQQueueInfo')
+        qinfo.FormatName = topic
+        self.__producer = qinfo.Open(2, 0)
+
+    def settopic_producer(self,topic):
+        pass
+
+    def send(self,data):
+        if isinstance(data,bytes):
+            self._msg.Body = data
+            self._msg.Send(self.__producer)
+
+    def create_consumer(self,topic:str,groupid:str = None):
+        qinfo = win32com.client.Dispatch('MSMQ.MSMQQueueInfo')
+        qinfo.FormatName = topic
+        self.__consumer = qinfo.Open(1, 0)
+        pass
+
+    def startiocp_recv(self,func):
+        pass
+
+    def __startrecv(self,func):
+        pass
+
+    def stopRecv(self):
+        pass
+
+
+    def recvOne(self,func):
+        t = threading.Thread(target=self.__recvOne,args=(func,))
+        t.start()
+
+    def __recvOne(self,func):
+        pass
+
+    def kafkadetai(self):
+        pass
+
+    def close(self):
+        pass

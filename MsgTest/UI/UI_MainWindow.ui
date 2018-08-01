@@ -381,6 +381,16 @@
       </property>
      </spacer>
     </item>
+    <item row="0" column="2">
+     <widget class="QCheckBox" name="checkBox">
+      <property name="text">
+       <string>kafka队列</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">

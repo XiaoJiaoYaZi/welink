@@ -483,7 +483,7 @@
        <item>
         <widget class="QLineEdit" name="MobilesContentLen">
          <property name="text">
-          <string>0</string>
+          <string>12</string>
          </property>
         </widget>
        </item>
@@ -514,7 +514,7 @@
        <item>
         <widget class="QLineEdit" name="MsgContentLen">
          <property name="text">
-          <string>0</string>
+          <string>6</string>
          </property>
         </widget>
        </item>
@@ -545,7 +545,7 @@
        <item>
         <widget class="QLineEdit" name="MobilesCount">
          <property name="text">
-          <string>0</string>
+          <string>1</string>
          </property>
         </widget>
        </item>

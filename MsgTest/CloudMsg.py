@@ -7,7 +7,7 @@ from configparser import ConfigParser
 from UI_SCloudMsg import Ui_CloudMsg
 from PlatformPublicDefine import SCloudMessage
 from BMSMessage import dt_time,time_dt,dt_Datetime,Datetime_dt,bytes2int,int2ipbyte
-
+import os
 
 m_section = ['SCloudMsg']
 
@@ -70,6 +70,21 @@ class CloudMsg(QtWidgets.QWidget,Ui_CloudMsg):
         super(CloudMsg,self).__init__()
         self.setupUi(self)
         self.__data = SCloudMessage()
+        self.mobile.textChanged.connect(self.motile_textChanged)
+        self.message.textChanged.connect(self.message_textChanged)
+
+    def message_textChanged(self):
+        data = self.message.toPlainText()
+        if os.path.isfile(data):
+            self.MsgContentLen.setText(str(os.path.getsize(data)))
+            self.MsgType.setCurrentIndex(1)
+            return
+        self.MsgContentLen.setText(str(len(data.encode(encoding='utf_16_le')+b'\x00\x00')))
+
+    def motile_textChanged(self):
+        data = self.mobile.toPlainText()
+        self.MobilesContentLen.setText(str(len(bytes(data,'utf-8')+b'\x00')))
+        self.MobilesCount.setText(str(int((len(data)+1)/12)))
 
     def getValue(self):
         try:
@@ -119,7 +134,16 @@ class CloudMsg(QtWidgets.QWidget,Ui_CloudMsg):
             ##
             self.__data.mobiles = self.mobile.toPlainText()
             self.__data.acc_name = self.acc_name.text()
-            self.__data.message = self.message.toPlainText()
+            if self.__data.FixHead.MsgType == 2:
+                filename = self.message.toPlainText()
+                if os.path.isfile(filename):
+                    f = open(filename,'rb')
+                    data = f.read(os.path.getsize(filename))
+                    self.__data.message = data
+                else:
+                    raise Exception('请输入正确的彩信路径')
+            else:
+                self.__data.message = self.message.toPlainText()
             self.__data.templateID = self.templateID.text()
             self.__data.msgtemplate = self.msgtemplate.toPlainText()
             self.__data.paramtemplate = self.paramtemplate.toPlainText()
@@ -132,6 +156,8 @@ class CloudMsg(QtWidgets.QWidget,Ui_CloudMsg):
             self.__data.write_header()
 
             return self.__data.Value()
+        except Exception as e:
+            print(e)
         except:
             print('getValue error')
 

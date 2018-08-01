@@ -9,11 +9,13 @@ import sys
 import time
 import os
 import threading
-from KafkaManager import KafkaManager
+from KafkaManager import KafkaManager,MsMqManageer
 from configparser import ConfigParser
-
+import win32com.client
 _num_recv = 0
 _num_send = 0
+
+
 
 class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
     _sendData = []
@@ -25,6 +27,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self._kafka = KafkaManager()
         self._init()
         self.initUI()
+
 
 
     def _init(self):
@@ -75,8 +78,13 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self.lineEdit_topick_send.setText(self._config['MsgTest']['topic_producer'])
         self.lineEdit_topick_recv.setText(self._config['MsgTest']['topic_consumer'])
         self.lineEdit_group.setText(self._config['MsgTest']['groupid'])
+        self.checkBox.setChecked(bool(int(self._config['MsgTest']['kafka'])))
         #self.lineEdit_topick_send.textChanged()
+        #self.checkBox.stateChanged()
         self.signal_recv.connect(self.analyze,QtCore.Qt.QueuedConnection)
+
+    def on_checkBox_stateChanged(self,a0):
+        self._config['MsgTest']['kafka'] = str(a0)
 
     def on_lineEdit_topick_send_textChanged(self,a0):
         self._config['MsgTest']['topic_producer'] = a0
@@ -104,7 +112,6 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
 
     def on_pushButton_send_pressed(self):
         data = self._sendData[self.comboBox_msgtype.currentIndex()].getValue()
-        print(data)
         self._kafka.send(data)
         self.num_send += 1
 
@@ -191,6 +198,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         pass
 
     def closeEvent(self,event):
+        self.saveconfig()
         self.on_pushButton_stoprecv_pressed()
         self.on_pushButton_stopsend_pressed()
         self._kafka.close()

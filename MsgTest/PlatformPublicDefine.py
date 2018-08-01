@@ -193,8 +193,8 @@ class Node(object):
 
 
 class SCloudMessage(object):
-    impl_type = 0
-    impl_version = 1
+    impl_type = 0x55555555
+    impl_version = 0xAAAAAAAA
     class ECloudMsgItem(Enum):
         ECMI_MOBILE         =0,
         ECMI_ACC_NAME       =1,
@@ -317,6 +317,8 @@ class SCloudMessage(object):
         elif index == 2:
             if isinstance(text,str):
                 self._message = text.encode('utf_16_le')+b'\x00\x00'
+            elif isinstance(text,bytes):
+                self._message = text
             else:
                 raise TypeError(text)
             return len(self._message)

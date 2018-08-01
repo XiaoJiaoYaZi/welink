@@ -178,6 +178,10 @@ class Ui_MainWindow(object):
         self.gridLayout_2.addLayout(self.verticalLayout_4, 2, 2, 1, 2)
         spacerItem2 = QtWidgets.QSpacerItem(20, 244, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.gridLayout_2.addItem(spacerItem2, 3, 3, 1, 1)
+        self.checkBox = QtWidgets.QCheckBox(self.centralwidget)
+        self.checkBox.setChecked(True)
+        self.checkBox.setObjectName("checkBox")
+        self.gridLayout_2.addWidget(self.checkBox, 0, 2, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1233, 26))
@@ -222,5 +226,6 @@ class Ui_MainWindow(object):
         self.label_num_recv.setText(_translate("MainWindow", "0"))
         self.label_11.setText(_translate("MainWindow", "接收速度："))
         self.label_recv_speed.setText(_translate("MainWindow", "0"))
+        self.checkBox.setText(_translate("MainWindow", "kafka队列"))
 
 import main_rc
