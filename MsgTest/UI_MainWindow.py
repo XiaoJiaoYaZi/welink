@@ -186,10 +186,16 @@ class Ui_MainWindow(object):
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1233, 26))
         self.menubar.setObjectName("menubar")
+        self.menu = QtWidgets.QMenu(self.menubar)
+        self.menu.setObjectName("menu")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        self.actionKafkaTool = QtWidgets.QAction(MainWindow)
+        self.actionKafkaTool.setObjectName("actionKafkaTool")
+        self.menu.addAction(self.actionKafkaTool)
+        self.menubar.addAction(self.menu.menuAction())
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -227,5 +233,7 @@ class Ui_MainWindow(object):
         self.label_11.setText(_translate("MainWindow", "接收速度："))
         self.label_recv_speed.setText(_translate("MainWindow", "0"))
         self.checkBox.setText(_translate("MainWindow", "kafka队列"))
+        self.menu.setTitle(_translate("MainWindow", "菜单"))
+        self.actionKafkaTool.setText(_translate("MainWindow", "KafkaTool"))
 
 import main_rc

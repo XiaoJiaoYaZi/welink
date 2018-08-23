@@ -11,6 +11,7 @@ import os
 import threading
 from KafkaManager import KafkaManager,MsMqManageer
 from configparser import ConfigParser
+from KafkaTool import KafkaTool
 import win32com.client
 _num_recv = 0
 _num_send = 0
@@ -25,6 +26,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         super(BMSMsgTest,self).__init__()
         self.setupUi(self)
         self._kafka = KafkaManager()
+        self._msmq = MsMqManageer()
         self._init()
         self.initUI()
 
@@ -38,6 +40,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         except:
             print('read config error')
         self._kafka.create_producer(self._config['MsgTest']['topic_producer'])
+        self._msmq.create_producer(self._config['MsgTest']['MSMQPath'])
         self._sendData.append(BMSMessage())
         self._sendData.append(BMSSHisSendData())
         self._sendData.append(BMSSHisRepData())
@@ -55,6 +58,8 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self._recvData.append(BMSMoAccBlist)
         self._recvData.append(BMSMonitor)
         self._recvData.append(CloudMsg)
+
+        self.kafkatool = KafkaTool()
 
         self.num_send = 0
         self.num_recv = 0
@@ -75,7 +80,10 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self.pushButton_stoprecv.setEnabled(False)
         self.pushButton_stopsend.setEnabled(False)
         self.pushButton_pausesend.setEnabled(False)
-        self.lineEdit_topick_send.setText(self._config['MsgTest']['topic_producer'])
+        if int(self._config['MsgTest']['kafka']) == 0:
+            self.lineEdit_topick_send.setText(self._config['MsgTest']['MSMQPath'])
+        else:
+            self.lineEdit_topick_send.setText(self._config['MsgTest']['topic_producer'])
         self.lineEdit_topick_recv.setText(self._config['MsgTest']['topic_consumer'])
         self.lineEdit_group.setText(self._config['MsgTest']['groupid'])
         self.checkBox.setChecked(bool(int(self._config['MsgTest']['kafka'])))
@@ -112,7 +120,12 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
 
     def on_pushButton_send_pressed(self):
         data = self._sendData[self.comboBox_msgtype.currentIndex()].getValue()
-        self._kafka.send(data)
+        # f = open('D:\\svn\\msgplatform\\source\\生产平台\\x64\\Debug\\pSendwraper.dat','rb')
+        # data = f.read(os.path.getsize('D:\\svn\\msgplatform\\source\\生产平台\\x64\\Debug\\pSendwraper.dat'))
+        if int(self._config['MsgTest']['kafka']) == 0:
+            self._msmq.send(data)
+        else:
+            self._kafka.send(data)
         self.num_send += 1
 
 
@@ -203,3 +216,6 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self.on_pushButton_stopsend_pressed()
         self._kafka.close()
         event.accept()
+
+    def on_actionKafkaTool_triggered(self):
+        self.kafkatool.show()

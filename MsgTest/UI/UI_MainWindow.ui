@@ -402,8 +402,20 @@
      <height>26</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>菜单</string>
+    </property>
+    <addaction name="actionKafkaTool"/>
+   </widget>
+   <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionKafkaTool">
+   <property name="text">
+    <string>KafkaTool</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="main.qrc"/>

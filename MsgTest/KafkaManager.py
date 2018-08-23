@@ -20,7 +20,10 @@ class KafkaManager(object):
     def init(self):
         self.config.read(os.getcwd()+'/config/kafka_base.ini',encoding='utf-8')
         print(self.config['broker']['bootstrap_servers'])
+        self.__kafkabase = {}
 
+        for item in self.config.items('broker'):
+            self.__kafkabase[item[0]] = item[1]
 
     def create_producer(self,topic):
         topic = topic.strip()
@@ -43,8 +46,8 @@ class KafkaManager(object):
         if groupid is None or groupid == '':
             groupid = topic
         self._groupid = groupid
-        self.__consumer = KafkaConsumer(topic,bootstrap_servers = self.config['broker']['bootstrap_servers'],
-                                        group_id = groupid, consumer_timeout_ms=1000)
+        self.__kafkabase['group_id'] = groupid
+        self.__consumer = KafkaConsumer(topic,**self.__kafkabase)
 
     def startiocp_recv(self,func):
         if not self.b_started:
@@ -84,6 +87,8 @@ class KafkaManager(object):
         recvd = False
         while not recvd:
             for message in self.__consumer:
+                with open('data.dat','wb') as f:
+                    f.write(message.value)
                 func(message.value)
                 recvd = True
                 break
@@ -107,6 +112,7 @@ class MsMqManageer(object):
 
     def create_producer(self,topic):
         qinfo = win32com.client.Dispatch('MSMQ.MSMQQueueInfo')
+        print(topic)
         qinfo.FormatName = topic
         self.__producer = qinfo.Open(2, 0)
 
