@@ -21,15 +21,19 @@ class KafkaManager(object):
         self.config.read(os.getcwd()+'/config/kafka_base.ini',encoding='utf-8')
         print(self.config['broker']['bootstrap_servers'])
         self.__kafkabase = {}
-
+        self.__kafkaproduce = {}
         for item in self.config.items('broker'):
             self.__kafkabase[item[0]] = item[1]
+            self.__kafkaproduce[item[0]] = item[1]
+
+        for item in self.config.items("produce"):
+            self.__kafkaproduce[item[0]] = item[1]
 
     def create_producer(self,topic):
         topic = topic.strip()
         topic = topic.lower()
         self._topick = topic
-        self.__producer = KafkaProducer(bootstrap_servers=self.config['broker']['bootstrap_servers'])
+        self.__producer = KafkaProducer(**self.__kafkaproduce)
 
     def settopic_producer(self,topic):
         topic = topic.strip()

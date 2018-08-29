@@ -249,6 +249,7 @@ def headSort(l):
     while j>0:
         l[j],l[0] = l[0],l[j]
         makeHead(l,0,j)
+        j = j-1
 
 test = [11,7,18,3,5,4,10,9]
 #test = [4,6,8,5,9]
