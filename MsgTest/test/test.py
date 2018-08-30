@@ -4,6 +4,7 @@ import pymssql
 import _mssql
 import threading
 import time
+import collections
 # update_ = '''DELETE FROM T_CommitInfo_WaitCheck WHERE 1=1
 # #     DECLARE @id int
 # #     SET @id = 2

@@ -194,7 +194,10 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
         self.actionKafkaTool = QtWidgets.QAction(MainWindow)
         self.actionKafkaTool.setObjectName("actionKafkaTool")
+        self.actionSQLTool = QtWidgets.QAction(MainWindow)
+        self.actionSQLTool.setObjectName("actionSQLTool")
         self.menu.addAction(self.actionKafkaTool)
+        self.menu.addAction(self.actionSQLTool)
         self.menubar.addAction(self.menu.menuAction())
 
         self.retranslateUi(MainWindow)
@@ -235,5 +238,6 @@ class Ui_MainWindow(object):
         self.checkBox.setText(_translate("MainWindow", "kafka队列"))
         self.menu.setTitle(_translate("MainWindow", "菜单"))
         self.actionKafkaTool.setText(_translate("MainWindow", "KafkaTool"))
+        self.actionSQLTool.setText(_translate("MainWindow", "SQLTool"))
 
 import main_rc

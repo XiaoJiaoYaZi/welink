@@ -20,14 +20,17 @@ class KafkaManager(object):
     def init(self):
         self.config.read(os.getcwd()+'/config/kafka_base.ini',encoding='utf-8')
         print(self.config['broker']['bootstrap_servers'])
-        self.__kafkabase = {}
+        self.__kafkconsume = {}
         self.__kafkaproduce = {}
         for item in self.config.items('broker'):
-            self.__kafkabase[item[0]] = item[1]
+            self.__kafkconsume[item[0]] = item[1]
             self.__kafkaproduce[item[0]] = item[1]
 
         for item in self.config.items("produce"):
-            self.__kafkaproduce[item[0]] = item[1]
+            self.__kafkaproduce[item[0]] = int(item[1])
+
+        for item in self.config.items('consume'):
+            self.__kafkconsume[item[0]] = int(item[1])
 
     def create_producer(self,topic):
         topic = topic.strip()
@@ -50,8 +53,8 @@ class KafkaManager(object):
         if groupid is None or groupid == '':
             groupid = topic
         self._groupid = groupid
-        self.__kafkabase['group_id'] = groupid
-        self.__consumer = KafkaConsumer(topic,**self.__kafkabase)
+        self.__kafkconsume['group_id'] = groupid
+        self.__consumer = KafkaConsumer(topic, **self.__kafkconsume)
 
     def startiocp_recv(self,func):
         if not self.b_started:

@@ -12,6 +12,7 @@ import threading
 from KafkaManager import KafkaManager,MsMqManageer
 from configparser import ConfigParser
 from KafkaTool import KafkaTool
+from SQL import SQLView
 import win32com.client
 _num_recv = 0
 _num_send = 0
@@ -60,6 +61,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self._recvData.append(CloudMsg)
 
         self.kafkatool = KafkaTool()
+        self.sqltool = SQLView()
 
         self.num_send = 0
         self.num_recv = 0
@@ -219,3 +221,6 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
 
     def on_actionKafkaTool_triggered(self):
         self.kafkatool.show()
+
+    def on_actionSQLTool_triggered(self):
+        self.sqltool.show()

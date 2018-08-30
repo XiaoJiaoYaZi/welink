@@ -407,6 +407,7 @@
      <string>菜单</string>
     </property>
     <addaction name="actionKafkaTool"/>
+    <addaction name="actionSQLTool"/>
    </widget>
    <addaction name="menu"/>
   </widget>
@@ -414,6 +415,11 @@
   <action name="actionKafkaTool">
    <property name="text">
     <string>KafkaTool</string>
+   </property>
+  </action>
+  <action name="actionSQLTool">
+   <property name="text">
+    <string>SQLTool</string>
    </property>
   </action>
  </widget>
