@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>SQL</class>
+ <widget class="QDialog" name="SQL">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>700</width>
-    <height>595</height>
+    <width>758</width>
+    <height>509</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Dialog</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
@@ -105,6 +108,9 @@
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="0">
         <widget class="QTreeWidget" name="T_ModulesRelationship">
+         <property name="contextMenuPolicy">
+          <enum>Qt::CustomContextMenu</enum>
+         </property>
          <property name="styleSheet">
           <string notr="true"/>
          </property>
@@ -169,7 +175,30 @@
     </widget>
    </item>
   </layout>
+  <action name="action_add">
+   <property name="icon">
+    <iconset resource="main.qrc">
+     <normaloff>:/image/add.png</normaloff>:/image/add.png</iconset>
+   </property>
+   <property name="text">
+    <string>添加</string>
+   </property>
+  </action>
+  <action name="action_del">
+   <property name="icon">
+    <iconset resource="main.qrc">
+     <normaloff>:/image/edit_remove.png</normaloff>:/image/edit_remove.png</iconset>
+   </property>
+   <property name="text">
+    <string>删除</string>
+   </property>
+   <property name="shortcut">
+    <string>Del</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="main.qrc"/>
+ </resources>
  <connections/>
 </ui>

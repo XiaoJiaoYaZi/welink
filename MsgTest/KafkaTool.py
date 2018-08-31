@@ -9,8 +9,8 @@ cmds =(
 
 
 class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
-    def __init__(self):
-        super(KafkaTool,self).__init__()
+    def __init__(self,parent = None):
+        super(KafkaTool,self).__init__(parent=parent)
         self.setupUi(self)
         self.InitUI()
 

@@ -6,6 +6,26 @@ import queue
 import os
 import typing
 import win32com.client
+import ctypes
+import inspect
+
+
+def _async_raise(tid, exctype):
+    """raises the exception, performs cleanup if needed"""
+    tid = ctypes.c_long(tid)
+    if not inspect.isclass(exctype):
+        exctype = type(exctype)
+    res = ctypes.pythonapi.PyThreadState_SetAsyncExc(tid, ctypes.py_object(exctype))
+    if res == 0:
+        raise ValueError("invalid thread id")
+    elif res != 1:
+        # """if it returns a number greater than one, you're in trouble,
+        # and you should call it again with exc=NULL to revert the effect"""
+        ctypes.pythonapi.PyThreadState_SetAsyncExc(tid, None)
+        raise SystemError("PyThreadState_SetAsyncExc failed")
+
+def stop_thread(thread):
+    _async_raise(thread.ident, SystemExit)
 
 
 class KafkaManager(object):
@@ -87,17 +107,26 @@ class KafkaManager(object):
 
 
     def recvOne(self,func):
-        t = threading.Thread(target=self.__recvOne,args=(func,))
-        t.start()
+        self._t_recvOne = threading.Thread(target=self.__recvOne,args=(func,))
+        self._t_recvOne.start()
+        self.timer=threading.Timer(5,self.__recverror)
+        self.timer.start()
+
+    def __recverror(self):
+        if self._t_recvOne.is_alive():
+            self._onerecvd = True
+            self._t_recvOne.join()
+            self._t_recvOne = None
+            print("recv None in 5s exit")
 
     def __recvOne(self,func):
-        recvd = False
-        while not recvd:
+        self._onerecvd = False
+        while not self._onerecvd:
             for message in self.__consumer:
                 with open('data.dat','wb') as f:
                     f.write(message.value)
                 func(message.value)
-                recvd = True
+                self._onerecvd = True
                 break
         self.__consumer.close()
         print('recv succ')
@@ -116,6 +145,7 @@ class KafkaManager(object):
 class MsMqManageer(object):
     def __init__(self):
         self._msg = win32com.client.Dispatch("MSMQ.MSMQMessage")
+        self.b_started = False
 
     def create_producer(self,topic):
         qinfo = win32com.client.Dispatch('MSMQ.MSMQQueueInfo')
@@ -138,24 +168,59 @@ class MsMqManageer(object):
         pass
 
     def startiocp_recv(self,func):
+        if not self.b_started:
+            self.b_started = True
+            self._thread = threading.Thread(target=self.__startrecv,args=(func,))
+            self._thread.start()
         pass
 
     def __startrecv(self,func):
+        while self.b_started:
+            try:
+                msg = self.__consumer.Receive()
+                if isinstance(msg.Body, memoryview):
+                    func(msg.Body.tobytes())
+                else:
+                    func(msg.Body)
+            except:
+                print("recv error")
         pass
 
     def stopRecv(self):
+        if self.b_started:
+            self.b_started = False
+            self._thread.join()
+            self.__consumer.Close()
         pass
 
 
     def recvOne(self,func):
+        global t
         t = threading.Thread(target=self.__recvOne,args=(func,))
         t.start()
+        threading.Timer(5,self.__recverror)
+
+    def __recverror(self):
+        if t.is_alive():
+            stop_thread(t)
 
     def __recvOne(self,func):
+        try:
+            msg = self.__consumer.Receive()
+            if isinstance(msg.Body,memoryview):
+                func(msg.Body.tobytes())
+            else:
+                func(msg.Body)
+        except:
+            print("Recv msg error")
         pass
 
     def kafkadetai(self):
         pass
 
     def close(self):
+        if self.__consumer is not None:
+            self.__consumer.Close()
+        if self.__producer is not None:
+            self.__producer.Close()
         pass

@@ -1,4 +1,4 @@
-from  UI_SQL import Ui_Form
+from  UI_SQL import Ui_SQL
 from PyQt5 import QtWidgets,QtGui
 from SQLManager import SQKManager
 
@@ -15,15 +15,46 @@ class Node(object):
 
 
 
-class SQLView(QtWidgets.QWidget,Ui_Form):
-    def __init__(self):
-        super(SQLView,self).__init__()
+class SQLView(QtWidgets.QDialog,Ui_SQL):
+    def __init__(self,parent = None):
+        super(SQLView,self).__init__(parent=parent)
         self.setupUi(self)
         self.__db = None
         self._ConfigBase = {}
         self._MouduleBase = {}
         self._tree = {}
+        self.initUI()
+        self._connections()
 
+
+    def initUI(self):
+        self.treeMenu = QtWidgets.QMenu(self)
+        self.treeMenu.addAction(self.action_add)
+        self.treeMenu.addAction(self.action_del)
+
+    def _connections(self):
+        self.T_ModulesRelationship.customContextMenuRequested.connect(self.showMenu)
+        self.action_del.triggered.connect(self.deleteTree)
+        self.action_add.triggered.connect(self.addTree)
+
+    def deleteTree(self):
+        del self.curitem
+        print('del')
+
+    def addTree(self):
+        print(self.curitem)
+        print('add')
+
+    def showMenu(self,pos):
+        self.curitem = self.T_ModulesRelationship.itemAt(pos)
+        if self.curitem is not None:
+            t = self.curitem.type()
+            print(t)
+        else:
+            pass
+
+        self.treeMenu.move(self.T_ModulesRelationship.cursor().pos())
+        self.treeMenu.show()
 
     def on_connect_pressed(self):
         self.__db = SQKManager(self.host.text(),

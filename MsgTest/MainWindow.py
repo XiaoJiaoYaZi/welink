@@ -19,6 +19,8 @@ _num_send = 0
 
 
 
+
+
 class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
     _sendData = []
     _recvData = []
@@ -41,7 +43,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         except:
             print('read config error')
         self._kafka.create_producer(self._config['MsgTest']['topic_producer'])
-        self._msmq.create_producer(self._config['MsgTest']['MSMQPath'])
+        self._msmq.create_producer(self._config['MsgTest']['msmqpath_producer'])
         self._sendData.append(BMSMessage())
         self._sendData.append(BMSSHisSendData())
         self._sendData.append(BMSSHisRepData())
@@ -61,7 +63,8 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self._recvData.append(CloudMsg)
 
         self.kafkatool = KafkaTool()
-        self.sqltool = SQLView()
+        self.sqltool = SQLView(self)
+
 
         self.num_send = 0
         self.num_recv = 0
@@ -97,11 +100,17 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self._config['MsgTest']['kafka'] = str(a0)
 
     def on_lineEdit_topick_send_textChanged(self,a0):
-        self._config['MsgTest']['topic_producer'] = a0
-        self._kafka.settopic_producer(a0)
+        if int(self._config['MsgTest']['kafka']) == 1:
+            self._config['MsgTest']['topic_producer'] = a0
+            self._kafka.settopic_producer(a0)
+        else:
+            self._config['MsgTest']['msmqpath_producer'] = a0
 
     def on_lineEdit_topick_recv_textChanged(self,a0):
-        self._config['MsgTest']['topic_consumer'] = a0
+        if int(self._config['MsgTest']['kafka']) == 1:
+            self._config['MsgTest']['topic_consumer'] = a0
+        else:
+            self._config['MsgTest']['msmqpath_consumer'] = a0
 
     def on_lineEdit_group_textChanged(self,a0):
         self._config['MsgTest']['groupid'] = a0
@@ -166,9 +175,14 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
             self.pushButton_threadsend.setEnabled(True)
 
     def on_pushButton_startrecv_pressed(self):
-        self._kafka.create_consumer(self._config['MsgTest']['topic_consumer'],
+        if int(self._config['MsgTest']['kafka']) == 0:
+            self._msmq.create_consumer(self._config['MsgTest']['msmqpath_consumer'])
+            self._msmq.startiocp_recv(self.recv_func)
+            pass
+        else:
+            self._kafka.create_consumer(self._config['MsgTest']['topic_consumer'],
                                     self._config['MsgTest']['groupid'])
-        self._kafka.startiocp_recv(self.recv_func)
+            self._kafka.startiocp_recv(self.recv_func)
         self.pushButton_stoprecv.setEnabled(True)
         self.pushButton_startrecv.setEnabled(False)
         pass
