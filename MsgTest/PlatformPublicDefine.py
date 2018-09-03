@@ -1,5 +1,7 @@
 import struct
 from enum import Enum
+from PyQt5 import QtCore
+from BMSMessage import Datetime_dt,dt_Datetime
 
 class msg_header(object):
     __OneByte = struct.Struct('<6I')
@@ -472,5 +474,424 @@ class SCloudMessage(object):
     def usr_def_id(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_USER_DEF_ID.value[0],value)
 
+# SMsgSendData                                                  --- HistoryQueue
+# SMsgHisRepData                                                --- HistoryQueue
+# SMOData                                                       --- HistoryQueue
+# SRepNotifyData                                                --- HistoryCenter
+# SMsgMTRepData                                                 --- HistoryCenter
+# ResourceStateNotify                                           --- MMSPortSend,SMSPortSend
+# SDispatchStatistics                                           --- MsgDispatchCenter
+# SResComStatistics                                             --- MsgDispatchCenter
 
+
+MSG_HIS_MT=0x81
+MSG_HIS_REP=0x82
+MSG_HIS_MO=0x83
+MSG_HIS_REMT=0x84
+MSG_HIS_MTREP = 0x85
+
+class MsgHeader(object):
+    __OneByte = struct.Struct("<III")
+    def __init__(self):
+        self.MessageType = 0
+        self.Version     = 0
+        self.Length      = 0
+
+    def Value(self):
+        return self.__OneByte.pack(*(
+            self.MessageType,
+            self.Version,
+            self.Length
+        ))
+
+    def fromBytes(self,b):
+        data = self.__OneByte.unpack(b)
+        self.MessageType = data[0]
+        self.Version     = data[1]
+        self.Length      = data[2]
+
+    def __len__(self):
+        return self.__OneByte.size
+
+class TSMsgSendData(object):
+    __OneByte = struct.Struct("<iqddqqiiiihB30s24s16sBiBBiBibi")
+    def __init__(self):
+        self.productExtendId        =0#// 扩展产品编号
+        self.msgId                  =0#// 信息编号
+        self.sendedTime             =0#// 发送时间
+        self.submitTime             =0#// 提交时间
+        self.mobilePhone            =0#// 手机号码
+        self.matchId                =0#// 匹配编号
+        self.realProductExtendId    =0#// 真实扩展产品编号
+        self.resourceId             =0#// 资源编号
+        self.chargeQuantity         =0
+        self.propertyComponent      =0
+        self.sendTimes              =0#// 发送次数
+        self.msgType                =0#// 消息类型
+        self._accountId              =bytes(30)#// 账号编号
+        self._SPNo                   =bytes(24)
+        self._clientMsgId            =bytes(16)
+        self.sendState              =0#// 发送状态
+        self.msgLen                 =0#// 消息的真实长度，含结束\0
+        self.SendResultLen          =0#// 含结束\0
+        self.TitleLen               =0#// 含结束\0
+        self.cycletimes             =0#// 循环次数
+        self.Priority               =0#// 消息级别
+        self.typeComponentParam     =0#// 综合状态
+        self.rmReSendTimes          =0#// 剩余重发次数
+        self.repResendTimeOut       =0#// 回执超时时长
+        # self.msgContent             = bytes(0)
+        # self.sendResultInfo         =bytes(0)
+        # self.title                  = bytes(0)
+        # self.userDefineId           = bytes(0)
+        # self.totalMsgLen            = 0
+        # self.totalMsg               = bytes(0)
+        # self.sign                   = bytes(0)
+    @property
+    def accountId(self):
+        return self._accountId.decode('utf-8')
+    @accountId.setter
+    def accountId(self,value:str):
+        t = value.encode('utf-8')
+        self._accountId = t+bytes(30-len(t))
+
+    @property
+    def SPNo(self):
+        return self._SPNo.decode('utf-8')
+    @SPNo.setter
+    def SPNo(self,value:str):
+        t = value.encode('utf-8')
+        self._SPNo = t+bytes(24-len(t))
+
+    @property
+    def clientMsgId(self):
+        return self._clientMsgId.decode('utf-8')
+    @clientMsgId.setter
+    def clientMsgId(self,value:str):
+        t = value.encode('utf-8')
+        self._clientMsgId = t + bytes(16-len(t))
+
+
+    def Value(self):
+        return self.__OneByte.pack(*(
+            self.productExtendId,
+            self.msgId,
+            self.sendedTime,
+            self.submitTime,
+            self.mobilePhone,
+            self.matchId,
+            self.realProductExtendId,
+            self.resourceId,
+            self.chargeQuantity,
+            self.propertyComponent,
+            self.sendTimes,
+            self.msgType,
+            self._accountId,
+            self._SPNo,
+            self._clientMsgId,
+            self.sendState,
+            self.msgLen,
+            self.SendResultLen,
+            self.TitleLen,
+            self.cycletimes,
+            self.Priority,
+            self.typeComponentParam,
+            self.rmReSendTimes,
+            self.repResendTimeOut,
+        ))
+
+    def fromBytes(self,b):
+        data = self.__OneByte.unpack(b)
+        self.productExtendId        = data[0]
+        self.msgId                  = data[1]
+        self.sendedTime             = data[2]
+        self.submitTime             = data[3]
+        self.mobilePhone            = data[4]
+        self.matchId                = data[5]
+        self.realProductExtendId    = data[6]
+        self.resourceId             = data[7]
+        self.chargeQuantity         = data[8]
+        self.propertyComponent      = data[9]
+        self.sendTimes              = data[10]
+        self.msgType                = data[11]
+        self._accountId              = data[12]
+        self._SPNo                   = data[13]
+        self._clientMsgId            = data[14]
+        self.sendState              = data[15]
+        self.msgLen                 = data[16]
+        self.SendResultLen          = data[17]
+        self.TitleLen               = data[18]
+        self.cycletimes             = data[19]
+        self.Priority               = data[20]
+        self.typeComponentParam     = data[21]
+        self.rmReSendTimes          = data[22]
+        self.repResendTimeOut       = data[23]
+
+    def __len__(self):
+        return self.__OneByte.size
+
+class SMsgSendData(object):
+    CType = MSG_HIS_MT
+    CVersion = 0x12
+
+    def __init__(self):
+        self._head = MsgHeader()
+        self._body = TSMsgSendData()
+        self._msgContent = bytes(0)
+        self._sendResultInfo = bytes(0)
+        self._title = bytes(0)
+        self._userDefineId = bytes(0)
+        self._totalMsgLen = 0
+        self._totalMsg = bytes(0)
+        self._sign = bytes(0)
+
+    def Value(self):
+        values = self._head.Value()+self._body.Value()
+        self.__OneByte = struct.Struct("<%ds%ds%ds%dsi%ds%ds" %  (len(self._msgContent),
+                                                                  len(self._sendResultInfo),
+                                                                  len(self._title),
+                                                                  len(self._userDefineId),
+                                                                  len(self._totalMsg),
+                                                                  len(self._sign),))
+
+        values += self.__OneByte.pack(*(self._msgContent,
+                                        self._sendResultInfo,
+                                        self._title,
+                                        self._userDefineId,
+                                        self._totalMsgLen,
+                                        self._totalMsg,
+                                        self._sign))
+        return values
+
+    def fromBytes(self,b):
+        b = bytearray(b)
+        l1 = len(self._head)
+        l2 = len(self._body)
+        self._head.fromBytes(b[:l1])
+        self._body.fromBytes(b[l1:l1+l2])
+        data = self.__OneByte.unpack(b[l1+l2:])
+        self._msgContent            = data[0]
+        self._sendResultInfo        = data[1]
+        self._title                 = data[2]
+        self._userDefineId          = data[3]
+        self._totalMsgLen           = data[4]
+        self._totalMsg              = data[5]
+        self._sign                  = data[6]
+        pass
+
+    def write_header(self):
+        self._head.MessageType = self.CType
+        self._head.Version = self.CVersion
+        self._head.Length = len(self._head)+len(self._body)+len(self._msgContent)+\
+            len(self._sendResultInfo)+len(self._title)+len(self._userDefineId)+4+\
+                            len(self._totalMsg)+len(self._sign)
+
+    def clear(self):
+        self._msgContent = bytes(0)
+        self._sendResultInfo = bytes(0)
+        self._title = bytes(0)
+        self._userDefineId = bytes(0)
+        self._totalMsgLen = 0
+        self._totalMsg = bytes(0)
+        self._sign = bytes(0)
+
+    @property
+    def msgContent(self):
+        return self._msgContent.decode('utf-8')
+    @msgContent.setter
+    def msgContent(self,value):
+        if isinstance(value,str):
+            self._msgContent = value.encode('utf-8')+b'\x00'
+
+    @property
+    def sendResultInfo(self):
+        return self._sendResultInfo.decode('utf-8')
+    @sendResultInfo.setter
+    def sendResultInfo(self,value):
+        if isinstance(value,str):
+            self._sendResultInfo = value.encode('utf-8')+b'\x00'
+
+    @property
+    def title(self):
+        return self._title.decode('utf-8')
+    @title.setter
+    def title(self,value):
+        if isinstance(value,str):
+            self._title = value.encode('utf-8')+b'\x00'
+
+    @property
+    def userDefineId(self):
+        return self._userDefineId.decode('utf-8')
+    @userDefineId.setter
+    def userDefineId(self,value):
+        if isinstance(value,str):
+            self._userDefineId = value.encode('utf-8')+b'\x00'
+
+    @property
+    def totalMsgLen(self):
+        return self._totalMsgLen
+    @totalMsgLen.setter
+    def totalMsgLen(self,value:int):
+        self._totalMsgLen = value
+
+    @property
+    def totalMsg(self):
+        return self._totalMsg.decode('utf-8')
+    @totalMsg.setter
+    def totalMsg(self,value:str):
+        if isinstance(value,str):
+            self._totalMsg = value.encode('utf-8')+b'\x00'
+
+    @property
+    def sign(self):
+        return self._sign.decode('utf-8')
+    @sign.setter
+    def sign(self,value:str):
+        if isinstance(value,str):
+            self._sign = value.encode('utf-8')+b'\x00'
+
+class TSMsgHisRepData(object):
+    __OneByte = struct.Struct("<qqidB64sdiqi")
+    def __init__(self):
+        self.mobilePhone        =0#; // 手机号码
+        self.matchId            =0#; // 匹配编号
+        self.resourceId         =0#; // 资源编号
+        self._reportTime         =0#; // 消息回执时间
+        self.reportState        =0#; // 状态报告是否成功
+        self._reportResultInfo   =bytes(64)#; // 状态报告信息
+        self._reportLocalTime    =0#; // 状态报告本地接收时间
+        self.componentFlg       =0#;
+        self.flagRetryTime      =0#; // 上次重试的时间，初始为零。
+        self.cycletimes         =0#;
+
+    def Value(self):
+        return self.__OneByte.pack(*(
+            self.mobilePhone,
+            self.matchId,
+            self.resourceId,
+            self._reportTime,
+            self.reportState,
+            self._reportResultInfo,
+            self._reportLocalTime,
+            self.componentFlg,
+            self.flagRetryTime,
+            self.cycletimes,
+        ))
+
+    def fromBytes(self,b):
+        data = self.__OneByte.unpack(b)
+        self.mobilePhone        = data[0]
+        self.matchId            = data[1]
+        self.resourceId         = data[2]
+        self._reportTime         = data[3]
+        self.reportState        = data[4]
+        self._reportResultInfo   = data[5]
+        self._reportLocalTime    = data[6]
+        self.componentFlg       = data[7]
+        self.flagRetryTime      = data[8]
+        self.cycletimes         = data[9]
+
+    def __len__(self):
+        return self.__OneByte.size
+
+    @property
+    def reportResultInfo(self):
+        return self._reportResultInfo.decode('utf-8')
+    @reportResultInfo.setter
+    def reportResultInfo(self,value:str):
+        t = value.encode('utf-8')
+        self._reportResultInfo = t + bytes(64 - len(t))
+
+    @property
+    def reportTime(self):
+        return QtCore.QDateTime.fromTime_t(Datetime_dt(self._reportTime))
+    @reportTime.setter
+    def reportTime(self,value:QtCore.QDateTime):
+        self._reportResultInfo = dt_Datetime(value.toPyDateTime().ctime())
+
+    @property
+    def reportLocalTime(self):
+        return QtCore.QDateTime.fromTime_t(Datetime_dt(self._reportLocalTime))
+    @reportLocalTime.setter
+    def reportLocalTime(self,value:QtCore.QDateTime):
+        self._reportLocalTime = dt_Datetime(value.toPyDateTime().ctime())
+
+class SMsgHisRepData(object):
+    CType = MSG_HIS_REP
+    CVersion = 0x10
+
+    def __init__(self):
+        self._head = MsgHeader()
+        self._body = TSMsgHisRepData()
+
+    def Value(self):
+        return self._head.Value()+self._body.Value()
+
+    def fromBytes(self,b):
+        b = bytearray(b)
+        l1 = len(self._head)
+        l2 = len(self._body)
+        self._head.fromBytes(b[:l1])
+        self._body.fromBytes(b[l1:l1+l2])
+
+    def write_header(self):
+        self._head.MessageType = self.CType
+        self._head.Version = self.CVersion
+        self._head.Length = len(self._head)+len(self._body)
+
+class SMOData(object):
+    __OneByte = struct.Struct("<qq32sdii256sB30s")
+    def __init__(self):
+        self.msgId              =0#; // 信息编号
+        self.mobilePhone        =0#; // 手机号码
+        self.SPNo               =bytes(32)#;
+        self.MOTime             =0#;
+        self.resourceId         =0#; // 资源编号
+        self.MOContentLength    =0#;
+        self.MOContent          =bytes(256)#; // 此值直接放在消息队列中
+        self.msgType            =0#; // 信息类型
+        self.accountId          =bytes(30)#;
+
+class SRepNotifyData(object):
+    __OneByte = struct.Struct("<I30sqBBdd64s64s24s16sd16sBBi33s31s")
+    def __init__(self):
+        self.version                =0#;
+        self.msgId                  =0#;
+        self.accountId              =bytes(30)#;
+        self.mobilePhone            =0#;
+        self.sendState              =0#;
+        self.reportState            =0#;
+        self.sendedTime             =0#;
+        self.reportTime             =0#; // 消息回执时间
+        self.sendResultInfo         =bytes(64)#;
+        self.reportResultInfo       =bytes(64)#;
+        self.spno                   =bytes(24)#;
+        self.clientMsgId            =bytes(16)#;
+        self.reportLocalTime        =0#; // 消息回执本地时间
+        self.extendNum              =bytes(16)#; // 扩展号码
+        self.pk_total               =0#;
+        self.pk_num                 =0#;
+        self.combinationVal         =0#;
+        self.userDefineId           =bytes(33)#;
+        self.extMem                 =bytes(31)#;
+
+    def __len__(self):
+        return self.__OneByte.size
+
+class ResourceStateNotify(object):
+    __OneByte = struct.Struct("<idBiiiiiii")
+    def __init__(self):
+        self.ResourceId             =0#; // 资源ID
+        self.NotifyTime             =0#; // 报告时间
+        self.RunTimeState           =0#; // 资源状态
+        self.QueueStock             =0#; // 含义变更为消息队列的积压数量
+        self.lastTimeQueueStock     =0#;
+        self.reportTimeInterval     =0#;
+        self.submitTotal            =0#;
+        self.submitFail             =0#;
+        self.reportTotal            =0#;
+        self.reportFail             =0#;
+
+    def __len__(self):
+        return self.__OneByte.size
 

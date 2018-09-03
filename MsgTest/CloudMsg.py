@@ -5,9 +5,11 @@ import struct
 from ctypes import *
 from configparser import ConfigParser
 from UI_SCloudMsg import Ui_CloudMsg
-from PlatformPublicDefine import SCloudMessage
+from UI_SMsgSendData import Ui_SMsgSendData
+from PlatformPublicDefine import SCloudMessage,SMsgSendData
 from BMSMessage import dt_time,time_dt,dt_Datetime,Datetime_dt,bytes2int,int2ipbyte
 import os
+
 
 m_section = ['SCloudMsg']
 
@@ -358,3 +360,112 @@ class CloudMsg(QtWidgets.QWidget,Ui_CloudMsg):
 
         except:
             print('analyze error')
+
+
+class MsgSendData(QtWidgets.QWidget,Ui_SMsgSendData):
+    def __init__(self):
+        super(MsgSendData,self).__init__()
+        self.setupUi(self)
+        self.__data = SMsgSendData()
+
+
+    def getVaue(self):
+        self.__data._body.productExtendId       = int(self.lineEdit_productExtendId.text())
+        self.__data._body.msgId                 = int(self.lineEdit_msgId.text())
+        self.__data._body.sendedTime            = dt_Datetime(self.dateTimeEdit_sendedTime.dateTime().toPyDateTime().ctime())
+        self.__data._body.submitTime            = dt_Datetime(self.dateTimeEdit_submitTime.dateTime().toPyDateTime().ctime())
+        self.__data._body.mobilePhone           = int(self.lineEdit_mobilePhone.text())
+        self.__data._body.matchId               = int(self.lineEdit_matchId.text())
+        self.__data._body.realProductExtendId   = int(self.lineEdit_realProductExtendId.text())
+        self.__data._body.resourceId            = int(self.lineEdit_resourceId.text())
+        self.__data._body.chargeQuantity        = int(self.lineEdit_chargeQuantity.text())
+        self.__data._body.propertyComponent     = int(self.lineEdit_propertyComponent.text())
+        self.__data._body.sendTimes             = int(self.lineEdit_sendTimes.text())
+        self.__data._body.msgType               = int(self.lineEdit_msgType.text())
+        self.__data._body.accountId             = self.lineEdit_accountId.text()
+        self.__data._body.SPNo                  = self.lineEdit_SPNo.text()
+        self.__data._body.clientMsgId           = self.lineEdit_clientMsgId.text()
+        self.__data._body.sendState             = int(self.lineEdit_sendState.text())
+        self.__data._body.msgLen                = int(self.lineEdit_msgLen.text())
+        self.__data._body.SendResultLen         = int(self.lineEdit_SendResultLen.text())
+        self.__data._body.TitleLen              = int(self.lineEdit_TitleLen.text())
+        self.__data._body.cycletimes            = int(self.lineEdit_cycletimes.text())
+        self.__data._body.Priority              = int(self.lineEdit_Priority.text())
+        self.__data._body.typeComponentParam    = int(self.lineEdit_typeComponentParam.text())
+        self.__data._body.rmReSendTimes         = int(self.lineEdit_rmReSendTimes.text())
+        self.__data._body.repResendTimeOut      = int(self.lineEdit_repResendTimeOut.text())
+
+        self.__data.userDefineId        = self.lineEdit_userDefineId.text()
+        self.__data.title               = self.lineEdit_title.text()
+        self.__data.sign                = self.lineEdit_sign.text()
+        self.__data.totalMsgLen         = int(self.lineEdit_totalMsgLen.text())
+        self.__data.msgContent          = self.textEdit_msgContent.toPlastinText()
+        self.__data.sendResultInfo      = self.textEdit_sendResultInfo.toPlainText()
+        self.__data.totalMsg            = self.textEdit_totalMsg.toPlainText()
+
+        self.__data.write_header()
+        return self.__data.Value()
+
+    def analyze(self,b):
+        self.__data.fromBytes(b)
+        self.__analyze()
+
+    def __analyze(self):
+        self.lineEdit_productExtendId.setText(str(self.__data._body.productExtendId ))
+        self.lineEdit_msgId.setText(str(self.__data._body.msgId))
+        self.dateTimeEdit_sendedTime.setDateTime(QtCore.QDateTime.fromTime_t(Datetime_dt(self.__data._body.sendedTime)))
+        self.dateTimeEdit_submitTime.setDateTime(QtCore.QDateTime.fromTime_t(Datetime_dt(self.__data._body.submitTime)))
+        self.lineEdit_mobilePhone.setText(str(self.__data._body.mobilePhone))
+        self.lineEdit_matchId.setText(str(self.__data._body.matchId))
+        self.lineEdit_realProductExtendId.setText(str(self.__data._body.realProductExtendId))
+        self.lineEdit_resourceId.setText(str(self.__data._body.resourceId))
+        self.lineEdit_chargeQuantity.setText(str(self.__data._body.chargeQuantity))
+        self.lineEdit_propertyComponent.setText(str(self.__data._body.propertyComponent))
+        self.lineEdit_sendTimes.setText(str(self.__data._body.sendTimes))
+        self.lineEdit_msgType.setText(str(self.__data._body.msgType))
+        self.lineEdit_accountId.setText(self.__data._body.accountId)
+        self.lineEdit_SPNo.setText(self.__data._body.SPNo)
+        self.lineEdit_clientMsgId.setText(self.__data._body.clientMsgId)
+        self.lineEdit_sendState.setText(str(self.__data._body.sendState))
+        self.lineEdit_msgLen.setText(str(self.__data._body.msgLen))
+        self.lineEdit_SendResultLen.setText(str(self.__data._body.SendResultLen))
+        self.lineEdit_TitleLen.setText(str(self.__data._body.TitleLen))
+        self.lineEdit_cycletimes.setText(str(self.__data._body.cycletimes))
+        self.lineEdit_Priority.setText(str(self.__data._body.Priority))
+        self.lineEdit_typeComponentParam.setText(str(self.__data._body.typeComponentParam))
+        self.lineEdit_rmReSendTimes.setText(str(self.__data._body.rmReSendTimes))
+        self.lineEdit_repResendTimeOut.setText(str(self.__data._body.repResendTimeOut))
+
+        self.lineEdit_userDefineId.setText(self.__data.userDefineId)
+        self.lineEdit_title.setText(self.__data.title)
+        self.lineEdit_sign.setText(self.__data.sign)
+        self.lineEdit_totalMsgLen.setText(str(self.__data.totalMsgLen))
+        self.textEdit_msgContent.setText(self.__data.msgContent)
+        self.textEdit_sendResultInfo.setText(self.__data.sendResultInfo)
+        self.textEdit_totalMsg.setText(self.__data.totalMsg)
+
+    def updatedata(self):
+        self.__data._body.msgId +=1
+
+    def saveConfig(self, filename):
+        try:
+            config = ConfigParser()
+            config.add_section(m_section[0])
+            with open('config/'+filename+'.ini','w',encoding='utf-8') as f:
+                config.write(f)
+        except:
+            print('保存配置失败')
+
+    def loadConfig(self,filename):
+        try:
+            config = ConfigParser()
+            config.read(filename,encoding='utf-8')
+            if not config.has_section(m_section[0]):
+                print(filename,'do not have section',m_section[0])
+                return False
+            if len(config.items(m_section[0])) != len(m_keys_cloudmsg):
+                print(filename,'items error\n allkeys:\n',m_keys_cloudmsg)
+                return False
+
+        except:
+            print('加载配置失败')

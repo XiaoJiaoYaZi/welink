@@ -8,7 +8,7 @@ import typing
 import win32com.client
 import ctypes
 import inspect
-
+import pywintypes
 
 def _async_raise(tid, exctype):
     """raises the exception, performs cleanup if needed"""
@@ -151,7 +151,10 @@ class MsMqManageer(object):
         qinfo = win32com.client.Dispatch('MSMQ.MSMQQueueInfo')
         print(topic)
         qinfo.FormatName = topic
-        self.__producer = qinfo.Open(2, 0)
+        try:
+            self.__producer = qinfo.Open(2, 0)
+        except Exception as e:
+            print(e)
 
     def settopic_producer(self,topic):
         pass
@@ -164,7 +167,10 @@ class MsMqManageer(object):
     def create_consumer(self,topic:str,groupid:str = None):
         qinfo = win32com.client.Dispatch('MSMQ.MSMQQueueInfo')
         qinfo.FormatName = topic
-        self.__consumer = qinfo.Open(1, 0)
+        try:
+            self.__consumer = qinfo.Open(1, 0)
+        except Exception as e:
+            print(e)
         pass
 
     def startiocp_recv(self,func):

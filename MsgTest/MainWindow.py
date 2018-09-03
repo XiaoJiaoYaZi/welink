@@ -86,7 +86,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self.pushButton_stopsend.setEnabled(False)
         self.pushButton_pausesend.setEnabled(False)
         if int(self._config['MsgTest']['kafka']) == 0:
-            self.lineEdit_topick_send.setText(self._config['MsgTest']['MSMQPath'])
+            self.lineEdit_topick_send.setText(self._config['MsgTest']['msmqpath_producer'])
         else:
             self.lineEdit_topick_send.setText(self._config['MsgTest']['topic_producer'])
         self.lineEdit_topick_recv.setText(self._config['MsgTest']['topic_consumer'])
