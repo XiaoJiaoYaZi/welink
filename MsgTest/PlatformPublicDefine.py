@@ -2,6 +2,9 @@ import struct
 from enum import Enum
 from PyQt5 import QtCore
 from BMSMessage import Datetime_dt,dt_Datetime
+import sys
+
+
 
 class msg_header(object):
     __OneByte = struct.Struct('<6I')
@@ -498,17 +501,25 @@ class MsgHeader(object):
         self.Length      = 0
 
     def Value(self):
-        return self.__OneByte.pack(*(
-            self.MessageType,
-            self.Version,
-            self.Length
-        ))
+        try:
+            return self.__OneByte.pack(*(
+                self.MessageType,
+                self.Version,
+                self.Length
+            ))
+        except:
+            Exception("module:{} func:{} line:{} error".format(
+                __file__, sys._getframe().f_code.co_name, sys._getframe().f_lineno))
 
     def fromBytes(self,b):
-        data = self.__OneByte.unpack(b)
-        self.MessageType = data[0]
-        self.Version     = data[1]
-        self.Length      = data[2]
+        try:
+            data = self.__OneByte.unpack(b)
+            self.MessageType = data[0]
+            self.Version     = data[1]
+            self.Length      = data[2]
+        except:
+            Exception("module:{} func:{} line:{} error".format(
+                __file__, sys._getframe().f_code.co_name, sys._getframe().f_lineno))
 
     def __len__(self):
         return self.__OneByte.size
@@ -573,59 +584,67 @@ class TSMsgSendData(object):
 
 
     def Value(self):
-        return self.__OneByte.pack(*(
-            self.productExtendId,
-            self.msgId,
-            self.sendedTime,
-            self.submitTime,
-            self.mobilePhone,
-            self.matchId,
-            self.realProductExtendId,
-            self.resourceId,
-            self.chargeQuantity,
-            self.propertyComponent,
-            self.sendTimes,
-            self.msgType,
-            self._accountId,
-            self._SPNo,
-            self._clientMsgId,
-            self.sendState,
-            self.msgLen,
-            self.SendResultLen,
-            self.TitleLen,
-            self.cycletimes,
-            self.Priority,
-            self.typeComponentParam,
-            self.rmReSendTimes,
-            self.repResendTimeOut,
-        ))
+        try:
+            return self.__OneByte.pack(*(
+                self.productExtendId,
+                self.msgId,
+                self.sendedTime,
+                self.submitTime,
+                self.mobilePhone,
+                self.matchId,
+                self.realProductExtendId,
+                self.resourceId,
+                self.chargeQuantity,
+                self.propertyComponent,
+                self.sendTimes,
+                self.msgType,
+                self._accountId,
+                self._SPNo,
+                self._clientMsgId,
+                self.sendState,
+                self.msgLen,
+                self.SendResultLen,
+                self.TitleLen,
+                self.cycletimes,
+                self.Priority,
+                self.typeComponentParam,
+                self.rmReSendTimes,
+                self.repResendTimeOut,
+            ))
+        except:
+            Exception("module:{} func:{} line:{} error".format(
+                __file__, sys._getframe().f_code.co_name,sys._getframe().f_lineno))
 
     def fromBytes(self,b):
-        data = self.__OneByte.unpack(b)
-        self.productExtendId        = data[0]
-        self.msgId                  = data[1]
-        self.sendedTime             = data[2]
-        self.submitTime             = data[3]
-        self.mobilePhone            = data[4]
-        self.matchId                = data[5]
-        self.realProductExtendId    = data[6]
-        self.resourceId             = data[7]
-        self.chargeQuantity         = data[8]
-        self.propertyComponent      = data[9]
-        self.sendTimes              = data[10]
-        self.msgType                = data[11]
-        self._accountId              = data[12]
-        self._SPNo                   = data[13]
-        self._clientMsgId            = data[14]
-        self.sendState              = data[15]
-        self.msgLen                 = data[16]
-        self.SendResultLen          = data[17]
-        self.TitleLen               = data[18]
-        self.cycletimes             = data[19]
-        self.Priority               = data[20]
-        self.typeComponentParam     = data[21]
-        self.rmReSendTimes          = data[22]
-        self.repResendTimeOut       = data[23]
+        try:
+            data = self.__OneByte.unpack(b)
+            self.productExtendId        = data[0]
+            self.msgId                  = data[1]
+            self.sendedTime             = data[2]
+            self.submitTime             = data[3]
+            self.mobilePhone            = data[4]
+            self.matchId                = data[5]
+            self.realProductExtendId    = data[6]
+            self.resourceId             = data[7]
+            self.chargeQuantity         = data[8]
+            self.propertyComponent      = data[9]
+            self.sendTimes              = data[10]
+            self.msgType                = data[11]
+            self._accountId              = data[12]
+            self._SPNo                   = data[13]
+            self._clientMsgId            = data[14]
+            self.sendState              = data[15]
+            self.msgLen                 = data[16]
+            self.SendResultLen          = data[17]
+            self.TitleLen               = data[18]
+            self.cycletimes             = data[19]
+            self.Priority               = data[20]
+            self.typeComponentParam     = data[21]
+            self.rmReSendTimes          = data[22]
+            self.repResendTimeOut       = data[23]
+        except:
+            raise Exception("module:{} func:{} line:{} error".format(
+                __file__,sys._getframe().f_code.co_name,sys._getframe().f_lineno))
 
     def __len__(self):
         return self.__OneByte.size
@@ -783,10 +802,10 @@ class TSMsgHisRepData(object):
         self.mobilePhone        = data[0]
         self.matchId            = data[1]
         self.resourceId         = data[2]
-        self._reportTime         = data[3]
+        self._reportTime        = data[3]
         self.reportState        = data[4]
-        self._reportResultInfo   = data[5]
-        self._reportLocalTime    = data[6]
+        self._reportResultInfo  = data[5]
+        self._reportLocalTime   = data[6]
         self.componentFlg       = data[7]
         self.flagRetryTime      = data[8]
         self.cycletimes         = data[9]
@@ -825,14 +844,22 @@ class SMsgHisRepData(object):
         self._body = TSMsgHisRepData()
 
     def Value(self):
-        return self._head.Value()+self._body.Value()
+        try:
+            return self._head.Value()+self._body.Value()
+        except:
+            raise Exception("module:{} func:{} line:{} error".format(
+                __file__,sys._getframe().f_code.co_name,sys._getframe().f_lineno))
 
     def fromBytes(self,b):
-        b = bytearray(b)
-        l1 = len(self._head)
-        l2 = len(self._body)
-        self._head.fromBytes(b[:l1])
-        self._body.fromBytes(b[l1:l1+l2])
+        try:
+            b = bytearray(b)
+            l1 = len(self._head)
+            l2 = len(self._body)
+            self._head.fromBytes(b[:l1])
+            self._body.fromBytes(b[l1:l1+l2])
+        except:
+            raise Exception("module:{} func:{} line:{} error".format(
+                __file__,sys._getframe().f_code.co_name,sys._getframe().f_lineno))
 
     def write_header(self):
         self._head.MessageType = self.CType
@@ -844,39 +871,245 @@ class SMOData(object):
     def __init__(self):
         self.msgId              =0#; // 信息编号
         self.mobilePhone        =0#; // 手机号码
-        self.SPNo               =bytes(32)#;
-        self.MOTime             =0#;
+        self._SPNo               =bytes(32)#;
+        self._MOTime             =0#;
         self.resourceId         =0#; // 资源编号
         self.MOContentLength    =0#;
-        self.MOContent          =bytes(256)#; // 此值直接放在消息队列中
+        self._MOContent          =bytes(256)#; // 此值直接放在消息队列中
         self.msgType            =0#; // 信息类型
-        self.accountId          =bytes(30)#;
+        self._accountId          =bytes(30)#;
+
+    def __len__(self):
+        return self.__OneByte.size
+
+    @property
+    def SPNo(self):
+        return self._SPNo.decode('utf-8')
+    @SPNo.setter
+    def SPNo(self,value:str):
+        t = value.encode('utf-8')
+        self._SPNo = t + bytes(32-len(t))
+
+    @property
+    def MOContent(self):
+        return self._MOContent.decode('utf-8')
+    @MOContent.setter
+    def MOContent(self, value: str):
+        t = value.encode('utf-8')
+        self._MOContent = t + bytes(256 - len(t))
+
+    @property
+    def accountId(self):
+        return self._accountId.decode('utf-8')
+    @accountId.setter
+    def accountId(self, value: str):
+        t = value.encode('utf-8')
+        self._accountId = t + bytes(30 - len(t))
+
+    @property
+    def MOTime(self):
+        return QtCore.QDateTime.fromTime_t(Datetime_dt(self._MOTime))
+    @MOTime.setter
+    def MOTime(self,value:QtCore.QDateTime):
+        self._MOTime = dt_Datetime(value.toPyDateTime().ctime())
+
+    def Value(self):
+        try:
+            return self.__OneByte.pack(*(
+                self.msgId,
+                self.mobilePhone,
+                self._SPNo,
+                self._MOTime,
+                self.resourceId,
+                self.MOContentLength,
+                self._MOContent,
+                self.msgType,
+                self._accountId,
+            ))
+        except:
+            raise Exception("module:{} func:{} line:{} error".format(
+                __file__,sys._getframe().f_code.co_name,sys._getframe().f_lineno))
+
+    def fromBytes(self,b):
+        #b = bytearray(b)
+        try:
+            data = self.__OneByte.unpack(b)
+            self.msgId              = data[0]
+            self.mobilePhone        = data[1]
+            self._SPNo              = data[2]
+            self._MOTime            = data[3]
+            self.resourceId         = data[4]
+            self.MOContentLength    = data[5]
+            self._MOContent         = data[6]
+            self.msgType            = data[7]
+            self._accountId         = data[8]
+        except:
+            raise Exception("module:{} func:{} line:{} error".format(
+                __file__,sys._getframe().f_code.co_name,sys._getframe().f_lineno))
 
 class SRepNotifyData(object):
     __OneByte = struct.Struct("<I30sqBBdd64s64s24s16sd16sBBi33s31s")
     def __init__(self):
         self.version                =0#;
         self.msgId                  =0#;
-        self.accountId              =bytes(30)#;
+        self._accountId             =bytes(30)#;
         self.mobilePhone            =0#;
         self.sendState              =0#;
         self.reportState            =0#;
-        self.sendedTime             =0#;
-        self.reportTime             =0#; // 消息回执时间
-        self.sendResultInfo         =bytes(64)#;
-        self.reportResultInfo       =bytes(64)#;
-        self.spno                   =bytes(24)#;
-        self.clientMsgId            =bytes(16)#;
-        self.reportLocalTime        =0#; // 消息回执本地时间
-        self.extendNum              =bytes(16)#; // 扩展号码
+        self._sendedTime            =0#;
+        self._reportTime            =0#; // 消息回执时间
+        self._sendResultInfo        =bytes(64)#;
+        self._reportResultInfo      =bytes(64)#;
+        self._spno                  =bytes(24)#;
+        self._clientMsgId           =bytes(16)#;
+        self._reportLocalTime       =0#; // 消息回执本地时间
+        self._extendNum             =bytes(16)#; // 扩展号码
         self.pk_total               =0#;
         self.pk_num                 =0#;
         self.combinationVal         =0#;
-        self.userDefineId           =bytes(33)#;
-        self.extMem                 =bytes(31)#;
+        self._userDefineId          =bytes(33)#;
+        self._extMem                =bytes(31)#;
 
     def __len__(self):
         return self.__OneByte.size
+
+    @property
+    def accountId(self):
+        return self._accountId.decode('utf-8')
+    @accountId.setter
+    def accountId(self, value: str):
+        t = value.encode('utf-8')
+        self._accountId = t + bytes(30 - len(t))
+
+    @property
+    def sendResultInfo(self):
+        return self._sendResultInfo.decode('utf-8')
+    @sendResultInfo.setter
+    def sendResultInfo(self, value: str):
+        t = value.encode('utf-8')
+        self._sendResultInfo = t + bytes(64 - len(t))
+
+    @property
+    def reportResultInfo(self):
+        return self._reportResultInfo.decode('utf-8')
+    @reportResultInfo.setter
+    def reportResultInfo(self, value: str):
+        t = value.encode('utf-8')
+        self._reportResultInfo = t + bytes(64 - len(t))
+
+    @property
+    def spno(self):
+        return self._spno.decode('utf-8')
+    @spno.setter
+    def spno(self, value: str):
+        t = value.encode('utf-8')
+        self._spno = t + bytes(24 - len(t))
+
+    @property
+    def clientMsgId(self):
+        return self._clientMsgId.decode('utf-8')
+    @clientMsgId.setter
+    def clientMsgId(self, value: str):
+        t = value.encode('utf-8')
+        self._clientMsgId = t + bytes(16 - len(t))
+
+    @property
+    def extendNum(self):
+        return self._extendNum.decode('utf-8')
+    @extendNum.setter
+    def extendNum(self, value: str):
+        t = value.encode('utf-8')
+        self._extendNum = t + bytes(16 - len(t))
+
+    @property
+    def userDefineId(self):
+        return self._userDefineId.decode('utf-8')
+    @userDefineId.setter
+    def userDefineId(self, value: str):
+        t = value.encode('utf-8')
+        self._userDefineId = t + bytes(33 - len(t))
+
+    @property
+    def extMem(self):
+        return self._extMem.decode('utf-8')
+    @extMem.setter
+    def extMem(self, value: str):
+        t = value.encode('utf-8')
+        self._extMem = t + bytes(31 - len(t))
+
+    @property
+    def sendedTime(self):
+        return QtCore.QDateTime.fromTime_t(Datetime_dt(self._sendedTime))
+    @sendedTime.setter
+    def sendedTime(self,value:QtCore.QDateTime):
+        self._sendedTime = dt_Datetime(value.toPyDateTime().ctime())
+
+    @property
+    def reportTime(self):
+        return QtCore.QDateTime.fromTime_t(Datetime_dt(self._reportTime))
+    @reportTime.setter
+    def reportTime(self,value:QtCore.QDateTime):
+        self._reportTime = dt_Datetime(value.toPyDateTime().ctime())
+
+    @property
+    def reportLocalTime(self):
+        return QtCore.QDateTime.fromTime_t(Datetime_dt(self._reportLocalTime))
+    @reportLocalTime.setter
+    def reportLocalTime(self,value:QtCore.QDateTime):
+        self._reportLocalTime = dt_Datetime(value.toPyDateTime().ctime())
+
+    def Value(self):
+        try:
+            return self.__OneByte.pack(*(
+                self.version,
+                self.msgId,
+                self._accountId,
+                self.mobilePhone,
+                self.sendState,
+                self.reportState,
+                self._sendedTime,
+                self._reportTime,
+                self._sendResultInfo,
+                self._reportResultInfo,
+                self._spno,
+                self._clientMsgId,
+                self._reportLocalTime,
+                self._extendNum,
+                self.pk_total,
+                self.pk_num,
+                self.combinationVal,
+                self._userDefineId,
+                self._extMem,
+            ))
+        except:
+            raise Exception("module:{} func:{} line:{} error".format(
+                __file__,sys._getframe().f_code.co_name,sys._getframe().f_lineno))
+
+    def fromBytes(self,b):
+        try:
+            data = self.__OneByte.unpack(b)
+            self.version            = data[0]
+            self.msgId              = data[1]
+            self._accountId         = data[2]
+            self.mobilePhone        = data[3]
+            self.sendState          = data[4]
+            self.reportState        = data[5]
+            self._sendedTime        = data[6]
+            self._reportTime        = data[7]
+            self._sendResultInfo    = data[8]
+            self._reportResultInfo  = data[9]
+            self._spno              = data[10]
+            self._clientMsgId       = data[11]
+            self._reportLocalTime   = data[12]
+            self._extendNum         = data[13]
+            self.pk_total           = data[14]
+            self.pk_num             = data[15]
+            self.combinationVal     = data[16]
+            self._userDefineId      = data[17]
+            self._extMem            = data[18]
+        except:
+            raise Exception("module:{} func:{} line:{} error".format(
+                __file__,sys._getframe().f_code.co_name,sys._getframe().f_lineno))
 
 class ResourceStateNotify(object):
     __OneByte = struct.Struct("<idBiiiiiii")
@@ -894,4 +1127,39 @@ class ResourceStateNotify(object):
 
     def __len__(self):
         return self.__OneByte.size
+
+    def Value(self):
+        try:
+            return self.__OneByte.pack(*(
+                self.ResourceId,
+                self.NotifyTime,
+                self.RunTimeState,
+                self.QueueStock,
+                self.lastTimeQueueStock,
+                self.reportTimeInterval,
+                self.submitTotal,
+                self.submitFail,
+                self.reportTotal,
+                self.reportFail,
+            ))
+        except:
+            raise Exception("module:{} func:{} line:{} error".format(
+                __file__,sys._getframe().f_code.co_name,sys._getframe().f_lineno))
+
+    def fromBytes(self,b):
+        try:
+            data = self.__OneByte.unpack(b)
+            self.ResourceId         = data[0]
+            self.NotifyTime         = data[1]
+            self.RunTimeState       = data[2]
+            self.QueueStock         = data[3]
+            self.lastTimeQueueStock = data[4]
+            self.reportTimeInterval = data[5]
+            self.submitTotal        = data[6]
+            self.submitFail         = data[7]
+            self.reportTotal        = data[8]
+            self.reportFail         = data[9]
+        except:
+            raise Exception("module:{} func:{} line:{} error".format(
+                __file__,sys._getframe().f_code.co_name,sys._getframe().f_lineno))
 
