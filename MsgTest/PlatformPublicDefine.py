@@ -96,34 +96,40 @@ class DispatchFixedHead(object):
         ))
 
     def fromBytes(self,b):
-        data = self.__OneByte.unpack(b)
-        self.Priority               = data[0]
-        self.MsgId                  = data[1]
-        self.ProductExtendId        = data[2]
-        self.RealProductExtendId    = data[3]
-        self.StartSendDateTime      = data[4]
-        self.EndSendDateTime        = data[5]
-        self.StartSendTime          = data[6]
-        self.EndSendTime            = data[7]
-        self.ChargeQuantity         = data[8]
-        self.MsgState               = data[9]
-        self.MsgType                = data[11]
-        self.CommitTime             = data[12]
-        self.Package                = data[13]
-        self.MobilesContentLen      = data[14]
-        self.MsgContentLen          = data[15]
-        self.MobilesCount           = data[16]
-        self.DispatchTimes          = data[17]
-        self.Telcom                 = data[18]
-        self.ProvinceId             = data[19]
-        self.CityId                 = data[20]
-        self.TPCBChecked            = data[21]
-        self.SendedTimes            = data[22]
-        self.DispatchFailedState    = data[23]
-        self.SubmitType             = data[24]
-        self.CloudMsgTemplateID     = data[25]
-        self.CommitIp               = data[26]
-        self.m_old_struct           = data[27]
+        try:
+            data = self.__OneByte.unpack(b)
+            self.Priority               = data[0]
+            self.MsgId                  = data[1]
+            self.ProductExtendId        = data[2]
+            self.RealProductExtendId    = data[3]
+            self.StartSendDateTime      = data[4]
+            self.EndSendDateTime        = data[5]
+            self.StartSendTime          = data[6]
+            self.EndSendTime            = data[7]
+            self.ChargeQuantity         = data[8]
+            self.MsgState               = data[9]
+            self.MsgType                = data[10]
+            self.CommitTime             = data[11]
+            self.Package                = data[12]
+            self.MobilesContentLen      = data[13]
+            self.MsgContentLen          = data[14]
+            self.MobilesCount           = data[15]
+            self.DispatchTimes          = data[16]
+            self.Telcom                 = data[17]
+            self.ProvinceId             = data[18]
+            self.CityId                 = data[19]
+            self.TPCBChecked            = data[20]
+            self.SendedTimes            = data[21]
+            self.DispatchFailedState    = data[22]
+            self.SubmitType             = data[23]
+            self.CloudMsgTemplateID     = data[24]
+            self.CommitIp               = data[25]
+            self.m_old_struct           = data[26]
+        except Exception as e:
+            print(e)
+            Exception("module:{} func:{} line:{} error".format(
+                __file__, sys._getframe().f_code.co_name, sys._getframe().f_lineno))
+
 
     def __len__(self):
         return self.__OneByte.size
@@ -272,8 +278,8 @@ class SCloudMessage(object):
         l2 = len(self.FixHead)
         l3 = len(self.FixTail)
         l4 = len(self.node[0])
-        l5 = self.msgheader._offset+7*l4
         self.msgheader.fromBytes(b[:l1])
+        l5 = self.msgheader._offset+12*l4
         self.FixHead.fromBytes(b[l1:l1+l2])
         self.FixTail.fromBytes(b[l1+l2:l1+l2+l3])
         for i in range(self.msgheader._item_count):
@@ -395,84 +401,84 @@ class SCloudMessage(object):
 
     @property
     def mobiles(self):
-        return self._mobiles.decode('utf-8')
+        return self._mobiles.decode('utf-8').replace('\x00','')
     @mobiles.setter
     def mobiles(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_MOBILE.value[0],value)
 
     @property
     def acc_name(self):
-        return self._acc_name.decode('utf-8')
+        return self._acc_name.decode('utf-8').replace('\x00','')
     @acc_name.setter
     def acc_name(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_ACC_NAME.value[0],value)
 
     @property
     def message(self):
-        return self._message.decode('utf_16_le')
+        return self._message.decode('utf_16_le').replace('\x00','')
     @message.setter
     def message(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_CONTENT.value[0],value)
 
     @property
     def templateID(self):
-        return self._templateID.decode('utf-8')
+        return self._templateID.decode('utf-8').replace('\x00','')
     @templateID.setter
     def templateID(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_TEMPLATE_ID.value[0],value)
 
     @property
     def msgtemplate(self):
-        return self._msgtemplate.decode('utf_16_le')
+        return self._msgtemplate.decode('utf_16_le').replace('\x00','')
     @msgtemplate.setter
     def msgtemplate(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_MSG_TEMPLATE.value[0],value)
 
     @property
     def paramtemplate(self):
-        return self._msgtemplate.decode('utf-8')
+        return self._msgtemplate.decode('utf-8').replace('\x00','')
     @paramtemplate.setter
     def paramtemplate(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_PARAM_TEMPLATE.value[0],value)
 
     @property
     def extnumer(self):
-        return self._extnumer.decode('utf-8')
+        return self._extnumer.decode('utf-8').replace('\x00','')
     @extnumer.setter
     def extnumer(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_EXT_NUMBER.value[0],value)
 
     @property
     def sign(self):
-        return self._sign.decode('utf_16_le')
+        return self._sign.decode('utf_16_le').replace('\x00','')
     @sign.setter
     def sign(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_SIGN.value[0],value)
 
     @property
     def acc_msgid(self):
-        return self._acc_msgid.decode('utf-8')
+        return self._acc_msgid.decode('utf-8').replace('\x00','')
     @acc_msgid.setter
     def acc_msgid(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_ACC_MSGID.value[0],value)
 
     @property
     def mms_title(self):
-        return self._mms_title.decode('utf_16_le')
+        return self._mms_title.decode('utf_16_le').replace('\x00','')
     @mms_title.setter
     def mms_title(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_MMS_TITLE.value[0],value)
 
     @property
     def mms_filename(self):
-        return self.mms_filename.decode('utf-8')
+        return self._mms_filename.decode('utf-8').replace('\x00','')
     @mms_filename.setter
     def mms_filename(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_MMS_FILENAME.value[0],value)
 
     @property
     def usr_def_id(self):
-        return self._usr_def_id.decode('utf-8')
+        return self._usr_def_id.decode('utf-8').replace('\x00','')
     @usr_def_id.setter
     def usr_def_id(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_USER_DEF_ID.value[0],value)
@@ -717,7 +723,7 @@ class SMsgSendData(object):
 
     @property
     def msgContent(self):
-        return self._msgContent.decode('utf_16_le')
+        return self._msgContent.decode('utf_16_le').replace('\x00','')
     @msgContent.setter
     def msgContent(self,value:str):
         if isinstance(value,str):
@@ -725,7 +731,7 @@ class SMsgSendData(object):
 
     @property
     def sendResultInfo(self):
-        return self._sendResultInfo.decode('gbk')
+        return self._sendResultInfo.decode('gbk').replace('\x00','')
     @sendResultInfo.setter
     def sendResultInfo(self,value):
         if isinstance(value,str):
@@ -733,7 +739,7 @@ class SMsgSendData(object):
 
     @property
     def title(self):
-        return self._title.decode('utf_16_le')
+        return self._title.decode('utf_16_le').replace('\x00','')
     @title.setter
     def title(self,value):
         if isinstance(value,str):
@@ -741,7 +747,7 @@ class SMsgSendData(object):
 
     @property
     def userDefineId(self):
-        return self._userDefineId.decode('gbk')
+        return self._userDefineId.decode('gbk').replace('\x00','')
     @userDefineId.setter
     def userDefineId(self,value):
         if isinstance(value,str):
@@ -757,7 +763,7 @@ class SMsgSendData(object):
 
     @property
     def totalMsg(self):
-        return self._totalMsg.decode('utf_16_le')
+        return self._totalMsg.decode('utf_16_le').replace('\x00','')
     @totalMsg.setter
     def totalMsg(self,value:str):
         if isinstance(value,str):
@@ -765,7 +771,7 @@ class SMsgSendData(object):
 
     @property
     def sign(self):
-        return self._sign.decode('utf_16_le')
+        return self._sign.decode('utf_16_le').replace('\x00','')
     @sign.setter
     def sign(self,value:str):
         if isinstance(value,str):
@@ -818,7 +824,7 @@ class TSMsgHisRepData(object):
 
     @property
     def reportResultInfo(self):
-        return self._reportResultInfo.decode('gbk')
+        return self._reportResultInfo.decode('gbk').replace('\x00','')
     @reportResultInfo.setter
     def reportResultInfo(self,value:str):
         t = value.encode('gbk')
@@ -887,7 +893,7 @@ class SMOData(object):
 
     @property
     def SPNo(self):
-        return self._SPNo.decode('gbk')
+        return self._SPNo.decode('gbk').replace('\x00','')
     @SPNo.setter
     def SPNo(self,value:str):
         t = value.encode('gbk')
@@ -895,7 +901,7 @@ class SMOData(object):
 
     @property
     def MOContent(self):
-        return self._MOContent.decode('gbk')
+        return self._MOContent.decode('gbk').replace('\x00','')
     @MOContent.setter
     def MOContent(self, value: str):
         t = value.encode('gbk')
@@ -903,7 +909,7 @@ class SMOData(object):
 
     @property
     def accountId(self):
-        return self._accountId.decode('gbk')
+        return self._accountId.decode('gbk').replace('\x00','')
     @accountId.setter
     def accountId(self, value: str):
         t = value.encode('gbk')
@@ -978,7 +984,7 @@ class SRepNotifyData(object):
 
     @property
     def accountId(self):
-        return self._accountId.decode('gbk')
+        return self._accountId.decode('gbk').replace('\x00','')
     @accountId.setter
     def accountId(self, value: str):
         t = value.encode('gbk')
@@ -986,7 +992,7 @@ class SRepNotifyData(object):
 
     @property
     def sendResultInfo(self):
-        return self._sendResultInfo.decode('gbk')
+        return self._sendResultInfo.decode('gbk').replace('\x00','')
     @sendResultInfo.setter
     def sendResultInfo(self, value: str):
         t = value.encode('gbk')
@@ -994,7 +1000,7 @@ class SRepNotifyData(object):
 
     @property
     def reportResultInfo(self):
-        return self._reportResultInfo.decode('gbk')
+        return self._reportResultInfo.decode('gbk').replace('\x00','')
     @reportResultInfo.setter
     def reportResultInfo(self, value: str):
         t = value.encode('gbk')
@@ -1002,7 +1008,7 @@ class SRepNotifyData(object):
 
     @property
     def spno(self):
-        return self._spno.decode('gbk')
+        return self._spno.decode('gbk').replace('\x00','')
     @spno.setter
     def spno(self, value: str):
         t = value.encode('gbk')
@@ -1010,7 +1016,7 @@ class SRepNotifyData(object):
 
     @property
     def clientMsgId(self):
-        return self._clientMsgId.decode('gbk')
+        return self._clientMsgId.decode('gbk').replace('\x00','')
     @clientMsgId.setter
     def clientMsgId(self, value: str):
         t = value.encode('gbk')
@@ -1018,7 +1024,7 @@ class SRepNotifyData(object):
 
     @property
     def extendNum(self):
-        return self._extendNum.decode('gbk')
+        return self._extendNum.decode('gbk').replace('\x00','')
     @extendNum.setter
     def extendNum(self, value: str):
         t = value.encode('gbk')
@@ -1026,7 +1032,7 @@ class SRepNotifyData(object):
 
     @property
     def userDefineId(self):
-        return self._userDefineId.decode('gbk')
+        return self._userDefineId.decode('gbk').replace('\x00','')
     @userDefineId.setter
     def userDefineId(self, value: str):
         t = value.encode('gbk')
@@ -1034,7 +1040,7 @@ class SRepNotifyData(object):
 
     @property
     def extMem(self):
-        return self._extMem.decode('gbk')
+        return self._extMem.decode('gbk').replace('\x00','')
     @extMem.setter
     def extMem(self, value: str):
         t = value.encode('gbk')
@@ -1109,8 +1115,9 @@ class SRepNotifyData(object):
             self.pk_num             = data[15]
             self.combinationVal     = data[16]
             self._userDefineId      = data[17]
-            self._extMem            = data[18]
-        except:
+            #self._extMem            = data[18]
+        except Exception as e:
+            print(e)
             raise Exception("module:{} func:{} line:{} error".format(
                 __file__,sys._getframe().f_code.co_name,sys._getframe().f_lineno))
 
@@ -1228,7 +1235,7 @@ class SDispatchStatistics(object):
 
     @property
     def extendMem(self):
-        return self._extendMem.decode('utf-8')
+        return self._extendMem.decode('utf-8').replace('\x00','')
     @extendMem.setter
     def extendMem(self,value:str):
         t = value.encode("utf-8")
@@ -1281,7 +1288,7 @@ class SResComStatistics(object):
 
     @property
     def extendMem(self):
-        return self._extendMem.decode('utf-8')
+        return self._extendMem.decode('utf-8').replace('\x00','')
     @extendMem.setter
     def extendMem(self,value:str):
         t = value.encode("utf-8")

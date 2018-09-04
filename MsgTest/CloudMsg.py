@@ -16,7 +16,7 @@ import os
 import sys
 
 
-m_section = ['SCloudMsg']
+m_section = ['SCloudMsg','MsgSendData','MsgHisRepData','MOData','RepNotifyData','']
 
 m_keys_cloudmsg = (
     '消息级别',
@@ -70,6 +70,82 @@ m_keys_cloudmsg = (
     '彩信标题',
     '彩信存储文件路径',
     '用户自定义参数',
+)
+m_keys_msgsenddata = (
+    '扩展产品',
+    '信息编号',
+    '发送时间',
+    '提交时间',
+    '手机号码',
+    '匹配编号',
+    '真实扩展产品编号',
+    '计费数',
+    '资源编号',
+    '组合属性',
+    '发送次数',
+    '消息类型',
+    '账号编号',
+    '企业扩展码',
+    '客户自定义id',
+    '发送状态',
+    '消息长度',
+    '发送结果长度',
+    '标题长度',
+    '循环次数',
+    '消息级别',
+    '综合状态',
+    '剩余重发次数',
+    '回执超时时长',
+    '用户定义id',
+    '标题',
+    '签名',
+    '整包长度',
+    '整包内容',
+    '发送结果内容',
+    '短信内容'
+)
+m_keys_msghisrepdata = (
+    '手机号码',
+    '匹配编号',
+    '资源编号',
+    '消息回执时间',
+    '状态报告是否成功',
+    '状态报告本地接收时间',
+    'Flag',
+    '循环次数',
+    '状态报告信息',
+)
+m_keys_modata = (
+    '信息编号',
+    '手机号码',
+    '上行时间',
+    '企业扩展号',
+    '资源编号',
+    '上行消息长度',
+    '信息类型',
+    '账户id',
+    '上行内容',
+)
+m_keys_repnotifydata = (
+    '版本',
+    '消息编号',
+    '账户id',
+    '电话号码',
+    '发送状态',
+    '报告状态',
+    '发送时间',
+    '报告时间',
+    '企业扩展号',
+    '客户自定义消息id',
+    '扩展号码',
+    '消息回执本地时间',
+    '总包数',
+    '当前包号',
+    '扩展参数',
+    '客户自定义id',
+    '发送结果',
+    '报告结果',
+    'extMem',
 )
 
 class MsgBase(QtWidgets.QWidget):
@@ -357,7 +433,7 @@ class CloudMsg(QtWidgets.QWidget,Ui_CloudMsg):
             self.packagetotal.setText(str(self.__data.FixTail.packagetotal))
             self.typeComponentParam.setText(str(self.__data.FixTail.typeComponentParam))
             self.lastFailResourceId.setText(str(self.__data.FixTail.lastFailResourceId))
-            self.failedType.setCurrentIndex(self.failedType)
+            self.failedType.setCurrentIndex(self.__data.FixTail.failedType)
             self.lastDiapatchTime.setDateTime(QtCore.QDateTime.fromTime_t(Datetime_dt(self.__data.FixTail.lastDiapatchTime)))
             self.resourceSendTimes.setText(str(self.__data.FixTail.resourceSendTimes))
             self.auditorId.setText(str(self.__data.FixTail.auditorId))
@@ -564,7 +640,7 @@ class MsgHisRepData(QtWidgets.QWidget,Ui_SMsgHisRepData):
             self.lineEdit_reportState.setText(str(self.__data._body.reportState))
             self.textEdit.setText(self.__data._body.reportResultInfo)
             self.dateTimeEdit_reportLocalTime.setDateTime(self.__data._body.reportLocalTime)
-            self.lineEdit_componentFlg.setText(self.__data._body.componentFlg)
+            self.lineEdit_componentFlg.setText(str(self.__data._body.componentFlg))
             self.lineEdit_cycletimes.setText(str(self.__data._body.cycletimes))
         except Exception as e:
             print(e)
@@ -715,7 +791,7 @@ class RepNotifyData(QtWidgets.QWidget,Ui_SRepNotifyData):
         try:
             self.lineEdit_version.setText(str(self.__data.version))
             self.lineEdit_msgId.setText(str(self.__data.msgId))
-            self.lineEdit_accountId.setText(self.__data._accountId)
+            self.lineEdit_accountId.setText(self.__data.accountId)
             self.lineEdit_mobilePhone.setText(str(self.__data.mobilePhone))
             self.lineEdit_sendState.setText(str(self.__data.sendState))
             self.lineEdit_reportState.setText(str(self.__data.reportState))
@@ -729,9 +805,9 @@ class RepNotifyData(QtWidgets.QWidget,Ui_SRepNotifyData):
             self.lineEdit_extendNum.setText(self.__data.extendNum)
             self.lineEdit_pk_total.setText(str(self.__data.pk_total))
             self.lineEdit_pk_num.setText(str(self.__data.pk_num))
-            self.lineEdit_combinationVal.setText()
+            self.lineEdit_combinationVal.setText(str(self.__data.combinationVal))
             self.lineEdit_userDefineId.setText(str(self.__data.combinationVal))
-            self.textEdit_extMem.setText(self.__data.extMem)
+            self.textEdit_extMem.setText(str(self.__data.extMem))
         except Exception as e:
             print(e)
             raise Exception("module:{} func:{} line:{} error".format(

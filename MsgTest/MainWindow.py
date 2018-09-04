@@ -42,7 +42,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
             self._config.read(os.getcwd()+'/config/config.ini',encoding='utf-8')
         except:
             print('read config error')
-        self._kafka.create_producer(self._config['MsgTest']['topic_producer'])
+        #self._kafka.create_producer(self._config['MsgTest']['topic_producer'])
         self._msmq.create_producer(self._config['MsgTest']['msmqpath_producer'])
         self._sendData.append(BMSMessage())
         self._sendData.append(BMSSHisSendData())

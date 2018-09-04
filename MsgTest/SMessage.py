@@ -657,28 +657,28 @@ class SHisSendData(Structure):
 
     @property
     def message(self):
-        return self._message.decode('utf_16_le')
+        return self._message.decode('utf_16_le').replace('\x00','')
     @property
     def whlMsg(self):
-        return self._whlMsg.decode('utf_16_le')
+        return self._whlMsg.decode('utf_16_le').replace('\x00','')
     @property
     def sign(self):
-        return self._sign.decode('utf_16_le')
+        return self._sign.decode('utf_16_le').replace('\x00','')
     @property
     def spno(self):
-        return self._spno.decode('utf-8')
+        return self._spno.decode('utf-8').replace('\x00','')
     @property
     def extnum(self):
-        return self._extendNum.decode('utf-8')
+        return self._extendNum.decode('utf-8').replace('\x00','')
     @property
     def accmsgid(self):
-        return self._acc_msgid.decode('utf-8')
+        return self._acc_msgid.decode('utf-8').replace('\x00','')
     @property
     def sendresult(self):
-        return self._sendResultInfo.decode('utf-8')
+        return self._sendResultInfo.decode('utf-8').replace('\x00','')
     @property
     def title(self):
-        return self._title.decode('utf_16_le')
+        return self._title.decode('utf_16_le').replace('\x00','')
 
 
 class SHisRepFixedData(Structure):
@@ -806,7 +806,7 @@ class SHisRepData(Structure):
 
     @property
     def repResultInfo(self):
-        return self._repResultInfo.decode('utf-8')
+        return self._repResultInfo.decode('utf-8').replace('\x00','')
 
 
 class SRepNotifyFixedData(Structure):
@@ -1007,19 +1007,19 @@ class SRepNotifyData(Structure):
 
     @property
     def sendResultInfo(self):
-        return self._sendResultInfo.decode('utf-8')
+        return self._sendResultInfo.decode('utf-8').replace('\x00','')
     @property
     def repResultInfo(self):
-        return self._repResultInfo.decode('utf-8')
+        return self._repResultInfo.decode('utf-8').replace('\x00','')
     @property
     def spno(self):
-        return self._spno.decode('utf-8')
+        return self._spno.decode('utf-8').replace('\x00','')
     @property
     def acc_msgid(self):
-        return self._acc_msgid.decode('utf-8')
+        return self._acc_msgid.decode('utf-8').replace('\x00','')
     @property
     def extnumber(self):
-        return self._extnumber.decode('utf-8')
+        return self._extnumber.decode('utf-8').replace('\x00','')
 
 
 class SHisMOFixedData(Structure):
@@ -1163,10 +1163,10 @@ class SHisMOData(Structure):
 
     @property
     def MoContent(self):
-        return self._MoContent.decode('utf_16_le')
+        return self._MoContent.decode('utf_16_le').replace('\x00','')
     @property
     def SpNum(self):
-        return self._SpNum.decode('utf-8')
+        return self._SpNum.decode('utf-8').replace('\x00','')
 
 class SMoAccBlist(Structure):
     _fields_ = [
