@@ -425,6 +425,15 @@ class BMSMessage(QtWidgets.QWidget,Ui_SBMSMessage):
             self.lineEdit_Pagetotal.setText(str(self.__data.SBmsMsgTail.PackageTotal))
             self.lineEdit_PackageNum.setText(str(self.__data.SBmsMsgTail.PackageNum))
 
+            self.lineEdit_mobile.clear()
+            self.textEdit_content.clear()
+            self.lineEdit_sign.clear()
+            self.lineEdit_title.clear()
+            self.lineEdit_extnum.clear()
+            self.lineEdit_filepath.clear()
+            self.lineEdit_accmsgid.clear()
+
+            print(self.__data.mobiles)
             self.lineEdit_mobile.setText(self.__data.mobiles)
             self.textEdit_content.setText(self.__data.messages)
             self.lineEdit_sign.setText(self.__data.signs)

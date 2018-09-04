@@ -366,43 +366,44 @@ class SBmsMessage(Structure):
 
     @property
     def messages(self):
-        return self.message.decode('utf_16_le')
+        return self.message.decode('utf_16_le').replace('\x00','')
     @messages.setter
     def messages(self,value):
         self.__write_item(SBmsMessage.EBmsMsgItem.EBMI_CONTENT.value, value)
     @property
     def signs(self):
-        return self.sign.decode('utf_16_le')
+        return self.sign.decode('utf_16_le').replace('\x00','')
     @signs.setter
     def signs(self,value):
         self.__write_item(SBmsMessage.EBmsMsgItem.EBMI_SIGN.value, value)
     @property
     def extnumbers(self):
-        return self.extnumber.decode('utf-8')
+        return self.extnumber.decode('utf-8').replace('\x00','')
     @extnumbers.setter
     def extnumbers(self,value):
         self.__write_item(SBmsMessage.EBmsMsgItem.EBMI_EXT_NUMBER.value, value)
     @property
     def accmsgids(self):
-        return self.accmsgid.decode('utf-8')
+        return self.accmsgid.decode('utf-8').replace('\x00','')
     @accmsgids.setter
     def accmsgids(self,value):
         self.__write_item(SBmsMessage.EBmsMsgItem.EBMI_ACC_MSGID.value, value)
     @property
     def titles(self):
-        return self.title.decode('utf_16_le')
+        return self.title.decode('utf_16_le').replace('\x00','')
     @titles.setter
     def titles(self,value):
         self.__write_item(SBmsMessage.EBmsMsgItem.EBMI_MMS_TITLE.value, value)
     @property
     def path(self):
-        return self.mmsfilename.decode('utf-8')
+        return self.mmsfilename.decode('utf-8').replace('\x00','')
     @path.setter
     def path(self,value):
         self.__write_item(SBmsMessage.EBmsMsgItem.EBMI_MMS_FILENAME.value, value)
     @property
     def mobiles(self):
-        return self._mobile.decode('utf-8')
+        print(self._mobile)
+        return self._mobile.decode('utf-8').replace('\x00','')
     @mobiles.setter
     def mobiles(self,value):
         self.__write_item(SBmsMessage.EBmsMsgItem.EBMI_MOBILE.value, value)

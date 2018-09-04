@@ -75,6 +75,31 @@
             <string>SCloudMsg</string>
            </property>
           </item>
+          <item>
+           <property name="text">
+            <string>MsgSendData</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>MsgHisRepData</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>MOData</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>RepNotifyData</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Monitor_Cloud</string>
+           </property>
+          </item>
          </widget>
         </item>
        </layout>

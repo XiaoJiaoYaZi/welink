@@ -162,6 +162,7 @@ class MsMqManageer(object):
     def send(self,data):
         if isinstance(data,bytes):
             self._msg.Body = data
+            print(data)
             self._msg.Send(self.__producer)
 
     def create_consumer(self,topic:str,groupid:str = None):
@@ -171,6 +172,8 @@ class MsMqManageer(object):
             self.__consumer = qinfo.Open(1, 0)
         except Exception as e:
             print(e)
+            raise Exception("module:{} func:{} line:{} error".format(
+                __file__, sys._getframe().f_code.co_name, sys._getframe().f_lineno))
         pass
 
     def startiocp_recv(self,func):
@@ -181,21 +184,25 @@ class MsMqManageer(object):
         pass
 
     def __startrecv(self,func):
+        print('start recv')
         while self.b_started:
             try:
                 msg = self.__consumer.Receive()
+                print(msg.Body.tobytes(),type(msg))
                 if isinstance(msg.Body, memoryview):
                     func(msg.Body.tobytes())
                 else:
                     func(msg.Body)
             except:
                 print("recv error")
+        print('thread end')
         pass
 
     def stopRecv(self):
         if self.b_started:
             self.b_started = False
-            self._thread.join()
+            if self._thread:
+                stop_thread(self._thread)
             self.__consumer.Close()
         pass
 

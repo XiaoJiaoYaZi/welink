@@ -486,7 +486,9 @@ class SCloudMessage(object):
 # SDispatchStatistics                                           --- MsgDispatchCenter
 # SResComStatistics                                             --- MsgDispatchCenter
 
-
+MSG_DSP_STC=0x01
+MSG_RES_RCV=0x02
+MSG_RES_SND=0x03
 MSG_HIS_MT=0x81
 MSG_HIS_REP=0x82
 MSG_HIS_MO=0x83
@@ -666,12 +668,11 @@ class SMsgSendData(object):
 
     def Value(self):
         values = self._head.Value()+self._body.Value()
-        self.__OneByte = struct.Struct("<%ds%ds%ds%dsi%ds%ds" %  (len(self._msgContent),
+        self.__OneByte = struct.Struct("<%ds%ds%ds33si%ds100s" %  (len(self._msgContent),
                                                                   len(self._sendResultInfo),
                                                                   len(self._title),
-                                                                  len(self._userDefineId),
                                                                   len(self._totalMsg),
-                                                                  len(self._sign),))
+                                                                   ))
 
         values += self.__OneByte.pack(*(self._msgContent,
                                         self._sendResultInfo,
@@ -716,35 +717,36 @@ class SMsgSendData(object):
 
     @property
     def msgContent(self):
-        return self._msgContent.decode('utf-8')
+        return self._msgContent.decode('utf_16_le')
     @msgContent.setter
-    def msgContent(self,value):
+    def msgContent(self,value:str):
         if isinstance(value,str):
-            self._msgContent = value.encode('utf-8')+b'\x00'
+            self._msgContent = value.encode('utf_16_le')+b'\x00\x00'
 
     @property
     def sendResultInfo(self):
-        return self._sendResultInfo.decode('utf-8')
+        return self._sendResultInfo.decode('gbk')
     @sendResultInfo.setter
     def sendResultInfo(self,value):
         if isinstance(value,str):
-            self._sendResultInfo = value.encode('utf-8')+b'\x00'
+            self._sendResultInfo = value.encode('gbk')+b'\x00'
 
     @property
     def title(self):
-        return self._title.decode('utf-8')
+        return self._title.decode('utf_16_le')
     @title.setter
     def title(self,value):
         if isinstance(value,str):
-            self._title = value.encode('utf-8')+b'\x00'
+            self._title = value.encode('utf_16_le')+b'\x00\x00'
 
     @property
     def userDefineId(self):
-        return self._userDefineId.decode('utf-8')
+        return self._userDefineId.decode('gbk')
     @userDefineId.setter
     def userDefineId(self,value):
         if isinstance(value,str):
-            self._userDefineId = value.encode('utf-8')+b'\x00'
+            t = value.encode('gbk')
+            self._userDefineId = t+bytes(33-len(t))
 
     @property
     def totalMsgLen(self):
@@ -755,19 +757,20 @@ class SMsgSendData(object):
 
     @property
     def totalMsg(self):
-        return self._totalMsg.decode('utf-8')
+        return self._totalMsg.decode('utf_16_le')
     @totalMsg.setter
     def totalMsg(self,value:str):
         if isinstance(value,str):
-            self._totalMsg = value.encode('utf-8')+b'\x00'
+            self._totalMsg = value.encode('utf_16_le')+b'\x00\x00'
 
     @property
     def sign(self):
-        return self._sign.decode('utf-8')
+        return self._sign.decode('utf_16_le')
     @sign.setter
     def sign(self,value:str):
         if isinstance(value,str):
-            self._sign = value.encode('utf-8')+b'\x00'
+            t = value.encode('utf_16_le')
+            self._sign = t + bytes(100-len(t))
 
 class TSMsgHisRepData(object):
     __OneByte = struct.Struct("<qqidB64sdiqi")
@@ -815,10 +818,10 @@ class TSMsgHisRepData(object):
 
     @property
     def reportResultInfo(self):
-        return self._reportResultInfo.decode('utf-8')
+        return self._reportResultInfo.decode('gbk')
     @reportResultInfo.setter
     def reportResultInfo(self,value:str):
-        t = value.encode('utf-8')
+        t = value.encode('gbk')
         self._reportResultInfo = t + bytes(64 - len(t))
 
     @property
@@ -884,26 +887,26 @@ class SMOData(object):
 
     @property
     def SPNo(self):
-        return self._SPNo.decode('utf-8')
+        return self._SPNo.decode('gbk')
     @SPNo.setter
     def SPNo(self,value:str):
-        t = value.encode('utf-8')
+        t = value.encode('gbk')
         self._SPNo = t + bytes(32-len(t))
 
     @property
     def MOContent(self):
-        return self._MOContent.decode('utf-8')
+        return self._MOContent.decode('gbk')
     @MOContent.setter
     def MOContent(self, value: str):
-        t = value.encode('utf-8')
+        t = value.encode('gbk')
         self._MOContent = t + bytes(256 - len(t))
 
     @property
     def accountId(self):
-        return self._accountId.decode('utf-8')
+        return self._accountId.decode('gbk')
     @accountId.setter
     def accountId(self, value: str):
-        t = value.encode('utf-8')
+        t = value.encode('gbk')
         self._accountId = t + bytes(30 - len(t))
 
     @property
@@ -948,7 +951,7 @@ class SMOData(object):
                 __file__,sys._getframe().f_code.co_name,sys._getframe().f_lineno))
 
 class SRepNotifyData(object):
-    __OneByte = struct.Struct("<I30sqBBdd64s64s24s16sd16sBBi33s31s")
+    __OneByte = struct.Struct("<Iq30sqBBdd64s64s24s16sd16sBBi33s")
     def __init__(self):
         self.version                =0#;
         self.msgId                  =0#;
@@ -975,66 +978,66 @@ class SRepNotifyData(object):
 
     @property
     def accountId(self):
-        return self._accountId.decode('utf-8')
+        return self._accountId.decode('gbk')
     @accountId.setter
     def accountId(self, value: str):
-        t = value.encode('utf-8')
+        t = value.encode('gbk')
         self._accountId = t + bytes(30 - len(t))
 
     @property
     def sendResultInfo(self):
-        return self._sendResultInfo.decode('utf-8')
+        return self._sendResultInfo.decode('gbk')
     @sendResultInfo.setter
     def sendResultInfo(self, value: str):
-        t = value.encode('utf-8')
+        t = value.encode('gbk')
         self._sendResultInfo = t + bytes(64 - len(t))
 
     @property
     def reportResultInfo(self):
-        return self._reportResultInfo.decode('utf-8')
+        return self._reportResultInfo.decode('gbk')
     @reportResultInfo.setter
     def reportResultInfo(self, value: str):
-        t = value.encode('utf-8')
+        t = value.encode('gbk')
         self._reportResultInfo = t + bytes(64 - len(t))
 
     @property
     def spno(self):
-        return self._spno.decode('utf-8')
+        return self._spno.decode('gbk')
     @spno.setter
     def spno(self, value: str):
-        t = value.encode('utf-8')
+        t = value.encode('gbk')
         self._spno = t + bytes(24 - len(t))
 
     @property
     def clientMsgId(self):
-        return self._clientMsgId.decode('utf-8')
+        return self._clientMsgId.decode('gbk')
     @clientMsgId.setter
     def clientMsgId(self, value: str):
-        t = value.encode('utf-8')
+        t = value.encode('gbk')
         self._clientMsgId = t + bytes(16 - len(t))
 
     @property
     def extendNum(self):
-        return self._extendNum.decode('utf-8')
+        return self._extendNum.decode('gbk')
     @extendNum.setter
     def extendNum(self, value: str):
-        t = value.encode('utf-8')
+        t = value.encode('gbk')
         self._extendNum = t + bytes(16 - len(t))
 
     @property
     def userDefineId(self):
-        return self._userDefineId.decode('utf-8')
+        return self._userDefineId.decode('gbk')
     @userDefineId.setter
     def userDefineId(self, value: str):
-        t = value.encode('utf-8')
+        t = value.encode('gbk')
         self._userDefineId = t + bytes(33 - len(t))
 
     @property
     def extMem(self):
-        return self._extMem.decode('utf-8')
+        return self._extMem.decode('gbk')
     @extMem.setter
     def extMem(self, value: str):
-        t = value.encode('utf-8')
+        t = value.encode('gbk')
         self._extMem = t + bytes(31 - len(t))
 
     @property
@@ -1079,9 +1082,9 @@ class SRepNotifyData(object):
                 self.pk_num,
                 self.combinationVal,
                 self._userDefineId,
-                self._extMem,
             ))
-        except:
+        except Exception as e:
+            print(e)
             raise Exception("module:{} func:{} line:{} error".format(
                 __file__,sys._getframe().f_code.co_name,sys._getframe().f_lineno))
 
@@ -1115,7 +1118,7 @@ class ResourceStateNotify(object):
     __OneByte = struct.Struct("<idBiiiiiii")
     def __init__(self):
         self.ResourceId             =0#; // 资源ID
-        self.NotifyTime             =0#; // 报告时间
+        self._NotifyTime             =0#; // 报告时间
         self.RunTimeState           =0#; // 资源状态
         self.QueueStock             =0#; // 含义变更为消息队列的积压数量
         self.lastTimeQueueStock     =0#;
@@ -1128,11 +1131,18 @@ class ResourceStateNotify(object):
     def __len__(self):
         return self.__OneByte.size
 
+    @property
+    def NotifyTime(self):
+        return QtCore.QDateTime.fromTime_t(Datetime_dt(self._NotifyTime))
+    @NotifyTime.setter
+    def NotifyTime(self,value:QtCore.QDateTime):
+        self._NotifyTime = dt_Datetime(value.toPyDateTime().ctime())
+
     def Value(self):
         try:
             return self.__OneByte.pack(*(
                 self.ResourceId,
-                self.NotifyTime,
+                self._NotifyTime,
                 self.RunTimeState,
                 self.QueueStock,
                 self.lastTimeQueueStock,
@@ -1150,7 +1160,7 @@ class ResourceStateNotify(object):
         try:
             data = self.__OneByte.unpack(b)
             self.ResourceId         = data[0]
-            self.NotifyTime         = data[1]
+            self._NotifyTime         = data[1]
             self.RunTimeState       = data[2]
             self.QueueStock         = data[3]
             self.lastTimeQueueStock = data[4]
@@ -1163,3 +1173,116 @@ class ResourceStateNotify(object):
             raise Exception("module:{} func:{} line:{} error".format(
                 __file__,sys._getframe().f_code.co_name,sys._getframe().f_lineno))
 
+class SDispatchStatistics(object):
+    CType = MSG_DSP_STC
+    CVersion = 0x10
+
+    __OneByte = struct.Struct("<iiiihq64s")
+    def __init__(self):
+        self._head = MsgHeader()
+        self.dispatchCenterId   = 0
+        self.totalDispatchCnt   = 0
+        self.succDispatchCnt    = 0
+        self.failDispatchCnt    = 0
+        self.cycleTime          = 0
+        self.createTime         = 0
+        self._extendMem         = bytes(64)
+
+    def Value(self):
+        try:
+            return self._head.Value()+self.__OneByte.pack(*(
+                self.dispatchCenterId,
+                self.totalDispatchCnt,
+                self.succDispatchCnt,
+                self.failDispatchCnt,
+                self.cycleTime,
+                self.createTime,
+                self._extendMem,
+            ))
+        except:
+            raise Exception("module:{} func:{} line:{} error".format(
+                __file__, sys._getframe().f_code.co_name, sys._getframe().f_lineno))
+
+    def fromBytes(self,b):
+        try:
+            b = bytearray(b)
+            l1 = len(self._head)
+            l2 = self.__OneByte.size
+            self._head.fromBytes(b[:l1])
+            data = self.__OneByte.unpack(b[l1:l1+l2])
+            self.dispatchCenterId   = data[0]
+            self.totalDispatchCnt   = data[1]
+            self.succDispatchCnt    = data[2]
+            self.failDispatchCnt    = data[3]
+            self.cycleTime          = data[4]
+            self.createTime         = data[5]
+            self._extendMem         = data[6]
+        except:
+            raise Exception("module:{} func:{} line:{} error".format(
+                __file__, sys._getframe().f_code.co_name, sys._getframe().f_lineno))
+
+    def write_header(self):
+        self._head.MessageType = self.CType
+        self._head.Version = self.CVersion
+        self._head.Length = len(self._head)+self.__OneByte.size
+
+    @property
+    def extendMem(self):
+        return self._extendMem.decode('utf-8')
+    @extendMem.setter
+    def extendMem(self,value:str):
+        t = value.encode("utf-8")
+        self._extendMem = t + bytes(64-len(t))
+
+class SResComStatistics(object):
+    CType = 0
+    CVersion = 0x10
+    __OneByte = struct.Struct("<iiihq64s")
+    def __init__(self):
+        self._head = MsgHeader()
+        self.resourceId     = 0
+        self.succCnt        = 0
+        self.failCnt        = 0
+        self.cycleTime      = 0
+        self.createTime     = 0
+        self._extendMem      = bytes(64)
+
+    def Value(self):
+        try:
+            return self._head.Value() + self.__OneByte.pack(*(
+                self.resourceId,
+                self.succCnt,
+                self.failCnt,
+                self.cycleTime,
+                self.createTime,
+                self._extendMem,
+            ))
+        except:
+            raise Exception("module:{} func:{} line:{} error".format(
+                __file__, sys._getframe().f_code.co_name, sys._getframe().f_lineno))
+
+    def fromBytes(self,b):
+        try:
+            b = bytearray(b)
+            l1 = len(self._head)
+            l2 = self.__OneByte.size
+            self._head.fromBytes(b[:l1])
+            data = self.__OneByte.unpack(b[l1:l1+l2])
+            self.resourceId = data[0]
+            self.succCnt    = data[1]
+            self.failCnt    = data[2]
+            self.cycleTime  = data[3]
+            self.createTime = data[4]
+            self._extendMem  = data[5]
+        except:
+            raise Exception("module:{} func:{} line:{} error".format(
+                __file__, sys._getframe().f_code.co_name, sys._getframe().f_lineno))
+
+
+    @property
+    def extendMem(self):
+        return self._extendMem.decode('utf-8')
+    @extendMem.setter
+    def extendMem(self,value:str):
+        t = value.encode("utf-8")
+        self._extendMem = t + bytes(64-len(t))

@@ -3,7 +3,7 @@ from PyQt5 import QtWidgets,QtCore,Qt
 from SMessage import SBmsMessage, SHisSendData
 from UI_MainWindow import Ui_MainWindow
 from BMSMessage import BMSMessage,BMSSHisSendData,BMSSHisRepData,BMSSRepNotifyData,BMSSHisMOData,BMSMoAccBlist,BMSMonitor
-from CloudMsg import CloudMsg
+from CloudMsg import CloudMsg,MsgSendData,MsgHisRepData,MOData,RepNotifyData,Monitor_Cloud
 import sys
 
 import time
@@ -52,6 +52,11 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self._sendData.append(BMSMoAccBlist())
         self._sendData.append(BMSMonitor())
         self._sendData.append(CloudMsg())
+        self._sendData.append(MsgSendData())
+        self._sendData.append(MsgHisRepData())
+        self._sendData.append(MOData())
+        self._sendData.append(RepNotifyData())
+        self._sendData.append(Monitor_Cloud())
 
         self._recvData.append(BMSMessage)
         self._recvData.append(BMSSHisSendData)
@@ -73,23 +78,19 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self.timer.start(1000)
 
     def initUI(self):
-        self.stackedWidget.insertWidget(0, self._sendData[0])
-        self.stackedWidget.insertWidget(1, self._sendData[1])
-        self.stackedWidget.insertWidget(2, self._sendData[2])
-        self.stackedWidget.insertWidget(3, self._sendData[3])
-        self.stackedWidget.insertWidget(4, self._sendData[4])
-        self.stackedWidget.insertWidget(5, self._sendData[5])
-        self.stackedWidget.insertWidget(6, self._sendData[6])
-        self.stackedWidget.insertWidget(7, self._sendData[7])
+        for i in range(len(self._sendData)):
+            self.stackedWidget.insertWidget(i,self._sendData[i])
+
         self.stackedWidget.setCurrentIndex(0)
         self.pushButton_stoprecv.setEnabled(False)
         self.pushButton_stopsend.setEnabled(False)
         self.pushButton_pausesend.setEnabled(False)
         if int(self._config['MsgTest']['kafka']) == 0:
             self.lineEdit_topick_send.setText(self._config['MsgTest']['msmqpath_producer'])
+            self.lineEdit_topick_recv.setText(self._config['MsgTest']['msmqpath_consumer'])
         else:
             self.lineEdit_topick_send.setText(self._config['MsgTest']['topic_producer'])
-        self.lineEdit_topick_recv.setText(self._config['MsgTest']['topic_consumer'])
+            self.lineEdit_topick_recv.setText(self._config['MsgTest']['topic_consumer'])
         self.lineEdit_group.setText(self._config['MsgTest']['groupid'])
         self.checkBox.setChecked(bool(int(self._config['MsgTest']['kafka'])))
         #self.lineEdit_topick_send.textChanged()
@@ -130,9 +131,12 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
             self.stackedWidget.setCurrentIndex(a0)
 
     def on_pushButton_send_pressed(self):
-        data = self._sendData[self.comboBox_msgtype.currentIndex()].getValue()
-        # f = open('D:\\svn\\msgplatform\\source\\生产平台\\x64\\Debug\\pSendwraper.dat','rb')
-        # data = f.read(os.path.getsize('D:\\svn\\msgplatform\\source\\生产平台\\x64\\Debug\\pSendwraper.dat'))
+        try:
+            data = self._sendData[self.comboBox_msgtype.currentIndex()].getValue()
+        except Exception as e:
+            print(e)
+            return
+
         if int(self._config['MsgTest']['kafka']) == 0:
             self._msmq.send(data)
         else:
@@ -176,8 +180,11 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
 
     def on_pushButton_startrecv_pressed(self):
         if int(self._config['MsgTest']['kafka']) == 0:
-            self._msmq.create_consumer(self._config['MsgTest']['msmqpath_consumer'])
-            self._msmq.startiocp_recv(self.recv_func)
+            try:
+                self._msmq.create_consumer(self._config['MsgTest']['msmqpath_consumer'])
+                self._msmq.startiocp_recv(self.recv_func)
+            except Exception as e:
+                print(e)
             pass
         else:
             self._kafka.create_consumer(self._config['MsgTest']['topic_consumer'],
@@ -188,7 +195,10 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         pass
 
     def on_pushButton_stoprecv_pressed(self):
-        self._kafka.stopRecv()
+        if int(self._config['MsgTest']['kafka']) == 0:
+            self._msmq.stopRecv()
+        else:
+            self._kafka.stopRecv()
         self.pushButton_stoprecv.setEnabled(False)
         self.pushButton_startrecv.setEnabled(True)
         pass
@@ -230,6 +240,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self.saveconfig()
         self.on_pushButton_stoprecv_pressed()
         self.on_pushButton_stopsend_pressed()
+        self._msmq.close()
         self._kafka.close()
         event.accept()
 
