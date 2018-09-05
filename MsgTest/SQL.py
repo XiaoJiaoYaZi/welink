@@ -31,6 +31,7 @@ class SQLView(QtWidgets.QDialog,Ui_SQL):
         self.treeMenu = QtWidgets.QMenu(self)
         self.treeMenu.addAction(self.action_add)
         self.treeMenu.addAction(self.action_del)
+        self.pushButton_fresh.setEnabled(False)
 
     def _connections(self):
         self.T_ModulesRelationship.customContextMenuRequested.connect(self.showMenu)
@@ -57,12 +58,16 @@ class SQLView(QtWidgets.QDialog,Ui_SQL):
         self.treeMenu.show()
 
     def on_connect_pressed(self):
+        self.pushButton_fresh.setEnabled(True)
         self.__db = SQKManager(self.host.text(),
                                self.usr.text(),
                                self.pwd.text(),
                                self.db.text())
 
         #result = self.__db.ExecQuery(sql_get_ConfigBase)
+
+    def on_pushButton_fresh_pressed(self):
+        self.T_ModulesRelationship.clear()
         self._getdatabase()
         self._getRelationShip()
         self._maketree()

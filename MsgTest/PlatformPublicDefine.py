@@ -17,17 +17,23 @@ class msg_header(object):
         self._item_total_size= 0
 
     def Value(self):
-        return self.__OneByte.pack(*(self._length,self._type,self._version,
+        try:
+            return self.__OneByte.pack(*(self._length,self._type,self._version,
                                      self._offset,self._item_count,self._item_total_size))
+        except Exception as e:
+            print(e)
 
     def fromBytes(self,b):
-        data = self.__OneByte.unpack(b)
-        self._length = data[0]
-        self._type = data[1]
-        self._version = data[2]
-        self._offset = data[3]
-        self._item_count = data[4]
-        self._item_total_size = data[5]
+        try:
+            data = self.__OneByte.unpack(b)
+            self._length = data[0]
+            self._type = data[1]
+            self._version = data[2]
+            self._offset = data[3]
+            self._item_count = data[4]
+            self._item_total_size = data[5]
+        except Exception as e:
+            print(e)
 
     def __len__(self):
         return self.__OneByte.size
@@ -65,35 +71,38 @@ class DispatchFixedHead(object):
         self.m_old_struct           =0
 
     def Value(self):
-        return self.__OneByte.pack(*(
-            self.Priority,
-            self.MsgId,
-            self.ProductExtendId,
-            self.RealProductExtendId,
-            self.StartSendDateTime,
-            self.EndSendDateTime,
-            self.StartSendTime,
-            self.EndSendTime,
-            self.ChargeQuantity,
-            self.MsgState,
-            self.MsgType,
-            self.CommitTime,
-            self.Package,
-            self.MobilesContentLen,
-            self.MsgContentLen,
-            self.MobilesCount,
-            self.DispatchTimes,
-            self.Telcom,
-            self.ProvinceId,
-            self.CityId,
-            self.TPCBChecked,
-            self.SendedTimes,
-            self.DispatchFailedState,
-            self.SubmitType,
-            self.CloudMsgTemplateID,
-            self.CommitIp,
-            self.m_old_struct,
-        ))
+        try:
+            return self.__OneByte.pack(*(
+                self.Priority,
+                self.MsgId,
+                self.ProductExtendId,
+                self.RealProductExtendId,
+                self.StartSendDateTime,
+                self.EndSendDateTime,
+                self.StartSendTime,
+                self.EndSendTime,
+                self.ChargeQuantity,
+                self.MsgState,
+                self.MsgType,
+                self.CommitTime,
+                self.Package,
+                self.MobilesContentLen,
+                self.MsgContentLen,
+                self.MobilesCount,
+                self.DispatchTimes,
+                self.Telcom,
+                self.ProvinceId,
+                self.CityId,
+                self.TPCBChecked,
+                self.SendedTimes,
+                self.DispatchFailedState,
+                self.SubmitType,
+                self.CloudMsgTemplateID,
+                self.CommitIp,
+                self.m_old_struct,
+            ))
+        except Exception as e:
+            print(e)
 
     def fromBytes(self,b):
         try:
@@ -152,35 +161,41 @@ class DispatchFixedTail(object):
         self.extComponentParam      =0
 
     def Value(self):
-        return self.__OneByte.pack(*(
-            self.pagetotal,
-            self.packagetotal,
-            self.typeComponentParam,
-            self.lastFailResourceId,
-            self.failedType,
-            self.lastDiapatchTime,
-            self.resourceSendTimes,
-            self.auditorId,
-            self.totalSendTimes,
-            self.repResendTimeOut,
-            self.innerDispatchTimes,
-            self.extComponentParam,
-        ))
+        try:
+            return self.__OneByte.pack(*(
+                self.pagetotal,
+                self.packagetotal,
+                self.typeComponentParam,
+                self.lastFailResourceId,
+                self.failedType,
+                self.lastDiapatchTime,
+                self.resourceSendTimes,
+                self.auditorId,
+                self.totalSendTimes,
+                self.repResendTimeOut,
+                self.innerDispatchTimes,
+                self.extComponentParam,
+            ))
+        except Exception as e:
+            print(e)
 
     def fromBytes(self,b):
-        data = self.__OneByte.unpack(b)
-        self.pagetotal          = data[0]
-        self.packagetotal           = data[1]
-        self.typeComponentParam     = data[2]
-        self.lastFailResourceId     = data[3]
-        self.failedType             = data[4]
-        self.lastDiapatchTime       = data[5]
-        self.resourceSendTimes      = data[6]
-        self.auditorId              = data[7]
-        self.totalSendTimes         = data[8]
-        self.repResendTimeOut       = data[9]
-        self.innerDispatchTimes     = data[10]
-        self.extComponentParam      = data[11]
+        try:
+            data = self.__OneByte.unpack(b)
+            self.pagetotal          = data[0]
+            self.packagetotal           = data[1]
+            self.typeComponentParam     = data[2]
+            self.lastFailResourceId     = data[3]
+            self.failedType             = data[4]
+            self.lastDiapatchTime       = data[5]
+            self.resourceSendTimes      = data[6]
+            self.auditorId              = data[7]
+            self.totalSendTimes         = data[8]
+            self.repResendTimeOut       = data[9]
+            self.innerDispatchTimes     = data[10]
+            self.extComponentParam      = data[11]
+        except Exception as e:
+            print(e)
 
     def __len__(self):
         return self.__OneByte.size
@@ -191,13 +206,18 @@ class Node(object):
         self.m_offset = 0
         self.m_size = 0
     def Value(self):
-        return self.__OneByte.pack(*(self.m_offset,self.m_size))
-
+        try:
+            return self.__OneByte.pack(*(self.m_offset,self.m_size))
+        except Exception as e:
+            print(e)
 
     def fromBytes(self,b):
-        data = self.__OneByte.unpack(b)
-        self.m_offset = data[0]
-        self.m_size = data[1]
+        try:
+            data = self.__OneByte.unpack(b)
+            self.m_offset = data[0]
+            self.m_size = data[1]
+        except Exception as e:
+            print(e)
 
     def __len__(self):
         return self.__OneByte.size
@@ -247,55 +267,61 @@ class SCloudMessage(object):
         self.msgheader._offset = len(self.msgheader)+len(self.FixHead)+len(self.FixTail)
 
     def Value(self):
-        l = 0
-        for i in range(self.ECloudMsgItem.ECMI_ITEM_COUNT.value):
-            l+=self.node[i].m_size
-        self.__OneByte = struct.Struct("<%ds" %(l,))
-        #定长
-        value = self.msgheader.Value()+self.FixHead.Value()+self.FixTail.Value()
-        #动长node
-        for i in range(self.ECloudMsgItem.ECMI_ITEM_COUNT.value):
-            value += self.node[i].Value()
-        #动长
-        value +=self.__OneByte.pack(*(
-                            self._mobiles+
-                            self._acc_name+
-                            self._message+
-                            self._templateID+
-                            self._msgtemplate+
-                            self._paramtemplate+
-                            self._extnumer+
-                            self._sign+
-                            self._acc_msgid+
-                            self._mms_title+
-                            self._mms_filename+
-                            self._usr_def_id,))
-        return value
+        try:
+            l = 0
+            for i in range(self.ECloudMsgItem.ECMI_ITEM_COUNT.value):
+                l+=self.node[i].m_size
+            self.__OneByte = struct.Struct("<%ds" %(l,))
+            #定长
+            value = self.msgheader.Value()+self.FixHead.Value()+self.FixTail.Value()
+            #动长node
+            for i in range(self.ECloudMsgItem.ECMI_ITEM_COUNT.value):
+                value += self.node[i].Value()
+            #动长
+            value +=self.__OneByte.pack(*(
+                                self._mobiles+
+                                self._acc_name+
+                                self._message+
+                                self._templateID+
+                                self._msgtemplate+
+                                self._paramtemplate+
+                                self._extnumer+
+                                self._sign+
+                                self._acc_msgid+
+                                self._mms_title+
+                                self._mms_filename+
+                                self._usr_def_id,))
+            return value
+        except Exception as e:
+            print(e)
 
     def fromBytes(self,b):
-        b = bytearray(b)
-        l1 = len(self.msgheader)
-        l2 = len(self.FixHead)
-        l3 = len(self.FixTail)
-        l4 = len(self.node[0])
-        self.msgheader.fromBytes(b[:l1])
-        l5 = self.msgheader._offset+12*l4
-        self.FixHead.fromBytes(b[l1:l1+l2])
-        self.FixTail.fromBytes(b[l1+l2:l1+l2+l3])
-        for i in range(self.msgheader._item_count):
-            self.node[i].fromBytes(b[l1+l2+l3+i*l4:l1+l2+l3+(i+1)*l4])
-        self._mobiles           = bytes(b[l5 + self.node[0].m_offset:l5 + self.node[0].m_offset + self.node[0].m_size])
-        self._acc_name          = bytes(b[l5+self.node[1].m_offset:l5+self.node[1].m_offset+self.node[1].m_size])
-        self._message           = bytes(b[l5+self.node[2].m_offset:l5+self.node[2].m_offset+self.node[2].m_size])
-        self._templateID        = bytes(b[l5+self.node[3].m_offset:l5+self.node[3].m_offset+self.node[3].m_size])
-        self._msgtemplate       = bytes(b[l5+self.node[4].m_offset:l5+self.node[4].m_offset+self.node[4].m_size])
-        self._paramtemplate     = bytes(b[l5+self.node[5].m_offset:l5+self.node[5].m_offset+self.node[5].m_size])
-        self._extnumer          = bytes(b[l5+self.node[6].m_offset:l5+self.node[6].m_offset+self.node[6].m_size])
-        self._sign              = bytes(b[l5+self.node[7].m_offset:l5+self.node[7].m_offset+self.node[7].m_size])
-        self._acc_msgid         = bytes(b[l5+self.node[8].m_offset:l5+self.node[8].m_offset+self.node[8].m_size])
-        self._mms_title         = bytes(b[l5+self.node[9].m_offset:l5+self.node[9].m_offset+self.node[9].m_size])
-        self._mms_filename      = bytes(b[l5+self.node[10].m_offset:l5+self.node[10].m_offset+self.node[10].m_size])
-        self._usr_def_id        = bytes(b[l5+self.node[11].m_offset:l5+self.node[11].m_offset+self.node[11].m_size])
+        try:
+            b = bytearray(b)
+            l1 = len(self.msgheader)
+            l2 = len(self.FixHead)
+            l3 = len(self.FixTail)
+            l4 = len(self.node[0])
+            self.msgheader.fromBytes(b[:l1])
+            l5 = self.msgheader._offset+12*l4
+            self.FixHead.fromBytes(b[l1:l1+l2])
+            self.FixTail.fromBytes(b[l1+l2:l1+l2+l3])
+            for i in range(self.msgheader._item_count):
+                self.node[i].fromBytes(b[l1+l2+l3+i*l4:l1+l2+l3+(i+1)*l4])
+            self._mobiles           = bytes(b[l5 + self.node[0].m_offset:l5 + self.node[0].m_offset + self.node[0].m_size])
+            self._acc_name          = bytes(b[l5+self.node[1].m_offset:l5+self.node[1].m_offset+self.node[1].m_size])
+            self._message           = bytes(b[l5+self.node[2].m_offset:l5+self.node[2].m_offset+self.node[2].m_size])
+            self._templateID        = bytes(b[l5+self.node[3].m_offset:l5+self.node[3].m_offset+self.node[3].m_size])
+            self._msgtemplate       = bytes(b[l5+self.node[4].m_offset:l5+self.node[4].m_offset+self.node[4].m_size][8:])
+            self._paramtemplate     = bytes(b[l5+self.node[5].m_offset:l5+self.node[5].m_offset+self.node[5].m_size][8:])
+            self._extnumer          = bytes(b[l5+self.node[6].m_offset:l5+self.node[6].m_offset+self.node[6].m_size])
+            self._sign              = bytes(b[l5+self.node[7].m_offset:l5+self.node[7].m_offset+self.node[7].m_size])
+            self._acc_msgid         = bytes(b[l5+self.node[8].m_offset:l5+self.node[8].m_offset+self.node[8].m_size])
+            self._mms_title         = bytes(b[l5+self.node[9].m_offset:l5+self.node[9].m_offset+self.node[9].m_size])
+            self._mms_filename      = bytes(b[l5+self.node[10].m_offset:l5+self.node[10].m_offset+self.node[10].m_size])
+            self._usr_def_id        = bytes(b[l5+self.node[11].m_offset:l5+self.node[11].m_offset+self.node[11].m_size])
+        except Exception as e:
+            print(e)
 
     def write_header(self):
         self.msgheader._type = self.impl_type
@@ -436,7 +462,7 @@ class SCloudMessage(object):
 
     @property
     def paramtemplate(self):
-        return self._msgtemplate.decode('utf-8').replace('\x00','')
+        return self._paramtemplate.decode('utf_16_le').replace('\x00','')
     @paramtemplate.setter
     def paramtemplate(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_PARAM_TEMPLATE.value[0],value)
@@ -482,6 +508,7 @@ class SCloudMessage(object):
     @usr_def_id.setter
     def usr_def_id(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_USER_DEF_ID.value[0],value)
+
 
 # SMsgSendData                                                  --- HistoryQueue
 # SMsgHisRepData                                                --- HistoryQueue
@@ -694,7 +721,14 @@ class SMsgSendData(object):
         l1 = len(self._head)
         l2 = len(self._body)
         self._head.fromBytes(b[:l1])
+
         self._body.fromBytes(b[l1:l1+l2])
+        l3 = l1 + l2 + self._body.msgLen + self._body.SendResultLen + self._body.TitleLen + 33#totalmsg长度
+        totalMsgLen = struct.Struct("i").unpack(b[l3:l3 + 4])[0]
+        self.__OneByte = struct.Struct("<%ds%ds%ds33si%ds100s" %(self._body.msgLen,
+                                                                 self._body.SendResultLen,
+                                                                 self._body.TitleLen,
+                                                                 totalMsgLen,))
         data = self.__OneByte.unpack(b[l1+l2:])
         self._msgContent            = data[0]
         self._sendResultInfo        = data[1]
@@ -957,7 +991,7 @@ class SMOData(object):
                 __file__,sys._getframe().f_code.co_name,sys._getframe().f_lineno))
 
 class SRepNotifyData(object):
-    __OneByte = struct.Struct("<Iq30sqBBdd64s64s24s16sd16sBBi33s")
+    __OneByte = struct.Struct("<Iq30sqBBdd64s64s24s16sd16sBBi33s31s")
     def __init__(self):
         self.version                =0#;
         self.msgId                  =0#;
@@ -1115,7 +1149,7 @@ class SRepNotifyData(object):
             self.pk_num             = data[15]
             self.combinationVal     = data[16]
             self._userDefineId      = data[17]
-            #self._extMem            = data[18]
+            self._extMem            = data[18]
         except Exception as e:
             print(e)
             raise Exception("module:{} func:{} line:{} error".format(

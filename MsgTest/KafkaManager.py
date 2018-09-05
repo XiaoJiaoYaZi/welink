@@ -162,7 +162,7 @@ class MsMqManageer(object):
     def send(self,data):
         if isinstance(data,bytes):
             self._msg.Body = data
-            print(data)
+            #print(data)
             self._msg.Send(self.__producer)
 
     def create_consumer(self,topic:str,groupid:str = None):
@@ -188,7 +188,7 @@ class MsMqManageer(object):
         while self.b_started:
             try:
                 msg = self.__consumer.Receive()
-                print(msg.Body.tobytes(),type(msg))
+                #print(msg.Body.tobytes(),type(msg))
                 if isinstance(msg.Body, memoryview):
                     func(msg.Body.tobytes())
                 else:

@@ -48,3 +48,10 @@ class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
 
         self.textEdit.setText(result)
 
+    def closeEvent(self,event):
+        if self.pushButton_close.isEnabled():
+            self.pushButton_close.click()
+        #self.pushButton_close.pressed()
+        #event.accept()
+
+

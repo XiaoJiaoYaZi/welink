@@ -42,7 +42,8 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
             self._config.read(os.getcwd()+'/config/config.ini',encoding='utf-8')
         except:
             print('read config error')
-        #self._kafka.create_producer(self._config['MsgTest']['topic_producer'])
+            return
+        self._kafka.create_producer(self._config['MsgTest']['topic_producer'])
         self._msmq.create_producer(self._config['MsgTest']['msmqpath_producer'])
         self._sendData.append(BMSMessage())
         self._sendData.append(BMSSHisSendData())
@@ -98,7 +99,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self.signal_recv.connect(self.analyze,QtCore.Qt.QueuedConnection)
 
     def on_checkBox_stateChanged(self,a0):
-        self._config['MsgTest']['kafka'] = str(a0)
+        self._config['MsgTest']['kafka'] = str(int(bool(a0)))
 
     def on_lineEdit_topick_send_textChanged(self,a0):
         if int(self._config['MsgTest']['kafka']) == 1:
@@ -167,9 +168,15 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
     def thread_send(self):
         data = self._sendData[self.comboBox_msgtype.currentIndex()].getValue()
         while self.b_start:
-            self.num_send += 1
-            data = self._sendData[self.comboBox_msgtype.currentIndex()].updatedata()
-            self._kafka.send(data)
+            try:
+                self.num_send += 1
+                data = self._sendData[self.comboBox_msgtype.currentIndex()].updatedata()
+                if int(self._config['MsgTest']['kafka']) == 0:
+                    self._msmq.send(data)
+                else:
+                    self._kafka.send(data)
+            except Exception as e:
+                print(e)
 
     def on_pushButton_stopsend_pressed(self):
         if self.b_start:
@@ -179,6 +186,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
             self.pushButton_threadsend.setEnabled(True)
 
     def on_pushButton_startrecv_pressed(self):
+        self.checkBox.setEnabled(False)
         if int(self._config['MsgTest']['kafka']) == 0:
             try:
                 self._msmq.create_consumer(self._config['MsgTest']['msmqpath_consumer'])
@@ -195,6 +203,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         pass
 
     def on_pushButton_stoprecv_pressed(self):
+        self.checkBox.setEnabled(True)
         if int(self._config['MsgTest']['kafka']) == 0:
             self._msmq.stopRecv()
         else:

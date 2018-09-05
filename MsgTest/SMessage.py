@@ -402,7 +402,6 @@ class SBmsMessage(Structure):
         self.__write_item(SBmsMessage.EBmsMsgItem.EBMI_MMS_FILENAME.value, value)
     @property
     def mobiles(self):
-        print(self._mobile)
         return self._mobile.decode('utf-8').replace('\x00','')
     @mobiles.setter
     def mobiles(self,value):

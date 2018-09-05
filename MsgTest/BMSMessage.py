@@ -329,7 +329,7 @@ class BMSMessage(QtWidgets.QWidget,Ui_SBMSMessage):
             config.set(m_section[0], m_keys[36], self.lineEdit_filepath.text())
 
 
-            with open('config/'+filename+'.ini','w',encoding='utf-8') as f:
+            with open('config/'+filename+'.ini','w',encoding='gbk') as f:
                 config.write(f)
         except:
             print('saveConfig error ',filename)
@@ -338,7 +338,7 @@ class BMSMessage(QtWidgets.QWidget,Ui_SBMSMessage):
     def loadConfig(self,filename):
         try:
             config = ConfigParser()
-            config.read(filename,encoding='utf-8')
+            config.read(filename,encoding='gbk')
             if not config.has_section(m_section[0]):
                 print(filename,'do not have section',m_section[0])
                 return False
@@ -433,7 +433,6 @@ class BMSMessage(QtWidgets.QWidget,Ui_SBMSMessage):
             self.lineEdit_filepath.clear()
             self.lineEdit_accmsgid.clear()
 
-            print(self.__data.mobiles)
             self.lineEdit_mobile.setText(self.__data.mobiles)
             self.textEdit_content.setText(self.__data.messages)
             self.lineEdit_sign.setText(self.__data.signs)
@@ -531,7 +530,7 @@ class BMSSHisSendData(QtWidgets.QWidget,Ui_SHisSendData):
             config.set(m_section[1],m_keys_HisSendData[25],self.lineEdit_sendresult.text())
             config.set(m_section[1],m_keys_HisSendData[26],self.lineEdit_title.text())
 
-            with open('config/'+filename+'.ini','w',encoding='utf-8') as f:
+            with open('config/'+filename+'.ini','w',encoding='gbk') as f:
                 config.write(f)
         except:
             print('saveConfig error',filename)
@@ -540,7 +539,7 @@ class BMSSHisSendData(QtWidgets.QWidget,Ui_SHisSendData):
     def loadConfig(self,filename):
         try:
             config = ConfigParser()
-            config.read(filename,encoding='utf-8')
+            config.read(filename,encoding='gbk')
             if not config.has_section(m_section[1]):
                 print(filename,'do not have section',m_section[1])
                 return False
@@ -657,7 +656,7 @@ class BMSSHisRepData(QtWidgets.QWidget,Ui_SHisRepData):
             config.set(m_section[2], m_keys_SHisRepData[6],self.lineEdit_retryTimes.text())
             config.set(m_section[2], m_keys_SHisRepData[7],self.textEdit.toPlainText())
 
-            with open('config/'+filename+'.ini','w',encoding='utf-8') as f:
+            with open('config/'+filename+'.ini','w',encoding='gbk') as f:
                 config.write(f)
         except:
             print('saveConfig error',filename)
@@ -665,7 +664,7 @@ class BMSSHisRepData(QtWidgets.QWidget,Ui_SHisRepData):
     def loadConfig(self,filename):
         try:
             config = ConfigParser()
-            config.read(filename,encoding='utf-8')
+            config.read(filename,encoding='gbk')
             if not config.has_section(m_section[2]):
                 print(filename,'do not have section',m_section[2])
                 return False
@@ -760,7 +759,7 @@ class BMSSRepNotifyData(QtWidgets.QWidget,Ui_SRepNotifyData):
             config.set(m_section[3], m_keys_SRepNotifyData[14],self.lineEdit_acc_msgid.text())
             config.set(m_section[3], m_keys_SRepNotifyData[15],self.lineEdit_extnumber.text())
 
-            with open('config/'+filename+'.ini','w',encoding='utf-8') as f:
+            with open('config/'+filename+'.ini','w',encoding='gbk') as f:
                 config.write(f)
         except:
             print('saveConfig error',filename)
@@ -871,7 +870,7 @@ class BMSSHisMOData(QtWidgets.QWidget,Ui_SHisMOData):
             config.set(m_section[4], m_keys_SHisMOData[7],self.lineEdit_SpNum.text())
             config.set(m_section[4], m_keys_SHisMOData[8],self.textEdit.toPlainText())
 
-            with open('config/'+filename+'.ini','w',encoding='utf-8') as f:
+            with open('config/'+filename+'.ini','w',encoding='gbk') as f:
                 config.write(f)
         except:
             print('saveConfig error',filename)
@@ -914,7 +913,6 @@ class BMSSHisMOData(QtWidgets.QWidget,Ui_SHisMOData):
 
         self.textEdit.setText(self.__data.MoContent)
         self.lineEdit_SpNum.setText(self.__data.SpNum)
-
 
 class BMSMoAccBlist(QtWidgets.QWidget,Ui_MoAccBlist):
     def __init__(self):
@@ -992,7 +990,6 @@ class BMSMoAccBlist(QtWidgets.QWidget,Ui_MoAccBlist):
         self.lineEdit_opertor.setText(self.__data.operator)
         self.lineEdit_remark.setText(self.__data.remark)
 
-
 class BMSMonitor(QtWidgets.QWidget,Ui_Monitor):
     def __init__(self):
         super(BMSMonitor,self).__init__()
@@ -1022,13 +1019,23 @@ class BMSMonitor(QtWidgets.QWidget,Ui_Monitor):
         self.__data['DispatchMonitorMsg'] = DispatchMonitorMsg()
 
         self.get_func = {}
-        self.get_func['SHeartBeat'] = self.__get_SHeartBeat
-        self.get_func['log'] = self.__get_log
-        self.get_func['DispatchMonitorMsg'] = self.__get_DispatchMonitorMsg
-        self.get_func['SResourceState'] = self.__get_SResourceState
-        self.get_func['HisCenterMonitorData'] = self.__get_HisCenterMonitorData
-        self.get_func['HisPreDealMonitorData'] = self.__get_HisPreDealMonitorData
-        self.get_func['SubmitMonitorMsg'] = self.__get_SubmitMonitorMsg
+        self.get_func['SHeartBeat']             = self.__get_SHeartBeat
+        self.get_func['log']                    = self.__get_log
+        self.get_func['DispatchMonitorMsg']     = self.__get_DispatchMonitorMsg
+        self.get_func['SResourceState']         = self.__get_SResourceState
+        self.get_func['HisCenterMonitorData']   = self.__get_HisCenterMonitorData
+        self.get_func['HisPreDealMonitorData']  = self.__get_HisPreDealMonitorData
+        self.get_func['SubmitMonitorMsg']       = self.__get_SubmitMonitorMsg
+
+        self.__func_analyze = {}
+
+        self.__func_analyze['SHeartBeat']           =self.__setSHeartBeat
+        self.__func_analyze['log']                  =self.__set_log
+        self.__func_analyze['DispatchMonitorMsg']   =self.__set_DispatchMonitorMsg
+        self.__func_analyze['SResourceState']       =self.__set_SResourceState
+        self.__func_analyze['HisCenterMonitorData'] =self.__set_HisCenterMonitorData
+        self.__func_analyze['HisPreDealMonitorData']=self.__set_HisPreDealMonitorData
+        self.__func_analyze['SubmitMonitorMsg']     =self.__set_SubmitMonitorMsg
 
     def on_checkBox_SubmitMonitorMsg_stateChanged(self,a0):
         if a0 == QtCore.Qt.Checked:
@@ -1272,6 +1279,27 @@ class BMSMonitor(QtWidgets.QWidget,Ui_Monitor):
 
         self.__data['SResourceState'].write_header()
 
+    def __set_SResourceState(self):
+        try:
+            self.lineEdit_id.setText(str(self.__data['SResourceState'].baseheader._id))
+            self.lineEdit_period.setText(str(self.__data['SResourceState'].baseheader._period))
+            self.lineEdit_resid.setText(str(self.__data['SResourceState'].define.resourceId))
+            self.lineEdit_statisticsConfig.setText(str(self.__data['SResourceState'].define.statisticsConfig))
+            self.lineEdit_currentStock.setText(str(self.__data['SResourceState'].define.currentStock))
+            self.lineEdit_lastStock.setText(str(self.__data['SResourceState'].define.lastStock))
+            self.lineEdit_reportTimeInterval.setText(str(self.__data['SResourceState'].define.reportTimeInterval))
+            self.lineEdit_submitTotal.setText(str(self.__data['SResourceState'].define.submitTotal))
+            self.lineEdit_currentSubmitSuccess.setText(str(self.__data['SResourceState'].define.currentSubmitSuccess))
+            self.lineEdit_currentSubmitFail.setText(str(self.__data['SResourceState'].define.currentSubmitFail))
+            self.lineEdit_reportTotal.setText(str(self.__data['SResourceState'].define.reportTotal))
+            self.lineEdit_currentReportSuccess.setText(str(self.__data['SResourceState'].define.currentReportSuccess))
+            self.lineEdit_currentReportFail.setText(str(self.__data['SResourceState'].define.currentReportFail))
+            self.lineEdit_moTotal.setText(str(self.__data['SResourceState'].define.moTotal))
+            self.lineEdit_currentMoTotal.setText(str(self.__data['SResourceState'].define.currentMoTotal))
+            self.lineEdit_state.setText(str(self.__data['SResourceState'].define.state))
+        except Exception as e:
+            print(e)
+
     def __saveConfig_Res(self,config):
         if isinstance(config,ConfigParser):
             config.add_section(m_section[9])
@@ -1309,18 +1337,32 @@ class BMSMonitor(QtWidgets.QWidget,Ui_Monitor):
 
     def __get_HisCenterMonitorData(self):
         self.__data['HisCenterMonitorData'].clear()
-        self.__data['HisCenterMonitorData'].baseheader._id = int(self.lineEdit_id.text())
-        self.__data['HisCenterMonitorData'].baseheader._time = int(time.time())
-        self.__data['HisCenterMonitorData'].baseheader._period = int(self.lineEdit_period.text())
-        self.__data['HisCenterMonitorData'].define.preCnt           =int(self.lineEdit_preCnt.text())
-        self.__data['HisCenterMonitorData'].define.rcvMsgCnt        =int(self.lineEdit_rcvMsgCnt.text())
-        self.__data['HisCenterMonitorData'].define.directInstCnt    =int(self.lineEdit_directInstCnt.text())
-        self.__data['HisCenterMonitorData'].define.repMtchCnt       =int(self.lineEdit_repMtchCnt.text())
-        self.__data['HisCenterMonitorData'].define.repRtryMtchCnt   =int(self.lineEdit_repRtryMtchCnt.text())
-        self.__data['HisCenterMonitorData'].define.repDismtchCnt    =int(self.lineEdit_repDismtchCnt.text())
-        self.__data['HisCenterMonitorData'].define.moMsgCnt         =int(self.lineEdit_moMsgCnt.text())
+        self.__data['HisCenterMonitorData'].baseheader._id          = int(self.lineEdit_id.text())
+        self.__data['HisCenterMonitorData'].baseheader._time        = int(time.time())
+        self.__data['HisCenterMonitorData'].baseheader._period      = int(self.lineEdit_period.text())
+        self.__data['HisCenterMonitorData'].define.preCnt           = int(self.lineEdit_preCnt.text())
+        self.__data['HisCenterMonitorData'].define.rcvMsgCnt        = int(self.lineEdit_rcvMsgCnt.text())
+        self.__data['HisCenterMonitorData'].define.directInstCnt    = int(self.lineEdit_directInstCnt.text())
+        self.__data['HisCenterMonitorData'].define.repMtchCnt       = int(self.lineEdit_repMtchCnt.text())
+        self.__data['HisCenterMonitorData'].define.repRtryMtchCnt   = int(self.lineEdit_repRtryMtchCnt.text())
+        self.__data['HisCenterMonitorData'].define.repDismtchCnt    = int(self.lineEdit_repDismtchCnt.text())
+        self.__data['HisCenterMonitorData'].define.moMsgCnt         = int(self.lineEdit_moMsgCnt.text())
 
         self.__data['HisCenterMonitorData'].write_header()
+
+    def __set_HisCenterMonitorData(self):
+        try:
+            self.lineEdit_id.setText(str(self.__data['HisCenterMonitorData'].baseheader._id))
+            self.lineEdit_period.setText(str(self.__data['HisCenterMonitorData'].baseheader._period))
+            self.lineEdit_preCnt.setText(str(self.__data['HisCenterMonitorData'].define.preCnt))
+            self.lineEdit_rcvMsgCnt.setText(str(self.__data['HisCenterMonitorData'].define.rcvMsgCnt))
+            self.lineEdit_directInstCnt.setText(str(self.__data['HisCenterMonitorData'].define.directInstCnt))
+            self.lineEdit_repMtchCnt.setText(str(self.__data['HisCenterMonitorData'].define.repMtchCnt))
+            self.lineEdit_repRtryMtchCnt.setText(str(self.__data['HisCenterMonitorData'].define.repRtryMtchCnt))
+            self.lineEdit_repDismtchCnt.setText(str(self.__data['HisCenterMonitorData'].define.repDismtchCnt))
+            self.lineEdit_moMsgCnt.setText(str(self.__data['HisCenterMonitorData'].define.moMsgCnt))
+        except Exception as e:
+            print(e)
 
     def __saveConfig_HisCenter(self,config):
         if isinstance(config,ConfigParser):
@@ -1345,17 +1387,30 @@ class BMSMonitor(QtWidgets.QWidget,Ui_Monitor):
 
     def __get_HisPreDealMonitorData(self):
         self.__data['HisPreDealMonitorData'].clear()
-        self.__data['HisPreDealMonitorData'].baseheader._id = int(self.lineEdit_id.text())
-        self.__data['HisPreDealMonitorData'].baseheader._time = int(time.time())
-        self.__data['HisPreDealMonitorData'].baseheader._period = int(self.lineEdit_period.text())
-        self.__data['HisPreDealMonitorData'].define.rcvCnt          =int(self.lineEdit_recCnt.text())
-        self.__data['HisPreDealMonitorData'].define.perRcvCnt       =int(self.lineEdit_perRcvCnt.text())
-        self.__data['HisPreDealMonitorData'].define.mtchCnt         =int(self.lineEdit_mtcnCnt.text())
-        self.__data['HisPreDealMonitorData'].define.sndFldRsndCnt   =int(self.lineEdit_sndFldRsndCnt.text())
-        self.__data['HisPreDealMonitorData'].define.repFldRsndCnt   =int(self.lineEdit_repFldRsndCnt.text())
-        self.__data['HisPreDealMonitorData'].define.repTmoutRsndCnt =int(self.lineEdit_repTmoutRsndCnt.text())
+        self.__data['HisPreDealMonitorData'].baseheader._id         = int(self.lineEdit_id.text())
+        self.__data['HisPreDealMonitorData'].baseheader._time       = int(time.time())
+        self.__data['HisPreDealMonitorData'].baseheader._period     = int(self.lineEdit_period.text())
+        self.__data['HisPreDealMonitorData'].define.rcvCnt          = int(self.lineEdit_recCnt.text())
+        self.__data['HisPreDealMonitorData'].define.perRcvCnt       = int(self.lineEdit_perRcvCnt.text())
+        self.__data['HisPreDealMonitorData'].define.mtchCnt         = int(self.lineEdit_mtcnCnt.text())
+        self.__data['HisPreDealMonitorData'].define.sndFldRsndCnt   = int(self.lineEdit_sndFldRsndCnt.text())
+        self.__data['HisPreDealMonitorData'].define.repFldRsndCnt   = int(self.lineEdit_repFldRsndCnt.text())
+        self.__data['HisPreDealMonitorData'].define.repTmoutRsndCnt = int(self.lineEdit_repTmoutRsndCnt.text())
 
         self.__data['HisPreDealMonitorData'].write_header()
+
+    def __set_HisPreDealMonitorData(self):
+        try:
+            self.lineEdit_id.setText(str(self.__data['HisPreDealMonitorData'].baseheader._id))
+            self.lineEdit_period.setText(str(self.__data['HisPreDealMonitorData'].baseheader._period))
+            self.lineEdit_recCnt.setText(str(self.__data['HisPreDealMonitorData'].define.rcvCnt))
+            self.lineEdit_perRcvCnt.setText(str(self.__data['HisPreDealMonitorData'].define.perRcvCnt))
+            self.lineEdit_mtcnCnt.setText(str(self.__data['HisPreDealMonitorData'].define.mtchCnt))
+            self.lineEdit_sndFldRsndCnt.setText(str(self.__data['HisPreDealMonitorData'].define.sndFldRsndCnt))
+            self.lineEdit_repFldRsndCnt.setText(str(self.__data['HisPreDealMonitorData'].define.repFldRsndCnt))
+            self.lineEdit_repTmoutRsndCnt.setText(str(self.__data['HisPreDealMonitorData'].define.repTmoutRsndCnt))
+        except Exception as e:
+            print(e)
 
     def __saveConfig_HisPre(self,config):
         if isinstance(config,ConfigParser):
@@ -1388,6 +1443,16 @@ class BMSMonitor(QtWidgets.QWidget,Ui_Monitor):
 
         self.__data['SubmitMonitorMsg'].write_header()
 
+    def __set_SubmitMonitorMsg(self):
+        try:
+            self.lineEdit_id.setText(str(self.__data['SubmitMonitorMsg'].baseheader._id))
+            self.lineEdit_period.setText(str(self.__data['SubmitMonitorMsg'].baseheader._period))
+            self.lineEdit_succ.setText(str(self.__data['SubmitMonitorMsg'].define._succ))
+            self.lineEdit_fail.setText(str(self.__data['SubmitMonitorMsg'].define._fail))
+            self.lineEdit_fee.setText(str(self.__data['SubmitMonitorMsg'].define._succ_fee))
+        except Exception as e:
+            print(e)
+
     def __saveConfig_SubMit(self,config):
         if isinstance(config,ConfigParser):
             config.add_section(m_section[6])
@@ -1415,7 +1480,6 @@ class BMSMonitor(QtWidgets.QWidget,Ui_Monitor):
         return self.__data[self.getChecked()].Value()
         pass
 
-
     def saveConfig(self,filename):
         try:
             config = ConfigParser()
@@ -1427,7 +1491,7 @@ class BMSMonitor(QtWidgets.QWidget,Ui_Monitor):
             self.__saveConfig_Res(config)
             self.__saveConfig_SubMit(config)
 
-            with open('config/'+filename+'.ini','w',encoding='utf-8') as f:
+            with open('config/'+filename+'.ini','w',encoding='gbk') as f:
                 config.write(f)
         except:
             print('saveConfig error',filename)
@@ -1455,5 +1519,9 @@ class BMSMonitor(QtWidgets.QWidget,Ui_Monitor):
             print('load config error')
 
     def analyze(self,b):
-        self.__data[self.getChecked()].fromBytes(b)
-        pass
+        try:
+            self.__data[self.getChecked()].fromBytes(b)
+            self.__func_analyze[self.getChecked()]()
+        except Exception as e:
+            print(e)
+

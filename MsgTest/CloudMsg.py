@@ -16,7 +16,7 @@ import os
 import sys
 
 
-m_section = ['SCloudMsg','MsgSendData','MsgHisRepData','MOData','RepNotifyData','']
+m_section = ['SCloudMsg','MsgSendData','MsgHisRepData','MOData','RepNotifyData','ResourceStateNotify','SDispatchStatistics','SResComStatistics']
 
 m_keys_cloudmsg = (
     '消息级别',
@@ -147,6 +147,32 @@ m_keys_repnotifydata = (
     '报告结果',
     'extMem',
 )
+m_keys_resoucestatenotify = (
+    '资源id',
+    '报告时间',
+    '资源状态',
+    '队列积压数',
+    '最后时间积压数',
+    '报告频率',
+    '提交总数',
+    '提交失败',
+    '报告总数',
+    '报告失败',
+)
+m_keys_sdispatchstatistics = (
+    '调度id',
+    '总调度数',
+    '调度成功',
+    '调度失败',
+    '循环次数',
+)
+m_keys_srescomstatistics = (
+    '资源id',
+    '成功数',
+    '失败数',
+    '循环次数',
+)
+
 
 class MsgBase(QtWidgets.QWidget):
     def __init__(self):
@@ -256,11 +282,13 @@ class CloudMsg(QtWidgets.QWidget,Ui_CloudMsg):
             return self.__data.Value()
         except Exception as e:
             print(e)
-        except:
+        except Exception as e:
+            print(e)
             print('getValue error')
 
     def updatedata(self):
         self.__data.FixHead.MsgId +=1
+        return self.__data.Value()
 
     def saveConfig(self, filename):
         try:
@@ -321,15 +349,16 @@ class CloudMsg(QtWidgets.QWidget,Ui_CloudMsg):
             config.set(m_section[0], m_keys_cloudmsg[49],self.mms_path.text())
             config.set(m_section[0], m_keys_cloudmsg[50],self.user_defid.text())
 
-            with open('config/'+filename+'.ini','w',encoding='utf-8') as f:
+            with open('config/'+filename+'.ini','w',encoding='gbk') as f:
                 config.write(f)
-        except:
+        except Exception as e:
+            print(e)
             print('保存配置失败')
 
     def loadConfig(self,filename):
         try:
             config = ConfigParser()
-            config.read(filename,encoding='utf-8')
+            config.read(filename,encoding='gbk')
             if not config.has_section(m_section[0]):
                 print(filename,'do not have section',m_section[0])
                 return False
@@ -390,7 +419,8 @@ class CloudMsg(QtWidgets.QWidget,Ui_CloudMsg):
             self.mms_title.setText(config[m_section[0]][m_keys_cloudmsg[48]])
             self.mms_path.setText(config[m_section[0]][m_keys_cloudmsg[49]])
             self.user_defid.setText(config[m_section[0]][m_keys_cloudmsg[50]])
-        except:
+        except Exception as e:
+            print(e)
             print('加载配置失败')
 
     def analyze(self,b):
@@ -447,6 +477,7 @@ class CloudMsg(QtWidgets.QWidget,Ui_CloudMsg):
             self.message.setText(self.__data.message)
             self.templateID.setText(self.__data.templateID)
             self.msgtemplate.setText(self.__data.msgtemplate)
+            self.paramtemplate.setText(self.__data.paramtemplate)
             self.extnumber.setText(self.__data.extnumer)
             self.sign.setText(self.__data.sign)
             self.acc_msgid.setText(self.__data.acc_msgid)
@@ -454,7 +485,8 @@ class CloudMsg(QtWidgets.QWidget,Ui_CloudMsg):
             self.mms_path.setText(self.__data.mms_filename)
             self.user_defid.setText(self.__data.usr_def_id)
 
-        except:
+        except Exception as e:
+            print(e)
             print('analyze error')
 
 class MsgSendData(QtWidgets.QWidget,Ui_SMsgSendData):
@@ -574,28 +606,96 @@ class MsgSendData(QtWidgets.QWidget,Ui_SMsgSendData):
 
     def updatedata(self):
         self.__data._body.msgId +=1
+        return self.__data.Value()
 
     def saveConfig(self, filename):
         try:
             config = ConfigParser()
-            config.add_section(m_section[0])
-            with open('config/'+filename+'.ini','w',encoding='utf-8') as f:
+            config.add_section(m_section[1])
+
+            config.set(m_section[1], m_keys_msgsenddata[0],self.lineEdit_productExtendId.text())
+            config.set(m_section[1], m_keys_msgsenddata[1],self.lineEdit_msgId.text())
+            config.set(m_section[1], m_keys_msgsenddata[2],self.dateTimeEdit_sendedTime.dateTime().toString())
+            config.set(m_section[1], m_keys_msgsenddata[3],self.dateTimeEdit_submitTime.dateTime().toString())
+            config.set(m_section[1], m_keys_msgsenddata[4],self.lineEdit_mobilePhone.text())
+            config.set(m_section[1], m_keys_msgsenddata[5],self.lineEdit_matchId.text())
+            config.set(m_section[1], m_keys_msgsenddata[6],self.lineEdit_realProductExtendId.text())
+            config.set(m_section[1], m_keys_msgsenddata[7],self.lineEdit_chargeQuantity.text())
+            config.set(m_section[1], m_keys_msgsenddata[8],self.lineEdit_resourceId.text())
+            config.set(m_section[1], m_keys_msgsenddata[9],self.lineEdit_propertyComponent.text())
+            config.set(m_section[1], m_keys_msgsenddata[10],self.lineEdit_sendTimes.text())
+            config.set(m_section[1], m_keys_msgsenddata[11],self.lineEdit_msgType.text())
+            config.set(m_section[1], m_keys_msgsenddata[12],self.lineEdit_accountId.text())
+            config.set(m_section[1], m_keys_msgsenddata[13],self.lineEdit_SPNo.text())
+            config.set(m_section[1], m_keys_msgsenddata[14],self.lineEdit_clientMsgId.text())
+            config.set(m_section[1], m_keys_msgsenddata[15],self.lineEdit_sendState.text())
+            config.set(m_section[1], m_keys_msgsenddata[16],self.lineEdit_msgLen.text())
+            config.set(m_section[1], m_keys_msgsenddata[17],self.lineEdit_SendResultLen.text())
+            config.set(m_section[1], m_keys_msgsenddata[18],self.lineEdit_TitleLen.text())
+            config.set(m_section[1], m_keys_msgsenddata[19],self.lineEdit_cycletimes.text())
+            config.set(m_section[1], m_keys_msgsenddata[20],self.lineEdit_Priority.text())
+            config.set(m_section[1], m_keys_msgsenddata[21],self.lineEdit_typeComponentParam.text())
+            config.set(m_section[1], m_keys_msgsenddata[22],self.lineEdit_rmReSendTimes.text())
+            config.set(m_section[1], m_keys_msgsenddata[23],self.lineEdit_repResendTimeOut.text())
+            config.set(m_section[1], m_keys_msgsenddata[24],self.lineEdit_userDefineId.text())
+            config.set(m_section[1], m_keys_msgsenddata[25],self.lineEdit_title.text())
+            config.set(m_section[1], m_keys_msgsenddata[26],self.lineEdit_sign.text())
+            config.set(m_section[1], m_keys_msgsenddata[27],self.lineEdit_totalMsgLen.text())
+            config.set(m_section[1], m_keys_msgsenddata[28],self.textEdit_totalMsg.toPlainText())
+            config.set(m_section[1], m_keys_msgsenddata[29],self.textEdit_sendResultInfo.toPlainText())
+            config.set(m_section[1], m_keys_msgsenddata[30],self.textEdit_msgContent.toPlainText())
+
+            with open('config/'+filename+'.ini','w',encoding='gbk') as f:
                 config.write(f)
-        except:
+        except Exception as e:
+            print(e)
             print('保存配置失败')
 
     def loadConfig(self,filename):
         try:
             config = ConfigParser()
-            config.read(filename,encoding='utf-8')
-            if not config.has_section(m_section[0]):
-                print(filename,'do not have section',m_section[0])
+            config.read(filename,encoding='gbk')
+            if not config.has_section(m_section[1]):
+                print(filename,'do not have section',m_section[1])
                 return False
-            if len(config.items(m_section[0])) != len(m_keys_cloudmsg):
-                print(filename,'items error\n allkeys:\n',m_keys_cloudmsg)
+            if len(config.items(m_section[1])) != len(m_keys_msgsenddata):
+                print(filename,'items error\n allkeys:\n',m_keys_msgsenddata)
                 return False
 
-        except:
+            self.lineEdit_productExtendId.setText(config[m_section[1]][m_keys_msgsenddata[0]])
+            self.lineEdit_msgId.setText(config[m_section[1]][m_keys_msgsenddata[1]])
+            self.dateTimeEdit_sendedTime.setDateTime(QtCore.QDateTime.fromString(config[m_section[1]][m_keys_msgsenddata[2]]))
+            self.dateTimeEdit_submitTime.setDateTime(QtCore.QDateTime.fromString(config[m_section[1]][m_keys_msgsenddata[3]]))
+            self.lineEdit_mobilePhone.setText(config[m_section[1]][m_keys_msgsenddata[4]])
+            self.lineEdit_matchId.setText(config[m_section[1]][m_keys_msgsenddata[5]])
+            self.lineEdit_realProductExtendId.setText(config[m_section[1]][m_keys_msgsenddata[6]])
+            self.lineEdit_chargeQuantity.setText(config[m_section[1]][m_keys_msgsenddata[7]])
+            self.lineEdit_resourceId.setText(config[m_section[1]][m_keys_msgsenddata[8]])
+            self.lineEdit_propertyComponent.setText(config[m_section[1]][m_keys_msgsenddata[9]])
+            self.lineEdit_sendTimes.setText(config[m_section[1]][m_keys_msgsenddata[10]])
+            self.lineEdit_msgType.setText(config[m_section[1]][m_keys_msgsenddata[11]])
+            self.lineEdit_accountId.setText(config[m_section[1]][m_keys_msgsenddata[12]])
+            self.lineEdit_SPNo.setText(config[m_section[1]][m_keys_msgsenddata[13]])
+            self.lineEdit_clientMsgId.setText(config[m_section[1]][m_keys_msgsenddata[14]])
+            self.lineEdit_sendState.setText(config[m_section[1]][m_keys_msgsenddata[15]])
+            self.lineEdit_msgLen.setText(config[m_section[1]][m_keys_msgsenddata[16]])
+            self.lineEdit_SendResultLen.setText(config[m_section[1]][m_keys_msgsenddata[17]])
+            self.lineEdit_TitleLen.setText(config[m_section[1]][m_keys_msgsenddata[18]])
+            self.lineEdit_cycletimes.setText(config[m_section[1]][m_keys_msgsenddata[19]])
+            self.lineEdit_Priority.setText(config[m_section[1]][m_keys_msgsenddata[20]])
+            self.lineEdit_typeComponentParam.setText(config[m_section[1]][m_keys_msgsenddata[21]])
+            self.lineEdit_rmReSendTimes.setText(config[m_section[1]][m_keys_msgsenddata[22]])
+            self.lineEdit_repResendTimeOut.setText(config[m_section[1]][m_keys_msgsenddata[23]])
+            self.lineEdit_userDefineId.setText(config[m_section[1]][m_keys_msgsenddata[24]])
+            self.lineEdit_title.setText(config[m_section[1]][m_keys_msgsenddata[25]])
+            self.lineEdit_sign.setText(config[m_section[1]][m_keys_msgsenddata[26]])
+            self.lineEdit_totalMsgLen.setText(config[m_section[1]][m_keys_msgsenddata[27]])
+            self.textEdit_totalMsg.setText(config[m_section[1]][m_keys_msgsenddata[28]])
+            self.textEdit_sendResultInfo.setText(config[m_section[1]][m_keys_msgsenddata[29]])
+            self.textEdit_msgContent.setText(config[m_section[1]][m_keys_msgsenddata[30]])
+
+        except Exception as e:
+            print(e)
             print('加载配置失败')
 
 class MsgHisRepData(QtWidgets.QWidget,Ui_SMsgHisRepData):
@@ -649,28 +749,50 @@ class MsgHisRepData(QtWidgets.QWidget,Ui_SMsgHisRepData):
 
     def updatedata(self):
         self.__data._body.flagRetryTime = int(time.time())
+        return self.__data.Value()
 
     def saveConfig(self, filename):
         try:
             config = ConfigParser()
-            config.add_section(m_section[0])
-            with open('config/'+filename+'.ini','w',encoding='utf-8') as f:
+            config.add_section(m_section[2])
+
+            config.set(m_section[2], m_keys_msghisrepdata[0],self.lineEdit_mobilePhone.text())
+            config.set(m_section[2], m_keys_msghisrepdata[1],self.lineEdit_matchId.text())
+            config.set(m_section[2], m_keys_msghisrepdata[2],self.lineEdit_resourceId.text())
+            config.set(m_section[2], m_keys_msghisrepdata[3],self.dateTimeEdit_reportTime.dateTime().toString())
+            config.set(m_section[2], m_keys_msghisrepdata[4],self.lineEdit_reportState.text())
+            config.set(m_section[2], m_keys_msghisrepdata[5],self.dateTimeEdit_reportLocalTime.dateTime().toString())
+            config.set(m_section[2], m_keys_msghisrepdata[6],self.lineEdit_componentFlg.text())
+            config.set(m_section[2], m_keys_msghisrepdata[7],self.lineEdit_cycletimes.text())
+            config.set(m_section[2], m_keys_msghisrepdata[8],self.textEdit.toPlainText())
+            with open('config/'+filename+'.ini','w',encoding='gbk') as f:
                 config.write(f)
-        except:
+        except Exception as e:
+            print(e)
             print('保存配置失败')
 
     def loadConfig(self,filename):
         try:
             config = ConfigParser()
-            config.read(filename,encoding='utf-8')
-            if not config.has_section(m_section[0]):
-                print(filename,'do not have section',m_section[0])
+            config.read(filename,encoding='gbk')
+            if not config.has_section(m_section[2]):
+                print(filename,'do not have section',m_section[2])
                 return False
-            if len(config.items(m_section[0])) != len(m_keys_cloudmsg):
-                print(filename,'items error\n allkeys:\n',m_keys_cloudmsg)
+            if len(config.items(m_section[2])) != len(m_keys_msghisrepdata):
+                print(filename,'items error\n allkeys:\n',m_keys_msghisrepdata)
                 return False
 
-        except:
+            self.lineEdit_mobilePhone.setText(config[m_section[2]][m_keys_msghisrepdata[0]])
+            self.lineEdit_matchId.setText(config[m_section[2]][m_keys_msghisrepdata[1]])
+            self.lineEdit_resourceId.setText(config[m_section[2]][m_keys_msghisrepdata[2]])
+            self.dateTimeEdit_reportTime.setDateTime(QtCore.QDateTime.fromString(config[m_section[2]][m_keys_msghisrepdata[3]]))
+            self.lineEdit_reportState.setText(config[m_section[2]][m_keys_msghisrepdata[4]])
+            self.dateTimeEdit_reportLocalTime.setDateTime(QtCore.QDateTime.fromString(config[m_section[2]][m_keys_msghisrepdata[5]]))
+            self.lineEdit_componentFlg.setText(config[m_section[2]][m_keys_msghisrepdata[6]])
+            self.lineEdit_cycletimes.setText(config[m_section[2]][m_keys_msghisrepdata[7]])
+            self.textEdit.setText(config[m_section[2]][m_keys_msghisrepdata[8]])
+        except Exception as e:
+            print(e)
             print('加载配置失败')
 
 class MOData(QtWidgets.QWidget,Ui_SMOData):
@@ -722,28 +844,52 @@ class MOData(QtWidgets.QWidget,Ui_SMOData):
 
     def updatedata(self):
         self.__data.msgId += 1
+        return self.__data.Value()
 
     def saveConfig(self, filename):
         try:
             config = ConfigParser()
-            config.add_section(m_section[0])
-            with open('config/'+filename+'.ini','w',encoding='utf-8') as f:
+            config.add_section(m_section[3])
+
+            config.set(m_section[3], m_keys_modata[0],self.lineEdit_msgId.text())
+            config.set(m_section[3], m_keys_modata[1],self.lineEdit_mobilePhone.text())
+            config.set(m_section[3], m_keys_modata[2],self.dateTimeEdit_MOTime.dateTime().toString())
+            config.set(m_section[3], m_keys_modata[3],self.lineEdit_SPNo.text())
+            config.set(m_section[3], m_keys_modata[4],self.lineEdit_resourceId.text())
+            config.set(m_section[3], m_keys_modata[5],self.lineEdit_MOContentLength.text())
+            config.set(m_section[3], m_keys_modata[6],self.lineEdit_msgType.text())
+            config.set(m_section[3], m_keys_modata[7],self.lineEdit_accountId.text())
+            config.set(m_section[3], m_keys_modata[8],self.textEdit_MOContent.toPlainText())
+            
+            with open('config/'+filename+'.ini','w',encoding='gbk') as f:
                 config.write(f)
-        except:
+        except Exception as e:
+            print(e)
             print('保存配置失败')
 
     def loadConfig(self,filename):
         try:
             config = ConfigParser()
-            config.read(filename,encoding='utf-8')
-            if not config.has_section(m_section[0]):
-                print(filename,'do not have section',m_section[0])
+            config.read(filename,encoding='gbk')
+            if not config.has_section(m_section[3]):
+                print(filename,'do not have section',m_section[3])
                 return False
-            if len(config.items(m_section[0])) != len(m_keys_cloudmsg):
-                print(filename,'items error\n allkeys:\n',m_keys_cloudmsg)
+            if len(config.items(m_section[3])) != len(m_keys_modata):
+                print(filename,'items error\n allkeys:\n',m_keys_modata)
                 return False
 
-        except:
+            self.lineEdit_msgId.setText(config[m_section[3]][m_keys_modata[0]])
+            self.lineEdit_mobilePhone.setText(config[m_section[3]][m_keys_modata[1]])
+            self.dateTimeEdit_MOTime.setDateTime(QtCore.QDateTime.fromString(config[m_section[3]][m_keys_modata[2]]))
+            self.lineEdit_SPNo.setText(config[m_section[3]][m_keys_modata[3]])
+            self.lineEdit_resourceId.setText(config[m_section[3]][m_keys_modata[4]])
+            self.lineEdit_MOContentLength.setText(config[m_section[3]][m_keys_modata[5]])
+            self.lineEdit_msgType.setText(config[m_section[3]][m_keys_modata[6]])
+            self.lineEdit_accountId.setText(config[m_section[3]][m_keys_modata[7]])
+            self.textEdit_MOContent.setText(config[m_section[3]][m_keys_modata[8]])
+
+        except Exception as e:
+            print(e)
             print('加载配置失败')
 
 class RepNotifyData(QtWidgets.QWidget,Ui_SRepNotifyData):
@@ -815,28 +961,72 @@ class RepNotifyData(QtWidgets.QWidget,Ui_SRepNotifyData):
 
     def updatedata(self):
         self.__data.msgId += 1
+        return self.__data.Value()
 
     def saveConfig(self, filename):
         try:
             config = ConfigParser()
-            config.add_section(m_section[0])
-            with open('config/'+filename+'.ini','w',encoding='utf-8') as f:
+            config.add_section(m_section[4])
+
+            config.set(m_section[4], m_keys_repnotifydata[0],self.lineEdit_version.text())
+            config.set(m_section[4], m_keys_repnotifydata[1],self.lineEdit_msgId.text())
+            config.set(m_section[4], m_keys_repnotifydata[2],self.lineEdit_accountId.text())
+            config.set(m_section[4], m_keys_repnotifydata[3],self.lineEdit_mobilePhone.text())
+            config.set(m_section[4], m_keys_repnotifydata[4],self.lineEdit_sendState.text())
+            config.set(m_section[4], m_keys_repnotifydata[5],self.lineEdit_reportState.text())
+            config.set(m_section[4], m_keys_repnotifydata[6],self.dateTimeEdit_sendedTime.dateTime().toString())
+            config.set(m_section[4], m_keys_repnotifydata[7],self.dateTimeEdit_reportTime.dateTime().toString())
+            config.set(m_section[4], m_keys_repnotifydata[8],self.lineEdit_spno.text())
+            config.set(m_section[4], m_keys_repnotifydata[9],self.lineEdit_clientMsgId.text())
+            config.set(m_section[4], m_keys_repnotifydata[10],self.lineEdit_extendNum.text())
+            config.set(m_section[4], m_keys_repnotifydata[11],self.dateTimeEdit_reportLocalTime.dateTime().toString())
+            config.set(m_section[4], m_keys_repnotifydata[12],self.lineEdit_pk_total.text())
+            config.set(m_section[4], m_keys_repnotifydata[13],self.lineEdit_pk_num.text())
+            config.set(m_section[4], m_keys_repnotifydata[14],self.lineEdit_combinationVal.text())
+            config.set(m_section[4], m_keys_repnotifydata[15],self.lineEdit_userDefineId.text())
+            config.set(m_section[4], m_keys_repnotifydata[16],self.textEdit_sendResultInfo.toPlainText())
+            config.set(m_section[4], m_keys_repnotifydata[17],self.textEdit_reportResultInfo.toPlainText())
+            config.set(m_section[4], m_keys_repnotifydata[18],self.textEdit_extMem.toPlainText())
+            
+            with open('config/'+filename+'.ini','w',encoding='gbk') as f:
                 config.write(f)
-        except:
+        except Exception as e:
+            print(e)
             print('保存配置失败')
 
     def loadConfig(self,filename):
         try:
             config = ConfigParser()
-            config.read(filename,encoding='utf-8')
-            if not config.has_section(m_section[0]):
-                print(filename,'do not have section',m_section[0])
+            config.read(filename,encoding='gbk')
+            if not config.has_section(m_section[4]):
+                print(filename,'do not have section',m_section[4])
                 return False
-            if len(config.items(m_section[0])) != len(m_keys_cloudmsg):
-                print(filename,'items error\n allkeys:\n',m_keys_cloudmsg)
+            if len(config.items(m_section[4])) != len(m_keys_repnotifydata):
+                print(filename,'items error\n allkeys:\n',m_keys_repnotifydata)
                 return False
 
-        except:
+            self.lineEdit_version.setText(config[m_section[4]][m_keys_repnotifydata[0]])
+            self.lineEdit_msgId.setText(config[m_section[4]][m_keys_repnotifydata[1]])
+            self.lineEdit_accountId.setText(config[m_section[4]][m_keys_repnotifydata[2]])
+            self.lineEdit_mobilePhone.setText(config[m_section[4]][m_keys_repnotifydata[3]])
+            self.lineEdit_sendState.setText(config[m_section[4]][m_keys_repnotifydata[4]])
+            self.lineEdit_reportState.setText(config[m_section[4]][m_keys_repnotifydata[5]])
+            self.dateTimeEdit_sendedTime.setDateTime(QtCore.QDateTime.fromString(config[m_section[4]][m_keys_repnotifydata[6]]))
+            self.dateTimeEdit_reportTime.setDateTime(QtCore.QDateTime.fromString(config[m_section[4]][m_keys_repnotifydata[7]]))
+            self.lineEdit_spno.setText(config[m_section[4]][m_keys_repnotifydata[8]])
+            self.lineEdit_clientMsgId.setText(config[m_section[4]][m_keys_repnotifydata[9]])
+            self.lineEdit_extendNum.setText(config[m_section[4]][m_keys_repnotifydata[10]])
+            self.dateTimeEdit_reportLocalTime.setDateTime(QtCore.QDateTime.fromString(config[m_section[4]][m_keys_repnotifydata[11]]))
+            self.lineEdit_pk_total.setText(config[m_section[4]][m_keys_repnotifydata[12]])
+            self.lineEdit_pk_num.setText(config[m_section[4]][m_keys_repnotifydata[13]])
+            self.lineEdit_combinationVal.setText(config[m_section[4]][m_keys_repnotifydata[14]])
+            self.lineEdit_userDefineId.setText(config[m_section[4]][m_keys_repnotifydata[15]])
+            self.textEdit_sendResultInfo.setText(config[m_section[4]][m_keys_repnotifydata[16]])
+            self.textEdit_reportResultInfo.setText(config[m_section[4]][m_keys_repnotifydata[17]])
+            self.textEdit_extMem.setText(config[m_section[4]][m_keys_repnotifydata[18]])
+
+        except Exception as e:
+            print(e)
             print('加载配置失败')
 
 class Monitor_Cloud(QtWidgets.QWidget,Ui_Monitor_Cloud):
@@ -857,6 +1047,11 @@ class Monitor_Cloud(QtWidgets.QWidget,Ui_Monitor_Cloud):
         self.__func['ResourceStateNotify'] = self._getValue_0
         self.__func['SDispatchStatistics'] = self._getValue_1
         self.__func['SResComStatistics'] = self._getValue_2
+
+        self.__func_analy = {}
+        self.__func_analy['ResourceStateNotify'] = self._analyze_0
+        self.__func_analy['SDispatchStatistics'] = self._analyze_1
+        self.__func_analy['SResComStatistics'] = self._analyze_2
 
     def _initUi(self):
         self.checkBox.click()
@@ -952,32 +1147,119 @@ class Monitor_Cloud(QtWidgets.QWidget,Ui_Monitor_Cloud):
         except Exception as e:
             print(e)
 
+    def _analyze_0(self):
+        try:
+            self.lineEdit_ResourceId.setText(str(self.__data['ResourceStateNotify'].ResourceId))
+            self.dateTimeEdit_NotifyTime.setDateTime(self.__data['ResourceStateNotify'].NotifyTime)
+            self.comboBox_RunTimeState.setCurrentIndex(self.__data['ResourceStateNotify'].RunTimeState-1)
+            self.lineEdit_QueueStock.setText(str(self.__data['ResourceStateNotify'].QueueStock))
+            self.lineEdit_lastTimeQueueStock.setText(str(self.__data['ResourceStateNotify'].lastTimeQueueStock))
+            self.lineEdit_reportTimeInterval.setText(str(self.__data['ResourceStateNotify'].reportTimeInterval))
+            self.lineEdit_submitTotal.setText(str(self.__data['ResourceStateNotify'].submitTotal))
+            self.lineEdit_submitFail.setText(str(self.__data['ResourceStateNotify'].submitFail))
+            self.lineEdit_reportTotal.setText(str(self.__data['ResourceStateNotify'].reportTotal))
+            self.lineEdit_reportFail.setText(str(self.__data['ResourceStateNotify'].reportFail))
+        except Exception as e:
+            print(e)
+
+    def _analyze_1(self):
+        try:
+            self.lineEdit_dispatchCenterId.setText(str(self.__data['SDispatchStatistics'].dispatchCenterId))
+            self.lineEdit_totalDispatchCnt.setText(str(self.__data['SDispatchStatistics'].totalDispatchCnt))
+            self.lineEdit_failDispatchCnt.setText(str(self.__data['SDispatchStatistics'].failDispatchCnt))
+            self.lineEdit_succDispatchCnt.setText(str(self.__data['SDispatchStatistics'].succDispatchCnt))
+            self.lineEdit_cycleTime.setText(str(self.__data['SDispatchStatistics'].cycleTime))
+        except Exception as e:
+            print(e)
+
+    def _analyze_2(self):
+        try:
+            self.lineEdit_resourceId.setText(str(self.__data['SResComStatistics'].resourceId))
+            self.lineEdit_succCnt.setText(str(self.__data['SResComStatistics'].succCnt))
+            self.lineEdit_failCnt.setText(str(self.__data['SResComStatistics'].failCnt))
+            self.lineEdit_cycleTime_2.setText(str(self.__data['SResComStatistics'].cycleTime))
+        except Exception as e:
+            print(e)
+
     def analyze(self,b):
-        self.__data[self.getChecked()].fromBytes(b)
+        self.__data[self._getChecked()].fromBytes(b)
+        self.__func_analy[self._getChecked()]()
         pass
 
     def updatedata(self):
-        pass
+        try:
+            return self.__func[self._getChecked()]()
+        except Exception as e:
+            print(e)
 
     def saveConfig(self, filename):
         try:
             config = ConfigParser()
-            config.add_section(m_section[0])
-            with open('config/'+filename+'.ini','w',encoding='utf-8') as f:
+            config.add_section(m_section[5])
+            config.set(m_section[5], m_keys_resoucestatenotify[0],self.lineEdit_ResourceId.text())
+            config.set(m_section[5], m_keys_resoucestatenotify[1],self.dateTimeEdit_NotifyTime.dateTime().toString())
+            config.set(m_section[5], m_keys_resoucestatenotify[2],str(self.comboBox_RunTimeState.currentIndex()))
+            config.set(m_section[5], m_keys_resoucestatenotify[3],self.lineEdit_QueueStock.text())
+            config.set(m_section[5], m_keys_resoucestatenotify[4],self.lineEdit_lastTimeQueueStock.text())
+            config.set(m_section[5], m_keys_resoucestatenotify[5],self.lineEdit_reportTimeInterval.text())
+            config.set(m_section[5], m_keys_resoucestatenotify[6],self.lineEdit_submitTotal.text())
+            config.set(m_section[5], m_keys_resoucestatenotify[7],self.lineEdit_submitFail.text())
+            config.set(m_section[5], m_keys_resoucestatenotify[8],self.lineEdit_reportTotal.text())
+            config.set(m_section[5], m_keys_resoucestatenotify[9],self.lineEdit_reportFail.text())
+
+            config.add_section(m_section[6])
+            config.set(m_section[6], m_keys_sdispatchstatistics[0],self.lineEdit_dispatchCenterId.text())
+            config.set(m_section[6], m_keys_sdispatchstatistics[1],self.lineEdit_totalDispatchCnt.text())
+            config.set(m_section[6], m_keys_sdispatchstatistics[2],self.lineEdit_failDispatchCnt.text())
+            config.set(m_section[6], m_keys_sdispatchstatistics[3],self.lineEdit_succDispatchCnt.text())
+            config.set(m_section[6], m_keys_sdispatchstatistics[4],self.lineEdit_cycleTime.text())
+
+            config.add_section(m_section[7])
+            config.set(m_section[7], m_keys_srescomstatistics[0],self.lineEdit_resourceId.text())
+            config.set(m_section[7], m_keys_srescomstatistics[1],self.lineEdit_succCnt.text())
+            config.set(m_section[7], m_keys_srescomstatistics[2],self.lineEdit_failCnt.text())
+            config.set(m_section[7], m_keys_srescomstatistics[3],self.lineEdit_cycleTime_2.text())
+
+
+            with open('config/'+filename+'.ini','w',encoding='gbk') as f:
                 config.write(f)
-        except:
+        except Exception as e:
+            print(e)
             print('保存配置失败')
 
     def loadConfig(self,filename):
         try:
             config = ConfigParser()
-            config.read(filename,encoding='utf-8')
-            if not config.has_section(m_section[0]):
-                print(filename,'do not have section',m_section[0])
+            config.read(filename,encoding='gbk')
+            if not config.has_section(m_section[5]) or not config.has_section(m_section[6]) or not config.has_section(m_section[7]):
+                print(filename,'do not have section',m_section[5],m_section[6],m_section[7])
                 return False
-            if len(config.items(m_section[0])) != len(m_keys_cloudmsg):
-                print(filename,'items error\n allkeys:\n',m_keys_cloudmsg)
-                return False
+            # if len(config.items(m_section[0])) != len(m_keys_cloudmsg):
+            #     print(filename,'items error\n allkeys:\n',m_keys_cloudmsg)
+            #     return False
 
-        except:
+            self.lineEdit_ResourceId.setText(config[m_section[5]][m_keys_resoucestatenotify[0]])
+            self.dateTimeEdit_NotifyTime.setDateTime(QtCore.QDateTime.fromString(config[m_section[5]][m_keys_resoucestatenotify[1]]))
+            self.comboBox_RunTimeState.setCurrentIndex(int(config[m_section[5]][m_keys_resoucestatenotify[2]]))
+            self.lineEdit_QueueStock.setText(config[m_section[5]][m_keys_resoucestatenotify[3]])
+            self.lineEdit_lastTimeQueueStock.setText(config[m_section[5]][m_keys_resoucestatenotify[4]])
+            self.lineEdit_reportTimeInterval.setText(config[m_section[5]][m_keys_resoucestatenotify[5]])
+            self.lineEdit_submitTotal.setText(config[m_section[5]][m_keys_resoucestatenotify[6]])
+            self.lineEdit_submitFail.setText(config[m_section[5]][m_keys_resoucestatenotify[7]])
+            self.lineEdit_reportTotal.setText(config[m_section[5]][m_keys_resoucestatenotify[8]])
+            self.lineEdit_reportFail.setText(config[m_section[5]][m_keys_resoucestatenotify[9]])
+
+            self.lineEdit_dispatchCenterId.setText(config[m_section[6]][m_keys_sdispatchstatistics[0]])
+            self.lineEdit_totalDispatchCnt.setText(config[m_section[6]][m_keys_sdispatchstatistics[1]])
+            self.lineEdit_failDispatchCnt.setText(config[m_section[6]][m_keys_sdispatchstatistics[2]])
+            self.lineEdit_succDispatchCnt.setText(config[m_section[6]][m_keys_sdispatchstatistics[3]])
+            self.lineEdit_cycleTime.setText(config[m_section[6]][m_keys_sdispatchstatistics[4]])
+
+            self.lineEdit_resourceId.setText(config[m_section[7]][m_keys_srescomstatistics[0]])
+            self.lineEdit_succCnt.setText(config[m_section[7]][m_keys_srescomstatistics[1]])
+            self.lineEdit_failCnt.setText(config[m_section[7]][m_keys_srescomstatistics[2]])
+            self.lineEdit_cycleTime_2.setText(config[m_section[7]][m_keys_srescomstatistics[3]])
+
+        except Exception as e:
+            print(e)
             print('加载配置失败')
