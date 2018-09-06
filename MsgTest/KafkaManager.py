@@ -36,6 +36,7 @@ class KafkaManager(object):
         self.init()
         self.__producer = None
         self.__consumer = None
+        self._t_recvOne =None
 
     def init(self):
         self.config.read(os.getcwd()+'/config/kafka_base.ini',encoding='gbk')
@@ -68,13 +69,18 @@ class KafkaManager(object):
             self.__producer.send(self._topick,data)
 
     def create_consumer(self,topic:str,groupid:str = None):
-        topic = topic.strip()
-        topic = topic.lower()
-        if groupid is None or groupid == '':
-            groupid = topic
-        self._groupid = groupid
-        self.__kafkconsume['group_id'] = groupid
-        self.__consumer = KafkaConsumer(topic, **self.__kafkconsume)
+        try:
+            topic = topic.strip()
+            topic = topic.lower()
+            if groupid is None or groupid == '':
+                groupid = topic
+            self._groupid = groupid
+            self.__kafkconsume['group_id'] = groupid
+            self.__consumer = KafkaConsumer(topic, **self.__kafkconsume)
+        except Exception as e:
+            print(e)
+            raise  Exception("module:{} func:{} line:{} error".format(
+                __file__, sys._getframe().f_code.co_name, sys._getframe().f_lineno))
 
     def startiocp_recv(self,func):
         if not self.b_started:
@@ -107,29 +113,35 @@ class KafkaManager(object):
 
 
     def recvOne(self,func):
-        self._t_recvOne = threading.Thread(target=self.__recvOne,args=(func,))
-        self._t_recvOne.start()
-        self.timer=threading.Timer(5,self.__recverror)
-        self.timer.start()
+        try:
+            self._onerecvd = False
+            self._t_recvOne = threading.Thread(target=self.__recvOne,args=(func,))
+            self._t_recvOne.start()
+            # self.timer=threading.Timer(5,self.__recverror)
+            # self.timer.start()
+        except Exception as e:
+                print(e)
+                raise Exception("module:{} func:{} line:{} error".format(
+                    __file__, sys._getframe().f_code.co_name, sys._getframe().f_lineno))
 
     def __recverror(self):
         try:
-            if self._t_recvOne.is_alive():
-                self._onerecvd = True
-                self._t_recvOne.join()
-                self._t_recvOne = None
-                print("recv None in 5s exit")
+            if self._t_recvOne is not None:
+                if self._t_recvOne.is_alive():
+                    self._onerecvd = True
+                    self._t_recvOne.join()
+                    print("recv None in 5s exit")
         except Exception as e:
             print(e)
 
     def __recvOne(self,func):
-        self._onerecvd = False
         while not self._onerecvd:
             for message in self.__consumer:
-                with open('data.dat','wb') as f:
-                    f.write(message.value)
+                # with open('data.dat','wb') as f:
+                #     f.write(message.value)
                 func(message.value)
                 self._onerecvd = True
+                self._brecv1 = True
                 break
         self.__consumer.close()
         print('recv succ')
@@ -139,6 +151,7 @@ class KafkaManager(object):
         #self.__consumer.offsets_for_times()
 
     def close(self):
+        self.__recverror()
         if self.__producer is not None:
             self.__producer.close()
         if self.__consumer is not None:
@@ -149,6 +162,9 @@ class MsMqManageer(object):
     def __init__(self):
         self._msg = win32com.client.Dispatch("MSMQ.MSMQMessage")
         self.b_started = False
+        self._brecv1 = True
+        self.t = None
+        self.__consumer = None
 
     def create_producer(self,topic):
         qinfo = win32com.client.Dispatch('MSMQ.MSMQQueueInfo')
@@ -211,14 +227,24 @@ class MsMqManageer(object):
 
 
     def recvOne(self,func):
-        global t
-        t = threading.Thread(target=self.__recvOne,args=(func,))
-        t.start()
-        threading.Timer(5,self.__recverror)
+        try:
+            self.t = threading.Thread(target=self.__recvOne,args=(func,))
+            self.t.start()
+            # ti = threading.Timer(5,self.__recverror)
+            # ti.start()
+        except  Exception as e:
+            print(e)
+            raise  Exception("module:{} func:{} line:{} error".format(
+                __file__, sys._getframe().f_code.co_name, sys._getframe().f_lineno))
 
     def __recverror(self):
-        if t.is_alive():
-            stop_thread(t)
+        try:
+            if self.t is not None:
+                if self.t.is_alive():
+                    stop_thread(self.t)
+                    print("recv None in 5s exit")
+        except Exception as e:
+            print(e)
 
     def __recvOne(self,func):
         try:
@@ -227,6 +253,8 @@ class MsMqManageer(object):
                 func(msg.Body.tobytes())
             else:
                 func(msg.Body)
+            self.__consumer.Close()
+            print('recv succ')
         except:
             print("Recv msg error")
         pass
@@ -235,6 +263,7 @@ class MsMqManageer(object):
         pass
 
     def close(self):
+        self.__recverror()
         if self.__consumer is not None:
             self.__consumer.Close()
         if self.__producer is not None:

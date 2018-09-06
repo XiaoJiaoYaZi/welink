@@ -187,6 +187,9 @@ class TestThread(threading.Thread):
         while True:
             time.sleep(0.1)
         print("end")
+
+import random
+random.sample
 if __name__ == "__main__":
     t = TestThread()
     t.start()

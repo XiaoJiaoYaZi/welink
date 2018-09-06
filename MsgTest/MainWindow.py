@@ -35,6 +35,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
 
     def _init(self):
         self.b_start = False
+        self._brecv1 = True
         try:
             self._config = ConfigParser()
             self._config.read(os.getcwd()+'/config/config.ini',encoding='gbk')
@@ -217,13 +218,25 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         pass
 
     def on_pushButton_stoprecv_2_pressed(self):
-        self._kafka.create_consumer(self._config['MsgTest']['topic_consumer'],
-                                    self._config['MsgTest']['groupid'])
-        self._kafka.recvOne(self.recv_func)
-        pass
+        if self._brecv1:
+            print('recv one')
+            try:
+                if int(self._config['MsgTest']['kafka']) == 0:
+                    self._msmq.create_consumer(self._config['MsgTest']['msmqpath_consumer'])
+                    self._msmq.recvOne(self.recv_func)
+                else:
+                    self._kafka.create_consumer(self._config['MsgTest']['topic_consumer'],
+                                                self._config['MsgTest']['groupid'])
+                    self._kafka.recvOne(self.recv_func)
+                self._brecv1 = False
+                self.pushButton_stoprecv_2.setEnabled(False)
+            except Exception as e:
+                print(e)
 
     def recv_func(self,kafka_message):
         #print(kafka_message)
+        self._brecv1 = True
+        self.pushButton_stoprecv_2.setEnabled(True)
         global _num_time
         time.sleep(0.0001)
         self.signal_recv.emit(kafka_message)
