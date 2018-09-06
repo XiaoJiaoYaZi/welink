@@ -206,7 +206,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QDateTimeEdit" name="dateTimeEdit_sendDateTime"/>
+        <widget class="QDateTimeEdit" name="dateTimeEdit_sendDateTime">
+         <property name="displayFormat">
+          <string>yyyy/M/d H:mm:ss</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -233,7 +237,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QDateTimeEdit" name="dateTimeEdit_reportDateTime"/>
+        <widget class="QDateTimeEdit" name="dateTimeEdit_reportDateTime">
+         <property name="displayFormat">
+          <string>yyyy/M/d H:mm:ss</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -260,7 +268,11 @@
         </spacer>
        </item>
        <item>
-        <widget class="QDateTimeEdit" name="dateTimeEdit_recvReportDateTime"/>
+        <widget class="QDateTimeEdit" name="dateTimeEdit_recvReportDateTime">
+         <property name="displayFormat">
+          <string>yyyy/M/d H:mm:ss</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>

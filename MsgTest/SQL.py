@@ -5,7 +5,7 @@ from SQLManager import SQKManager
 sql_get_Modulebase = "select * from [dbo].[T_ModuleBase]".encode('utf-8')
 sql_get_ConfigBase = "select * from [dbo].[T_ConfigBase]".encode('utf-8')
 sql_get_MoudulesReS = "SELECT t.* FROM DevelopData.dbo.T_ModulesRelationship t".encode('utf-8')
-sql_get_ConfigReS = "select * from [dbo].[T_MoudulesConfigRelationship]".encode('utf-8')
+sql_get_ConfigReS = "SELECT t.* FROM DevelopData.dbo.T_ModuleConfigRelationship t".encode('utf-8')
 
 
 class Node(object):
@@ -23,6 +23,7 @@ class SQLView(QtWidgets.QDialog,Ui_SQL):
         self._ConfigBase = {}
         self._MouduleBase = {}
         self._tree = {}
+        self._tree_config = {}
         self.initUI()
         self._connections()
 
@@ -67,10 +68,16 @@ class SQLView(QtWidgets.QDialog,Ui_SQL):
         #result = self.__db.ExecQuery(sql_get_ConfigBase)
 
     def on_pushButton_fresh_pressed(self):
-        self.T_ModulesRelationship.clear()
-        self._getdatabase()
-        self._getRelationShip()
-        self._maketree()
+        try:
+            self.T_ModulesRelationship.clear()
+            self._tree_config.clear()
+            self._tree.clear()
+            self._getdatabase()
+            self._getRelationShip()
+            self._maketree()
+            self._maketree_config()
+        except Exception as e:
+            print(e)
 
     def _getdatabase(self):
         results = self.__db.ExecQuery(sql_get_ConfigBase)
@@ -97,9 +104,27 @@ class SQLView(QtWidgets.QDialog,Ui_SQL):
                 self._tree[key] = {key:[]}
             self._tree[key][key].append(value)
 
+        results = self.__db.ExecQuery(sql_get_ConfigReS)
+
+        for result in results:
+            key = int(result[0])
+            value = int(result[1])
+            if key not in self._tree_config.keys():
+                self._tree_config[key] = []
+            self._tree_config[key].append(value)
+
+    def _maketree_config(self):
+        try:
+            for key in self._tree_config.keys():
+                values = self._tree_config[key]
+                item = QtWidgets.QTreeWidgetItem(self.T_ModuleConfigRelationship,[str(self._MouduleBase[key])])
+                for value in values:
+                    QtWidgets.QTreeWidgetItem(item,[str(self._ConfigBase[value])])
+        except Exception as e:
+            print(e)
+
 
     def _maketree(self):
-        trees = {}
         for key in self._tree.keys():
             #self.T_ModulesRelationship.addTopLevelItem(QtWidgets.QTreeWidgetItem(str(key)))
             self.makes(self.T_ModulesRelationship,key)

@@ -297,7 +297,7 @@ class SBmsMessage(Structure):
     def write_getsize(self,index,text):
         if index ==0:
             if isinstance(text,str):
-                self._mobile = bytes(text, encoding='utf-8')
+                self._mobile = bytes(text, encoding='gbk')
             else:
                 raise TypeError(text)
             return len(self._mobile) + 1
@@ -315,13 +315,13 @@ class SBmsMessage(Structure):
             return len(self.sign)+2
         elif index == 3:
             if isinstance(text,str):
-                self.extnumber = bytes(text,encoding='utf-8')
+                self.extnumber = bytes(text,encoding='gbk')
             else:
                 raise TypeError(text)
             return len(self.extnumber)+1
         elif index == 4:
             if isinstance(text,str):
-                self.accmsgid = bytes(text,encoding='utf-8')
+                self.accmsgid = bytes(text,encoding='gbk')
             else:
                 raise TypeError(text)
             return len(self.accmsgid)+1
@@ -333,7 +333,7 @@ class SBmsMessage(Structure):
             return len(self.title)+2
         elif index == 6:
             if isinstance(text,str):
-                self.mmsfilename = bytes(text,encoding='utf-8')
+                self.mmsfilename = bytes(text,encoding='gbk')
             else:
                 raise TypeError(text)
             return len(self.mmsfilename)+1
@@ -378,13 +378,13 @@ class SBmsMessage(Structure):
         self.__write_item(SBmsMessage.EBmsMsgItem.EBMI_SIGN.value, value)
     @property
     def extnumbers(self):
-        return self.extnumber.decode('utf-8').replace('\x00','')
+        return self.extnumber.decode('gbk').replace('\x00','')
     @extnumbers.setter
     def extnumbers(self,value):
         self.__write_item(SBmsMessage.EBmsMsgItem.EBMI_EXT_NUMBER.value, value)
     @property
     def accmsgids(self):
-        return self.accmsgid.decode('utf-8').replace('\x00','')
+        return self.accmsgid.decode('gbk').replace('\x00','')
     @accmsgids.setter
     def accmsgids(self,value):
         self.__write_item(SBmsMessage.EBmsMsgItem.EBMI_ACC_MSGID.value, value)
@@ -396,13 +396,13 @@ class SBmsMessage(Structure):
         self.__write_item(SBmsMessage.EBmsMsgItem.EBMI_MMS_TITLE.value, value)
     @property
     def path(self):
-        return self.mmsfilename.decode('utf-8').replace('\x00','')
+        return self.mmsfilename.decode('gbk').replace('\x00','')
     @path.setter
     def path(self,value):
         self.__write_item(SBmsMessage.EBmsMsgItem.EBMI_MMS_FILENAME.value, value)
     @property
     def mobiles(self):
-        return self._mobile.decode('utf-8').replace('\x00','')
+        return self._mobile.decode('gbk').replace('\x00','')
     @mobiles.setter
     def mobiles(self,value):
         self.__write_item(SBmsMessage.EBmsMsgItem.EBMI_MOBILE.value, value)
@@ -414,6 +414,7 @@ class SHisSendFixedData(Structure):
         ("accId", c_int),
         ("prdExId", c_int),
         ("submitPrdExid", c_int),
+        ("resId",c_int),
         ("sendDateTime", c_double),
         ("commitDateTime", c_double),
         ("mobile", c_int64),
@@ -429,33 +430,36 @@ class SHisSendFixedData(Structure):
         ("rmSndFldRsndTimes", c_ubyte),
         ("rmRepFldRsndTimes", c_ubyte),
         ("dealTimes", c_uint),
-        ("timeStamp", c_int64)
+        ("timeStamp", c_int64),
+        ("MsgFormat",c_ubyte)
     ]
 
-    __OneByte = struct.Struct("<qiiiddqqBBihBBBqBBIq")
+    __OneByte = struct.Struct("<qiiiiddqqBBihBBBqBBIqB")
 
     def Value(self):
         print(struct.Struct('q').pack(self.timeStamp))
         test = (self.msgId,
-                                     self.accId,
-                                     self.prdExId,
-                                     self.submitPrdExid,
-                                     self.sendDateTime,
-                                     self.commitDateTime,
-                                     self.mobile,
-                                     self.matchId,
-                                     self.pkTotal,
-                                     self.pkNum,
-                                     self.chargeQuantity,
-                                     self.sendTimes,
-                                     self.msgType,
-                                     int(self.sendState),
-                                     self.priority,
-                                     self.flagBits,
-                                     self.rmSndFldRsndTimes,
-                                     self.rmRepFldRsndTimes,
-                                     self.dealTimes,
-                                     self.timeStamp)
+                self.accId,
+                self.prdExId,
+                self.submitPrdExid,
+                self.resId,
+                self.sendDateTime,
+                self.commitDateTime,
+                self.mobile,
+                self.matchId,
+                self.pkTotal,
+                self.pkNum,
+                self.chargeQuantity,
+                self.sendTimes,
+                self.msgType,
+                int(self.sendState),
+                self.priority,
+                self.flagBits,
+                self.rmSndFldRsndTimes,
+                self.rmRepFldRsndTimes,
+                self.dealTimes,
+                self.timeStamp,
+                self.MsgFormat)
         return self.__OneByte.pack(*test)
 
     def fromBytes(self,b):
@@ -464,22 +468,24 @@ class SHisSendFixedData(Structure):
         self.accId              =data[1]
         self.prdExId            =data[2]
         self.submitPrdExid      =data[3]
-        self.sendDateTime       =data[4]
-        self.commitDateTime     =data[5]
-        self.mobile             =data[6]
-        self.matchId            =data[7]
-        self.pkTotal            =data[8]
-        self.pkNum              =data[9]
-        self.chargeQuantity     =data[10]
-        self.sendTimes          =data[11]
-        self.msgType            =data[12]
-        self.sendState          =data[13]
-        self.priority           =data[14]
-        self.flagBits           =data[15]
-        self.rmSndFldRsndTimes  =data[16]
-        self.rmRepFldRsndTimes  =data[17]
-        self.dealTimes          =data[18]
-        self.timeStamp          =data[19]
+        self.resId              =data[4]
+        self.sendDateTime       =data[5]
+        self.commitDateTime     =data[6]
+        self.mobile             =data[7]
+        self.matchId            =data[8]
+        self.pkTotal            =data[9]
+        self.pkNum              =data[10]
+        self.chargeQuantity     =data[11]
+        self.sendTimes          =data[12]
+        self.msgType            =data[13]
+        self.sendState          =data[14]
+        self.priority           =data[15]
+        self.flagBits           =data[16]
+        self.rmSndFldRsndTimes  =data[17]
+        self.rmRepFldRsndTimes  =data[18]
+        self.dealTimes          =data[19]
+        self.timeStamp          =data[20]
+        self.MsgFormat          =data[21]
 
     def __len__(self):
         return self.__OneByte.size
@@ -558,23 +564,26 @@ class SHisSendData(Structure):
         return value
 
     def fromBytes(self,b):
-        b = bytearray(b)
-        l1 = len(self.msgheader)
-        l2 = len(self.Data)
-        l4 = len(self.node[0])
-        l5 = self.msgheader._offset+self.ItemIndex.ITEM_CNT.value*l4
-        self.msgheader.fromBytes(b[:l1])
-        self.Data.fromBytes(b[l1:l1+l2])
-        for i in range(self.msgheader._item_count):
-            self.node[i].fromBytes(b[l1+l2+i*l4:l1+l2+(i+1)*l4])
-        self._message        = bytes(b[l5 + self.node[0].m_offset:l5 + self.node[0].m_offset + self.node[0].m_size])
-        self._whlMsg         = bytes(b[l5 + self.node[1].m_offset:l5 + self.node[1].m_offset + self.node[1].m_size])
-        self._sign           = bytes(b[l5 + self.node[2].m_offset:l5 + self.node[2].m_offset + self.node[2].m_size])
-        self._spno           = bytes(b[l5 + self.node[3].m_offset:l5 + self.node[3].m_offset + self.node[3].m_size])
-        self._extendNum      = bytes(b[l5 + self.node[4].m_offset:l5 + self.node[4].m_offset + self.node[4].m_size])
-        self._acc_msgid      = bytes(b[l5 + self.node[5].m_offset:l5 + self.node[5].m_offset + self.node[5].m_size])
-        self._sendResultInfo = bytes(b[l5 + self.node[6].m_offset:l5 + self.node[6].m_offset + self.node[6].m_size])
-        self._title          = bytes(b[l5 + self.node[7].m_offset:l5 + self.node[7].m_offset + self.node[7].m_size])
+        try:
+            b = bytearray(b)
+            l1 = len(self.msgheader)
+            l2 = len(self.Data)
+            l4 = len(self.node[0])
+            l5 = self.msgheader._offset+self.ItemIndex.ITEM_CNT.value*l4
+            self.msgheader.fromBytes(b[:l1])
+            self.Data.fromBytes(b[l1:l1+l2])
+            for i in range(self.msgheader._item_count):
+                self.node[i].fromBytes(b[l1+l2+i*l4:l1+l2+(i+1)*l4])
+            self._message        = bytes(b[l5 + self.node[0].m_offset:l5 + self.node[0].m_offset + self.node[0].m_size])
+            self._whlMsg         = bytes(b[l5 + self.node[1].m_offset:l5 + self.node[1].m_offset + self.node[1].m_size])
+            self._sign           = bytes(b[l5 + self.node[2].m_offset:l5 + self.node[2].m_offset + self.node[2].m_size])
+            self._spno           = bytes(b[l5 + self.node[3].m_offset:l5 + self.node[3].m_offset + self.node[3].m_size])
+            self._extendNum      = bytes(b[l5 + self.node[4].m_offset:l5 + self.node[4].m_offset + self.node[4].m_size])
+            self._acc_msgid      = bytes(b[l5 + self.node[5].m_offset:l5 + self.node[5].m_offset + self.node[5].m_size])
+            self._sendResultInfo = bytes(b[l5 + self.node[6].m_offset:l5 + self.node[6].m_offset + self.node[6].m_size])
+            self._title          = bytes(b[l5 + self.node[7].m_offset:l5 + self.node[7].m_offset + self.node[7].m_size])
+        except Exception as e:
+            print(e)
 
     def write_getsize(self,index,text):
         if index ==0:
@@ -598,25 +607,25 @@ class SHisSendData(Structure):
             return len(self._sign) + 2
         elif index == 3:
             if isinstance(text,str):
-                self._spno = bytes(text, encoding='utf-8')
+                self._spno = bytes(text, encoding='gbk')
             else:
                 raise TypeError(text)
             return len(self._spno) + 1
         elif index == 4:
             if isinstance(text,str):
-                self._extendNum = bytes(text, encoding='utf-8')
+                self._extendNum = bytes(text, encoding='gbk')
             else:
                 raise TypeError(text)
             return len(self._extendNum) + 1
         elif index == 5:
             if isinstance(text,str):
-                self._acc_msgid = bytes(text, encoding='utf-8')
+                self._acc_msgid = bytes(text, encoding='gbk')
             else:
                 raise TypeError(text)
             return len(self._acc_msgid) + 1
         elif index == 6:
             if isinstance(text,str):
-                self._sendResultInfo = bytes(text, encoding='utf-8')
+                self._sendResultInfo = bytes(text, encoding='gbk')
             else:
                 raise TypeError(text)
             return len(self._sendResultInfo) + 1
@@ -665,16 +674,16 @@ class SHisSendData(Structure):
         return self._sign.decode('utf_16_le').replace('\x00','')
     @property
     def spno(self):
-        return self._spno.decode('utf-8').replace('\x00','')
+        return self._spno.decode('gbk').replace('\x00','')
     @property
     def extnum(self):
-        return self._extendNum.decode('utf-8').replace('\x00','')
+        return self._extendNum.decode('gbk').replace('\x00','')
     @property
     def accmsgid(self):
-        return self._acc_msgid.decode('utf-8').replace('\x00','')
+        return self._acc_msgid.decode('gbk').replace('\x00','')
     @property
     def sendresult(self):
-        return self._sendResultInfo.decode('utf-8').replace('\x00','')
+        return self._sendResultInfo.decode('gbk').replace('\x00','')
     @property
     def title(self):
         return self._title.decode('utf_16_le').replace('\x00','')
@@ -805,7 +814,7 @@ class SHisRepData(Structure):
 
     @property
     def repResultInfo(self):
-        return self._repResultInfo.decode('utf-8').replace('\x00','')
+        return self._repResultInfo.decode('gbk').replace('\x00','')
 
 
 class SRepNotifyFixedData(Structure):
@@ -918,31 +927,31 @@ class SRepNotifyData(Structure):
     def write_getsize(self,index,text):
         if index ==0:
             if isinstance(text,str):
-                self._sendResultInfo = text.encode('utf_8')#+'\x00\x00'.encode('utf_8')
+                self._sendResultInfo = text.encode('gbk')#+'\x00\x00'.encode('utf_8')
             else:
                 raise TypeError(text)
             return len(self._sendResultInfo) + 1
         elif index ==1:
             if isinstance(text,str):
-                self._repResultInfo = text.encode('utf_8')#+'\x00\x00'.encode('utf_8')
+                self._repResultInfo = text.encode('gbk')#+'\x00\x00'.encode('utf_8')
             else:
                 raise TypeError(text)
             return len(self._repResultInfo) + 1
         elif index == 2:
             if isinstance(text,str):
-                self._spno = text.encode('utf_8')#+'\x00\x00'.encode('utf_8')
+                self._spno = text.encode('gbk')#+'\x00\x00'.encode('utf_8')
             else:
                 raise TypeError(text)
             return len(self._spno) + 1
         elif index == 3:
             if isinstance(text,str):
-                self._acc_msgid = text.encode('utf_8')#+'\x00\x00'.encode('utf_8')
+                self._acc_msgid = text.encode('gbk')#+'\x00\x00'.encode('utf_8')
             else:
                 raise TypeError(text)
             return len(self._acc_msgid) + 1
         elif index == 4:
             if isinstance(text,str):
-                self._extnumber = text.encode('utf_8')#+'\x00\x00'.encode('utf_8')
+                self._extnumber = text.encode('gbk')#+'\x00\x00'.encode('utf_8')
             else:
                 raise TypeError(text)
             return len(self._extnumber) + 1
@@ -1006,19 +1015,19 @@ class SRepNotifyData(Structure):
 
     @property
     def sendResultInfo(self):
-        return self._sendResultInfo.decode('utf-8').replace('\x00','')
+        return self._sendResultInfo.decode('gbk').replace('\x00','')
     @property
     def repResultInfo(self):
-        return self._repResultInfo.decode('utf-8').replace('\x00','')
+        return self._repResultInfo.decode('gbk').replace('\x00','')
     @property
     def spno(self):
-        return self._spno.decode('utf-8').replace('\x00','')
+        return self._spno.decode('gbk').replace('\x00','')
     @property
     def acc_msgid(self):
-        return self._acc_msgid.decode('utf-8').replace('\x00','')
+        return self._acc_msgid.decode('gbk').replace('\x00','')
     @property
     def extnumber(self):
-        return self._extnumber.decode('utf-8').replace('\x00','')
+        return self._extnumber.decode('gbk').replace('\x00','')
 
 
 class SHisMOFixedData(Structure):
@@ -1165,7 +1174,7 @@ class SHisMOData(Structure):
         return self._MoContent.decode('utf_16_le').replace('\x00','')
     @property
     def SpNum(self):
-        return self._SpNum.decode('utf-8').replace('\x00','')
+        return self._SpNum.decode('gbk').replace('\x00','')
 
 class SMoAccBlist(Structure):
     _fields_ = [
@@ -1296,7 +1305,7 @@ class MoAccBlist(Structure):
 
     @property
     def operator(self):
-        return self._operator.decode('utf-8')
+        return self._operator.decode('gbk')
     @property
     def remark(self):
-        return self._remark.decode('utf-8')
+        return self._remark.decode('gbk')

@@ -118,6 +118,7 @@ class Ui_SHisRepData(object):
         self.label_3.setText(_translate("SHisRepData", "资源ID        "))
         self.lineEdit_resId.setText(_translate("SHisRepData", "0"))
         self.label_4.setText(_translate("SHisRepData", "回执时间      "))
+        self.dateTimeEdit.setDisplayFormat(_translate("SHisRepData", "yyyy/M/d H:mm:ss"))
         self.label_5.setText(_translate("SHisRepData", "是否成功      "))
         self.lineEdit_reportState.setText(_translate("SHisRepData", "0"))
         self.label_6.setText(_translate("SHisRepData", "flagbits      "))

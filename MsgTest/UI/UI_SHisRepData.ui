@@ -145,7 +145,11 @@
       </spacer>
      </item>
      <item>
-      <widget class="QDateTimeEdit" name="dateTimeEdit"/>
+      <widget class="QDateTimeEdit" name="dateTimeEdit">
+       <property name="displayFormat">
+        <string>yyyy/M/d H:mm:ss</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

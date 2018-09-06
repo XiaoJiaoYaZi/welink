@@ -38,7 +38,7 @@ class KafkaManager(object):
         self.__consumer = None
 
     def init(self):
-        self.config.read(os.getcwd()+'/config/kafka_base.ini',encoding='utf-8')
+        self.config.read(os.getcwd()+'/config/kafka_base.ini',encoding='gbk')
         print(self.config['broker']['bootstrap_servers'])
         self.__kafkconsume = {}
         self.__kafkaproduce = {}
@@ -113,11 +113,14 @@ class KafkaManager(object):
         self.timer.start()
 
     def __recverror(self):
-        if self._t_recvOne.is_alive():
-            self._onerecvd = True
-            self._t_recvOne.join()
-            self._t_recvOne = None
-            print("recv None in 5s exit")
+        try:
+            if self._t_recvOne.is_alive():
+                self._onerecvd = True
+                self._t_recvOne.join()
+                self._t_recvOne = None
+                print("recv None in 5s exit")
+        except Exception as e:
+            print(e)
 
     def __recvOne(self,func):
         self._onerecvd = False

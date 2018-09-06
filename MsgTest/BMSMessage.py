@@ -82,6 +82,8 @@ m_keys_HisSendData=(
     'FlagBits',
     '发送失败剩余重发次数',
     '剩余回执问题重发次数',
+    '处理次数',
+    '编码方式',
     '信息内容',
     '整信息内容',
     '签名',
@@ -405,7 +407,7 @@ class BMSMessage(QtWidgets.QWidget,Ui_SBMSMessage):
             self.dateTimeEdit_CommitTime.setDateTime(QtCore.QDateTime.fromTime_t(Datetime_dt(self.__data.SBmsMsgHead.CommitTime)))
             self.lineEdit_ChargeQuantity.setText(str(self.__data.SBmsMsgHead.ChargeQuantity))
             self.comboBox_MsgState.setCurrentIndex(self.__data.SBmsMsgHead.MsgState-1)
-            self.comboBox_MsgState.setCurrentIndex(self.__data.SBmsMsgHead.MsgType-1)
+            self.comboBox_MsgType.setCurrentIndex(self.__data.SBmsMsgHead.MsgType-1)
             self.lineEdit_MobilesCount.setText(str(self.__data.SBmsMsgHead.MobilesCount))
             self.comboBox_SubmitType.setCurrentIndex(self.__data.SBmsMsgHead.SubmitType)
             self.lineEdit_AccId.setText(str(self.__data.SBmsMsgHead.AccId))
@@ -457,6 +459,7 @@ class BMSSHisSendData(QtWidgets.QWidget,Ui_SHisSendData):
             self.__data.Data.accId              = int(self.lineEdit_accId.text())
             self.__data.Data.prdExId            = int(self.lineEdit_prdExId.text())
             self.__data.Data.submitPrdExid      = int(self.lineEdit_submitPrdExid.text())
+            self.__data.Data.resId              = int(self.lineEdit_resId.text())
             self.__data.Data.sendDateTime       = dt_Datetime(self.dateTimeEdit_sendDateTime.dateTime().toPyDateTime().ctime())
             self.__data.Data.commitDateTime     = dt_Datetime(self.dateTimeEdit_commitDateTime.dateTime().toPyDateTime().ctime())
             self.__data.Data.mobile             = int(self.lineEdit_mobile.text())
@@ -473,6 +476,7 @@ class BMSSHisSendData(QtWidgets.QWidget,Ui_SHisSendData):
             self.__data.Data.rmRepFldRsndTimes  = int(self.lineEdit_rmRepFldRsndTimes.text())
             self.__data.Data.dealTimes          = int(self.lineEdit_dealTimes.text())
             self.__data.Data.timeStamp          = int(time.time())
+            self.__data.Data.MsgFormat          = int(self.lineEdit_MsgFormat.text())
 
             self.__data.write_message(self.textEdit_content_one.toPlainText())
             self.__data.write_whlMsg(self.textEdit_content.toPlainText())
@@ -505,34 +509,37 @@ class BMSSHisSendData(QtWidgets.QWidget,Ui_SHisSendData):
             config.set(m_section[1],m_keys_HisSendData[1],self.lineEdit_accId.text())
             config.set(m_section[1],m_keys_HisSendData[2],self.lineEdit_prdExId.text())
             config.set(m_section[1],m_keys_HisSendData[3],self.lineEdit_submitPrdExid.text())
-            config.set(m_section[1],m_keys_HisSendData[4],self.dateTimeEdit_sendDateTime.dateTime().toString())
-            config.set(m_section[1],m_keys_HisSendData[5],self.dateTimeEdit_commitDateTime.dateTime().toString())
-            config.set(m_section[1],m_keys_HisSendData[6],self.lineEdit_mobile.text())
-            config.set(m_section[1],m_keys_HisSendData[7],self.lineEdit_matchId.text())
-            config.set(m_section[1],m_keys_HisSendData[8],self.lineEdit_pkTotal.text())
-            config.set(m_section[1],m_keys_HisSendData[9],self.lineEdit_pkNum.text())
-            config.set(m_section[1],m_keys_HisSendData[10],self.lineEdit_chargeQuantity.text())
-            config.set(m_section[1],m_keys_HisSendData[11],self.lineEdit_sendTimes.text())
-            config.set(m_section[1],m_keys_HisSendData[12],self.lineEdit_msgType.text())
-            config.set(m_section[1],m_keys_HisSendData[13],self.lineEdit_sendState.text())
-            config.set(m_section[1],m_keys_HisSendData[14],self.lineEdit_priority.text())
-            config.set(m_section[1],m_keys_HisSendData[15],self.lineEdit_flagBits.text())
-            config.set(m_section[1],m_keys_HisSendData[16],self.lineEdit_rmSndFldRsndTimes.text())
-            config.set(m_section[1],m_keys_HisSendData[17],self.lineEdit_rmRepFldRsndTimes.text())
-            config.set(m_section[1],m_keys_HisSendData[18],self.lineEdit_dealTimes.text())
+            config.set(m_section[1],m_keys_HisSendData[4],self.lineEdit_resId.text())
+            config.set(m_section[1],m_keys_HisSendData[5],self.dateTimeEdit_sendDateTime.dateTime().toString())
+            config.set(m_section[1],m_keys_HisSendData[6],self.dateTimeEdit_commitDateTime.dateTime().toString())
+            config.set(m_section[1],m_keys_HisSendData[7],self.lineEdit_mobile.text())
+            config.set(m_section[1],m_keys_HisSendData[8],self.lineEdit_matchId.text())
+            config.set(m_section[1],m_keys_HisSendData[9],self.lineEdit_pkTotal.text())
+            config.set(m_section[1],m_keys_HisSendData[10],self.lineEdit_pkNum.text())
+            config.set(m_section[1],m_keys_HisSendData[11],self.lineEdit_chargeQuantity.text())
+            config.set(m_section[1],m_keys_HisSendData[12],self.lineEdit_sendTimes.text())
+            config.set(m_section[1],m_keys_HisSendData[13],self.lineEdit_msgType.text())
+            config.set(m_section[1],m_keys_HisSendData[14],self.lineEdit_sendState.text())
+            config.set(m_section[1],m_keys_HisSendData[15],self.lineEdit_priority.text())
+            config.set(m_section[1],m_keys_HisSendData[16],self.lineEdit_flagBits.text())
+            config.set(m_section[1],m_keys_HisSendData[17],self.lineEdit_rmSndFldRsndTimes.text())
+            config.set(m_section[1],m_keys_HisSendData[18],self.lineEdit_rmRepFldRsndTimes.text())
+            config.set(m_section[1],m_keys_HisSendData[19],self.lineEdit_dealTimes.text())
+            config.set(m_section[1],m_keys_HisSendData[20], self.lineEdit_MsgFormat.text())
 
-            config.set(m_section[1],m_keys_HisSendData[19],self.textEdit_content_one.toPlainText())
-            config.set(m_section[1],m_keys_HisSendData[20],self.textEdit_content.toPlainText())
-            config.set(m_section[1],m_keys_HisSendData[21],self.lineEdit_sign.text())
-            config.set(m_section[1],m_keys_HisSendData[22],self.lineEdit_spno.text())
-            config.set(m_section[1],m_keys_HisSendData[23],self.lineEdit_extnum.text())
-            config.set(m_section[1],m_keys_HisSendData[24],self.lineEdit_accmsgid.text())
-            config.set(m_section[1],m_keys_HisSendData[25],self.lineEdit_sendresult.text())
-            config.set(m_section[1],m_keys_HisSendData[26],self.lineEdit_title.text())
+            config.set(m_section[1],m_keys_HisSendData[21],self.textEdit_content_one.toPlainText())
+            config.set(m_section[1],m_keys_HisSendData[22],self.textEdit_content.toPlainText())
+            config.set(m_section[1],m_keys_HisSendData[23],self.lineEdit_sign.text())
+            config.set(m_section[1],m_keys_HisSendData[24],self.lineEdit_spno.text())
+            config.set(m_section[1],m_keys_HisSendData[25],self.lineEdit_extnum.text())
+            config.set(m_section[1],m_keys_HisSendData[26],self.lineEdit_accmsgid.text())
+            config.set(m_section[1],m_keys_HisSendData[27],self.lineEdit_sendresult.text())
+            config.set(m_section[1],m_keys_HisSendData[28],self.lineEdit_title.text())
 
             with open('config/'+filename+'.ini','w',encoding='gbk') as f:
                 config.write(f)
-        except:
+        except Exception as e:
+            print(e)
             print('saveConfig error',filename)
 
 
@@ -551,30 +558,32 @@ class BMSSHisSendData(QtWidgets.QWidget,Ui_SHisSendData):
             self.lineEdit_accId.setText(config[m_section[1]][m_keys_HisSendData[1]])
             self.lineEdit_prdExId.setText(config[m_section[1]][m_keys_HisSendData[2]])
             self.lineEdit_submitPrdExid.setText(config[m_section[1]][m_keys_HisSendData[3]])
-            self.dateTimeEdit_sendDateTime.setDateTime(QtCore.QDateTime.fromString(config[m_section[1]][m_keys_HisSendData[4]]))
-            self.dateTimeEdit_commitDateTime.setDateTime(QtCore.QDateTime.fromString(config[m_section[1]][m_keys_HisSendData[5]]))
-            self.lineEdit_mobile.setText(config[m_section[1]][m_keys_HisSendData[6]])
-            self.lineEdit_matchId.setText(config[m_section[1]][m_keys_HisSendData[7]])
-            self.lineEdit_pkTotal.setText(config[m_section[1]][m_keys_HisSendData[8]])
-            self.lineEdit_pkNum.setText(config[m_section[1]][m_keys_HisSendData[9]])
-            self.lineEdit_chargeQuantity.setText(config[m_section[1]][m_keys_HisSendData[10]])
-            self.lineEdit_sendTimes.setText(config[m_section[1]][m_keys_HisSendData[11]])
-            self.lineEdit_msgType.setText(config[m_section[1]][m_keys_HisSendData[12]])
-            self.lineEdit_sendState.setText(config[m_section[1]][m_keys_HisSendData[13]])
-            self.lineEdit_priority.setText(config[m_section[1]][m_keys_HisSendData[14]])
-            self.lineEdit_flagBits.setText(config[m_section[1]][m_keys_HisSendData[15]])
-            self.lineEdit_rmSndFldRsndTimes.setText(config[m_section[1]][m_keys_HisSendData[16]])
-            self.lineEdit_rmRepFldRsndTimes.setText(config[m_section[1]][m_keys_HisSendData[17]])
-            self.lineEdit_dealTimes.setText(config[m_section[1]][m_keys_HisSendData[18]])
+            self.lineEdit_resId.setText(config[m_section[1]][m_keys_HisSendData[4]])
+            self.dateTimeEdit_sendDateTime.setDateTime(QtCore.QDateTime.fromString(config[m_section[1]][m_keys_HisSendData[5]]))
+            self.dateTimeEdit_commitDateTime.setDateTime(QtCore.QDateTime.fromString(config[m_section[1]][m_keys_HisSendData[6]]))
+            self.lineEdit_mobile.setText(config[m_section[1]][m_keys_HisSendData[7]])
+            self.lineEdit_matchId.setText(config[m_section[1]][m_keys_HisSendData[8]])
+            self.lineEdit_pkTotal.setText(config[m_section[1]][m_keys_HisSendData[9]])
+            self.lineEdit_pkNum.setText(config[m_section[1]][m_keys_HisSendData[10]])
+            self.lineEdit_chargeQuantity.setText(config[m_section[1]][m_keys_HisSendData[11]])
+            self.lineEdit_sendTimes.setText(config[m_section[1]][m_keys_HisSendData[12]])
+            self.lineEdit_msgType.setText(config[m_section[1]][m_keys_HisSendData[13]])
+            self.lineEdit_sendState.setText(config[m_section[1]][m_keys_HisSendData[14]])
+            self.lineEdit_priority.setText(config[m_section[1]][m_keys_HisSendData[15]])
+            self.lineEdit_flagBits.setText(config[m_section[1]][m_keys_HisSendData[16]])
+            self.lineEdit_rmSndFldRsndTimes.setText(config[m_section[1]][m_keys_HisSendData[17]])
+            self.lineEdit_rmRepFldRsndTimes.setText(config[m_section[1]][m_keys_HisSendData[18]])
+            self.lineEdit_dealTimes.setText(config[m_section[1]][m_keys_HisSendData[19]])
+            self.lineEdit_MsgFormat.setText(config[m_section[1]][m_keys_HisSendData[20]])
 
-            self.textEdit_content_one.setText(config[m_section[1]][m_keys_HisSendData[19]])
-            self.textEdit_content.setText(config[m_section[1]][m_keys_HisSendData[20]])
-            self.lineEdit_sign.setText(config[m_section[1]][m_keys_HisSendData[21]])
-            self.lineEdit_spno.setText(config[m_section[1]][m_keys_HisSendData[22]])
-            self.lineEdit_extnum.setText(config[m_section[1]][m_keys_HisSendData[23]])
-            self.lineEdit_accmsgid.setText(config[m_section[1]][m_keys_HisSendData[24]])
-            self.lineEdit_sendresult.setText(config[m_section[1]][m_keys_HisSendData[25]])
-            self.lineEdit_title.setText(config[m_section[1]][m_keys_HisSendData[26]])
+            self.textEdit_content_one.setText(config[m_section[1]][m_keys_HisSendData[21]])
+            self.textEdit_content.setText(config[m_section[1]][m_keys_HisSendData[22]])
+            self.lineEdit_sign.setText(config[m_section[1]][m_keys_HisSendData[23]])
+            self.lineEdit_spno.setText(config[m_section[1]][m_keys_HisSendData[24]])
+            self.lineEdit_extnum.setText(config[m_section[1]][m_keys_HisSendData[25]])
+            self.lineEdit_accmsgid.setText(config[m_section[1]][m_keys_HisSendData[26]])
+            self.lineEdit_sendresult.setText(config[m_section[1]][m_keys_HisSendData[27]])
+            self.lineEdit_title.setText(config[m_section[1]][m_keys_HisSendData[28]])
         except:
             print('loadConfig error',filename)
 
@@ -602,6 +611,7 @@ class BMSSHisSendData(QtWidgets.QWidget,Ui_SHisSendData):
         self.lineEdit_rmSndFldRsndTimes.setText(str(self.__data.Data.rmSndFldRsndTimes))
         self.lineEdit_rmRepFldRsndTimes.setText(str(self.__data.Data.rmRepFldRsndTimes))
         self.lineEdit_dealTimes.setText(str(self.__data.Data.dealTimes))
+        self.lineEdit_MsgFormat.setText(str(self.__data.Data.MsgFormat))
 
         self.textEdit_content_one.setText(self.__data.message)
         self.textEdit_content.setText(self.__data.whlMsg)
@@ -767,7 +777,7 @@ class BMSSRepNotifyData(QtWidgets.QWidget,Ui_SRepNotifyData):
     def loadConfig(self,filename):
         try:
             config = ConfigParser()
-            config.read(filename, encoding='utf-8')
+            config.read(filename, encoding='gbk')
             if not config.has_section(m_section[3]):
                 print(filename, 'do not have section', m_section[3])
                 return False
@@ -791,7 +801,8 @@ class BMSSRepNotifyData(QtWidgets.QWidget,Ui_SRepNotifyData):
             self.lineEdit_spno.setText(config[m_section[3]][m_keys_SRepNotifyData[13]])
             self.lineEdit_acc_msgid.setText(config[m_section[3]][m_keys_SRepNotifyData[14]])
             self.lineEdit_extnumber.setText(config[m_section[3]][m_keys_SRepNotifyData[15]])
-        except:
+        except Exception as e:
+            print(e)
             print('loadConfig error',filename)
 
     def analyze(self, b):
@@ -803,8 +814,8 @@ class BMSSRepNotifyData(QtWidgets.QWidget,Ui_SRepNotifyData):
         self.lineEdit_msgId.setText(str(self.__data.Data.msgId  ))
         self.lineEdit_accId.setText(str(self.__data.Data.accId))
         self.lineEdit_mobile.setText(str(self.__data.Data.mobile))
-        self.lineEdit_sendState.setText(str(self.__data.Data.sendState))
-        self.lineEdit_reportState.setText(str(self.__data.Data.reportState))
+        self.lineEdit_sendState.setText(str(int(self.__data.Data.sendState)))
+        self.lineEdit_reportState.setText(str(int(self.__data.Data.reportState)))
         self.dateTimeEdit_sendDateTime.setDateTime(QtCore.QDateTime.fromTime_t(Datetime_dt(self.__data.Data.sendDateTime)))
 
         self.dateTimeEdit_reportDateTime.setDateTime(QtCore.QDateTime.fromTime_t(Datetime_dt(self.__data.Data.reportDateTime)))
@@ -816,7 +827,7 @@ class BMSSRepNotifyData(QtWidgets.QWidget,Ui_SRepNotifyData):
         self.textEdit_sendResultInfo.setText(self.__data.sendResultInfo)
         self.textEdit_repResultInfo.setText(self.__data.repResultInfo)
         self.lineEdit_spno.setText(self.__data.spno)
-        self.lineEdit_acc_msgid.setText(self.__data.spno)
+        self.lineEdit_acc_msgid.setText(self.__data.acc_msgid)
         self.lineEdit_extnumber.setText(self.__data.extnumber)
 
 class BMSSHisMOData(QtWidgets.QWidget,Ui_SHisMOData):
@@ -878,7 +889,7 @@ class BMSSHisMOData(QtWidgets.QWidget,Ui_SHisMOData):
     def loadConfig(self,filename):
         try:
             config = ConfigParser()
-            config.read(filename, encoding='utf-8')
+            config.read(filename, encoding='gbk')
             if not config.has_section(m_section[4]):
                 print(filename, 'do not have section', m_section[4])
                 return False
@@ -903,16 +914,19 @@ class BMSSHisMOData(QtWidgets.QWidget,Ui_SHisMOData):
         self.__analyze()
 
     def __analyze(self):
-        self.lineEdit_msgId.setText(str(self.__data.Data.msgId))
-        self.lineEdit_msgType.setText(str(self.__data.Data.msgType))
-        self.lineEdit_accId.setText(str(self.__data.Data.accId))
-        self.lineEdit_mobile.setText(str(self.__data.Data.mobile))
-        self.dateTimeEdit.setDateTime(QtCore.QDateTime.fromMSecsSinceEpoch(Datetime_dt(self.__data.moTime)))
-        self.lineEdit_resId.setText(str(self.__data.Data.resId))
-        self.lineEdit_dealTimes.setText(str(self.__data.Data.dealTimes))
+        try:
+            self.lineEdit_msgId.setText(str(self.__data.Data.msgId))
+            self.lineEdit_msgType.setText(str(self.__data.Data.msgType))
+            self.lineEdit_accId.setText(str(self.__data.Data.accId))
+            self.lineEdit_mobile.setText(str(self.__data.Data.mobile))
+            self.dateTimeEdit.setDateTime(QtCore.QDateTime.fromTime_t(Datetime_dt(self.__data.Data.moTime)))
+            self.lineEdit_resId.setText(str(self.__data.Data.resId))
+            self.lineEdit_dealTimes.setText(str(self.__data.Data.dealTimes))
 
-        self.textEdit.setText(self.__data.MoContent)
-        self.lineEdit_SpNum.setText(self.__data.SpNum)
+            self.textEdit.setText(self.__data.MoContent)
+            self.lineEdit_SpNum.setText(self.__data.SpNum)
+        except Exception as e:
+            print(e)
 
 class BMSMoAccBlist(QtWidgets.QWidget,Ui_MoAccBlist):
     def __init__(self):
@@ -953,7 +967,7 @@ class BMSMoAccBlist(QtWidgets.QWidget,Ui_MoAccBlist):
             config.set(m_section[5],m_keys_MoAccBlist[4],self.lineEdit_opertor.text())
             config.set(m_section[5],m_keys_MoAccBlist[5],self.lineEdit_remark.text())
 
-            with open(filename,'w',encoding='utf-8') as f:
+            with open(filename,'w',encoding='gbk') as f:
                 config.write(f)
         except:
             print('saveConfig error',filename)
@@ -961,7 +975,7 @@ class BMSMoAccBlist(QtWidgets.QWidget,Ui_MoAccBlist):
     def loadConfig(self,filename):
         try:
             config = ConfigParser()
-            config.read(filename, encoding='utf-8')
+            config.read(filename, encoding='gbk')
             if not config.has_section(m_section[5]):
                 print(filename, 'do not have section', m_section[5])
                 return False
@@ -980,6 +994,7 @@ class BMSMoAccBlist(QtWidgets.QWidget,Ui_MoAccBlist):
 
     def analyze(self, b):
         self.__data.fromBytes(b)
+        self.__analyze()
 
     def __analyze(self):
         self.lineEdit_mobile.setText(str(self.__data.Data.mobile))
@@ -1215,7 +1230,22 @@ class BMSMonitor(QtWidgets.QWidget,Ui_Monitor):
         self.__data['DispatchMonitorMsg'].write_header()
 
     def __set_DispatchMonitorMsg(self):
-
+        try:
+            self.lineEdit_id.setText(str(self.__data['DispatchMonitorMsg'].baseheader._id))
+            self.lineEdit_period.setText(str(self.__data['DispatchMonitorMsg'].baseheader._period))
+            for i in range(32):
+                self.tableWidget_dispatch.item(i,1).setText(str(
+                    self.__data['DispatchMonitorMsg'].define.dispatch_states[i]))
+            for i in range(8):
+                self.tableWidget_dispatch.item(i, 3).setText(str(
+                    self.__data['DispatchMonitorMsg'].define.dispatch_telcom[i]
+                ))
+            for i in range(36):
+                self.tableWidget_dispatch.item(i, 5).setText(str(
+                    self.__data['DispatchMonitorMsg'].define.dispatch_province[i]
+                ))
+        except Exception as e:
+            print(e)
         pass
 
     def __saveConfig_DispatchMonitor(self,config):
@@ -1500,7 +1530,7 @@ class BMSMonitor(QtWidgets.QWidget,Ui_Monitor):
     def loadConfig(self,filename):
         try:
             config = ConfigParser()
-            config.read(filename, encoding='utf-8')
+            config.read(filename, encoding='gbk')
             for s in range(6,12):
                 if not config.has_section(m_section[s]):
                     print(filename, 'do not have section', m_section[s])

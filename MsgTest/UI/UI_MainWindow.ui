@@ -32,12 +32,15 @@
         </item>
         <item>
          <widget class="QComboBox" name="comboBox_msgtype">
+          <property name="maxVisibleItems">
+           <number>20</number>
+          </property>
           <property name="sizeAdjustPolicy">
            <enum>QComboBox::AdjustToContents</enum>
           </property>
           <item>
            <property name="text">
-            <string>SBMSMessage</string>
+            <string extracomment="12323">SBMSMessage</string>
            </property>
           </item>
           <item>
@@ -57,17 +60,17 @@
           </item>
           <item>
            <property name="text">
-            <string>SHisMOData</string>
+            <string>BMSSHisMOData</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>MoAccBlist</string>
+            <string>BMSMoAccBlist</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>Monitor</string>
+            <string>BMSMonitor</string>
            </property>
           </item>
           <item>

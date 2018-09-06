@@ -130,9 +130,9 @@ class DispatchMonitorMsgDefine(Structure):
         for i in range(32):
             self.dispatch_states[i] = data[i]
         for i in range(32,68):
-            self.dispatch_province[i] = data[i]
+            self.dispatch_province[i-32] = data[i-32]
         for i in range(68,76):
-            self.dispatch_telcom[i] = data[i]
+            self.dispatch_telcom[i-68] = data[i-68]
 
     def __len__(self):
         return self.__OneByte.size
@@ -487,7 +487,7 @@ class SHeartBeat(Structure):
     def write_getsize(self,index,text):
         if index ==0:
             if isinstance(text,str):
-                self.alarm_module = text.encode('utf_8')#+'\x00\x00'.encode('utf_8')
+                self.alarm_module = text.encode('gbk')#+'\x00\x00'.encode('utf_8')
             else:
                 raise TypeError(text)
             return len(self.alarm_module)+1
@@ -535,7 +535,7 @@ class SHeartBeat(Structure):
 
     @property
     def module(self):
-        return self.alarm_module.decode('utf-8')
+        return self.alarm_module.decode('gbk')
 
 class log_struct_define(Structure):
     _fields_ = [
@@ -603,13 +603,13 @@ class log_struct(Structure):
     def write_getsize(self,index,text):
         if index ==0:
             if isinstance(text,str):
-                self.name = text.encode('utf_8')#+'\x00\x00'.encode('utf_8')
+                self.name = text.encode('gbk')#+'\x00\x00'.encode('utf_8')
             else:
                 raise TypeError(text)
             return len(self.name)+1
         if index ==1:
             if isinstance(text,str):
-                self.msg = text.encode('utf_8')#+'\x00\x00'.encode('utf_8')
+                self.msg = text.encode('gbk')#+'\x00\x00'.encode('utf_8')
             else:
                 raise TypeError(text)
             return len(self.msg)+1
@@ -662,7 +662,7 @@ class log_struct(Structure):
 
     @property
     def names(self):
-        return self.name.decode('utf-8')
+        return self.name.decode('gbk').replace('\x00','')
     @property
     def msgs(self):
-        return self.msg.decode('utf-8')
+        return self.msg.decode('gbk').replace('\x00','')

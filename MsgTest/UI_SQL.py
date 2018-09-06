@@ -83,6 +83,12 @@ class Ui_SQL(object):
         self.tabWidget.addTab(self.widget, "")
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
+        self.gridLayout_3 = QtWidgets.QGridLayout(self.tab_2)
+        self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_3.setObjectName("gridLayout_3")
+        self.T_ModuleConfigRelationship = QtWidgets.QTreeWidget(self.tab_2)
+        self.T_ModuleConfigRelationship.setObjectName("T_ModuleConfigRelationship")
+        self.gridLayout_3.addWidget(self.T_ModuleConfigRelationship, 0, 0, 1, 1)
         self.tabWidget.addTab(self.tab_2, "")
         self.gridLayout.addWidget(self.tabWidget, 1, 0, 1, 7)
         self.pushButton_fresh = QtWidgets.QPushButton(SQL)
@@ -103,7 +109,7 @@ class Ui_SQL(object):
         self.action_del.setObjectName("action_del")
 
         self.retranslateUi(SQL)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(SQL)
 
     def retranslateUi(self, SQL):
@@ -121,7 +127,7 @@ class Ui_SQL(object):
         self.T_ModulesRelationship.headerItem().setText(0, _translate("SQL", "模块"))
         self.T_ModulesRelationship.headerItem().setText(1, _translate("SQL", "依赖模块"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.widget), _translate("SQL", "T_ModulesRelationship"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("SQL", "Tab 2"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("SQL", "T_ModuleConfigRelationship"))
         self.pushButton_fresh.setText(_translate("SQL", "刷新"))
         self.connect.setText(_translate("SQL", "链接"))
         self.action_add.setText(_translate("SQL", "添加"))

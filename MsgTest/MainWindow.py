@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets,QtCore,Qt
-
+import logging as log
 from SMessage import SBmsMessage, SHisSendData
 from UI_MainWindow import Ui_MainWindow
 from BMSMessage import BMSMessage,BMSSHisSendData,BMSSHisRepData,BMSSRepNotifyData,BMSSHisMOData,BMSMoAccBlist,BMSMonitor
@@ -16,8 +16,6 @@ from SQL import SQLView
 import win32com.client
 _num_recv = 0
 _num_send = 0
-
-
 
 
 
@@ -39,7 +37,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self.b_start = False
         try:
             self._config = ConfigParser()
-            self._config.read(os.getcwd()+'/config/config.ini',encoding='utf-8')
+            self._config.read(os.getcwd()+'/config/config.ini',encoding='gbk')
         except:
             print('read config error')
             return
@@ -118,7 +116,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self._config['MsgTest']['groupid'] = a0
 
     def saveconfig(self):
-        with open(os.getcwd()+'/config/config.ini','w',encoding='utf-8') as f:
+        with open(os.getcwd()+'/config/config.ini','w',encoding='gbk') as f:
             self._config.write(f)
 
 
@@ -158,12 +156,15 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
             self._sendData[self.comboBox_msgtype.currentIndex()].loadConfig(filename)
 
     def on_pushButton_threadsend_pressed(self):
-        self.b_start = True
-        self._thread = threading.Thread(target= self.thread_send)
-        self._thread.start()
-        self.pushButton_stopsend.setEnabled(True)
-        self.pushButton_threadsend.setEnabled(False)
-        self.pushButton_pausesend.setEnabled(True)
+        try:
+            self.b_start = True
+            self._thread = threading.Thread(target= self.thread_send)
+            self._thread.start()
+            self.pushButton_stopsend.setEnabled(True)
+            self.pushButton_threadsend.setEnabled(False)
+            self.pushButton_pausesend.setEnabled(True)
+        except Exception as e:
+            print(e)
 
     def thread_send(self):
         data = self._sendData[self.comboBox_msgtype.currentIndex()].getValue()
@@ -179,11 +180,14 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
                 print(e)
 
     def on_pushButton_stopsend_pressed(self):
-        if self.b_start:
-            self.b_start = False
-            self._thread.join()
-            self.pushButton_stopsend.setEnabled(False)
-            self.pushButton_threadsend.setEnabled(True)
+        try:
+            if self.b_start:
+                self.b_start = False
+                self._thread.join()
+                self.pushButton_stopsend.setEnabled(False)
+                self.pushButton_threadsend.setEnabled(True)
+        except Exception as e:
+            print(e)
 
     def on_pushButton_startrecv_pressed(self):
         self.checkBox.setEnabled(False)
@@ -229,7 +233,8 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         #print(value)
         try:
             self._sendData[self.comboBox_msgtype.currentIndex()].analyze(value)
-        except:
+        except Exception as e:
+            print(e)
             print('analyze error')
         #QtCore.QCoreApplication.processEvents()
 
