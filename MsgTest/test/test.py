@@ -189,7 +189,9 @@ class TestThread(threading.Thread):
         print("end")
 
 import random
-random.sample
+import select
+
+
 if __name__ == "__main__":
     t = TestThread()
     t.start()

@@ -1122,6 +1122,7 @@ class SRepNotifyData(object):
                 self.pk_num,
                 self.combinationVal,
                 self._userDefineId,
+                self._extMem
             ))
         except Exception as e:
             print(e)
