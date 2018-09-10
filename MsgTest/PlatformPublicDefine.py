@@ -991,7 +991,7 @@ class SMOData(object):
                 __file__,sys._getframe().f_code.co_name,sys._getframe().f_lineno))
 
 class SRepNotifyData(object):
-    __OneByte = struct.Struct("<Iq30sqBBdd64s64s24s16sd16sBBi33s31s")
+    __OneByte = struct.Struct("<Iq30sqBBdd64s64s24s16sd16sBBi33s")
     def __init__(self):
         self.version                =0#;
         self.msgId                  =0#;
@@ -1122,7 +1122,7 @@ class SRepNotifyData(object):
                 self.pk_num,
                 self.combinationVal,
                 self._userDefineId,
-                self._extMem
+                #self._extMem
             ))
         except Exception as e:
             print(e)
@@ -1150,7 +1150,7 @@ class SRepNotifyData(object):
             self.pk_num             = data[15]
             self.combinationVal     = data[16]
             self._userDefineId      = data[17]
-            self._extMem            = data[18]
+            #self._extMem            = data[18]
         except Exception as e:
             print(e)
             raise Exception("module:{} func:{} line:{} error".format(

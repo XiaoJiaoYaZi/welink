@@ -1,4 +1,4 @@
-from PyQt5 import QtWidgets,QtGui
+from PyQt5 import QtWidgets,QtGui,QtCore
 from UI_KafkaTool import Ui_KafkaTool
 from sslLinux import Linux
 
@@ -9,6 +9,7 @@ cmds =(
 
 
 class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
+    sendCmd_signal = QtCore.pyqtSignal(str)
     def __init__(self,parent = None):
         super(KafkaTool,self).__init__(parent=parent)
         self.setupUi(self)
@@ -17,6 +18,8 @@ class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
     def InitUI(self):
         self.pushButton_close.setEnabled(False)
         self.groupBox.setEnabled(False)
+        self.sendCmd_signal.connect(self.slot_sendCmd,QtCore.Qt.QueuedConnection)
+        self.textEdit.setReadOnly(True)
 
     def on_pushButton_con_pressed(self):
         self.linux = Linux(self.IP.text(),
@@ -39,8 +42,18 @@ class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
     def on_pushButton_search_pressed(self):
         cmd = cmds[self.comboBox.currentIndex()].format(self.IP.text()
                                                         ,self.lineEdit_param.text())
-        result,p = self.linux.send(cmd)
+        # result,p = self.linux.send(cmd)
+        # self.textEdit.setText(result)
+        self.sendCmd_signal.emit(cmd)
+        print("ok")
+
+    def slot_sendCmd(self,text):
+        import time
+        time.sleep(2)
+        result, p = self.linux.send(text)
         self.textEdit.setText(result)
+
+
 
     def on_pushButton_do_pressed(self):
         cmd = self.lineEdit_cmd.text()
