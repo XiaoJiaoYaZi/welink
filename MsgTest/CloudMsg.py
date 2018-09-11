@@ -255,6 +255,7 @@ class CloudMsg(QtWidgets.QWidget,Ui_CloudMsg):
             self.__data.FixTail.repResendTimeOut =      int(self.repResendTimeOut.text())
             self.__data.FixTail.innerDispatchTimes =    int(self.innerDispatchTimes.text())
             self.__data.FixTail.extComponentParam =     int(self.extComponentParam.text())
+            self.__data.FixTail.m_old_struct = int(self.m_old_struct.text())
             ##
             self.__data.mobiles = self.mobile.toPlainText()
             self.__data.acc_name = self.acc_name.text()
@@ -280,8 +281,6 @@ class CloudMsg(QtWidgets.QWidget,Ui_CloudMsg):
             self.__data.write_header()
 
             return self.__data.Value()
-        except Exception as e:
-            print(e)
         except Exception as e:
             print(e)
             print('getValue error')

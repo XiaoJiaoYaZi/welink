@@ -40,7 +40,7 @@ class msg_header(object):
 
 
 class DispatchFixedHead(object):
-    __OneByte = struct.Struct("<BQIIddddiBBdHIIIIbbhbBBBIIb")
+    __OneByte = struct.Struct("<BQIIddddiBBdHIIIIbbhbBBBII")
     def __init__(self):
         self.Priority               =0
         self.MsgId                  =0
@@ -68,7 +68,7 @@ class DispatchFixedHead(object):
         self.SubmitType             =0
         self.CloudMsgTemplateID     =0
         self.CommitIp               =0
-        self.m_old_struct           =0
+
 
     def Value(self):
         try:
@@ -99,7 +99,6 @@ class DispatchFixedHead(object):
                 self.SubmitType,
                 self.CloudMsgTemplateID,
                 self.CommitIp,
-                self.m_old_struct,
             ))
         except Exception as e:
             print(e)
@@ -133,7 +132,6 @@ class DispatchFixedHead(object):
             self.SubmitType             = data[23]
             self.CloudMsgTemplateID     = data[24]
             self.CommitIp               = data[25]
-            self.m_old_struct           = data[26]
         except Exception as e:
             print(e)
             Exception("module:{} func:{} line:{} error".format(
@@ -145,7 +143,7 @@ class DispatchFixedHead(object):
 
 
 class DispatchFixedTail(object):
-    __OneByte = struct.Struct('<BHiiBdHiBiii')
+    __OneByte = struct.Struct('<BHiiBdHiBiiib')
     def __init__(self):
         self.pagetotal          =0
         self.packagetotal           =0
@@ -159,6 +157,7 @@ class DispatchFixedTail(object):
         self.repResendTimeOut       =0
         self.innerDispatchTimes     =0
         self.extComponentParam      =0
+        self.m_old_struct           = 0
 
     def Value(self):
         try:
@@ -175,6 +174,7 @@ class DispatchFixedTail(object):
                 self.repResendTimeOut,
                 self.innerDispatchTimes,
                 self.extComponentParam,
+                self.m_old_struct
             ))
         except Exception as e:
             print(e)
@@ -194,6 +194,7 @@ class DispatchFixedTail(object):
             self.repResendTimeOut       = data[9]
             self.innerDispatchTimes     = data[10]
             self.extComponentParam      = data[11]
+            self.m_old_struct           = data[12]
         except Exception as e:
             print(e)
 

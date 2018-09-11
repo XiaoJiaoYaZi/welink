@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="image">
+    <file>LM.png</file>
+    <file>button_cancel.png</file>
     <file>edit_remove.png</file>
     <file>add.png</file>
     <file>101.png</file>

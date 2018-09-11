@@ -97,6 +97,15 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         #self.checkBox.stateChanged()
         self.signal_recv.connect(self.analyze,QtCore.Qt.QueuedConnection)
 
+        self.label_status = QtWidgets.QLabel()
+        self.statusbar.addWidget(self.label_status)
+        self._timer = QtCore.QTimer(self)
+        self._timer.timeout.connect(self._showtime)
+        self._timer.start(1000)
+
+    def _showtime(self):
+        self.label_status.setText(time.asctime())
+
     def on_checkBox_stateChanged(self,a0):
         self._config['MsgTest']['kafka'] = str(int(bool(a0)))
 
