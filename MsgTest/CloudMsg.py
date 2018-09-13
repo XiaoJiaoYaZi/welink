@@ -455,7 +455,7 @@ class CloudMsg(QtWidgets.QWidget,Ui_CloudMsg):
             self.SubmitType.setText(str(self.__data.FixHead.SubmitType))
             self.CloudMsgTemplateID.setText(str(self.__data.FixHead.CloudMsgTemplateID))
             self.CommitIp.setText(str(socket.inet_ntoa(int2ipbyte(self.__data.FixHead.CommitIp))))
-            self.m_old_struct.setText(str(self.__data.FixHead.m_old_struct))
+
 
             #tail
             self.pagetotal.setText(str(self.__data.FixTail.pagetotal))
@@ -470,6 +470,7 @@ class CloudMsg(QtWidgets.QWidget,Ui_CloudMsg):
             self.repResendTimeOut.setText(str(self.__data.FixTail.repResendTimeOut))
             self.innerDispatchTimes.setText(str(self.__data.FixTail.innerDispatchTimes))
             self.extComponentParam.setText(str(self.__data.FixTail.extComponentParam))
+            self.m_old_struct.setText(str(self.__data.FixTail.m_old_struct))
             ##
             self.mobile.setText(self.__data.mobiles)
             self.acc_name.setText(self.__data.acc_name)

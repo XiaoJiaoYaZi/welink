@@ -9,6 +9,7 @@ import win32com.client
 import ctypes
 import inspect
 import pywintypes
+import re
 
 def _async_raise(tid, exctype):
     """raises the exception, performs cleanup if needed"""
@@ -51,7 +52,11 @@ class KafkaManager(object):
             self.__kafkaproduce[item[0]] = int(item[1])
 
         for item in self.config.items('consume'):
-            self.__kafkconsume[item[0]] = int(item[1])
+            result = re.findall('[a-zA-Z]+',item[1])
+            if len(result) >0:
+                self.__kafkconsume[item[0]] = result[0]
+            else:
+                self.__kafkconsume[item[0]] = int(item[1])
 
     def create_producer(self,topic):
         topic = topic.strip()
@@ -165,10 +170,12 @@ class MsMqManageer(object):
         self._brecv1 = True
         self.t = None
         self.__consumer = None
+        self.__producer = None
 
     def create_producer(self,topic):
+        if self.__producer is not None:
+            self.__producer.Close()
         qinfo = win32com.client.Dispatch('MSMQ.MSMQQueueInfo')
-        print(topic)
         qinfo.FormatName = topic
         try:
             self.__producer = qinfo.Open(2, 0)
@@ -182,7 +189,10 @@ class MsMqManageer(object):
         if isinstance(data,bytes):
             self._msg.Body = data
             #print(data)
-            self._msg.Send(self.__producer)
+            try:
+                self._msg.Send(self.__producer)
+            except Exception as e:
+                print(e)
 
     def create_consumer(self,topic:str,groupid:str = None):
         qinfo = win32com.client.Dispatch('MSMQ.MSMQQueueInfo')
@@ -206,7 +216,11 @@ class MsMqManageer(object):
         print('start recv')
         while self.b_started:
             try:
-                msg = self.__consumer.Receive()
+                try:
+                    msg = self.__consumer.Receive()
+                except Exception as e:
+                    print(e)
+                    break
                 #print(msg.Body.tobytes(),type(msg))
                 if isinstance(msg.Body, memoryview):
                     func(msg.Body.tobytes())

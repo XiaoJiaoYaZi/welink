@@ -718,27 +718,34 @@ class SMsgSendData(object):
         return values
 
     def fromBytes(self,b):
-        b = bytearray(b)
-        l1 = len(self._head)
-        l2 = len(self._body)
-        self._head.fromBytes(b[:l1])
+        try:
+            b = bytearray(b)
+            l1 = len(self._head)
+            l2 = len(self._body)
+            self._head.fromBytes(b[:l1])
+            if self._head.MessageType != self.CType:
+                raise Exception("unknown data type:",self._head.MessageType)
 
-        self._body.fromBytes(b[l1:l1+l2])
-        l3 = l1 + l2 + self._body.msgLen + self._body.SendResultLen + self._body.TitleLen + 33#totalmsg长度
-        totalMsgLen = struct.Struct("i").unpack(b[l3:l3 + 4])[0]
-        self.__OneByte = struct.Struct("<%ds%ds%ds33si%ds100s" %(self._body.msgLen,
-                                                                 self._body.SendResultLen,
-                                                                 self._body.TitleLen,
-                                                                 totalMsgLen,))
-        data = self.__OneByte.unpack(b[l1+l2:])
-        self._msgContent            = data[0]
-        self._sendResultInfo        = data[1]
-        self._title                 = data[2]
-        self._userDefineId          = data[3]
-        self._totalMsgLen           = data[4]
-        self._totalMsg              = data[5]
-        self._sign                  = data[6]
-        pass
+            self._body.fromBytes(b[l1:l1+l2])
+            l3 = l1 + l2 + self._body.msgLen + self._body.SendResultLen + self._body.TitleLen + 33#totalmsg长度
+            totalMsgLen = struct.Struct("i").unpack(b[l3:l3 + 4])[0]
+            self.__OneByte = struct.Struct("<%ds%ds%ds33si%ds100s" %(self._body.msgLen,
+                                                                     self._body.SendResultLen,
+                                                                     self._body.TitleLen,
+                                                                     totalMsgLen,))
+            data = self.__OneByte.unpack(b[l1+l2:])
+            self._msgContent            = data[0]
+            self._sendResultInfo        = data[1]
+            self._title                 = data[2]
+            self._userDefineId          = data[3]
+            self._totalMsgLen           = data[4]
+            self._totalMsg              = data[5]
+            self._sign                  = data[6]
+            pass
+        except Exception as e:
+            print(e)
+            raise Exception("module:{} func:{} line:{} error".format(
+                __file__, sys._getframe().f_code.co_name, sys._getframe().f_lineno))
 
     def write_header(self):
         self._head.MessageType = self.CType
@@ -870,7 +877,7 @@ class TSMsgHisRepData(object):
         return QtCore.QDateTime.fromTime_t(Datetime_dt(self._reportTime))
     @reportTime.setter
     def reportTime(self,value:QtCore.QDateTime):
-        self._reportResultInfo = dt_Datetime(value.toPyDateTime().ctime())
+        self._reportTime = dt_Datetime(value.toPyDateTime().ctime())
 
     @property
     def reportLocalTime(self):
@@ -900,8 +907,11 @@ class SMsgHisRepData(object):
             l1 = len(self._head)
             l2 = len(self._body)
             self._head.fromBytes(b[:l1])
+            if self._head.MessageType != self.CType:
+                raise Exception("unknow data type:",self._head.MessageType)
             self._body.fromBytes(b[l1:l1+l2])
-        except:
+        except Exception as e:
+            print(e)
             raise Exception("module:{} func:{} line:{} error".format(
                 __file__,sys._getframe().f_code.co_name,sys._getframe().f_lineno))
 

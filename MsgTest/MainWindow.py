@@ -147,6 +147,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
             return
 
         if int(self._config['MsgTest']['kafka']) == 0:
+            self._msmq.create_producer(self._config['MsgTest']['msmqpath_producer'])
             self._msmq.send(data)
         else:
             self._kafka.send(data)

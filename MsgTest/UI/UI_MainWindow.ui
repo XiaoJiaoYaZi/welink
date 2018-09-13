@@ -490,7 +490,14 @@
    </widget>
    <addaction name="menu"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="styleSheet">
+    <string notr="true">QStatusBar{
+border-top-width:2px;
+border-color:color: rgb(180, 180, 180);
+}</string>
+   </property>
+  </widget>
   <action name="actionKafkaTool">
    <property name="text">
     <string>KafkaTool</string>
