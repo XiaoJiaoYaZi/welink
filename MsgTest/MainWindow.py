@@ -1,10 +1,7 @@
-from PyQt5 import QtWidgets,QtCore,Qt
-import logging as log
-from SMessage import SBmsMessage, SHisSendData
-from UI_MainWindow import Ui_MainWindow
+from PyQt5 import QtWidgets,QtCore
+from PyUI.UI_MainWindow import Ui_MainWindow
 from BMSMessage import BMSMessage,BMSSHisSendData,BMSSHisRepData,BMSSRepNotifyData,BMSSHisMOData,BMSMoAccBlist,BMSMonitor
 from CloudMsg import CloudMsg,MsgSendData,MsgHisRepData,MOData,RepNotifyData,Monitor_Cloud
-import sys
 
 import time
 import os
@@ -13,7 +10,7 @@ from KafkaManager import KafkaManager,MsMqManageer
 from configparser import ConfigParser
 from KafkaTool import KafkaTool
 from SQL import SQLView
-import win32com.client
+
 _num_recv = 0
 _num_send = 0
 
@@ -69,7 +66,6 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
 
         self.kafkatool = KafkaTool()
         self.sqltool = SQLView(self)
-
 
         self.num_send = 0
         self.num_recv = 0

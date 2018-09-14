@@ -1,14 +1,14 @@
-import time
-
-time.gmtime()
 
 
-
-
-import ctypes
 from ctypes import *
-import os
 
+
+def Pack(ctype_instance):
+    return string_at(addressof(ctype_instance),sizeof(ctype_instance))
+
+def UnPack(ctype,buf):
+    cstring = create_string_buffer(buf)
+    return cast(pointer(cstring),POINTER(ctype)).contents
 
 class DispatchFixedHead(LittleEndianStructure):
     _fields_ = [
@@ -74,55 +74,3 @@ class UserSubmitData(LittleEndianStructure):
         ]
     _pack_ = 1
 
-#
-stru_info= create_string_buffer(sizeof(UserSubmitData))
-p_rec = POINTER(UserSubmitData)(stru_info)
-#
-
-mobilesize = c_int(12)
-contentsize = c_int(10)
-submit_content = create_unicode_buffer(4096)
-submit_content_size = c_int(4096)
-submit_content_len = c_int(0)
-
-mobiles = create_string_buffer("13000000000".encode('gbk'))
-content = create_unicode_buffer('你好【微网通联】',4096)
-
-##
-data = UserSubmitData()
-data.head.Priority = 11
-data.head.StartSendDateTime = 36352
-data.head.EndSendDateTime = 36352
-data.head.ProductExtendId = 1011618888
-data.head.MobilesCount = 1
-data.head.MsgType = 1
-data.head.SubmitType = 1
-data.head.ChargeQuantity = 1
-data.tail.m_old_struct = 1
-
-data.AccountId = 'anbaili'.encode('gbk')
-data.Password = 'anbaili9981'.encode('gbk')
-data.ExtNumber = '66898'.encode('gbk')
-data.AccMsgId = 'test'.encode('gbk')
-data.Title      = '标题'.encode('gbk')
-data.ResultCode = 111
-data.Password   ='123456'.encode('gbk')
-data.FailReason = 'fail'.encode('gbk')
-data.FailMobiles = 'failmobile'.encode('gbk')
-
-
-b = string_at(addressof(data),sizeof(data))
-print(b)
-print(addressof(data).to_bytes(sizeof(data),'little'))
-addressof(data).from_bytes(b,'little')
-
-os.chdir("D:\\svn\\msgplatform\\source\\生产平台\\短彩提交接口vs2015\\Source\\KafkaReceiver\\bin\\Debug")
-dll = ctypes.CDLL("D:\\svn\\msgplatform\\source\\生产平台\\短彩提交接口vs2015\\Source\\KafkaReceiver\\bin\\Debug\\MsgSubmit.dll")
-print(dll)
-ret = dll.MsgSubmitInit()
-print(ret)
-ret = dll.Commit(byref(data),byref(mobiles),byref(content),12,12,byref(submit_content),4096,byref(submit_content_len))
-print(ret)
-print(submit_content)
-
-dll.MsgSubmitUninit()

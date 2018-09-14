@@ -1,22 +1,20 @@
 from PyQt5 import QtWidgets,QtCore
 import time
 import socket
-import struct
-from ctypes import *
 from configparser import ConfigParser
-from UI_SCloudMsg import Ui_CloudMsg
-from UI_SMsgSendData import Ui_SMsgSendData
-from UI_SMsgHisRepData import Ui_SMsgHisRepData
-from UI_SRepNotifyData_Cloud import Ui_SRepNotifyData
-from UI_Monitor_Cloud import Ui_Monitor_Cloud
-from UI_SMOData import Ui_SMOData
-from PlatformPublicDefine import SCloudMessage,SMsgSendData,SMsgHisRepData,SMOData,SRepNotifyData,ResourceStateNotify,SDispatchStatistics,SResComStatistics
-from BMSMessage import dt_time,time_dt,dt_Datetime,Datetime_dt,bytes2int,int2ipbyte
+from PyUI.UI_SCloudMsg import Ui_CloudMsg
+from PyUI.UI_SMsgSendData import Ui_SMsgSendData
+from PyUI.UI_SMsgHisRepData import Ui_SMsgHisRepData
+from PyUI.UI_SRepNotifyData_Cloud import Ui_SRepNotifyData
+from PyUI.UI_Monitor_Cloud import Ui_Monitor_Cloud
+from PyUI.UI_SMOData import Ui_SMOData
+from PlatformPublicDefine import SCloudMessage,SMsgSendData,SMsgHisRepData,SMOData,SRepNotifyData,ResourceStateNotify,SDispatchStatistics,SResComStatistics,SResourceState
+from BMSMessage import dt_Datetime,Datetime_dt,bytes2int,int2ipbyte
 import os
 import sys
 
 
-m_section = ['SCloudMsg','MsgSendData','MsgHisRepData','MOData','RepNotifyData','ResourceStateNotify','SDispatchStatistics','SResComStatistics']
+m_section = ['SCloudMsg','MsgSendData','MsgHisRepData','MOData','RepNotifyData','ResourceStateNotify','SDispatchStatistics','SResComStatistics','SResourceState']
 
 m_keys_cloudmsg = (
     '消息级别',
@@ -171,6 +169,23 @@ m_keys_srescomstatistics = (
     '成功数',
     '失败数',
     '循环次数',
+)
+m_keys_resourcestate = (
+    '资源ID',
+'报告时间',
+'配置值',
+'积压数量',
+'上次库存值',
+'报告时间间隔',
+'下行总数',
+'当前下行成功数',
+'当前下行失败数',
+'状态报告总数',
+'当前状态报告成功数',
+'当前状态报告失败数',
+'上行总数',
+'当前上行数',
+'状态',
 )
 
 
@@ -1042,16 +1057,19 @@ class Monitor_Cloud(QtWidgets.QWidget,Ui_Monitor_Cloud):
         self.__data['ResourceStateNotify'] = ResourceStateNotify()
         self.__data['SDispatchStatistics'] = SDispatchStatistics()
         self.__data['SResComStatistics'] = SResComStatistics()
+        self.__data['SResourceState'] = SResourceState()
 
         self.__func = {}
         self.__func['ResourceStateNotify'] = self._getValue_0
         self.__func['SDispatchStatistics'] = self._getValue_1
         self.__func['SResComStatistics'] = self._getValue_2
+        self.__func['SResourceState'] = self._getValue_3
 
         self.__func_analy = {}
         self.__func_analy['ResourceStateNotify'] = self._analyze_0
         self.__func_analy['SDispatchStatistics'] = self._analyze_1
         self.__func_analy['SResComStatistics'] = self._analyze_2
+        self.__func_analy['SResourceState'] = self._analyze_3
 
     def _initUi(self):
         self.checkBox.click()
@@ -1062,8 +1080,10 @@ class Monitor_Cloud(QtWidgets.QWidget,Ui_Monitor_Cloud):
             self.groupBox.setEnabled(bool(a0))
             self.groupBox_2.setEnabled(not bool(a0))
             self.groupBox_3.setEnabled(not bool(a0))
+            self.groupBox_4.setEnabled(not bool(a0))
             self.checkBox_2.setChecked(not bool(a0))
             self.checkBox_3.setChecked(not bool(10))
+            self.checkBox_4.setChecked(not bool(10))
         else:
             self.groupBox.setEnabled(bool(a0))
             pass
@@ -1073,8 +1093,10 @@ class Monitor_Cloud(QtWidgets.QWidget,Ui_Monitor_Cloud):
             self.groupBox_2.setEnabled(bool(a0))
             self.groupBox.setChecked(not bool(a0))
             self.groupBox_3.setEnabled(not bool(a0))
+            self.groupBox_4.setEnabled(not bool(a0))
             self.checkBox.setChecked(not bool(a0))
             self.checkBox_3.setChecked(not bool(10))
+            self.checkBox_4.setChecked(not bool(10))
         else:
             self.groupBox_2.setEnabled(bool(a0))
             pass
@@ -1084,10 +1106,25 @@ class Monitor_Cloud(QtWidgets.QWidget,Ui_Monitor_Cloud):
             self.groupBox_3.setEnabled(bool(a0))
             self.groupBox.setChecked(not bool(a0))
             self.groupBox_2.setEnabled(not bool(a0))
+            self.groupBox_4.setEnabled(not bool(a0))
             self.checkBox.setChecked(not bool(a0))
             self.checkBox_2.setChecked(not bool(10))
+            self.checkBox_4.setChecked(not bool(10))
         else:
             self.groupBox_3.setEnabled(bool(a0))
+            pass
+
+    def on_checkBox_4_stateChanged(self,a0):
+        if a0 == QtCore.Qt.Checked:
+            self.groupBox_4.setEnabled(bool(a0))
+            self.groupBox.setChecked(not bool(a0))
+            self.groupBox_2.setEnabled(not bool(a0))
+            self.groupBox_3.setEnabled(not bool(a0))
+            self.checkBox.setChecked(not bool(a0))
+            self.checkBox_2.setChecked(not bool(10))
+            self.checkBox_3.setChecked(not bool(10))
+        else:
+            self.groupBox_4.setEnabled(bool(a0))
             pass
 
     def _getChecked(self):
@@ -1097,6 +1134,8 @@ class Monitor_Cloud(QtWidgets.QWidget,Ui_Monitor_Cloud):
             return self.checkBox_2.text()
         elif self.checkBox_3.isChecked():
             return self.checkBox_3.text()
+        elif self.checkBox_4.isChecked():
+            return self.checkBox_4.text()
         else:
             return ''
 
@@ -1137,6 +1176,27 @@ class Monitor_Cloud(QtWidgets.QWidget,Ui_Monitor_Cloud):
             self.__data['SResComStatistics'].cycleTime  = int(self.lineEdit_cycleTime_2.text())
             self.__data['SResComStatistics'].createTime = int(time.time())
             return self.__data['SResComStatistics'].Value()
+        except Exception as e:
+            print(e)
+
+    def _getValue_3(self):
+        try:
+            self.__data['SResourceState'].resourceId            = int(self.lineEdit_resourceId_2.text())
+            self.__data['SResourceState'].reportTime            = self.dateTimeEdit_reportTime.dateTime()
+            self.__data['SResourceState'].statisticsConfig      = int(self.lineEdit_statisticsConfig.text())
+            self.__data['SResourceState'].currentStock          = int(self.lineEdit_currentStock.text())
+            self.__data['SResourceState'].lastStock             = int(self.lineEdit_lastStock.text())
+            self.__data['SResourceState'].reportTimeInterval    = int(self.lineEdit_reportTimeInterval_2.text())
+            self.__data['SResourceState'].submitTotal           = int(self.lineEdit_submitTotal_2.text())
+            self.__data['SResourceState'].currentSubmitSuccess  = int(self.lineEdit_currentSubmitSuccess.text())
+            self.__data['SResourceState'].currentSubmitFail     = int(self.lineEdit_currentSubmitFail.text())
+            self.__data['SResourceState'].reportTotal           = int(self.lineEdit_reportTotal_2.text())
+            self.__data['SResourceState'].currentReportSuccess  = int(self.lineEdit_currentReportSuccess.text())
+            self.__data['SResourceState'].currentReportFail     = int(self.lineEdit_currentReportFail.text())
+            self.__data['SResourceState'].moTotal               = int(self.lineEdit_moTotal.text())
+            self.__data['SResourceState'].currentMoTotal        = int(self.lineEdit_currentMoTotal.text())
+            self.__data['SResourceState'].state                 = int(self.comboBox_state.currentIndex()+1)
+            return self.__data['SResourceState'].Value()
         except Exception as e:
             print(e)
 
@@ -1181,6 +1241,26 @@ class Monitor_Cloud(QtWidgets.QWidget,Ui_Monitor_Cloud):
         except Exception as e:
             print(e)
 
+    def _analyze_3(self):
+        try:
+            self.lineEdit_resourceId_2.setText(str(self.__data['SResourceState'].resourceId))
+            self.dateTimeEdit_reportTime.setDateTime(self.__data['SResourceState'].reportTime)
+            self.lineEdit_statisticsConfig.setText(str(self.__data['SResourceState'].statisticsConfig))
+            self.lineEdit_currentStock.setText(str(self.__data['SResourceState'].currentStock))
+            self.lineEdit_lastStock.setText(str(self.__data['SResourceState'].lastStock))
+            self.lineEdit_reportTimeInterval_2.setText(str(self.__data['SResourceState'].reportTimeInterval))
+            self.lineEdit_submitTotal_2.setText(str(self.__data['SResourceState'].submitTotal))
+            self.lineEdit_currentSubmitSuccess.setText(str(self.__data['SResourceState'].currentSubmitSuccess))
+            self.lineEdit_currentSubmitFail.setText(str(self.__data['SResourceState'].currentSubmitFail))
+            self.lineEdit_reportTotal_2.setText(str(self.__data['SResourceState'].reportTotal))
+            self.lineEdit_currentReportSuccess.setText(str(self.__data['SResourceState'].currentReportSuccess))
+            self.lineEdit_currentReportFail.setText(str(self.__data['SResourceState'].currentReportFail))
+            self.lineEdit_moTotal.setText(str(self.__data['SResourceState'].moTotal))
+            self.lineEdit_currentMoTotal.setText(str(self.__data['SResourceState'].currentMoTotal))
+            self.comboBox_state.setCurrentIndex(self.__data['SResourceState'].state-1)
+        except Exception as e:
+            print(e)
+
     def analyze(self,b):
         self.__data[self._getChecked()].fromBytes(b)
         self.__func_analy[self._getChecked()]()
@@ -1220,6 +1300,22 @@ class Monitor_Cloud(QtWidgets.QWidget,Ui_Monitor_Cloud):
             config.set(m_section[7], m_keys_srescomstatistics[2],self.lineEdit_failCnt.text())
             config.set(m_section[7], m_keys_srescomstatistics[3],self.lineEdit_cycleTime_2.text())
 
+            config.add_section(m_section[8])
+            config.set(m_section[8],m_keys_resourcestate[0],self.lineEdit_resourceId_2.text())
+            config.set(m_section[8],m_keys_resourcestate[1],self.dateTimeEdit_reportTime.dateTime().toString())
+            config.set(m_section[8],m_keys_resourcestate[2],self.lineEdit_statisticsConfig.text())
+            config.set(m_section[8],m_keys_resourcestate[3],self.lineEdit_currentStock.text())
+            config.set(m_section[8],m_keys_resourcestate[4],self.lineEdit_lastStock.text())
+            config.set(m_section[8],m_keys_resourcestate[5],self.lineEdit_reportTimeInterval_2.text())
+            config.set(m_section[8],m_keys_resourcestate[6],self.lineEdit_submitTotal_2.text())
+            config.set(m_section[8],m_keys_resourcestate[7],self.lineEdit_currentSubmitSuccess.text())
+            config.set(m_section[8],m_keys_resourcestate[8],self.lineEdit_currentSubmitFail.text())
+            config.set(m_section[8],m_keys_resourcestate[9],self.lineEdit_reportTotal_2.text())
+            config.set(m_section[8],m_keys_resourcestate[10],self.lineEdit_currentReportSuccess.text())
+            config.set(m_section[8],m_keys_resourcestate[11],self.lineEdit_currentReportFail.text())
+            config.set(m_section[8],m_keys_resourcestate[12],self.lineEdit_moTotal.text())
+            config.set(m_section[8],m_keys_resourcestate[13],self.lineEdit_currentMoTotal.text())
+            config.set(m_section[8],m_keys_resourcestate[14],str(self.comboBox_state.currentIndex()))
 
             with open('config/'+filename+'.ini','w',encoding='gbk') as f:
                 config.write(f)
@@ -1259,6 +1355,22 @@ class Monitor_Cloud(QtWidgets.QWidget,Ui_Monitor_Cloud):
             self.lineEdit_succCnt.setText(config[m_section[7]][m_keys_srescomstatistics[1]])
             self.lineEdit_failCnt.setText(config[m_section[7]][m_keys_srescomstatistics[2]])
             self.lineEdit_cycleTime_2.setText(config[m_section[7]][m_keys_srescomstatistics[3]])
+
+            self.lineEdit_resourceId_2.setText(config[m_section[8]][m_keys_resourcestate[0]])
+            self.dateTimeEdit_reportTime.setDateTime(QtCore.QDateTime.fromString(config[m_section[8]][m_keys_resourcestate[1]]))
+            self.lineEdit_statisticsConfig.setText(config[m_section[8]][m_keys_resourcestate[2]])
+            self.lineEdit_currentStock.setText(config[m_section[8]][m_keys_resourcestate[3]])
+            self.lineEdit_lastStock.setText(config[m_section[8]][m_keys_resourcestate[4]])
+            self.lineEdit_reportTimeInterval_2.setText(config[m_section[8]][m_keys_resourcestate[5]])
+            self.lineEdit_submitTotal_2.setText(config[m_section[8]][m_keys_resourcestate[6]])
+            self.lineEdit_currentSubmitSuccess.setText(config[m_section[8]][m_keys_resourcestate[7]])
+            self.lineEdit_currentSubmitFail.setText(config[m_section[8]][m_keys_resourcestate[8]])
+            self.lineEdit_reportTotal_2.setText(config[m_section[8]][m_keys_resourcestate[9]])
+            self.lineEdit_currentReportSuccess.setText(config[m_section[8]][m_keys_resourcestate[10]])
+            self.lineEdit_currentReportFail.setText(config[m_section[8]][m_keys_resourcestate[11]])
+            self.lineEdit_moTotal.setText(config[m_section[8]][m_keys_resourcestate[12]])
+            self.lineEdit_currentMoTotal.setText(config[m_section[8]][m_keys_resourcestate[13]])
+            self.comboBox_state.setCurrentIndex(int(config[m_section[8]][m_keys_resourcestate[14]]))
 
         except Exception as e:
             print(e)

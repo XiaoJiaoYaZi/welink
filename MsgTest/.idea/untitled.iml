@@ -5,6 +5,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="sayhello" />
+    <orderEntry type="module" module-name="myflask" />
   </component>
   <component name="TestRunnerService">
     <option name="projectConfiguration" value="pytest" />

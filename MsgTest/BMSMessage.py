@@ -1,17 +1,16 @@
 from PyQt5 import QtWidgets,QtCore
-from UI_SBMSMessage import Ui_SBMSMessage
-from UI_SHisSendData import Ui_SHisSendData
-from UI_SHisRepData import Ui_SHisRepData
-from UI_SRepNotifyData import Ui_SRepNotifyData
-from UI_SHisMOData import Ui_SHisMOData
-from UI_MoAccBlist import Ui_MoAccBlist
-from UI_Monitor import Ui_Monitor
+from PyUI.UI_SBMSMessage import Ui_SBMSMessage
+from PyUI.UI_SHisSendData import Ui_SHisSendData
+from PyUI.UI_SHisRepData import Ui_SHisRepData
+from PyUI.UI_SRepNotifyData import Ui_SRepNotifyData
+from PyUI.UI_SHisMOData import Ui_SHisMOData
+from PyUI.UI_MoAccBlist import Ui_MoAccBlist
+from PyUI.UI_Monitor import Ui_Monitor
 from SMessage import SBmsMessage,SHisSendData,SHisRepData,SRepNotifyData,SHisMOData,MoAccBlist
 from MonitorMsgHeader import *
 import time
 import socket
 import struct
-from ctypes import *
 from configparser import ConfigParser
 
 EBmsMsgFormat={

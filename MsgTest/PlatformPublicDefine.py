@@ -3,8 +3,15 @@ from enum import Enum
 from PyQt5 import QtCore
 from BMSMessage import Datetime_dt,dt_Datetime
 import sys
+from ctypes import *
 
 
+def Pack(ctype_instance):
+    return string_at(addressof(ctype_instance),sizeof(ctype_instance))
+
+def UnPack(ctype,buf):
+    cstring = create_string_buffer(buf)
+    return cast(pointer(cstring),POINTER(ctype)).contents
 
 class msg_header(object):
     __OneByte = struct.Struct('<6I')
@@ -1339,3 +1346,60 @@ class SResComStatistics(object):
     def extendMem(self,value:str):
         t = value.encode("utf-8")
         self._extendMem = t + bytes(64-len(t))
+
+
+
+
+class SResourceState(Structure):
+    __OneByte = struct.Struct('<idiiiiiiiiiiiii')
+    _fields_ = [
+        ('resourceId',c_int),
+        ('_reportTime', c_double),
+        ('statisticsConfig', c_int),
+        ('currentStock', c_int),
+        ('lastStock', c_int),
+        ('reportTimeInterval', c_int),
+        ('submitTotal', c_int),
+        ('currentSubmitSuccess', c_int),
+        ('currentSubmitFail', c_int),
+        ('reportTotal', c_int),
+        ('currentReportSuccess', c_int),
+        ('currentReportFail', c_int),
+        ('moTotal', c_int),
+        ('currentMoTotal', c_int),
+        ('state', c_int),
+    ]
+    _pack_ = 1
+
+    def Value(self):
+        return Pack(self)
+        pass
+
+    def fromBytes(self, b):
+        try:
+            data = UnPack(SResourceState,b)
+            self.resourceId             = data.resourceId
+            self._reportTime             = data._reportTime
+            self.statisticsConfig       = data.statisticsConfig
+            self.currentStock           = data.currentStock
+            self.lastStock              = data.lastStock
+            self.reportTimeInterval     = data.reportTimeInterval
+            self.submitTotal            = data.submitTotal
+            self.currentSubmitSuccess   = data.currentSubmitSuccess
+            self.currentSubmitFail      = data.currentSubmitFail
+            self.reportTotal            = data.reportTotal
+            self.currentReportSuccess   = data.currentReportSuccess
+            self.currentReportFail      = data.currentReportFail
+            self.moTotal                = data.moTotal
+            self.currentMoTotal         = data.currentMoTotal
+            self.state                  = data.state
+        except Exception as e:
+            print(e)
+        pass
+
+    @property
+    def reportTime(self):
+        return QtCore.QDateTime.fromTime_t(Datetime_dt(self._reportTime))
+    @reportTime.setter
+    def reportTime(self,value):
+        self._reportTime = dt_Datetime(value.toPyDateTime().ctime())

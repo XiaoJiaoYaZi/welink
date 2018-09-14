@@ -1,5 +1,5 @@
-from  UI_SQL import Ui_SQL
-from PyQt5 import QtWidgets,QtGui
+from PyUI.UI_SQL import Ui_SQL
+from PyQt5 import QtWidgets
 from SQLManager import SQKManager
 
 sql_get_Modulebase = "select * from [dbo].[T_ModuleBase]".encode('utf-8')

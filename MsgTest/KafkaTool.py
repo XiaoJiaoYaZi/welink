@@ -1,5 +1,5 @@
-from PyQt5 import QtWidgets,QtGui,QtCore
-from UI_KafkaTool import Ui_KafkaTool
+from PyQt5 import QtWidgets, QtCore
+from PyUI.UI_KafkaTool import Ui_KafkaTool
 from sslLinux import Linux
 
 cmds =(
