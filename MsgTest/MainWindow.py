@@ -245,6 +245,9 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self.pushButton_stoprecv_2.setEnabled(True)
         global _num_time
         time.sleep(0.0001)
+        with open('test.data','wb') as f:
+            f.write(kafka_message)
+            f.close()
         self.signal_recv.emit(kafka_message)
         self.num_recv += 1
 

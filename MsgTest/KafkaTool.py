@@ -1,6 +1,8 @@
 from PyQt5 import QtWidgets, QtCore
 from PyUI.UI_KafkaTool import Ui_KafkaTool
 from sslLinux import Linux
+from configparser import ConfigParser
+
 
 cmds =(
     'kafka-consumer-groups.sh --bootstrap-server {}:9092 --list --new-consumer',
@@ -13,13 +15,26 @@ class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
     def __init__(self,parent = None):
         super(KafkaTool,self).__init__(parent=parent)
         self.setupUi(self)
+        self.init()
         self.InitUI()
+
+
+    def init(self):
+        self._config = ConfigParser()
+        try:
+            self._config.read("./config/kafkaTool.ini",encoding='gbk')
+        except Exception as e:
+            print(e)
 
     def InitUI(self):
         self.pushButton_close.setEnabled(False)
         self.groupBox.setEnabled(False)
         self.sendCmd_signal.connect(self.slot_sendCmd,QtCore.Qt.QueuedConnection)
         self.textEdit.setReadOnly(True)
+        self.IP.setText(self._config['host']['ip'])
+        self.pwd.setText(self._config['host']['pwd'])
+        self.usr.setText(self._config['host']['usr'])
+        self.port.setText(self._config['host']['port'])
 
     def on_pushButton_con_pressed(self):
         self.linux = Linux(self.IP.text(),
@@ -61,7 +76,16 @@ class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
 
         self.textEdit.setText(result)
 
+    def saveConfig(self):
+        self._config['host']['ip'] = self.IP.text()
+        self._config['host']['pwd'] = self.pwd.text()
+        self._config['host']['usr'] = self.usr.text()
+        self._config['host']['port'] = self.port.text()
+        with open("./config/kafkaTool.ini",'w',encoding='gbk') as f:
+            self._config.write(f)
+
     def closeEvent(self,event):
+        self.saveConfig()
         if self.pushButton_close.isEnabled():
             self.pushButton_close.click()
         #self.pushButton_close.pressed()

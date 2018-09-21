@@ -1209,6 +1209,7 @@ class Monitor_Cloud(QtWidgets.QWidget,Ui_Monitor_Cloud):
 
     def _analyze_0(self):
         try:
+
             self.lineEdit_ResourceId.setText(str(self.__data['ResourceStateNotify'].ResourceId))
             self.dateTimeEdit_NotifyTime.setDateTime(self.__data['ResourceStateNotify'].NotifyTime)
             self.comboBox_RunTimeState.setCurrentIndex(self.__data['ResourceStateNotify'].RunTimeState-1)
@@ -1224,6 +1225,9 @@ class Monitor_Cloud(QtWidgets.QWidget,Ui_Monitor_Cloud):
 
     def _analyze_1(self):
         try:
+            self.lineEdit_type.setText(str(self.__data['SDispatchStatistics']._head.MessageType))
+            self.lineEdit_ver.setText(str(self.__data['SDispatchStatistics']._head.Version))
+            self.lineEdit_len.setText(str(self.__data['SDispatchStatistics']._head.Length))
             self.lineEdit_dispatchCenterId.setText(str(self.__data['SDispatchStatistics'].dispatchCenterId))
             self.lineEdit_totalDispatchCnt.setText(str(self.__data['SDispatchStatistics'].totalDispatchCnt))
             self.lineEdit_failDispatchCnt.setText(str(self.__data['SDispatchStatistics'].failDispatchCnt))
@@ -1234,6 +1238,9 @@ class Monitor_Cloud(QtWidgets.QWidget,Ui_Monitor_Cloud):
 
     def _analyze_2(self):
         try:
+            self.lineEdit_type.setText(str(self.__data['SResComStatistics']._head.MessageType))
+            self.lineEdit_ver.setText(str(self.__data['SResComStatistics']._head.Version))
+            self.lineEdit_len.setText(str(self.__data['SResComStatistics']._head.Length))
             self.lineEdit_resourceId.setText(str(self.__data['SResComStatistics'].resourceId))
             self.lineEdit_succCnt.setText(str(self.__data['SResComStatistics'].succCnt))
             self.lineEdit_failCnt.setText(str(self.__data['SResComStatistics'].failCnt))
@@ -1243,6 +1250,9 @@ class Monitor_Cloud(QtWidgets.QWidget,Ui_Monitor_Cloud):
 
     def _analyze_3(self):
         try:
+            self.lineEdit_type.setText(str(self.__data['SResourceState']._head.MessageType))
+            self.lineEdit_ver.setText(str(self.__data['SResourceState']._head.Version))
+            self.lineEdit_len.setText(str(self.__data['SResourceState']._head.Length))
             self.lineEdit_resourceId_2.setText(str(self.__data['SResourceState'].resourceId))
             self.dateTimeEdit_reportTime.setDateTime(self.__data['SResourceState'].reportTime)
             self.lineEdit_statisticsConfig.setText(str(self.__data['SResourceState'].statisticsConfig))

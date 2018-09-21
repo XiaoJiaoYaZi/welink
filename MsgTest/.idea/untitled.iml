@@ -4,8 +4,9 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="sayhello" />
     <orderEntry type="module" module-name="myflask" />
+    <orderEntry type="module" module-name="12306" />
+    <orderEntry type="module" module-name="EasyTrain-master" />
   </component>
   <component name="TestRunnerService">
     <option name="projectConfiguration" value="pytest" />

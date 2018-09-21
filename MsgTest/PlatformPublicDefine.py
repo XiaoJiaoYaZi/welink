@@ -1237,7 +1237,7 @@ class SDispatchStatistics(object):
     CType = MSG_DSP_STC
     CVersion = 0x10
 
-    __OneByte = struct.Struct("<iiiihq64s")
+    __OneByte = struct.Struct("<iiiihq")
     def __init__(self):
         self._head = MsgHeader()
         self.dispatchCenterId   = 0
@@ -1257,7 +1257,7 @@ class SDispatchStatistics(object):
                 self.failDispatchCnt,
                 self.cycleTime,
                 self.createTime,
-                self._extendMem,
+                #self._extendMem,
             ))
         except:
             raise Exception("module:{} func:{} line:{} error".format(
@@ -1276,7 +1276,7 @@ class SDispatchStatistics(object):
             self.failDispatchCnt    = data[3]
             self.cycleTime          = data[4]
             self.createTime         = data[5]
-            self._extendMem         = data[6]
+            #self._extendMem         = data[6]
         except:
             raise Exception("module:{} func:{} line:{} error".format(
                 __file__, sys._getframe().f_code.co_name, sys._getframe().f_lineno))
@@ -1297,7 +1297,7 @@ class SDispatchStatistics(object):
 class SResComStatistics(object):
     CType = 0
     CVersion = 0x10
-    __OneByte = struct.Struct("<iiihq64s")
+    __OneByte = struct.Struct("<iiihq")
     def __init__(self):
         self._head = MsgHeader()
         self.resourceId     = 0
@@ -1315,7 +1315,7 @@ class SResComStatistics(object):
                 self.failCnt,
                 self.cycleTime,
                 self.createTime,
-                self._extendMem,
+                #self._extendMem,
             ))
         except:
             raise Exception("module:{} func:{} line:{} error".format(
@@ -1333,7 +1333,7 @@ class SResComStatistics(object):
             self.failCnt    = data[2]
             self.cycleTime  = data[3]
             self.createTime = data[4]
-            self._extendMem  = data[5]
+            #self._extendMem  = data[5]
         except:
             raise Exception("module:{} func:{} line:{} error".format(
                 __file__, sys._getframe().f_code.co_name, sys._getframe().f_lineno))
@@ -1346,9 +1346,6 @@ class SResComStatistics(object):
     def extendMem(self,value:str):
         t = value.encode("utf-8")
         self._extendMem = t + bytes(64-len(t))
-
-
-
 
 class SResourceState(Structure):
     __OneByte = struct.Struct('<idiiiiiiiiiiiii')

@@ -7,14 +7,171 @@
     <x>0</x>
     <y>0</y>
     <width>901</width>
-    <height>657</height>
+    <height>683</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_5">
-   <item row="0" column="0" rowspan="2">
+   <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="label_35">
+         <property name="text">
+          <string>类型</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEdit_type"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLabel" name="label_36">
+         <property name="text">
+          <string>版本</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEdit_ver"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QLabel" name="label_37">
+         <property name="text">
+          <string>长度</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEdit_len"/>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item row="0" column="1" rowspan="2">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QCheckBox" name="checkBox_2">
+       <property name="text">
+        <string>SDispatchStatistics</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox_2">
+       <property name="title">
+        <string/>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <layout class="QVBoxLayout" name="verticalLayout_12">
+          <item>
+           <widget class="QLabel" name="label_11">
+            <property name="text">
+             <string>调度id</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_12">
+            <property name="text">
+             <string>总调度数</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_13">
+            <property name="text">
+             <string>调度成功</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_14">
+            <property name="text">
+             <string>调度失败</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_15">
+            <property name="text">
+             <string>循环次数</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="0" column="2">
+         <layout class="QVBoxLayout" name="verticalLayout_11">
+          <item>
+           <widget class="QLineEdit" name="lineEdit_dispatchCenterId">
+            <property name="text">
+             <string>0</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_totalDispatchCnt">
+            <property name="text">
+             <string>0</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_succDispatchCnt">
+            <property name="text">
+             <string>0</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_failDispatchCnt">
+            <property name="text">
+             <string>0</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_cycleTime">
+            <property name="text">
+             <string>0</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="0" column="1">
+         <spacer name="horizontalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0" rowspan="2">
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
       <widget class="QCheckBox" name="checkBox">
@@ -205,118 +362,7 @@
      </item>
     </layout>
    </item>
-   <item row="0" column="1">
-    <layout class="QVBoxLayout" name="verticalLayout_2">
-     <item>
-      <widget class="QCheckBox" name="checkBox_2">
-       <property name="text">
-        <string>SDispatchStatistics</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QGroupBox" name="groupBox_2">
-       <property name="title">
-        <string/>
-       </property>
-       <layout class="QGridLayout" name="gridLayout_2">
-        <item row="0" column="0">
-         <layout class="QVBoxLayout" name="verticalLayout_12">
-          <item>
-           <widget class="QLabel" name="label_11">
-            <property name="text">
-             <string>调度id</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_12">
-            <property name="text">
-             <string>总调度数</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_13">
-            <property name="text">
-             <string>调度成功</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_14">
-            <property name="text">
-             <string>调度失败</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_15">
-            <property name="text">
-             <string>循环次数</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item row="0" column="2">
-         <layout class="QVBoxLayout" name="verticalLayout_11">
-          <item>
-           <widget class="QLineEdit" name="lineEdit_dispatchCenterId">
-            <property name="text">
-             <string>0</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="lineEdit_totalDispatchCnt">
-            <property name="text">
-             <string>0</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="lineEdit_succDispatchCnt">
-            <property name="text">
-             <string>0</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="lineEdit_failDispatchCnt">
-            <property name="text">
-             <string>0</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="lineEdit_cycleTime">
-            <property name="text">
-             <string>0</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item row="0" column="1">
-         <spacer name="horizontalSpacer_4">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item row="1" column="1" rowspan="2">
+   <item row="2" column="1" rowspan="2">
     <layout class="QVBoxLayout" name="verticalLayout_6">
      <item>
       <widget class="QCheckBox" name="checkBox_4">
@@ -341,7 +387,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QDateTimeEdit" name="dateTimeEdit_reportTime"/>
+           <widget class="QDateTimeEdit" name="dateTimeEdit_reportTime">
+            <property name="displayFormat">
+             <string>yyyy/M/d H:mm:ss</string>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QLineEdit" name="lineEdit_statisticsConfig">
@@ -573,7 +623,7 @@
      </item>
     </layout>
    </item>
-   <item row="2" column="0">
+   <item row="3" column="0">
     <layout class="QVBoxLayout" name="verticalLayout_3">
      <item>
       <widget class="QCheckBox" name="checkBox_3">
