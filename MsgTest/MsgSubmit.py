@@ -74,3 +74,67 @@ class UserSubmitData(LittleEndianStructure):
         ]
     _pack_ = 1
 
+class MyStruct(Structure):
+    _fields_ = [
+        ('a',c_int),
+        ('b',c_double),
+        ('c',c_char*32),
+    ]
+    _pack_ = 1
+
+def callFunc(a,b):
+    print('callbakcfunc',a,b)
+    return a-b
+
+if __name__ == '__main__':
+    dll = cdll.LoadLibrary('D:\\users\\welink\\documents\\visual studio 2015\\Projects\\Testkafka\\x64\\Debug\\DLL1.dll')
+    print(dll)
+    print(dll.fnDLL1())
+
+    dll.fnDLL3.restype = c_char_p
+    type_p_int = POINTER(c_int)
+    temp = type_p_int(c_int(0))
+
+    print(dll.fnDLL2(1,c_float(2.0),c_double(3.0),'hell0'.encode('gbk'),temp))
+    print('int *',temp,temp[0],temp.contents)
+    res = dll.fnDLL3('hello'.encode('gbk'))
+    print(res,type(res))
+    buf = create_string_buffer('hello'.encode('gbk'),10)
+    dll.fnDLL4(byref(buf),10)
+    print(buf.value)
+
+    mystruct = MyStruct()
+    mystruct.a = 1
+    mystruct.b = 1.0
+    mystruct.c = 'helloworld'.encode('gbk')
+    dll.fnDLL5(byref(mystruct))
+    dll.fnDLL5(pointer(mystruct))
+#pack
+    print(string_at(addressof(mystruct),sizeof(mystruct)))
+#unpack
+    buf = create_string_buffer(sizeof(MyStruct))
+    res = cast(pointer(buf),POINTER(MyStruct)).contents
+    print(res,type(res))
+    print('mystruct:',res.a,res.b,res.c)
+
+    dll.fnDLL6.restype = MyStruct
+    res = dll.fnDLL6()
+    print(res)
+    print('mystruct:', res.a, res.b, res.c)
+    del res
+
+# callback
+    CMPFUNC = CFUNCTYPE(c_int,c_int,c_int)
+    cmp_func = CMPFUNC(callFunc)
+    dll.fnDLL7(1,2,cmp_func)
+
+
+
+
+
+
+
+
+
+
+

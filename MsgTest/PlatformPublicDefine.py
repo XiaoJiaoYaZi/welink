@@ -381,7 +381,7 @@ class SCloudMessage(object):
             return len(self._msgtemplate)
         elif index == 5:
             if isinstance(text,str):
-                self._paramtemplate = bytes(text,encoding='utf-8')+b'\x00'
+                self._paramtemplate = bytes(text,encoding='utf_16_le')+b'\x00'
             else:
                 raise TypeError(text)
             return len(self._paramtemplate)
@@ -470,7 +470,7 @@ class SCloudMessage(object):
 
     @property
     def paramtemplate(self):
-        return self._paramtemplate.decode('utf_16_le').replace('\x00','')
+        return self._paramtemplate.decode('utf_8').replace('\x00','')
     @paramtemplate.setter
     def paramtemplate(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_PARAM_TEMPLATE.value[0],value)
@@ -1218,6 +1218,7 @@ class ResourceStateNotify(object):
 
     def fromBytes(self,b):
         try:
+            print(len(b))
             data = self.__OneByte.unpack(b)
             self.ResourceId         = data[0]
             self._NotifyTime         = data[1]
@@ -1229,7 +1230,8 @@ class ResourceStateNotify(object):
             self.submitFail         = data[7]
             self.reportTotal        = data[8]
             self.reportFail         = data[9]
-        except:
+        except Exception as e:
+            print(e)
             raise Exception("module:{} func:{} line:{} error".format(
                 __file__,sys._getframe().f_code.co_name,sys._getframe().f_lineno))
 
@@ -1376,7 +1378,7 @@ class SResourceState(Structure):
         try:
             data = UnPack(SResourceState,b)
             self.resourceId             = data.resourceId
-            self._reportTime             = data._reportTime
+            self._reportTime            = data._reportTime
             self.statisticsConfig       = data.statisticsConfig
             self.currentStock           = data.currentStock
             self.lastStock              = data.lastStock

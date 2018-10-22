@@ -7,6 +7,8 @@
     <orderEntry type="module" module-name="myflask" />
     <orderEntry type="module" module-name="12306" />
     <orderEntry type="module" module-name="EasyTrain-master" />
+    <orderEntry type="module" module-name="sayhello" />
+    <orderEntry type="module" module-name="flaskecharts" />
   </component>
   <component name="TestRunnerService">
     <option name="projectConfiguration" value="pytest" />

@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="97d99c38-423d-44ce-b6ab-12e096a3c4b1" name="Default" comment="提交信息的时候失败，没解决">
-      <change afterPath="$PROJECT_DIR$/config/kafkaTool.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_kafkaTool.py" afterDir="false" />
+    <list default="true" id="97d99c38-423d-44ce-b6ab-12e096a3c4b1" name="Default" comment="ResStatus">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8631aad9-151c-43d0-b3de-905559a982d4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ec4c1f47-791c-4d35-ba53-f64dc48dbe0c.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/untitled.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/untitled.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CloudMsg.py" beforeDir="false" afterPath="$PROJECT_DIR$/CloudMsg.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KafkaTool.py" beforeDir="false" afterPath="$PROJECT_DIR$/KafkaTool.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainWindow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KafkaManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/KafkaManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MsgSubmit.py" beforeDir="false" afterPath="$PROJECT_DIR$/MsgSubmit.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlatformPublicDefine.py" beforeDir="false" afterPath="$PROJECT_DIR$/PlatformPublicDefine.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PyUI/UI_Monitor_Cloud.py" beforeDir="false" afterPath="$PROJECT_DIR$/PyUI/UI_Monitor_Cloud.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/UI_Monitor_Cloud.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/UI_Monitor_Cloud.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQLManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/SQLManager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/kafkaTool.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config/kafkaTool.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/kafka_base.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config/kafka_base.ini" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,11 +31,15 @@
     <SUITE FILE_PATH="coverage/untitled$testRedis.coverage" NAME="testRedis Coverage Results" MODIFIED="1530784557286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/untitled$testconsumer.coverage" NAME="testconsumer Coverage Results" MODIFIED="1531365493338" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/untitled$py_test_in_MainWindow_py.coverage" NAME="py.test in MainWindow.py Coverage Results" MODIFIED="1529986931279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sayhello$main.coverage" NAME="main Coverage Results" MODIFIED="1540175647619" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MsgTest$12306.coverage" NAME="12306 Coverage Results" MODIFIED="1537423403992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../sayhello/12306" />
+    <SUITE FILE_PATH="coverage/sayhello$MsgSubmit.coverage" NAME="MsgSubmit Coverage Results" MODIFIED="1539938138128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MsgTest$testc.coverage" NAME="testc Coverage Results" MODIFIED="1533204593622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/sayhello$KafkaManager.coverage" NAME="KafkaManager Coverage Results" MODIFIED="1539945199008" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MsgTest$video.coverage" NAME="video Coverage Results" MODIFIED="1533264283384" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/MsgTest$demo.coverage" NAME="demo Coverage Results" MODIFIED="1536654346954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../sayhello" />
     <SUITE FILE_PATH="coverage/sayhello$easytrain.coverage" NAME="easytrain Coverage Results" MODIFIED="1537423047527" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/迅雷下载/EasyTrain-master" />
+    <SUITE FILE_PATH="coverage/sayhello$2.coverage" NAME="2 Coverage Results" MODIFIED="1539834610089" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../sayhello" />
     <SUITE FILE_PATH="coverage/untitled$testKafka.coverage" NAME="testKafka Coverage Results" MODIFIED="1530518691809" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/untitled$BMSMessage_test.coverage" NAME="BMSMessage_test Coverage Results" MODIFIED="1530092744429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MsgTest$hello_pyx.coverage" NAME="hello.pyx Coverage Results" MODIFIED="1533203263224" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
@@ -45,11 +48,14 @@
     <SUITE FILE_PATH="coverage/MsgTest$Flask___________myflask_manager_py_.coverage" NAME="Flask (../../../myflask/manager.py) Coverage Results" MODIFIED="1536920493376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MsgTest$wangyi.coverage" NAME="wangyi Coverage Results" MODIFIED="1533267917486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/sayhello$Login.coverage" NAME="Login Coverage Results" MODIFIED="1537499274120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../sayhello/12306/train/login" />
+    <SUITE FILE_PATH="coverage/sayhello$flaskecharts.coverage" NAME="flaskecharts Coverage Results" MODIFIED="1539835179734" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/sayhello$utils.coverage" NAME="utils Coverage Results" MODIFIED="1539340364844" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:/Program Files/Anaconda3/Lib/site-packages/lml" />
     <SUITE FILE_PATH="coverage/sayhello$do12306.coverage" NAME="do12306 Coverage Results" MODIFIED="1537524869805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../sayhello/12306" />
     <SUITE FILE_PATH="coverage/MsgTest$textitchart.coverage" NAME="textitchart Coverage Results" MODIFIED="1532939203218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/MsgTest$testtime.coverage" NAME="testtime Coverage Results" MODIFIED="1536905391113" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/MsgTest$main.coverage" NAME="main Coverage Results" MODIFIED="1537346067428" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/untitled$SMessage.coverage" NAME="SMessage Coverage Results" MODIFIED="1530605430196" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sayhello$1.coverage" NAME="1 Coverage Results" MODIFIED="1539682275957" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../sayhello" />
     <SUITE FILE_PATH="coverage/untitled$MonitorMsgHeader.coverage" NAME="MonitorMsgHeader Coverage Results" MODIFIED="1530856546990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CoverageViewManager">
@@ -66,86 +72,118 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand />
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@192.168.18.134" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@192.168.18.134" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@192.168.18.134" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="test: schema" type="c314c289:MysqlImplModel$Schema" />
+      </path>
+    </expand>
     <select />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="-1618698720">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="9" />
+          <entry key="project.closed" value="16" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.10" value="5" />
-          <entry key="project.open.time.11" value="1" />
-          <entry key="project.open.time.12" value="1" />
+          <entry key="project.open.time.10" value="8" />
+          <entry key="project.open.time.11" value="2" />
+          <entry key="project.open.time.12" value="2" />
           <entry key="project.open.time.8" value="2" />
-          <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="12" />
+          <entry key="project.open.time.9" value="3" />
+          <entry key="project.opened" value="19" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="1220" />
+          <entry key="Python Console" value="1470" />
+          <entry key="cell" value="2" />
           <entry key="cpp" value="1" />
           <entry key="dummy" value="1" />
           <entry key="h" value="1" />
-          <entry key="html" value="343" />
-          <entry key="ini" value="353" />
+          <entry key="html" value="1330" />
+          <entry key="ini" value="376" />
           <entry key="pxd" value="70" />
-          <entry key="py" value="22709" />
+          <entry key="py" value="29918" />
           <entry key="pyx" value="666" />
           <entry key="spec" value="37" />
-          <entry key="txt" value="169" />
+          <entry key="sql" value="11" />
+          <entry key="txt" value="183" />
+          <entry key="xml" value="138" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="C++" value="2" />
           <entry key="Cython" value="736" />
-          <entry key="HTML" value="343" />
-          <entry key="Ini" value="353" />
-          <entry key="PLAIN_TEXT" value="207" />
-          <entry key="Python" value="23929" />
+          <entry key="HTML" value="1330" />
+          <entry key="Ini" value="376" />
+          <entry key="PLAIN_TEXT" value="221" />
+          <entry key="Python" value="31388" />
+          <entry key="SQL" value="11" />
+          <entry key="Scratch" value="2" />
+          <entry key="XML" value="138" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="README" value="2" />
           <entry key="c" value="3" />
           <entry key="cpp" value="3" />
           <entry key="css" value="1" />
           <entry key="dat" value="1" />
           <entry key="h" value="2" />
-          <entry key="html" value="4" />
+          <entry key="hpp" value="1" />
+          <entry key="html" value="25" />
           <entry key="ico" value="1" />
-          <entry key="ini" value="32" />
+          <entry key="ini" value="37" />
           <entry key="jpg" value="2" />
+          <entry key="js" value="5" />
           <entry key="md" value="1" />
-          <entry key="png" value="32" />
+          <entry key="png" value="33" />
           <entry key="pstat" value="8" />
           <entry key="pxd" value="4" />
-          <entry key="py" value="342" />
+          <entry key="py" value="462" />
           <entry key="pyd" value="1" />
-          <entry key="pyi" value="1" />
+          <entry key="pyi" value="3" />
           <entry key="pyx" value="6" />
           <entry key="qrc" value="1" />
           <entry key="spec" value="4" />
+          <entry key="sql" value="1" />
+          <entry key="table_name" value="1" />
+          <entry key="tables" value="1" />
+          <entry key="xml" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="C++" value="8" />
+          <entry key="C++" value="9" />
           <entry key="CSS" value="1" />
           <entry key="Cython" value="10" />
-          <entry key="HTML" value="4" />
-          <entry key="Image" value="35" />
-          <entry key="Ini" value="32" />
+          <entry key="Database Element" value="2" />
+          <entry key="HTML" value="25" />
+          <entry key="Image" value="36" />
+          <entry key="Ini" value="37" />
+          <entry key="JavaScript" value="5" />
           <entry key="Markdown" value="1" />
-          <entry key="PLAIN_TEXT" value="6" />
+          <entry key="PLAIN_TEXT" value="8" />
           <entry key="Profiler Session" value="8" />
-          <entry key="Python" value="342" />
-          <entry key="PythonStub" value="1" />
-          <entry key="XML" value="1" />
+          <entry key="Python" value="462" />
+          <entry key="PythonStub" value="3" />
+          <entry key="Scratch" value="1" />
+          <entry key="XML" value="4" />
         </counts>
       </usages-collector>
     </session>
@@ -156,125 +194,101 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/do12306.py">
+        <entry file="file://$PROJECT_DIR$/KafkaManager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="29" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="39" />
+            <state relative-caret-position="187">
+              <caret line="39" selection-start-line="39" selection-end-line="39" />
               <folding>
-                <element signature="e#0#35#0" expanded="true" />
+                <element signature="e#0#45#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/train/query/query.py">
+        <entry file="file://$PROJECT_DIR$/MainWindow.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="124" selection-start-line="124" selection-end-line="124" />
+            <state relative-caret-position="272">
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../sayhello/demo.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1479">
               <folding>
-                <element signature="e#0#28#0" expanded="true" />
-                <marker date="1537511950091" expanded="true" signature="1116:1117" ph="..." />
-                <marker date="1537511950091" expanded="true" signature="1116:1140" ph="..." />
+                <element signature="e#1#40#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../sayhello/2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="281">
+              <caret line="74" column="32" selection-start-line="74" selection-start-column="32" selection-end-line="74" selection-end-column="32" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+                <marker date="1540201021095" expanded="true" signature="286:2504" ph="..." />
+                <marker date="1540201021095" expanded="true" signature="2040:2171" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor />
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/train/submit/Submit.py">
+        <entry file="file://$PROJECT_DIR$/CloudMsg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="409" column="8" selection-start-line="409" selection-start-column="8" selection-end-line="409" selection-end-column="8" />
+            <state relative-caret-position="346">
+              <caret line="267" column="87" lean-forward="true" selection-start-line="267" selection-start-column="87" selection-end-line="267" selection-end-column="87" />
               <folding>
-                <element signature="e#0#45#0" expanded="true" />
-                <marker date="1537525666183" expanded="true" signature="2967:2968" ph="..." />
-                <marker date="1537525666183" expanded="true" signature="2967:2973" ph="..." />
-                <marker date="1537525666183" expanded="true" signature="2967:2985" ph="..." />
-                <marker date="1537525666183" expanded="true" signature="4738:4826" ph="..." />
-                <marker date="1537525666183" expanded="true" signature="6177:6186" ph="..." />
+                <element signature="e#0#34#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/train/submit/PassengerDetails.py">
+        <entry file="file://$PROJECT_DIR$/PlatformPublicDefine.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="6" selection-start-column="6" selection-end-column="6" />
+            <state relative-caret-position="227">
+              <caret line="254" column="34" selection-start-line="254" selection-start-column="34" selection-end-line="254" selection-end-column="34" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/config.ini">
+        <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/producer/kafka.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="69">
+              <caret line="324" column="40" selection-start-line="324" selection-start-column="40" selection-end-line="324" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../flaskecharts/templates/bar1.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="295">
+              <caret line="310" column="12" selection-start-line="310" selection-start-column="12" selection-end-line="310" selection-end-column="12" />
+              <folding>
+                <element signature="e#1767#13858#0#HTML" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/kafka_base.ini">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
-              <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/train/login/Login.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="542">
-              <caret line="80" column="8" selection-start-line="80" selection-start-column="8" selection-end-line="80" selection-end-column="8" />
-              <folding>
-                <marker date="1537525666206" expanded="true" signature="389:390" ph="..." />
-                <marker date="1537525666206" expanded="true" signature="389:394" ph="..." />
-                <marker date="1537525666206" expanded="true" signature="1725:1764" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/net/MyNet.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="64" column="28" selection-start-line="64" selection-start-column="28" selection-end-line="64" selection-end-column="28" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-                <marker date="1537521424552" expanded="true" signature="51:279" ph="..." />
-                <marker date="1537521424552" expanded="true" signature="300:305" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/adress/Urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="146" column="27" selection-start-line="146" selection-start-column="27" selection-end-line="146" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/train/login/Capthca.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="46" column="8" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="8" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-                <marker date="1537518329745" expanded="true" signature="402:405" ph="..." />
-                <marker date="1537518329745" expanded="true" signature="427:432" ph="..." />
-                <marker date="1537518329745" expanded="true" signature="684:693" ph="..." />
-                <marker date="1537518329745" expanded="true" signature="1109:1132" ph="..." />
-              </folding>
+              <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -285,18 +299,15 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="Flask Main" />
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="Flask Main" />
+        <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>socket</find>
-      <find>struct.Struct</find>
-      <find>assignment</find>
-      <find>subscription</find>
       <find>moblie</find>
       <find>QDateTime</find>
       <find>信息类型</find>
@@ -323,6 +334,10 @@
       <find>_submitOrderRequest</find>
       <find>resultOrderForQueue</find>
       <find>queryMyOrderNoComplete</find>
+      <find>is_datazoom_show</find>
+      <find>mark_point_symbol</find>
+      <find>ack</find>
+      <find>last</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -331,25 +346,12 @@
         <option value="liqd" />
       </list>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../sayhello/12306" />
+    <option name="ROOT_SYNC" value="SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/MsgSubmit.py" />
-        <option value="$PROJECT_DIR$/../../../myflask/app.py" />
-        <option value="$PROJECT_DIR$/../../../myflask/config.py" />
-        <option value="$PROJECT_DIR$/../../../myflask/app/main/__init__.py" />
-        <option value="$PROJECT_DIR$/../../../myflask/app/templates/404.html" />
-        <option value="$PROJECT_DIR$/../../../myflask/app/main/errors.py" />
-        <option value="$PROJECT_DIR$/../../../myflask/app/__init__.py" />
-        <option value="$PROJECT_DIR$/../../../myflask/manager.py" />
-        <option value="$PROJECT_DIR$/../../../myflask/app/main/forms.py" />
-        <option value="$PROJECT_DIR$/../../../myflask/app/templates/index.html" />
-        <option value="$PROJECT_DIR$/../../../myflask/app/main/view.py" />
-        <option value="$PROJECT_DIR$/../../../myflask/app/models.py" />
-        <option value="$PROJECT_DIR$/config/kafkaTool.ini" />
-        <option value="$PROJECT_DIR$/KafkaTool.py" />
         <option value="$PROJECT_DIR$/UI/main_kafkaTool.py" />
         <option value="$PROJECT_DIR$/main_kafkaTool.py" />
         <option value="$PROJECT_DIR$/main_kafkaTool.spec" />
@@ -360,12 +362,8 @@
         <option value="$PROJECT_DIR$/../../../sayhello/__init__.py" />
         <option value="$PROJECT_DIR$/../../../sayhello/1.html" />
         <option value="$PROJECT_DIR$/../../../sayhello/citys.py" />
-        <option value="$PROJECT_DIR$/config/kafka_base.ini" />
-        <option value="$PROJECT_DIR$/PlatformPublicDefine.py" />
-        <option value="$PROJECT_DIR$/CloudMsg.py" />
         <option value="D:/迅雷下载/EasyTrain-master/define/UrlsConf.py" />
         <option value="$PROJECT_DIR$/MainWindow.py" />
-        <option value="$PROJECT_DIR$/config/config.ini" />
         <option value="D:/迅雷下载/EasyTrain-master/train/query/Query.py" />
         <option value="D:/迅雷下载/EasyTrain-master/Configure.py" />
         <option value="D:/迅雷下载/EasyTrain-master/train/submit/Submit.py" />
@@ -387,6 +385,24 @@
         <option value="$PROJECT_DIR$/../../../sayhello/12306/config.ini" />
         <option value="$PROJECT_DIR$/../../../sayhello/12306/train/submit/Submit.py" />
         <option value="$PROJECT_DIR$/../../../sayhello/12306/train/login/Login.py" />
+        <option value="$PROJECT_DIR$/config/confg.xml" />
+        <option value="$PROJECT_DIR$/config/confg1.xml" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/cf38e2d4-dd59-48d2-ae0c-34fd529553fc/console.sql" />
+        <option value="$PROJECT_DIR$/config/config.ini" />
+        <option value="$PROJECT_DIR$/../../../sayhello/1.py" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/../../../flaskecharts/static/pyechartjs.js" />
+        <option value="$PROJECT_DIR$/../../../flaskecharts/templates/bar.html" />
+        <option value="$PROJECT_DIR$/../../../sayhello/templates/bar.html" />
+        <option value="$PROJECT_DIR$/../../../flaskecharts/app.py" />
+        <option value="$PROJECT_DIR$/PlatformPublicDefine.py" />
+        <option value="$PROJECT_DIR$/SQLManager.py" />
+        <option value="$PROJECT_DIR$/MsgSubmit.py" />
+        <option value="$PROJECT_DIR$/KafkaManager.py" />
+        <option value="$PROJECT_DIR$/config/kafka_base.ini" />
+        <option value="$PROJECT_DIR$/../../../flaskecharts/templates/bar1.html" />
+        <option value="$PROJECT_DIR$/../../../sayhello/2.py" />
+        <option value="$PROJECT_DIR$/CloudMsg.py" />
       </list>
     </option>
   </component>
@@ -397,14 +413,15 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="2491" />
-    <option name="y" value="-19" />
-    <option name="width" value="1552" />
-    <option name="height" value="864" />
+    <option name="x" value="2183" />
+    <option name="y" value="-14" />
+    <option name="width" value="1940" />
+    <option name="height" value="882" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
+      <showMembers ProjectPane="false" />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
@@ -414,11 +431,29 @@
           <expand>
             <path>
               <item name="sayhello" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MsgTest" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sayhello" type="b2602c69:ProjectViewProjectNode" />
+              <item name="flaskecharts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sayhello" type="b2602c69:ProjectViewProjectNode" />
+              <item name="flaskecharts" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sayhello" type="b2602c69:ProjectViewProjectNode" />
+              <item name="flaskecharts" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sayhello" type="b2602c69:ProjectViewProjectNode" />
               <item name="myflask" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sayhello" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EasyTrain-master" type="462c0819:PsiDirectoryNode" />
+              <item name="sayhello" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -427,13 +462,16 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql&#10;sqlserver" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SearchEverywhereHistoryKey" value="checkUser&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="SQL Server (Microsoft)" />
-    <property name="last_opened_file_path" value="D:/迅雷下载/EasyTrain-master" />
+    <property name="database.console.LAST_STATE" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../sayhello" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.templateLanguages.PyTemplateLanguageModulesConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -444,10 +482,11 @@
       <recent name="D:\users\welink\documents\GitHub\welink\MsgTest" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\users\welink\documents\sayhello" />
+      <recent name="D:\users\welink\documents\GitHub\welink\MsgTest\config" />
       <recent name="D:\users\welink\documents\sayhello\12306\train\submit" />
       <recent name="D:\users\welink\documents\sayhello\12306\net" />
       <recent name="D:\users\welink\documents\sayhello\12306\adress" />
-      <recent name="C:\Users\welink\PycharmProjects\untitled\config" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -462,21 +501,24 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.do12306">
-    <configuration name="Login" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="12306" />
+  <component name="RunManager" selected="Python.main">
+    <configuration name="bar1.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/sayhello/templates/bar1.html">
+      <method v="2" />
+    </configuration>
+    <configuration name="2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="sayhello" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../../sayhello/12306/train/login" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../../sayhello" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../sayhello/12306/train/login/Login.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../sayhello/2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -485,20 +527,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="MyNet" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="12306" />
+    <configuration name="KafkaManager" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="untitled" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../../sayhello/12306/net" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../sayhello/12306/net/MyNet.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/KafkaManager.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -507,20 +549,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Submit" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="12306" />
+    <configuration name="MsgSubmit" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="untitled" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../../sayhello/12306/train/submit" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../sayhello/12306/train/submit/Submit.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MsgSubmit.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -529,20 +571,42 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="do12306" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="12306" />
+    <configuration name="flaskecharts" type="PythonConfigurationType" factoryName="Python" singleton="true">
+      <module name="flaskecharts" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../../sayhello/12306" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../flaskecharts/app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="untitled" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../sayhello/12306/do12306.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -573,43 +637,22 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="query" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="12306" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../../sayhello/12306/train/query" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../sayhello/12306/train/query/query.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Python.myflask" />
-      <item itemvalue="Python.Login" />
-      <item itemvalue="Python.MyNet" />
-      <item itemvalue="Python.query" />
-      <item itemvalue="Python.Submit" />
-      <item itemvalue="Python.do12306" />
+      <item itemvalue="Python.flaskecharts" />
+      <item itemvalue="Python.2" />
+      <item itemvalue="JavaScript Debug.bar1.html" />
+      <item itemvalue="Python.MsgSubmit" />
+      <item itemvalue="Python.KafkaManager" />
+      <item itemvalue="Python.main" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.do12306" />
-        <item itemvalue="Python.Submit" />
-        <item itemvalue="Python.query" />
-        <item itemvalue="Python.Login" />
-        <item itemvalue="Python.MyNet" />
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.KafkaManager" />
+        <item itemvalue="Python.MsgSubmit" />
+        <item itemvalue="JavaScript Debug.bar1.html" />
+        <item itemvalue="Python.2" />
       </list>
     </recent_temporary>
   </component>
@@ -705,7 +748,14 @@
       <option name="project" value="LOCAL" />
       <updated>1536916767424</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="ResStatus">
+      <created>1537526090022</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1537526090022</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -724,32 +774,59 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49593496" visible="true" weight="0.14285715" />
-      <window_info id="Favorites" order="1" sideWeight="0.50406504" side_tool="true" weight="0.14209116" />
+      <window_info auto_hide="true" content_ui="combo" x="1983" y="151" width="339" height="571" id="Project" order="0" sideWeight="0.49315068" weight="0.17803837" />
+      <window_info id="Favorites" order="1" sideWeight="0.5068493" side_tool="true" weight="0.18364611" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.24403471" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4968017" weight="0.28524947" />
-      <window_info anchor="bottom" x="19" y="412" width="1492" height="229" id="Debug" order="3" weight="0.44468546" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.24403471" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.6536458" weight="0.34135976" />
+      <window_info anchor="bottom" x="19" y="412" width="1492" height="229" id="Debug" order="3" weight="0.34560907" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32909605" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.28741866" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50319827" side_tool="true" weight="0.22342733" />
-      <window_info anchor="bottom" id="Version Control" order="11" weight="0.3286334" />
+      <window_info anchor="bottom" id="Database Changes" order="8" sideWeight="0.49932975" weight="0.3286119" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.38177875" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.34635416" side_tool="true" weight="0.39512712" />
+      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.49865952" weight="0.3275488" />
       <window_info anchor="bottom" id="Concurrent Activities Diagram" order="12" weight="0.17231639" />
-      <window_info anchor="bottom" id="Database Console" order="13" weight="0.26694915" />
+      <window_info anchor="bottom" id="Database Console" order="13" sideWeight="0.49798927" weight="0.37818697" />
+      <window_info anchor="bottom" id="Python Console" order="14" weight="0.20390455" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.49895614" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.2238806" />
+      <window_info anchor="right" id="Coverage" order="4" side_tool="true" weight="0.32995737" />
+      <window_info anchor="right" id="SciView" order="5" weight="0.32942432" />
+      <window_info anchor="right" id="Structure" order="6" sideWeight="0.50104386" side_tool="true" weight="0.19829424" />
+    </layout>
+    <layout-to-restore>
+      <window_info auto_hide="true" content_ui="combo" x="1983" y="151" width="339" height="571" id="Project" order="0" sideWeight="0.49315068" weight="0.15671642" />
+      <window_info id="Favorites" order="1" sideWeight="0.5068493" side_tool="true" weight="0.18364611" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.24403471" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.6536458" visible="true" weight="0.345987" />
+      <window_info anchor="bottom" x="19" y="412" width="1492" height="229" id="Debug" order="3" weight="0.31303117" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32909605" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" sideWeight="0.49932975" weight="0.3286119" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.38286334" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.34635416" side_tool="true" weight="0.39512712" />
+      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.49865952" weight="0.3275488" />
+      <window_info anchor="bottom" id="Concurrent Activities Diagram" order="12" weight="0.17231639" />
+      <window_info anchor="bottom" id="Database Console" order="13" sideWeight="0.49798927" weight="0.37818697" />
       <window_info anchor="bottom" id="Python Console" order="14" weight="0.36008677" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.49895614" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" weight="0.23190348" />
+      <window_info anchor="right" id="Database" order="3" weight="0.1769437" />
       <window_info anchor="right" id="Coverage" order="4" side_tool="true" weight="0.32995737" />
-      <window_info anchor="right" id="SciView" order="5" weight="0.3297587" />
+      <window_info anchor="right" id="SciView" order="5" weight="0.32942432" />
       <window_info anchor="right" id="Structure" order="6" sideWeight="0.50104386" side_tool="true" weight="0.19829424" />
-    </layout>
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -768,7 +845,8 @@
     <MESSAGE value="bug修复&#10;test里面实现一个右下角弹框界面" />
     <MESSAGE value="增加SResourceState结构&#10;结构转字节流与字节流转结构优化，才有ctypes自带的方法，摒弃struct模块" />
     <MESSAGE value="box" />
-    <option name="LAST_COMMIT_MESSAGE" value="box" />
+    <MESSAGE value="ResStatus" />
+    <option name="LAST_COMMIT_MESSAGE" value="ResStatus" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -963,11 +1041,6 @@
           <option name="timeStamp" value="171" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/CloudMsg.py</url>
-          <line>255</line>
-          <option name="timeStamp" value="173" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/test/test.py</url>
           <line>135</line>
           <option name="timeStamp" value="174" />
@@ -993,18 +1066,13 @@
           <option name="timeStamp" value="181" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/CloudMsg.py</url>
-          <line>231</line>
-          <option name="timeStamp" value="182" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/KafkaManager.py</url>
-          <line>191</line>
+          <line>193</line>
           <option name="timeStamp" value="183" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/CloudMsg.py</url>
-          <line>726</line>
+          <line>725</line>
           <option name="timeStamp" value="184" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -1019,12 +1087,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/CloudMsg.py</url>
-          <line>1198</line>
+          <line>1197</line>
           <option name="timeStamp" value="194" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/PlatformPublicDefine.py</url>
-          <line>1267</line>
+          <line>1269</line>
           <option name="timeStamp" value="214" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -1038,18 +1106,13 @@
           <option name="timeStamp" value="224" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/MainWindow.py</url>
-          <line>247</line>
-          <option name="timeStamp" value="225" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/KafkaManager.py</url>
-          <line>146</line>
+          <line>148</line>
           <option name="timeStamp" value="226" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/KafkaManager.py</url>
-          <line>265</line>
+          <line>267</line>
           <option name="timeStamp" value="228" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -1087,6 +1150,51 @@
           <line>17</line>
           <option name="timeStamp" value="255" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/PlatformPublicDefine.py</url>
+          <line>1233</line>
+          <option name="timeStamp" value="256" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/CloudMsg.py</url>
+          <line>488</line>
+          <option name="timeStamp" value="258" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../../../flaskecharts/app.py</url>
+          <line>11</line>
+          <option name="timeStamp" value="261" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../../../sayhello/2.py</url>
+          <line>42</line>
+          <option name="timeStamp" value="263" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/KafkaManager.py</url>
+          <line>100</line>
+          <option name="timeStamp" value="269" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/consumer/group.py</url>
+          <line>996</line>
+          <option name="timeStamp" value="270" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/consumer/group.py</url>
+          <line>329</line>
+          <option name="timeStamp" value="273" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/producer/kafka.py</url>
+          <line>324</line>
+          <option name="timeStamp" value="274" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/KafkaManager.py</url>
+          <line>59</line>
+          <option name="timeStamp" value="275" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
@@ -1099,17 +1207,14 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="PythonConfigurationType">
-        <watch expression="MyNet.send('hell')" language="Python" />
-        <watch expression="urlInfo['url'].format(1,2,3)" language="Python" />
-        <watch expression="city2code(startStation)" />
-        <watch expression="urlInfo['url'].format(startDate,city2code(startStation),city2code(endStation))" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>len(b)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>urlInfo['url'].format(1,2,3)</expression-string>
         <language-id>Python</language-id>
@@ -1152,11 +1257,6 @@
       </expression>
       <expression>
         <expression-string>tuple(info)[3]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>requests.utils.dict_from_cookiejar(response3.cookies)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -1215,362 +1315,47 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/requests/utils.py">
+    <entry file="file://$PROJECT_DIR$/test/video.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35">
-          <caret line="243" column="4" selection-start-line="243" selection-start-column="4" selection-end-line="243" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/requests/packages/urllib3/packages/ordered_dict.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-118">
-          <caret line="141" column="8" selection-start-line="141" selection-start-column="8" selection-end-line="141" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/requests/sessions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="554" column="8" selection-start-line="554" selection-start-column="8" selection-end-line="554" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/citys.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="108" selection-start-line="3" selection-start-column="108" selection-end-line="3" selection-end-column="108" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/迅雷下载/EasyTrain-master/Configure.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="38" lean-forward="true" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/img.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://D:/迅雷下载/EasyTrain-master/train/login/damatuWeb.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-168">
-          <caret line="57" column="37" lean-forward="true" selection-start-line="57" selection-start-column="37" selection-end-line="57" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/迅雷下载/EasyTrain-master/define/UserAgent.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="49" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/迅雷下载/EasyTrain-master/define/CityCode.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://D:/迅雷下载/EasyTrain-master/net/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/colorama/ansi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="33" lean-forward="true" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/colorama/initialise.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="58" column="4" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/colorama/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="36" lean-forward="true" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
-          <folding>
-            <element signature="e#75#134#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/迅雷下载/EasyTrain-master/utils/Log.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="11" selection-start-column="11" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/迅雷下载/EasyTrain-master/train/login/Capthca.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="64" column="9" lean-forward="true" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/迅雷下载/EasyTrain-master/utils/FileUtils.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/net/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://D:/迅雷下载/EasyTrain-master/net/NetUtils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1224">
-          <caret line="72" selection-start-line="72" selection-end-line="72" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/迅雷下载/EasyTrain-master/train/login/Login.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="134" column="17" lean-forward="true" selection-start-line="134" selection-start-column="17" selection-end-line="134" selection-end-column="17" />
+        <state relative-caret-position="-2039">
+          <caret line="14" column="19" lean-forward="true" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/requests/models.py">
+    <entry file="file://$PROJECT_DIR$/test/testKafka.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="820" selection-start-line="820" selection-end-line="820" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/adress/CityCode.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="5356" column="13" selection-start-line="5356" selection-start-column="4" selection-end-line="5356" selection-end-column="13" />
+        <state relative-caret-position="205">
+          <caret line="33" column="41" lean-forward="true" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="41" />
           <folding>
-            <element signature="e#57636#57664#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/迅雷下载/EasyTrain-master/define/Const.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="1663" column="10" lean-forward="true" selection-start-line="1663" selection-start-column="10" selection-end-line="1663" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/random.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="719" selection-start-line="719" selection-end-line="719" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/迅雷下载/EasyTrain-master/train/submit/PassengerDetails.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="99" column="29" lean-forward="true" selection-start-line="99" selection-start-column="29" selection-end-line="99" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/迅雷下载/EasyTrain-master/train/TicketDetails.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3587">
-          <caret line="211" column="26" lean-forward="true" selection-start-line="211" selection-start-column="26" selection-end-line="211" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/迅雷下载/EasyTrain-master/train/query/Query.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="162" column="61" lean-forward="true" selection-start-line="162" selection-start-column="38" selection-end-line="162" selection-end-column="61" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#4371#5770#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/迅雷下载/EasyTrain-master/utils/Utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="19" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="308" selection-start-line="308" selection-end-line="308" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/buyimg.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://D:/迅雷下载/EasyTrain-master/train/submit/Submit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="267" column="49" lean-forward="true" selection-start-line="267" selection-start-column="49" selection-end-line="267" selection-end-column="49" />
-          <folding>
-            <element signature="e#11#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/迅雷下载/EasyTrain-master/utils/TrainUtils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="83" selection-start-line="83" selection-end-line="108" selection-end-column="5" />
-          <folding>
-            <element signature="e#196#209#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/迅雷下载/EasyTrain-master/define/UrlsConf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="268" lean-forward="true" selection-start-line="268" selection-end-line="274" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/prettytable.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="83" column="8" selection-start-line="83" selection-start-column="8" selection-end-line="83" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/迅雷下载/EasyTrain-master/easytrain.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="42" column="12" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/train/TrainFuncs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-          <folding>
-            <element signature="e#1#28#0" expanded="true" />
-            <marker date="1537518329740" expanded="true" signature="217:228" ph="..." />
-            <marker date="1537518329740" expanded="true" signature="518:523" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/train/Content.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="15" column="9" selection-start-line="15" selection-end-line="15" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/train/ticketDetails.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="259" column="29" selection-start-line="259" selection-start-column="29" selection-end-line="259" selection-end-column="29" />
-          <folding>
-            <marker date="1537514531064" expanded="true" signature="5415:5455" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/configparser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="956" selection-start-line="956" selection-end-line="956" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/12306.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="536" lean-forward="true" selection-start-line="536" selection-end-line="536" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#0#57#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/do12306.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="29" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="39" />
+        <state relative-caret-position="289">
+          <caret line="17" column="25" lean-forward="true" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/config.ini">
+    <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/train/query/query.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/train/submit/Submit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="409" column="8" selection-start-line="409" selection-start-column="8" selection-end-line="409" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#45#0" expanded="true" />
-            <marker date="1537525666183" expanded="true" signature="2967:2968" ph="..." />
-            <marker date="1537525666183" expanded="true" signature="2967:2973" ph="..." />
-            <marker date="1537525666183" expanded="true" signature="2967:2985" ph="..." />
-            <marker date="1537525666183" expanded="true" signature="4738:4826" ph="..." />
-            <marker date="1537525666183" expanded="true" signature="6177:6186" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/train/submit/PassengerDetails.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="6" selection-start-column="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/train/login/Login.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="542">
-          <caret line="80" column="8" selection-start-line="80" selection-start-column="8" selection-end-line="80" selection-end-column="8" />
-          <folding>
-            <marker date="1537525666206" expanded="true" signature="389:390" ph="..." />
-            <marker date="1537525666206" expanded="true" signature="389:394" ph="..." />
-            <marker date="1537525666206" expanded="true" signature="1725:1764" ph="..." />
-          </folding>
+        <state relative-caret-position="506">
+          <caret line="72" column="27" lean-forward="true" selection-start-line="72" selection-start-column="27" selection-end-line="72" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/net/MyNet.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="64" column="28" selection-start-line="64" selection-start-column="28" selection-end-line="64" selection-end-column="28" />
+        <state relative-caret-position="274">
+          <caret line="40" column="12" lean-forward="true" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="12" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
             <marker date="1537521424552" expanded="true" signature="51:279" ph="..." />
@@ -1579,44 +1364,385 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/adress/Urls.py">
+    <entry file="file://C:/Program Files/Anaconda3/Lib/ctypes/_endian.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="146" column="27" selection-start-line="146" selection-start-column="27" selection-end-line="146" selection-end-column="27" />
+        <state relative-caret-position="648">
+          <caret line="54" column="41" selection-start-line="54" selection-start-column="41" selection-end-line="54" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/train/login/Capthca.py">
+    <entry file="file://$PROJECT_DIR$/SQL.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="46" column="8" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="8" />
+        <state relative-caret-position="34">
+          <caret line="2" column="28" lean-forward="true" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3/uuid.pyi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-714" />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1282051629/_mssql.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-544">
+          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
-            <marker date="1537518329745" expanded="true" signature="402:405" ph="..." />
-            <marker date="1537518329745" expanded="true" signature="427:432" ph="..." />
-            <marker date="1537518329745" expanded="true" signature="684:693" ph="..." />
-            <marker date="1537518329745" expanded="true" signature="1109:1132" ph="..." />
+            <element signature="e#2522#3056#0" />
+            <element signature="e#3094#13515#0" />
+            <element signature="e#13591#13923#0" />
+            <element signature="e#13976#15099#0" />
+            <element signature="e#15201#15596#0" />
+            <element signature="e#15681#16169#0" />
+            <element signature="e#16212#17459#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/train/query/query.py">
+    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1282051629/pymssql.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="124" selection-start-line="124" selection-end-line="124" />
+        <state relative-caret-position="85">
+          <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
-            <marker date="1537511950091" expanded="true" signature="1116:1117" ph="..." />
-            <marker date="1537511950091" expanded="true" signature="1116:1140" ph="..." />
+            <element signature="e#216#264#0" expanded="true" />
+            <element signature="e#2892#3058#0" />
+            <element signature="e#3244#20301#0" />
+            <element signature="e#20344#20680#0" />
+            <element signature="e#20711#20962#0" />
+            <element signature="e#20999#21086#0" />
+            <element signature="e#21141#21307#0" />
+            <element signature="e#21340#23430#0" />
+            <element signature="e#23460#26439#0" />
+            <element signature="e#26474#26561#0" />
+            <element signature="e#26592#26679#0" />
+            <element signature="e#26706#31285#0" />
+            <element signature="e#31317#31870#0" />
+            <element signature="e#31914#32001#0" />
+            <element signature="e#32044#32131#0" />
+            <element signature="e#32178#32265#0" />
+            <element signature="e#32311#32398#0" />
+            <element signature="e#32427#33037#0" />
+            <element signature="e#33084#33171#0" />
+            <element signature="e#33198#36566#0" />
+            <element signature="e#36607#42625#0" />
+            <element signature="e#42658#42909#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
+    <entry file="file://$PROJECT_DIR$/SQLManager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="32" lean-forward="true" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/vendor/six.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="557" column="10" selection-start-line="557" selection-start-column="10" selection-end-line="557" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/metrics/kafka_metric.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3/socket.pyi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="564" column="8" selection-start-line="564" selection-start-column="8" selection-end-line="564" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/socket.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="485" column="8" selection-start-line="485" selection-start-column="8" selection-end-line="485" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/selectors.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/conn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2508">
+          <caret line="189" column="8" selection-start-line="189" selection-start-column="8" selection-end-line="189" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/coordinator/consumer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="93" column="76" lean-forward="true" selection-start-line="93" selection-start-column="76" selection-end-line="93" selection-end-column="76" />
+          <folding>
+            <element signature="e#1405#3778#1" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/util.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="136" column="8" selection-start-line="136" selection-start-column="8" selection-end-line="136" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/copy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4792" />
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/abc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1282051629/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="172" column="56" selection-start-line="172" selection-start-column="56" selection-end-line="172" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1282051629/_ctypes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="104" column="4" selection-start-line="104" selection-start-column="4" selection-end-line="104" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MsgSubmit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="135" lean-forward="true" selection-start-line="135" selection-end-line="135" />
+          <folding>
+            <marker date="1539938108120" expanded="true" signature="2365:2412" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.ini">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/metrics/metric_config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/metrics/metric_name.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="60" selection-start-line="60" selection-end-line="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/metrics/metrics.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="71" selection-start-line="71" selection-end-line="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/urllib/parse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="446">
+          <caret line="711" selection-start-line="711" selection-end-line="711" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/coordinator/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="671" selection-start-line="671" selection-end-line="671" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/future.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/structs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="93">
+          <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/cluster.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="77" column="8" selection-start-line="77" selection-start-column="8" selection-end-line="77" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="321" column="50" lean-forward="true" selection-start-line="321" selection-start-column="50" selection-end-line="321" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/protocol/offset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/consumer/fetcher.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="112" selection-start-line="112" selection-end-line="112" />
+          <folding>
+            <element signature="e#1587#4555#1" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/consumer/subscription_state.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="76" column="8" selection-start-line="76" selection-start-column="8" selection-end-line="76" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/consumer/group.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2653">
+          <caret line="87" column="18" selection-start-line="87" selection-start-column="15" selection-end-line="87" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/partitioner/default.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="15" column="16" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/kafka_base.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/client_async.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="740">
+          <caret line="182" column="8" selection-start-line="182" selection-start-column="8" selection-end-line="182" selection-end-column="8" />
+          <folding>
+            <element signature="e#1090#6990#1" />
+            <element signature="e#8109#8245#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/ctypes/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="359" selection-start-line="359" selection-end-line="359" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/uuid.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="506" selection-start-line="506" selection-end-line="506" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/KafkaManager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MainWindow.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/producer/kafka.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="324" column="40" selection-start-line="324" selection-start-column="40" selection-end-line="324" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../flaskecharts/templates/bar1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="310" column="12" selection-start-line="310" selection-start-column="12" selection-end-line="310" selection-end-column="12" />
+          <folding>
+            <element signature="e#1767#13858#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../sayhello/demo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1479">
+          <folding>
+            <element signature="e#1#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../sayhello/2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="74" column="32" selection-start-line="74" selection-start-column="32" selection-end-line="74" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+            <marker date="1540201021095" expanded="true" signature="286:2504" ph="..." />
+            <marker date="1540201021095" expanded="true" signature="2040:2171" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PlatformPublicDefine.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="254" column="34" selection-start-line="254" selection-start-column="34" selection-end-line="254" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CloudMsg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="267" column="87" lean-forward="true" selection-start-line="267" selection-start-column="87" selection-end-line="267" selection-end-column="87" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

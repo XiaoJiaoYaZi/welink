@@ -57,6 +57,8 @@ class KafkaManager(object):
                 self.__kafkconsume[item[0]] = result[0]
             else:
                 self.__kafkconsume[item[0]] = int(item[1])
+        print('producer config:\n',self.__kafkaproduce)
+        print('consumer config:\n',self.__kafkconsume)
 
     def create_producer(self,topic):
         topic = topic.strip()
@@ -283,3 +285,15 @@ class MsMqManageer(object):
         if self.__producer is not None:
             self.__producer.Close()
         pass
+
+def call(b):
+    print(b)
+if __name__ == "__main__":
+    from kafka import TopicPartition
+    parent = TopicPartition('0.0.0.0.kfk',0)
+    consumer = KafkaConsumer('0.0.0.0.kfk',bootstrap_servers = '10.1.63.126:9092,10.1.63.127:9092,10.1.63.128:9092')
+    partitions = consumer.partitions_for_topic('0.0.0.0.kfk')
+    consumer.seek_to_beginning(*(0,))
+
+
+    input()

@@ -1,7 +1,4 @@
-
-
 import pymssql
-
 
 class SQKManager(object):
     def __init__(self,host,usr,pwd,db):

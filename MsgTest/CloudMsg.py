@@ -255,7 +255,6 @@ class CloudMsg(QtWidgets.QWidget,Ui_CloudMsg):
             self.__data.FixHead.SubmitType              = int(self.SubmitType.text())
             self.__data.FixHead.CloudMsgTemplateID      = int(self.CloudMsgTemplateID.text())
             self.__data.FixHead.CommitIp                = bytes2int(socket.inet_aton(self.CommitIp.text()))
-            self.__data.FixHead.m_old_struct            = int(self.m_old_struct.text())
 
             #tail
             self.__data.FixTail.pagetotal =             int(self.pagetotal.text())
