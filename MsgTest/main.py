@@ -1,4 +1,4 @@
-from MainWindow import BMSMsgTest,BMSMessage
+from MainWindow import BMSMsgTest
 from PyQt5.QtWidgets import QApplication
 import sys
 

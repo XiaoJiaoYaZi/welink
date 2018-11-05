@@ -144,6 +144,13 @@ class DispatchFixedHead(object):
             Exception("module:{} func:{} line:{} error".format(
                 __file__, sys._getframe().f_code.co_name, sys._getframe().f_lineno))
 
+    def __le__(self, other):
+        return self.CommitTime <= other.CommitTime
+        pass
+
+    def __ge__(self, other):
+        return self.CommitTime >= other.CommitTime
+        pass
 
     def __len__(self):
         return self.__OneByte.size
@@ -270,9 +277,16 @@ class SCloudMessage(object):
         self._mms_title = None
         self._mms_filename = None
         self._usr_def_id = None
-
         self.msgheader._item_count = self.ECloudMsgItem.ECMI_ITEM_COUNT.value
         self.msgheader._offset = len(self.msgheader)+len(self.FixHead)+len(self.FixTail)
+
+    def __le__(self, other):
+        return self.FixHead <= other.FixHead
+        pass
+
+    def __ge__(self, other):
+        return self.FixHead >= other.FixHead
+        pass
 
     def Value(self):
         try:

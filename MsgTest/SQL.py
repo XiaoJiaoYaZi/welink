@@ -1,6 +1,6 @@
 from PyUI.UI_SQL import Ui_SQL
 from PyQt5 import QtWidgets
-from SQLManager import SQKManager
+from SQLManager import SQLManager
 
 sql_get_Modulebase = "select * from [dbo].[T_ModuleBase]".encode('utf-8')
 sql_get_ConfigBase = "select * from [dbo].[T_ConfigBase]".encode('utf-8')
@@ -60,7 +60,7 @@ class SQLView(QtWidgets.QDialog,Ui_SQL):
 
     def on_connect_pressed(self):
         self.pushButton_fresh.setEnabled(True)
-        self.__db = SQKManager(self.host.text(),
+        self.__db = SQLManager(self.host.text(),
                                self.usr.text(),
                                self.pwd.text(),
                                self.db.text())

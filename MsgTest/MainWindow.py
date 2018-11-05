@@ -24,6 +24,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         super(BMSMsgTest,self).__init__()
         self.setupUi(self)
         self._kafka = KafkaManager()
+        self._kafka_trans = KafkaManager()
         self._msmq = MsMqManageer()
         self._init()
         self.initUI()
@@ -40,6 +41,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
             print('read config error')
             return
         self._kafka.create_producer(self._config['MsgTest']['topic_producer'])
+        self._kafka_trans.create_producer(self._config['MsgTest']['topic_trans'])
         self._msmq.create_producer(self._config['MsgTest']['msmqpath_producer'])
         self._sendData.append(BMSMessage())
         self._sendData.append(BMSSHisSendData())
@@ -244,11 +246,15 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self._brecv1 = True
         self.pushButton_stoprecv_2.setEnabled(True)
         global _num_time
-        time.sleep(0.0001)
-        with open('test.data','wb') as f:
-            f.write(kafka_message)
-            f.close()
-        self.signal_recv.emit(kafka_message)
+
+        if self.checkBox_search.isChecked():
+            self._kafka_trans.send(kafka_message)
+            if self._sendData[self.comboBox_msgtype.currentIndex()].getnext(kafka_message):
+                print('find !')
+                pass
+        if self.checkBox_Play.isChecked():
+            time.sleep(0.0001)
+            self.signal_recv.emit(kafka_message)
         self.num_recv += 1
 
     def analyze(self,value):
@@ -278,6 +284,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self.on_pushButton_stopsend_pressed()
         self._msmq.close()
         self._kafka.close()
+        self._kafka_trans.close()
         event.accept()
 
     def on_actionKafkaTool_triggered(self):
@@ -285,3 +292,15 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
 
     def on_actionSQLTool_triggered(self):
         self.sqltool.show()
+
+    def on_pushButton_min_pressed(self):
+        filename = QtWidgets.QFileDialog.getOpenFileName(self,'选择配置',os.getcwd(),"*.ini")
+        print(filename)
+        if filename[1] and filename[0] != '':
+            self._sendData[self.comboBox_msgtype.currentIndex()].loadMin(filename)
+
+    def on_pushButton_max_pressed(self):
+        filename = QtWidgets.QFileDialog.getOpenFileName(self, '选择配置', os.getcwd(), "*.ini")
+        print(filename)
+        if filename[1] and filename[0] != '':
+            self._sendData[self.comboBox_msgtype.currentIndex()].loadMax(filename)

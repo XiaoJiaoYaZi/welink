@@ -211,6 +211,12 @@ class CloudMsg(QtWidgets.QWidget,Ui_CloudMsg):
         self.__data = SCloudMessage()
         self.mobile.textChanged.connect(self.motile_textChanged)
         self.message.textChanged.connect(self.message_textChanged)
+        self.init()
+
+    def init(self):
+        self._f = open('./data/CloudMsg.txt','w')
+        data = '\t'.join(m_keys_cloudmsg)+'\r\n'
+        self._f.write(data)
 
     def message_textChanged(self):
         data = self.message.toPlainText()
@@ -225,76 +231,82 @@ class CloudMsg(QtWidgets.QWidget,Ui_CloudMsg):
         self.MobilesContentLen.setText(str(len(bytes(data,'utf-8')+b'\x00')))
         self.MobilesCount.setText(str(int((len(data)+1)/12)))
 
-    def getValue(self):
+    def getValue(self,data=None):
+        if data is None:
+            return self.__getValue(self.__data)
+        else:
+            return self.__getValue(data)
+
+    def __getValue(self,data:SCloudMessage):
         try:
-            self.__data.clear()
+            data.clear()
             #head
-            self.__data.FixHead.Priority                = int(self.Priority.text())
-            self.__data.FixHead.MsgId                   = int(self.MsgId.text())
-            self.__data.FixHead.ProductExtendId         = int(self.ProductExtendId.text())
-            self.__data.FixHead.RealProductExtendId     = int(self.RealProductExtendId.text())
-            self.__data.FixHead.StartSendDateTime       = dt_Datetime(self.StartSendDateTime.dateTime().toPyDateTime().ctime())
-            self.__data.FixHead.EndSendDateTime         = dt_Datetime(self.EndSendDateTime.dateTime().toPyDateTime().ctime())
-            self.__data.FixHead.StartSendTime           = dt_Datetime(self.StartSendTime.dateTime().toPyDateTime().ctime())
-            self.__data.FixHead.EndSendTime             = dt_Datetime(self.EndSendTime.dateTime().toPyDateTime().ctime())
-            self.__data.FixHead.ChargeQuantity          = int(self.ChargeQuantity.text())
-            self.__data.FixHead.MsgState                = self.MsgState.currentIndex()+1
-            self.__data.FixHead.MsgType                 = self.MsgType.currentIndex()+1
-            self.__data.FixHead.CommitTime              = dt_Datetime(self.CommitTime.dateTime().toPyDateTime().ctime())
-            self.__data.FixHead.Package                 = int(self.Package.text())
-            self.__data.FixHead.MobilesContentLen       = int(self.MobilesContentLen.text())
-            self.__data.FixHead.MsgContentLen           = int(self.MsgContentLen.text())
-            self.__data.FixHead.MobilesCount            = int(self.MobilesCount.text())
-            self.__data.FixHead.DispatchTimes           = int(self.DispatchTimes.text())
-            self.__data.FixHead.Telcom                  = self.Telcom.currentIndex()
-            self.__data.FixHead.ProvinceId              = int(self.ProvinceId.text())
-            self.__data.FixHead.CityId                  = int(self.CityId.text())
-            self.__data.FixHead.TPCBChecked             = int(self.TPCBChecked.text())
-            self.__data.FixHead.SendedTimes             = int(self.SendedTimes.text())
-            self.__data.FixHead.DispatchFailedState     = int(self.DispatchFailedState.text())
-            self.__data.FixHead.SubmitType              = int(self.SubmitType.text())
-            self.__data.FixHead.CloudMsgTemplateID      = int(self.CloudMsgTemplateID.text())
-            self.__data.FixHead.CommitIp                = bytes2int(socket.inet_aton(self.CommitIp.text()))
+            data.FixHead.Priority                = int(self.Priority.text())
+            data.FixHead.MsgId                   = int(self.MsgId.text())
+            data.FixHead.ProductExtendId         = int(self.ProductExtendId.text())
+            data.FixHead.RealProductExtendId     = int(self.RealProductExtendId.text())
+            data.FixHead.StartSendDateTime       = dt_Datetime(self.StartSendDateTime.dateTime().toPyDateTime().ctime())
+            data.FixHead.EndSendDateTime         = dt_Datetime(self.EndSendDateTime.dateTime().toPyDateTime().ctime())
+            data.FixHead.StartSendTime           = dt_Datetime(self.StartSendTime.dateTime().toPyDateTime().ctime())
+            data.FixHead.EndSendTime             = dt_Datetime(self.EndSendTime.dateTime().toPyDateTime().ctime())
+            data.FixHead.ChargeQuantity          = int(self.ChargeQuantity.text())
+            data.FixHead.MsgState                = self.MsgState.currentIndex()+1
+            data.FixHead.MsgType                 = self.MsgType.currentIndex()+1
+            data.FixHead.CommitTime              = dt_Datetime(self.CommitTime.dateTime().toPyDateTime().ctime())
+            data.FixHead.Package                 = int(self.Package.text())
+            data.FixHead.MobilesContentLen       = int(self.MobilesContentLen.text())
+            data.FixHead.MsgContentLen           = int(self.MsgContentLen.text())
+            data.FixHead.MobilesCount            = int(self.MobilesCount.text())
+            data.FixHead.DispatchTimes           = int(self.DispatchTimes.text())
+            data.FixHead.Telcom                  = self.Telcom.currentIndex()
+            data.FixHead.ProvinceId              = int(self.ProvinceId.text())
+            data.FixHead.CityId                  = int(self.CityId.text())
+            data.FixHead.TPCBChecked             = int(self.TPCBChecked.text())
+            data.FixHead.SendedTimes             = int(self.SendedTimes.text())
+            data.FixHead.DispatchFailedState     = int(self.DispatchFailedState.text())
+            data.FixHead.SubmitType              = int(self.SubmitType.text())
+            data.FixHead.CloudMsgTemplateID      = int(self.CloudMsgTemplateID.text())
+            data.FixHead.CommitIp                = bytes2int(socket.inet_aton(self.CommitIp.text()))
 
             #tail
-            self.__data.FixTail.pagetotal =             int(self.pagetotal.text())
-            self.__data.FixTail.packagetotal =          int(self.packagetotal.text())
-            self.__data.FixTail.typeComponentParam =    int(self.typeComponentParam.text())
-            self.__data.FixTail.lastFailResourceId =    int(self.lastFailResourceId.text())
-            self.__data.FixTail.failedType =            self.failedType.currentIndex()
-            self.__data.FixTail.lastDiapatchTime =      dt_Datetime(self.lastDiapatchTime.dateTime().toPyDateTime().ctime())
-            self.__data.FixTail.resourceSendTimes =     int(self.resourceSendTimes.text())
-            self.__data.FixTail.auditorId =             int(self.auditorId.text())
-            self.__data.FixTail.totalSendTimes =        int(self.totalSendTimes.text())
-            self.__data.FixTail.repResendTimeOut =      int(self.repResendTimeOut.text())
-            self.__data.FixTail.innerDispatchTimes =    int(self.innerDispatchTimes.text())
-            self.__data.FixTail.extComponentParam =     int(self.extComponentParam.text())
-            self.__data.FixTail.m_old_struct = int(self.m_old_struct.text())
+            data.FixTail.pagetotal =             int(self.pagetotal.text())
+            data.FixTail.packagetotal =          int(self.packagetotal.text())
+            data.FixTail.typeComponentParam =    int(self.typeComponentParam.text())
+            data.FixTail.lastFailResourceId =    int(self.lastFailResourceId.text())
+            data.FixTail.failedType =            self.failedType.currentIndex()
+            data.FixTail.lastDiapatchTime =      dt_Datetime(self.lastDiapatchTime.dateTime().toPyDateTime().ctime())
+            data.FixTail.resourceSendTimes =     int(self.resourceSendTimes.text())
+            data.FixTail.auditorId =             int(self.auditorId.text())
+            data.FixTail.totalSendTimes =        int(self.totalSendTimes.text())
+            data.FixTail.repResendTimeOut =      int(self.repResendTimeOut.text())
+            data.FixTail.innerDispatchTimes =    int(self.innerDispatchTimes.text())
+            data.FixTail.extComponentParam =     int(self.extComponentParam.text())
+            data.FixTail.m_old_struct = int(self.m_old_struct.text())
             ##
-            self.__data.mobiles = self.mobile.toPlainText()
-            self.__data.acc_name = self.acc_name.text()
-            if self.__data.FixHead.MsgType == 2:
+            data.mobiles = self.mobile.toPlainText()
+            data.acc_name = self.acc_name.text()
+            if data.FixHead.MsgType == 2:
                 filename = self.message.toPlainText()
                 if os.path.isfile(filename):
                     f = open(filename,'rb')
-                    data = f.read(os.path.getsize(filename))
-                    self.__data.message = data
+                    fdata = f.read(os.path.getsize(filename))
+                    data.message = fdata
                 else:
                     raise Exception('请输入正确的彩信路径')
             else:
-                self.__data.message = self.message.toPlainText()
-            self.__data.templateID = self.templateID.text()
-            self.__data.msgtemplate = self.msgtemplate.toPlainText()
-            self.__data.paramtemplate = self.paramtemplate.toPlainText()
-            self.__data.extnumer = self.extnumber.text()
-            self.__data.sign = self.sign.text()
-            self.__data.acc_msgid = self.acc_msgid.text()
-            self.__data.mms_title = self.mms_title.text()
-            self.__data.mms_filename = self.mms_path.text()
-            self.__data.usr_def_id =self.user_defid.text()
-            self.__data.write_header()
+                data.message = self.message.toPlainText()
+            data.templateID = self.templateID.text()
+            data.msgtemplate = self.msgtemplate.toPlainText()
+            data.paramtemplate = self.paramtemplate.toPlainText()
+            data.extnumer = self.extnumber.text()
+            data.sign = self.sign.text()
+            data.acc_msgid = self.acc_msgid.text()
+            data.mms_title = self.mms_title.text()
+            data.mms_filename = self.mms_path.text()
+            data.usr_def_id =self.user_defid.text()
+            data.write_header()
 
-            return self.__data.Value()
+            return data.Value()
         except Exception as e:
             print(e)
             print('getValue error')
@@ -440,6 +452,80 @@ class CloudMsg(QtWidgets.QWidget,Ui_CloudMsg):
         self.__data.fromBytes(b)
         self.__analyze()
 
+    def loadMin(self,filename):
+        self.loadConfig(filename)
+        self.minData = SCloudMessage()
+        self.__getValue(self.minData)
+
+    def loadMax(self,filename):
+        self.loadConfig(filename)
+        self.maxData = SCloudMessage()
+        self.__getValue(self.maxData)
+
+    def save2file(self):
+        try:
+            data = [str(self.__data.FixHead.Priority),
+                str(self.__data.FixHead.MsgId),
+                str(self.__data.FixHead.ProductExtendId),
+                str(self.__data.FixHead.RealProductExtendId),
+                QtCore.QDateTime.fromTime_t(Datetime_dt(self.__data.FixHead.StartSendDateTime)).toString(),
+                QtCore.QDateTime.fromTime_t(Datetime_dt(self.__data.FixHead.EndSendDateTime)).toString(),
+                QtCore.QDateTime.fromTime_t(Datetime_dt(self.__data.FixHead.StartSendTime)).toString(),
+                QtCore.QDateTime.fromTime_t(Datetime_dt(self.__data.FixHead.EndSendTime)).toString(),
+                str(self.__data.FixHead.ChargeQuantity),
+                str(self.__data.FixHead.MsgState - 1),
+                str(self.__data.FixHead.MsgType - 1),
+                QtCore.QDateTime.fromTime_t(Datetime_dt(self.__data.FixHead.CommitTime)).toString(),
+                str(self.__data.FixHead.Package),
+                str(self.__data.FixHead.MobilesContentLen),
+                str(self.__data.FixHead.MsgContentLen),
+                str(self.__data.FixHead.MobilesCount),
+                str(self.__data.FixHead.DispatchTimes),
+                str(self.__data.FixHead.Telcom),
+                str(self.__data.FixHead.ProvinceId),
+                str(self.__data.FixHead.CityId),
+                str(self.__data.FixHead.TPCBChecked),
+                str(self.__data.FixHead.SendedTimes),
+                str(self.__data.FixHead.DispatchFailedState),
+                str(self.__data.FixHead.SubmitType),
+                str(self.__data.FixHead.CloudMsgTemplateID),
+                str(socket.inet_ntoa(int2ipbyte(self.__data.FixHead.CommitIp))),
+                str(self.__data.FixTail.pagetotal),
+                str(self.__data.FixTail.packagetotal),
+                str(self.__data.FixTail.typeComponentParam),
+                str(self.__data.FixTail.lastFailResourceId),
+                str(self.__data.FixTail.failedType),
+                QtCore.QDateTime.fromTime_t(Datetime_dt(self.__data.FixTail.lastDiapatchTime)).toString(),
+                str(self.__data.FixTail.resourceSendTimes),
+                str(self.__data.FixTail.auditorId),
+                str(self.__data.FixTail.totalSendTimes),
+                str(self.__data.FixTail.repResendTimeOut),
+                str(self.__data.FixTail.innerDispatchTimes),
+                str(self.__data.FixTail.extComponentParam),
+                str(self.__data.FixTail.m_old_struct),
+                self.__data.mobiles,
+                self.__data.acc_name,
+                self.__data.message if self.__data.FixHead.MsgType ==1 else '',
+                self.__data.templateID,
+                self.__data.msgtemplate,
+                self.__data.paramtemplate,
+                self.__data.extnumer,
+                self.__data.sign,
+                self.__data.acc_msgid,
+                self.__data.mms_title,
+                self.__data.mms_filename,
+                self.__data.usr_def_id,]
+
+            self._f.write('\t'.join(data)+'\n')
+        except Exception as e:
+            print(e)
+    def getnext(self,b):
+        self.__data.fromBytes(b)
+        if self.__data<=self.maxData and self.__data>=self.minData:
+            self.save2file()
+            return True
+        return False
+
     def __analyze(self):
         try:
             #head
@@ -488,7 +574,8 @@ class CloudMsg(QtWidgets.QWidget,Ui_CloudMsg):
             ##
             self.mobile.setText(self.__data.mobiles)
             self.acc_name.setText(self.__data.acc_name)
-            self.message.setText(self.__data.message)
+            if self.__data.FixHead.MsgType == 1:#短信才解析内容，彩信的话内容直接抛弃
+                self.message.setText(self.__data.message)
             self.templateID.setText(self.__data.templateID)
             self.msgtemplate.setText(self.__data.msgtemplate)
             self.paramtemplate.setText(self.__data.paramtemplate)
@@ -530,43 +617,49 @@ class MsgSendData(QtWidgets.QWidget,Ui_SMsgSendData):
         data = self.textEdit_totalMsg.toPlainText()
         self.lineEdit_totalMsgLen.setText(str(len(bytes(data,'utf_16_le')+b'\x00\x00')))
 
-    def getValue(self):
+    def getValue(self,data=None):
+        if data is None:
+            self.__getValue(self.__data)
+        else:
+            self.__getValue(data)
+
+    def __getValue(self,data):
         try:
-            self.__data._body.productExtendId       = int(self.lineEdit_productExtendId.text())
-            self.__data._body.msgId                 = int(self.lineEdit_msgId.text())
-            self.__data._body.sendedTime            = dt_Datetime(self.dateTimeEdit_sendedTime.dateTime().toPyDateTime().ctime())
-            self.__data._body.submitTime            = dt_Datetime(self.dateTimeEdit_submitTime.dateTime().toPyDateTime().ctime())
-            self.__data._body.mobilePhone           = int(self.lineEdit_mobilePhone.text())
-            self.__data._body.matchId               = int(self.lineEdit_matchId.text())
-            self.__data._body.realProductExtendId   = int(self.lineEdit_realProductExtendId.text())
-            self.__data._body.resourceId            = int(self.lineEdit_resourceId.text())
-            self.__data._body.chargeQuantity        = int(self.lineEdit_chargeQuantity.text())
-            self.__data._body.propertyComponent     = int(self.lineEdit_propertyComponent.text())
-            self.__data._body.sendTimes             = int(self.lineEdit_sendTimes.text())
-            self.__data._body.msgType               = int(self.lineEdit_msgType.text())
-            self.__data._body.accountId             = self.lineEdit_accountId.text()
-            self.__data._body.SPNo                  = self.lineEdit_SPNo.text()
-            self.__data._body.clientMsgId           = self.lineEdit_clientMsgId.text()
-            self.__data._body.sendState             = int(self.lineEdit_sendState.text())
-            self.__data._body.msgLen                = int(self.lineEdit_msgLen.text())
-            self.__data._body.SendResultLen         = int(self.lineEdit_SendResultLen.text())
-            self.__data._body.TitleLen              = int(self.lineEdit_TitleLen.text())
-            self.__data._body.cycletimes            = int(self.lineEdit_cycletimes.text())
-            self.__data._body.Priority              = int(self.lineEdit_Priority.text())
-            self.__data._body.typeComponentParam    = int(self.lineEdit_typeComponentParam.text())
-            self.__data._body.rmReSendTimes         = int(self.lineEdit_rmReSendTimes.text())
-            self.__data._body.repResendTimeOut      = int(self.lineEdit_repResendTimeOut.text())
+            data._body.productExtendId       = int(self.lineEdit_productExtendId.text())
+            data._body.msgId                 = int(self.lineEdit_msgId.text())
+            data._body.sendedTime            = dt_Datetime(self.dateTimeEdit_sendedTime.dateTime().toPyDateTime().ctime())
+            data._body.submitTime            = dt_Datetime(self.dateTimeEdit_submitTime.dateTime().toPyDateTime().ctime())
+            data._body.mobilePhone           = int(self.lineEdit_mobilePhone.text())
+            data._body.matchId               = int(self.lineEdit_matchId.text())
+            data._body.realProductExtendId   = int(self.lineEdit_realProductExtendId.text())
+            data._body.resourceId            = int(self.lineEdit_resourceId.text())
+            data._body.chargeQuantity        = int(self.lineEdit_chargeQuantity.text())
+            data._body.propertyComponent     = int(self.lineEdit_propertyComponent.text())
+            data._body.sendTimes             = int(self.lineEdit_sendTimes.text())
+            data._body.msgType               = int(self.lineEdit_msgType.text())
+            data._body.accountId             = self.lineEdit_accountId.text()
+            data._body.SPNo                  = self.lineEdit_SPNo.text()
+            data._body.clientMsgId           = self.lineEdit_clientMsgId.text()
+            data._body.sendState             = int(self.lineEdit_sendState.text())
+            data._body.msgLen                = int(self.lineEdit_msgLen.text())
+            data._body.SendResultLen         = int(self.lineEdit_SendResultLen.text())
+            data._body.TitleLen              = int(self.lineEdit_TitleLen.text())
+            data._body.cycletimes            = int(self.lineEdit_cycletimes.text())
+            data._body.Priority              = int(self.lineEdit_Priority.text())
+            data._body.typeComponentParam    = int(self.lineEdit_typeComponentParam.text())
+            data._body.rmReSendTimes         = int(self.lineEdit_rmReSendTimes.text())
+            data._body.repResendTimeOut      = int(self.lineEdit_repResendTimeOut.text())
 
-            self.__data.userDefineId        = self.lineEdit_userDefineId.text()
-            self.__data.title               = self.lineEdit_title.text()
-            self.__data.sign                = self.lineEdit_sign.text()
-            self.__data.totalMsgLen         = int(self.lineEdit_totalMsgLen.text())
-            self.__data.msgContent          = self.textEdit_msgContent.toPlainText()
-            self.__data.sendResultInfo      = self.textEdit_sendResultInfo.toPlainText()
-            self.__data.totalMsg            = self.textEdit_totalMsg.toPlainText()
+            data.userDefineId        = self.lineEdit_userDefineId.text()
+            data.title               = self.lineEdit_title.text()
+            data.sign                = self.lineEdit_sign.text()
+            data.totalMsgLen         = int(self.lineEdit_totalMsgLen.text())
+            data.msgContent          = self.textEdit_msgContent.toPlainText()
+            data.sendResultInfo      = self.textEdit_sendResultInfo.toPlainText()
+            data.totalMsg            = self.textEdit_totalMsg.toPlainText()
 
-            self.__data.write_header()
-            return self.__data.Value()
+            data.write_header()
+            return data.Value()
         except Exception as e:
             print(e)
             raise Exception("module:{} func:{} line:{} error".format(
@@ -712,6 +805,28 @@ class MsgSendData(QtWidgets.QWidget,Ui_SMsgSendData):
             print(e)
             print('加载配置失败')
 
+    def loadMin(self,filename):
+        self.loadConfig(filename)
+        self.minData = SMsgSendData()
+        self.__getValue(self.minData)
+
+    def loadMax(self,filename):
+        self.loadConfig(filename)
+        self.maxData = SMsgSendData()
+        self.__getValue(self.maxData)
+
+    def save2file(self):
+        data = []
+
+        self._f.write('\t'.join(data)+'\n')
+
+    def getnext(self,b):
+        self.__data.fromBytes(b)
+        if self.__data<=self.maxData and self.__data>=self.minData:
+            self.save2file()
+            return True
+        return False
+
 class MsgHisRepData(QtWidgets.QWidget,Ui_SMsgHisRepData):
 
     def __init__(self):
@@ -719,20 +834,27 @@ class MsgHisRepData(QtWidgets.QWidget,Ui_SMsgHisRepData):
         self.setupUi(self)
         self.__data = SMsgHisRepData()
 
-    def getValue(self):
+    def getValue(self,data=None):
+        if data is None:
+            return self.__getValue(self.__data)
+        else:
+            return self.__getValue(data)
+
+
+    def __getValue(self,data):
         try:
-            self.__data._body.mobilePhone         = int(self.lineEdit_mobilePhone.text())
-            self.__data._body.matchId             = int(self.lineEdit_matchId.text())
-            self.__data._body.resourceId          = int(self.lineEdit_resourceId.text())
-            self.__data._body.reportTime          = self.dateTimeEdit_reportTime.dateTime()
-            self.__data._body.reportState         = int(self.lineEdit_reportState.text())
-            self.__data._body.reportResultInfo    = self.textEdit.toPlainText()
-            self.__data._body.reportLocalTime     = self.dateTimeEdit_reportLocalTime.dateTime()
-            self.__data._body.componentFlg        = int(self.lineEdit_componentFlg.text())
-            self.__data._body.flagRetryTime       = int(time.time())
-            self.__data._body.cycletimes          = int(self.lineEdit_cycletimes.text())
-            self.__data.write_header()
-            return self.__data.Value()
+            data._body.mobilePhone         = int(self.lineEdit_mobilePhone.text())
+            data._body.matchId             = int(self.lineEdit_matchId.text())
+            data._body.resourceId          = int(self.lineEdit_resourceId.text())
+            data._body.reportTime          = self.dateTimeEdit_reportTime.dateTime()
+            data._body.reportState         = int(self.lineEdit_reportState.text())
+            data._body.reportResultInfo    = self.textEdit.toPlainText()
+            data._body.reportLocalTime     = self.dateTimeEdit_reportLocalTime.dateTime()
+            data._body.componentFlg        = int(self.lineEdit_componentFlg.text())
+            data._body.flagRetryTime       = int(time.time())
+            data._body.cycletimes          = int(self.lineEdit_cycletimes.text())
+            data.write_header()
+            return data.Value()
         except Exception as e:
             print(e)
             raise Exception("module:{} func:{} line:{} error".format(
@@ -809,6 +931,28 @@ class MsgHisRepData(QtWidgets.QWidget,Ui_SMsgHisRepData):
             print(e)
             print('加载配置失败')
 
+    def loadMin(self,filename):
+        self.loadConfig(filename)
+        self.minData = SMsgHisRepData()
+        self.__getValue(self.minData)
+
+    def loadMax(self,filename):
+        self.loadConfig(filename)
+        self.maxData = SMsgHisRepData()
+        self.__getValue(self.maxData)
+
+    def save2file(self):
+        data = []
+
+        self._f.write('\t'.join(data)+'\n')
+
+    def getnext(self,b):
+        self.__data.fromBytes(b)
+        if self.__data<=self.maxData and self.__data>=self.minData:
+            self.save2file()
+            return True
+        return False
+
 class MOData(QtWidgets.QWidget,Ui_SMOData):
 
     def __init__(self):
@@ -816,18 +960,24 @@ class MOData(QtWidgets.QWidget,Ui_SMOData):
         self.setupUi(self)
         self.__data = SMOData()
 
-    def getValue(self):
+    def getValue(self,data = None):
+        if data is None:
+            return self.__getValue(self.__data)
+        else:
+            return self.__getValue(data)
+
+    def __getValue(self,data):
         try:
-            self.__data.msgId           = int(self.lineEdit_msgId.text())
-            self.__data.mobilePhone     = int(self.lineEdit_mobilePhone.text())
-            self.__data.SPNo            = self.lineEdit_SPNo.text()
-            self.__data.MOTime          = self.dateTimeEdit_MOTime.dateTime()
-            self.__data.resourceId      = int(self.lineEdit_resourceId.text())
-            self.__data.MOContentLength = int(self.lineEdit_MOContentLength.text())
-            self.__data.MOContent       = self.textEdit_MOContent.toPlainText()
-            self.__data.msgType         = int(self.lineEdit_msgType.text())
-            self.__data.accountId       = self.lineEdit_accountId.text()
-            return self.__data.Value()
+            data.msgId           = int(self.lineEdit_msgId.text())
+            data.mobilePhone     = int(self.lineEdit_mobilePhone.text())
+            data.SPNo            = self.lineEdit_SPNo.text()
+            data.MOTime          = self.dateTimeEdit_MOTime.dateTime()
+            data.resourceId      = int(self.lineEdit_resourceId.text())
+            data.MOContentLength = int(self.lineEdit_MOContentLength.text())
+            data.MOContent       = self.textEdit_MOContent.toPlainText()
+            data.msgType         = int(self.lineEdit_msgType.text())
+            data.accountId       = self.lineEdit_accountId.text()
+            return data.Value()
         except Exception as e:
             print(e)
             raise Exception("module:{} func:{} line:{} error".format(
@@ -906,6 +1056,28 @@ class MOData(QtWidgets.QWidget,Ui_SMOData):
             print(e)
             print('加载配置失败')
 
+    def loadMin(self,filename):
+        self.loadConfig(filename)
+        self.minData = SMOData()
+        self.__getValue(self.minData)
+
+    def loadMax(self,filename):
+        self.loadConfig(filename)
+        self.maxData = SMOData()
+        self.__getValue(self.maxData)
+
+    def save2file(self):
+        data = []
+
+        self._f.write('\t'.join(data)+'\n')
+
+    def getnext(self,b):
+        self.__data.fromBytes(b)
+        if self.__data<=self.maxData and self.__data>=self.minData:
+            self.save2file()
+            return True
+        return False
+
 class RepNotifyData(QtWidgets.QWidget,Ui_SRepNotifyData):
 
     def __init__(self):
@@ -913,28 +1085,34 @@ class RepNotifyData(QtWidgets.QWidget,Ui_SRepNotifyData):
         self.setupUi(self)
         self.__data = SRepNotifyData()
 
-    def getValue(self):
+    def getValue(self,data=None):
+        if data is None:
+            return self.__getValue(self.__data)
+        else:
+            return self.__getValue(data)
+
+    def __getValue(self,data):
         try:
-            self.__data.version         = int(self.lineEdit_version.text())
-            self.__data.msgId           = int(self.lineEdit_msgId.text())
-            self.__data.accountId      = self.lineEdit_accountId.text()
-            self.__data.mobilePhone     = int(self.lineEdit_mobilePhone.text())
-            self.__data.sendState       = int(self.lineEdit_sendState.text())
-            self.__data.reportState     = int(self.lineEdit_reportState.text())
-            self.__data.sendedTime      = self.dateTimeEdit_sendedTime.dateTime()
-            self.__data.reportTime      = self.dateTimeEdit_reportTime.dateTime()
-            self.__data.sendResultInfo  = self.textEdit_sendResultInfo.toPlainText()
-            self.__data.reportResultInfo= self.textEdit_reportResultInfo.toPlainText()
-            self.__data.spno            = self.lineEdit_spno.text()
-            self.__data.clientMsgId     = self.lineEdit_clientMsgId.text()
-            self.__data.reportLocalTime = self.dateTimeEdit_reportLocalTime.dateTime()
-            self.__data.extendNum       = self.lineEdit_extendNum.text()
-            self.__data.pk_total        = int(self.lineEdit_pk_total.text())
-            self.__data.pk_num          = int(self.lineEdit_pk_num.text())
-            self.__data.combinationVal  = int(self.lineEdit_combinationVal.text())
-            self.__data.userDefineId    = self.lineEdit_userDefineId.text()
-            self.__data.extMem          = self.textEdit_extMem.toPlainText()
-            return self.__data.Value()
+            data.version         = int(self.lineEdit_version.text())
+            data.msgId           = int(self.lineEdit_msgId.text())
+            data.accountId      = self.lineEdit_accountId.text()
+            data.mobilePhone     = int(self.lineEdit_mobilePhone.text())
+            data.sendState       = int(self.lineEdit_sendState.text())
+            data.reportState     = int(self.lineEdit_reportState.text())
+            data.sendedTime      = self.dateTimeEdit_sendedTime.dateTime()
+            data.reportTime      = self.dateTimeEdit_reportTime.dateTime()
+            data.sendResultInfo  = self.textEdit_sendResultInfo.toPlainText()
+            data.reportResultInfo= self.textEdit_reportResultInfo.toPlainText()
+            data.spno            = self.lineEdit_spno.text()
+            data.clientMsgId     = self.lineEdit_clientMsgId.text()
+            data.reportLocalTime = self.dateTimeEdit_reportLocalTime.dateTime()
+            data.extendNum       = self.lineEdit_extendNum.text()
+            data.pk_total        = int(self.lineEdit_pk_total.text())
+            data.pk_num          = int(self.lineEdit_pk_num.text())
+            data.combinationVal  = int(self.lineEdit_combinationVal.text())
+            data.userDefineId    = self.lineEdit_userDefineId.text()
+            data.extMem          = self.textEdit_extMem.toPlainText()
+            return data.Value()
         except Exception as e:
             print(e)
             raise Exception("module:{} func:{} line:{} error".format(
@@ -1042,6 +1220,28 @@ class RepNotifyData(QtWidgets.QWidget,Ui_SRepNotifyData):
         except Exception as e:
             print(e)
             print('加载配置失败')
+
+    def loadMin(self,filename):
+        self.loadConfig(filename)
+        self.minData = SRepNotifyData()
+        self.__getValue(self.minData)
+
+    def loadMax(self,filename):
+        self.loadConfig(filename)
+        self.maxData = SRepNotifyData()
+        self.__getValue(self.maxData)
+
+    def save2file(self):
+        data = []
+
+        self._f.write('\t'.join(data)+'\n')
+
+    def getnext(self,b):
+        self.__data.fromBytes(b)
+        if self.__data<=self.maxData and self.__data>=self.minData:
+            self.save2file()
+            return True
+        return False
 
 class Monitor_Cloud(QtWidgets.QWidget,Ui_Monitor_Cloud):
 
@@ -1198,7 +1398,6 @@ class Monitor_Cloud(QtWidgets.QWidget,Ui_Monitor_Cloud):
             return self.__data['SResourceState'].Value()
         except Exception as e:
             print(e)
-
 
     def getValue(self):
         try:
@@ -1384,3 +1583,15 @@ class Monitor_Cloud(QtWidgets.QWidget,Ui_Monitor_Cloud):
         except Exception as e:
             print(e)
             print('加载配置失败')
+
+    def loadMin(self,filename):
+        pass
+
+    def loadMax(self,filename):
+        pass
+
+    def save2file(self):
+        pass
+
+    def getnext(self,b):
+        return False

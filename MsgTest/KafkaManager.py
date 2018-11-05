@@ -92,7 +92,7 @@ class KafkaManager(object):
     def startiocp_recv(self,func):
         if not self.b_started:
             self.b_started = True
-            self._thread = threading.Thread(target=self.__startrecv,args=(func,))
+            self._thread = threading.Thread(target=self.__startrecv,args=(func,),daemon = True)
             self._thread.start()
 
     def __startrecv(self,func):
@@ -289,11 +289,72 @@ class MsMqManageer(object):
 def call(b):
     print(b)
 if __name__ == "__main__":
-    from kafka import TopicPartition
-    parent = TopicPartition('0.0.0.0.kfk',0)
-    consumer = KafkaConsumer('0.0.0.0.kfk',bootstrap_servers = '10.1.63.126:9092,10.1.63.127:9092,10.1.63.128:9092')
-    partitions = consumer.partitions_for_topic('0.0.0.0.kfk')
-    consumer.seek_to_beginning(*(0,))
+    from pykafka import KafkaClient
+    pass
+    from kafka.structs import TopicPartition,OffsetRequestPayload,OffsetCommitRequestPayload,ListOffsetRequestPayload,OffsetFetchRequestPayload,OffsetAndMetadata,MetadataRequest,ConsumerMetadataRequest
+    from kafka.client import SimpleClient,KafkaClient
+    from kafka.protocol import create_message
+    from kafka.protocol.offset import OffsetRequest_v0,OffsetResponse_v0
+    from kafka.protocol.commit import *
+    from kafka import SimpleConsumer
+    from kafka.coordinator.protocol import *
+    from kafka.coordinator.consumer import *
+    from kafka.common import *
+    from kafka.protocol.legacy import KafkaProtocol
+    import kafka.protocol.api
+    #
+    # #producer = KafkaProducer(bootstrap_servers = '192.168.18.134:9092')
+    # i=0
+    # # while i<10:
+    # #     producer.send(topic='0.0.0.0.kfk',value='hello'.encode('gbk'),partition=0)
+    # #     i+=1
+    consumer = KafkaConsumer('__consumer_offsets',group_id ='test' ,bootstrap_servers = '192.168.18.134:9092')
+    for message in consumer:
+        print(message.value)
+        res = GroupCoordinatorResponse_v1.decode(message.value)
+        res = KafkaProtocol.decode_offset_response(OffsetResponse_v0.decode(message.value))
+    #
+    #client = SimpleClient(hosts='10.1.63.126:9092,10.1.63.127:9092,10.1.63.128:9092')
+    res = None
+    #
+    client = KafkaClient(bootstrap_servers='10.1.63.126:9092,10.1.63.127:9092,10.1.63.128:9092')
+    #consumer = SimpleConsumer(client=client,group='test',topic='0.0.0.0.kfk')
+    client.send(1,OffsetRequest_v0(replica_id=-1, topics=[('10.1.120.111.dispatchcentersave', [(0, -1, 1)])]))
+    res = client.poll()
+    client.send(1,OffsetFetchRequest_v1(consumer_group = '1.1.1.1.adispatchstatisticsmonitor',topics = [('1.1.1.1.adispatchstatisticsmonitor',[0])]))
+    res = client.poll()
 
+    client = SimpleClient(hosts='10.1.63.126:9092,10.1.63.127:9092,10.1.63.128:9092')
+    while 1:
+        res = client.send_metadata_request(MetadataRequest('0.0.0.0.kfk'))
+        res = client.send_consumer_metadata_request(ConsumerMetadataRequest(['test']))
+        res = client.send_offset_request(payloads=(OffsetRequestPayload('0.0.0.0.kfk',0,1000,99999999),))
+        res = client.send_list_offset_request(payloads=(ListOffsetRequestPayload('0.0.0.0.kfk',0,1000),))
+        res = client.send_offset_fetch_request_kafka((b'kafka-python',1,'test'),[OffsetFetchRequestPayload('0.0.0.0.kfk',0)])
+    #
+    #
+    # from kafka import KafkaConsumer
+    # #consumer = KafkaConsumer('0.0.0.0.kfk',group_id ='test' ,bootstrap_servers = '192.168.18.134:9092')
+    # # for message in consumer:
+    # #     print(message.value)
+    # consumer = KafkaConsumer('0.0.0.0.kfk',group_id='test', bootstrap_servers='192.168.18.134:9092')
+    # #consumer.assign([TopicPartition('0.0.0.0.kfk',0),])
+    # partitions = consumer.partitions_for_topic('0.0.0.0.kfk')
+    # #print(consumer.assignment())
+    # print(consumer.beginning_offsets([TopicPartition('0.0.0.0.kfk',0),]))#起始偏移量
+    # print(consumer.end_offsets([TopicPartition('0.0.0.0.kfk', 0), ]))#终止偏移量
+    # print(consumer.committed(TopicPartition('0.0.0.0.kfk', 0)))
+    # consumer.seek_to_beginning(TopicPartition('0.0.0.0.kfk',0))
+    # consumer.seek(TopicPartition('0.0.0.0.kfk',0),0)
+    # print(consumer.position(TopicPartition('0.0.0.0.kfk',0)))
+    # consumer.close()
+    # consumer = KafkaConsumer('0.0.0.0.kfk',group_id='test', bootstrap_servers='192.168.18.134:9092')
+    #
+    # for message in consumer:
+    #     print(i,message.value)
+    #     i+=1
+    #
+    # #all_consumed[partition] = OffsetAndMetadata(state.position, '')
+    # #consumer.commit({TopicPartition('0.0.0.0.kfk',0):OffsetAndMetadata(0,'')})
+    # consumer.close()
 
-    input()

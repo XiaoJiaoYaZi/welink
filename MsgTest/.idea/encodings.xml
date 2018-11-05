@@ -3,5 +3,6 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/config/mms701.ini" charset="GBK" />
     <file url="file://$PROJECT_DIR$/config/resourcestate.ini" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/data/CloudMsg.txt" charset="GBK" />
   </component>
 </project>
