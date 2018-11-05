@@ -13,7 +13,7 @@ res = broke.describe_groups([b'10.1.120.111.dispatchcenter',])
 cluster = Cluster(hosts='10.1.63.126:9092,10.1.63.127:9092,10.1.63.128:9092',
                   handler=handler,zookeeper_hosts='10.1.63.126:2181,10.1.63.127:2181,10.1.63.128:2181')
 print(cluster.get_group_coordinator(b'10.1.120.111.msgstatistics'))
-res = cluster.brokers[1].describe_groups([b'10.1.120.111.dispatchcenter',])
+#res = cluster.brokers[1].describe_groups([b'10.1.120.111.dispatchcenter',])
 group_descriptions = cluster.get_managed_group_descriptions()
 descrip = cluster.get_managed_group_descriptions()
 topic = cluster.topics[b'10.1.120.111.dispatchcenter']

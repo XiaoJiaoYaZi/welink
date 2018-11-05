@@ -1,13 +1,60 @@
 from PyQt5 import QtWidgets, QtCore
 from PyUI.UI_KafkaTool import Ui_KafkaTool
-from sslLinux import Linux
 from configparser import ConfigParser
+from pykafka import Cluster,handlers
+from threading import Timer,Thread,Event
+import time
+from collections import namedtuple
 
 
-cmds =(
-    'kafka-consumer-groups.sh --bootstrap-server {}:9092 --list --new-consumer',
-    'kafka-run-class.sh kafka.admin.ConsumerGroupCommand --bootstrap-server {}:9092 --describe --group {}'
+ConsumerDescrip = namedtuple('ConsumerDescrip',
+    ['Partition','LogSize','group_id','member_id','client_id','client_host']
 )
+
+ConsumerOffsets = namedtuple('Consumers',
+    ['consum_group','descrips']
+)
+
+class Descrip4Consumer(object):
+    def __init__(self,descrips_consumer):
+        descrips = {}
+        for descrip in descrips_consumer:
+            pass
+
+
+class ClusterManager(Thread):
+    def __init__(self,host,timeInterval = 1):
+        Thread.__init__(self)
+        self._host = host
+        self._interval = timeInterval
+        self.finished = Event()
+        self._handler = handlers.ThreadingHandler()
+        self._cluster = Cluster(hosts=self._host,handler=self._handler)
+
+
+    def cancel(self):
+        self.finished.set()
+
+    def _get_group_descrips(self):
+        self._consumer_descrips = self._cluster.get_managed_group_descriptions()
+        self._offsets = self._cluster.get_group_coordinator(self._consumer_descrips.keys())
+
+    def _update(self):
+        print('update')
+        self._cluster.update()
+        self._consumer_descrips = self._cluster.get_managed_group_descriptions()
+
+
+        pass
+
+
+    def run(self):
+        while not self.finished.is_set():
+            self._update()
+            time.sleep(self._interval)
+        print('run')
+
+
 
 
 class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
@@ -15,80 +62,8 @@ class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
     def __init__(self,parent = None):
         super(KafkaTool,self).__init__(parent=parent)
         self.setupUi(self)
-        self.init()
-        self.InitUI()
-
-
-    def init(self):
-        self._config = ConfigParser()
-        try:
-            self._config.read("./config/kafkaTool.ini",encoding='gbk')
-        except Exception as e:
-            print(e)
-
-    def InitUI(self):
-        self.pushButton_close.setEnabled(False)
-        self.groupBox.setEnabled(False)
-        self.sendCmd_signal.connect(self.slot_sendCmd,QtCore.Qt.QueuedConnection)
-        self.textEdit.setReadOnly(True)
-        self.IP.setText(self._config['host']['ip'])
-        self.pwd.setText(self._config['host']['pwd'])
-        self.usr.setText(self._config['host']['usr'])
-        self.port.setText(self._config['host']['port'])
-
-    def on_pushButton_con_pressed(self):
-        self.linux = Linux(self.IP.text(),
-                           int(self.port.text()),
-                           self.usr.text(),
-                           self.pwd.text())
-
-        if self.linux.connect():
-            self.pushButton_close.setEnabled(True)
-            self.pushButton_con.setEnabled(False)
-            self.groupBox.setEnabled(True)
-
-    def on_pushButton_close_pressed(self):
-        self.linux.close()
-        self.linux = None
-        self.pushButton_close.setEnabled(False)
-        self.pushButton_con.setEnabled(True)
-        self.groupBox.setEnabled(False)
-
-    def on_pushButton_search_pressed(self):
-        cmd = cmds[self.comboBox.currentIndex()].format(self.IP.text()
-                                                        ,self.lineEdit_param.text())
-        # result,p = self.linux.send(cmd)
-        # self.textEdit.setText(result)
-        self.sendCmd_signal.emit(cmd)
-        print("ok")
-
-    def slot_sendCmd(self,text):
-        import time
-        time.sleep(2)
-        result, p = self.linux.send(text)
-        self.textEdit.setText(result)
 
 
 
-    def on_pushButton_do_pressed(self):
-        cmd = self.lineEdit_cmd.text()
-        result,p = self.linux.send(cmd)
-
-        self.textEdit.setText(result)
-
-    def saveConfig(self):
-        self._config['host']['ip'] = self.IP.text()
-        self._config['host']['pwd'] = self.pwd.text()
-        self._config['host']['usr'] = self.usr.text()
-        self._config['host']['port'] = self.port.text()
-        with open("./config/kafkaTool.ini",'w',encoding='gbk') as f:
-            self._config.write(f)
-
-    def closeEvent(self,event):
-        self.saveConfig()
-        if self.pushButton_close.isEnabled():
-            self.pushButton_close.click()
-        #self.pushButton_close.pressed()
-        #event.accept()
-
-
+if __name__ == '__main__':
+    pass
