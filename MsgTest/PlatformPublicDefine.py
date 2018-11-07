@@ -541,6 +541,17 @@ class SCloudMessage(object):
 # SDispatchStatistics                                           --- MsgDispatchCenter
 # SResComStatistics                                             --- MsgDispatchCenter
 
+class EMsgType(Enum):
+    MSG_DSP_STC     = 0x01
+    MSG_RES_RCV     = 0x02
+    MSG_RES_SND     = 0x03
+    MSG_HIS_MT      = 0x81
+    MSG_HIS_REP     = 0x82
+    MSG_HIS_MO      = 0x83
+    MSG_HIS_REMT    = 0x84
+    MSG_HIS_MTREP   = 0x85
+    MSG_CLOUD       = 0x55555555
+
 MSG_DSP_STC=0x01
 MSG_RES_RCV=0x02
 MSG_RES_SND=0x03

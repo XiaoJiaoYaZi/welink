@@ -4,7 +4,7 @@ from enum import Enum
 
 
 
-class EBmsMsgType(Enum):
+class BMSEMsgType(Enum):
 
     #0x100起为平台基础传输信息类型
     MSG_SUBMIT = 0x100,
@@ -223,7 +223,7 @@ class SBmsMessage(Structure):
     title       =None
     mmsfilename =None
     impl_version = 0x10
-    impl_type = EBmsMsgType.MSG_SUBMIT.value[0]
+    impl_type = BMSEMsgType.MSG_SUBMIT.value[0]
     kMaxMsgSize = 8 * 1024
     kMaxCache = kMaxMsgSize + 256
 
@@ -518,7 +518,7 @@ class SHisSendData(Structure):
     _sendResultInfo = None
     _title      = None
     impl_version = 0x10
-    impl_type = EBmsMsgType.MSG_HIS_MT.value[0]
+    impl_type = BMSEMsgType.MSG_HIS_MT.value[0]
     kMaxMsgSize = 8 * 1024
     kMaxCache = kMaxMsgSize + 256
 
@@ -742,7 +742,7 @@ class SHisRepData(Structure):
     ]
     _repResultInfo =None
     impl_version = 0x0001
-    impl_type = EBmsMsgType.MSG_HIS_REP.value[0]
+    impl_type = BMSEMsgType.MSG_HIS_REP.value[0]
     kMaxMsgSize = 65
     kMaxCache = kMaxMsgSize
 
@@ -901,7 +901,7 @@ class SRepNotifyData(Structure):
     _extnumber       =None
 
     impl_version = 0x0001
-    impl_type = EBmsMsgType.MSG_REP_NTF.value[0]
+    impl_type = BMSEMsgType.MSG_REP_NTF.value[0]
     kMaxMsgSize = 200
     kMaxCache = kMaxMsgSize
 
@@ -1029,7 +1029,6 @@ class SRepNotifyData(Structure):
     def extnumber(self):
         return self._extnumber.decode('gbk').replace('\x00','')
 
-
 class SHisMOFixedData(Structure):
     _fields_ = [
         ('msgId',c_int64),
@@ -1087,7 +1086,7 @@ class SHisMOData(Structure):
     _SpNum       =None
 
     impl_version = 0x0001
-    impl_type = EBmsMsgType.MSG_HIS_MO.value[0]
+    impl_type = BMSEMsgType.MSG_HIS_MO.value[0]
     kMaxMsgSize = 200
     kMaxCache = kMaxMsgSize
 
@@ -1221,7 +1220,7 @@ class MoAccBlist(Structure):
     _remark   = None
 
     impl_version = 0x0001
-    impl_type = EBmsMsgType.MSG_NEED_ACCBLIST.value[0]
+    impl_type = BMSEMsgType.MSG_NEED_ACCBLIST.value[0]
     kMaxMsgSize = 200
     kMaxCache = kMaxMsgSize
 

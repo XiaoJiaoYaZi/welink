@@ -99,8 +99,10 @@ class AutoLock:
     def __init__(self):
         self._lock = Lock()
     def __enter__(self):
+        print('lock')
         self._lock.acquire()
     def __exit__(self, exc_type, exc_val, exc_tb):
+        print('unlock')
         self._lock.release()
 
 
@@ -133,10 +135,8 @@ class ClusterManager(Thread):
         return self._cluster.topics.keys()
 
     def _get_topic_descrips(self):
-        start = time.time()
         with self._lock_topic:
             self._topic_descrips = Descrip4Topic(self._cluster.topics)
-        print('use3333 {}s'.format((time.time() - start)))
 
     #待定是否实现topic到consumer的对应关系
     # def gettopic2consumer(self):
@@ -234,12 +234,10 @@ class ClusterManager(Thread):
 
 
     def _update(self):
-        print('update')
         start = time.time()
         self._cluster.update()
         #self._get_group_descrips()
         #self._get_topic_descrips()
-        print('use {}s'.format((time.time()-start)))
 
     def run(self):
         while not self.finished.is_set():

@@ -1,6 +1,6 @@
 
 
-from SMessage import msg_header,EBmsMsgType,Node
+from SMessage import msg_header,BMSEMsgType,Node
 from ctypes import *
 import struct
 from enum import Enum
@@ -81,7 +81,7 @@ class SubmitMonitorMsg(Structure):
     ]
 
     impl_version = 0x0001
-    impl_type = EBmsMsgType.SUBMIT_MONITOR.value[0]
+    impl_type = BMSEMsgType.SUBMIT_MONITOR.value[0]
     kMaxMsgSize = 200
     kMaxCache = kMaxMsgSize
 
@@ -148,7 +148,7 @@ class DispatchMonitorMsg(Structure):
     ]
 
     impl_version = 0x0001
-    impl_type = EBmsMsgType.DISPATCH_MONITOR.value[0]
+    impl_type = BMSEMsgType.DISPATCH_MONITOR.value[0]
     kMaxMsgSize = 200
     kMaxCache = kMaxMsgSize
 
@@ -247,7 +247,7 @@ class SResourceState(Structure):
     ]
 
     impl_version = 0x0001
-    impl_type = EBmsMsgType.RESOURCE_MONITOR.value[0]
+    impl_type = BMSEMsgType.RESOURCE_MONITOR.value[0]
     kMaxMsgSize = 200
     kMaxCache = kMaxMsgSize
 
@@ -319,7 +319,7 @@ class HisPreDealMonitorData(Structure):
     ]
 
     impl_version = 0x0001
-    impl_type = EBmsMsgType.HISPREDEAL_MONITOR.value[0]
+    impl_type = BMSEMsgType.HISPREDEAL_MONITOR.value[0]
     kMaxMsgSize = 200
     kMaxCache = kMaxMsgSize
 
@@ -394,7 +394,7 @@ class HisCenterMonitorData(Structure):
     ]
 
     impl_version = 0x0001
-    impl_type = EBmsMsgType.HISCENTER_MONITOR.value[0]
+    impl_type = BMSEMsgType.HISCENTER_MONITOR.value[0]
     kMaxMsgSize = 200
     kMaxCache = kMaxMsgSize
 

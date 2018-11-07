@@ -16,6 +16,18 @@ _num_send = 0
 
 
 
+class Senders(object):
+    def __init__(self,kafka,msmq,**kwargs):
+        self._kafka = kafka
+        self._msmq = msmq
+
+    def send(self,msg,kafka = True):
+        if kafka:
+            self._kafka.send(msg)
+        else:
+            self._msmq.send(msg)
+
+
 class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
     _sendData = []
     _recvData = []
@@ -26,6 +38,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self._kafka = KafkaManager()
         self._kafka_trans = KafkaManager()
         self._msmq = MsMqManageer()
+        self._msmq_trans = MsMqManageer()
         self._init()
         self.initUI()
 
@@ -43,6 +56,24 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self._kafka.create_producer(self._config['MsgTest']['topic_producer'])
         self._kafka_trans.create_producer(self._config['MsgTest']['topic_trans'])
         self._msmq.create_producer(self._config['MsgTest']['msmqpath_producer'])
+        self._initData()
+        self._createconnections()
+
+        self.kafkatool = KafkaTool()
+        self.sqltool = SQLView(self)
+
+        self.num_send = 0
+        self.num_recv = 0
+        self.num_trans = 0xffffffff
+
+
+    def _createconnections(self):
+        self.timer = QtCore.QTimer(self)
+        self.timer.timeout.connect(self.speed)
+        self.timer.start(1000)
+
+
+    def _initData(self):
         self._sendData.append(BMSMessage())
         self._sendData.append(BMSSHisSendData())
         self._sendData.append(BMSSHisRepData())
@@ -66,20 +97,15 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self._recvData.append(BMSMonitor)
         self._recvData.append(CloudMsg)
 
-        self.kafkatool = KafkaTool()
-        self.sqltool = SQLView(self)
-
-        self.num_send = 0
-        self.num_recv = 0
-        self.timer = QtCore.QTimer(self)
-        self.timer.timeout.connect(self.speed)
-        self.timer.start(1000)
 
     def initUI(self):
         for i in range(len(self._sendData)):
             self.stackedWidget.insertWidget(i,self._sendData[i])
 
         self.stackedWidget.setCurrentIndex(0)
+        self.lineEdit_topic_trans.setEnabled(False)
+        self.lineEdit_trans_num.setEnabled(False)
+        self.checkBox_trans_kafk.setEnabled(False)
         self.pushButton_stoprecv.setEnabled(False)
         self.pushButton_stopsend.setEnabled(False)
         self.pushButton_pausesend.setEnabled(False)
@@ -90,10 +116,13 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
             self.lineEdit_topick_send.setText(self._config['MsgTest']['topic_producer'])
             self.lineEdit_topick_recv.setText(self._config['MsgTest']['topic_consumer'])
         self.lineEdit_group.setText(self._config['MsgTest']['groupid'])
+        self.lineEdit_topic_trans.setText(self._config['MsgTest']['topic_trans'])
         self.checkBox.setChecked(bool(int(self._config['MsgTest']['kafka'])))
         #self.lineEdit_topick_send.textChanged()
         #self.checkBox.stateChanged()
         self.signal_recv.connect(self.analyze,QtCore.Qt.QueuedConnection)
+
+
 
         self.label_status = QtWidgets.QLabel()
         self.statusbar.addWidget(self.label_status)
@@ -106,6 +135,25 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
 
     def on_checkBox_stateChanged(self,a0):
         self._config['MsgTest']['kafka'] = str(int(bool(a0)))
+
+    def on_checkBox_search_stateChanged(self,a0):
+        self.lineEdit_topic_trans.setEnabled(a0)
+        self.lineEdit_trans_num.setEnabled(a0)
+        self.checkBox_trans_kafk.setEnabled(a0)
+        self._kafka_trans.trans = a0
+
+    def on_lineEdit_trans_num_textChanged(self,a0):
+        try:
+            if a0 !='':
+                self.num_trans = int(a0)
+        except:
+            print('error number')
+
+    def on_lineEdit_topic_trans_textChanged(self,a0):
+        self._config['MsgTest']['topic_trans'] = a0
+        if self.checkBox_search.isChecked():
+            self._kafka_trans.settopic_producer(a0)
+
 
     def on_lineEdit_topick_send_textChanged(self,a0):
         if int(self._config['MsgTest']['kafka']) == 1:
@@ -143,13 +191,15 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         except Exception as e:
             print(e)
             return
-
-        if int(self._config['MsgTest']['kafka']) == 0:
-            self._msmq.create_producer(self._config['MsgTest']['msmqpath_producer'])
-            self._msmq.send(data)
-        else:
-            self._kafka.send(data)
-        self.num_send += 1
+        try:
+            if int(self._config['MsgTest']['kafka']) == 0:
+                self._msmq.create_producer(self._config['MsgTest']['msmqpath_producer'])
+                self._msmq.send(data)
+            else:
+                self._kafka.send(data)
+            self.num_send += 1
+        except Exception as e:
+            print(e)
 
 
     def on_pushButton_save_pressed(self):
@@ -200,6 +250,13 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
 
     def on_pushButton_startrecv_pressed(self):
         self.checkBox.setEnabled(False)
+        if not self.checkBox_trans_kafk.isChecked() and self.checkBox_search.isChecked():
+            try:
+                self._msmq_trans.create_producer(self.lineEdit_topic_trans.text())
+            except Exception as e:
+                print(e)
+                return
+
         if int(self._config['MsgTest']['kafka']) == 0:
             try:
                 self._msmq.create_consumer(self._config['MsgTest']['msmqpath_consumer'])
@@ -221,13 +278,20 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
             self._msmq.stopRecv()
         else:
             self._kafka.stopRecv()
+        self.num_recv = 0
         self.pushButton_stoprecv.setEnabled(False)
         self.pushButton_startrecv.setEnabled(True)
         pass
 
     def on_pushButton_stoprecv_2_pressed(self):
         if self._brecv1:
-            print('recv one')
+            #print('recv one')
+            if (not self.checkBox_trans_kafk.isChecked()) and self.checkBox_search.isChecked():
+                try:
+                    self._msmq_trans.create_producer(self.lineEdit_topic_trans.text())
+                except Exception as e:
+                    print(e)
+                    return
             try:
                 if int(self._config['MsgTest']['kafka']) == 0:
                     self._msmq.create_consumer(self._config['MsgTest']['msmqpath_consumer'])
@@ -244,18 +308,28 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
     def recv_func(self,kafka_message):
         #print(kafka_message)
         self._brecv1 = True
+        self.num_recv += 1
         self.pushButton_stoprecv_2.setEnabled(True)
         global _num_time
-
         if self.checkBox_search.isChecked():
-            self._kafka_trans.send(kafka_message)
-            if self._sendData[self.comboBox_msgtype.currentIndex()].getnext(kafka_message):
-                print('find !')
-                pass
-        if self.checkBox_Play.isChecked():
+            if self.num_recv < self.num_trans:
+                if self.checkBox_trans_kafk.isChecked():
+                    self._kafka_trans.send(kafka_message)
+                else:
+                    self._msmq_trans.send(kafka_message)
+            else:
+                self._kafka_trans.send(kafka_message)
+                print('转移完成1')
+                return False
+                #self.on_pushButton_stoprecv_pressed()
+            # if self._sendData[self.comboBox_msgtype.currentIndex()].getnext(kafka_message):
+            #     print('find !')
+            #     pass
+        if self.checkBox_Play.isChecked() and not self.checkBox_search.isChecked():
             time.sleep(0.0001)
             self.signal_recv.emit(kafka_message)
-        self.num_recv += 1
+        return True
+
 
     def analyze(self,value):
         #print(value)
@@ -293,14 +367,14 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
     def on_actionSQLTool_triggered(self):
         self.sqltool.show()
 
-    def on_pushButton_min_pressed(self):
-        filename = QtWidgets.QFileDialog.getOpenFileName(self,'选择配置',os.getcwd(),"*.ini")
-        print(filename)
-        if filename[1] and filename[0] != '':
-            self._sendData[self.comboBox_msgtype.currentIndex()].loadMin(filename)
+    # def on_pushButton_min_pressed(self):
+    #     filename = QtWidgets.QFileDialog.getOpenFileName(self,'选择配置',os.getcwd(),"*.ini")
+    #     print(filename)
+    #     if filename[1] and filename[0] != '':
+    #         self._sendData[self.comboBox_msgtype.currentIndex()].loadMin(filename)
 
-    def on_pushButton_max_pressed(self):
-        filename = QtWidgets.QFileDialog.getOpenFileName(self, '选择配置', os.getcwd(), "*.ini")
-        print(filename)
-        if filename[1] and filename[0] != '':
-            self._sendData[self.comboBox_msgtype.currentIndex()].loadMax(filename)
+    # def on_pushButton_max_pressed(self):
+    #     filename = QtWidgets.QFileDialog.getOpenFileName(self, '选择配置', os.getcwd(), "*.ini")
+    #     print(filename)
+    #     if filename[1] and filename[0] != '':
+    #         self._sendData[self.comboBox_msgtype.currentIndex()].loadMax(filename)

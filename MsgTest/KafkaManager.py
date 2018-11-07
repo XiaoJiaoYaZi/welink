@@ -38,6 +38,7 @@ class KafkaManager(object):
         self.__producer = None
         self.__consumer = None
         self._t_recvOne =None
+        self._trans = False
 
     def init(self):
         self.config.read(os.getcwd()+'/config/kafka_base.ini',encoding='gbk')
@@ -59,6 +60,14 @@ class KafkaManager(object):
                 self.__kafkconsume[item[0]] = int(item[1])
         print('producer config:\n',self.__kafkaproduce)
         print('consumer config:\n',self.__kafkconsume)
+
+    @property
+    def trans(self):
+        return self._trans
+    @trans.setter
+    def trans(self,value):
+        self._trans = value
+        print(1,self._trans)
 
     def create_producer(self,topic):
         topic = topic.strip()
@@ -100,7 +109,9 @@ class KafkaManager(object):
             try:
                 for message in self.__consumer:
                     if self.b_started:
-                        func(message.value)
+                        if not func(message.value):
+                            print('转移完成2')
+                            return
                     else:
                         break
                 print('time out')
@@ -183,6 +194,7 @@ class MsMqManageer(object):
             self.__producer = qinfo.Open(2, 0)
         except Exception as e:
             print(e)
+            raise Exception('create producer error')
 
     def settopic_producer(self,topic):
         pass
