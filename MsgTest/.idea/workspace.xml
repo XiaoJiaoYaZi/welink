@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97d99c38-423d-44ce-b6ab-12e096a3c4b1" name="Default" comment="ResStatus">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/untitled.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/untitled.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KafkaTool.py" beforeDir="false" afterPath="$PROJECT_DIR$/KafkaTool.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PyUI/UI_KafkaTool.py" beforeDir="false" afterPath="$PROJECT_DIR$/PyUI/UI_KafkaTool.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/UI_KafkaTool.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/UI_KafkaTool.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/testpykafka.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/testpykafka.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,49 +15,49 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/sayhello$KafkaManager.coverage" NAME="KafkaManager Coverage Results" MODIFIED="1541154790028" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/MsgTest$Flask___________myflask_manager_py_.coverage" NAME="Flask (../../../myflask/manager.py) Coverage Results" MODIFIED="1536920493376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/MsgTest$testc.coverage" NAME="testc Coverage Results" MODIFIED="1533204593622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/MsgTest$textitchart.coverage" NAME="textitchart Coverage Results" MODIFIED="1532939203218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/untitled$testRedis.coverage" NAME="testRedis Coverage Results" MODIFIED="1530784557286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/untitled$test.coverage" NAME="test Coverage Results" MODIFIED="1531124875067" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/sayhello$testpykafka.coverage" NAME="testpykafka Coverage Results" MODIFIED="1541412189047" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/sayhello$MsgSubmit.coverage" NAME="MsgSubmit Coverage Results" MODIFIED="1540954442612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/sayhello$query.coverage" NAME="query Coverage Results" MODIFIED="1537511950152" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../sayhello/12306/train/query" />
-    <SUITE FILE_PATH="coverage/sayhello$testyield.coverage" NAME="testyield Coverage Results" MODIFIED="1541067009893" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/sayhello$main.coverage" NAME="main Coverage Results" MODIFIED="1541144117780" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/sayhello$textitchart.coverage" NAME="textitchart Coverage Results" MODIFIED="1541063940642" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/sayhello$easytrain.coverage" NAME="easytrain Coverage Results" MODIFIED="1537423047527" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/迅雷下载/EasyTrain-master" />
-    <SUITE FILE_PATH="coverage/untitled$SMessage.coverage" NAME="SMessage Coverage Results" MODIFIED="1530605430196" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/sayhello$flaskecharts.coverage" NAME="flaskecharts Coverage Results" MODIFIED="1539835179734" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/untitled$testKafka.coverage" NAME="testKafka Coverage Results" MODIFIED="1530518691809" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/sayhello$Login.coverage" NAME="Login Coverage Results" MODIFIED="1537499274120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../sayhello/12306/train/login" />
-    <SUITE FILE_PATH="coverage/sayhello$testC_.coverage" NAME="testC# Coverage Results" MODIFIED="1540958767282" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/untitled$BMSMessage_test.coverage" NAME="BMSMessage_test Coverage Results" MODIFIED="1530092744429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/MsgTest$main.coverage" NAME="main Coverage Results" MODIFIED="1537346067428" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/untitled$py_test_in_MainWindow_py.coverage" NAME="py.test in MainWindow.py Coverage Results" MODIFIED="1529986931279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/untitled$main.coverage" NAME="main Coverage Results" MODIFIED="1531731596425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/sayhello$SQLManager.coverage" NAME="SQLManager Coverage Results" MODIFIED="1540956335302" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/sayhello$1.coverage" NAME="1 Coverage Results" MODIFIED="1539682275957" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../sayhello" />
-    <SUITE FILE_PATH="coverage/sayhello$kafkatest.coverage" NAME="kafkatest Coverage Results" MODIFIED="1541064041901" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/sayhello$main_kafkaTool.coverage" NAME="main_kafkaTool Coverage Results" MODIFIED="1540791532319" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/sayhello$2.coverage" NAME="2 Coverage Results" MODIFIED="1539834610089" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../sayhello" />
-    <SUITE FILE_PATH="coverage/sayhello$KafkaTool.coverage" NAME="KafkaTool Coverage Results" MODIFIED="1541427766311" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/MsgTest$wangyi.coverage" NAME="wangyi Coverage Results" MODIFIED="1533267917486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/untitled$testconsumer.coverage" NAME="testconsumer Coverage Results" MODIFIED="1531365493338" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/sayhello$utils.coverage" NAME="utils Coverage Results" MODIFIED="1539340364844" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:/Program Files/Anaconda3/Lib/site-packages/lml" />
-    <SUITE FILE_PATH="coverage/untitled$MonitorMsgHeader.coverage" NAME="MonitorMsgHeader Coverage Results" MODIFIED="1530856546990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/sayhello$sslLinux.coverage" NAME="sslLinux Coverage Results" MODIFIED="1541383668840" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/MsgTest$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1533194820048" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/sayhello$Submit.coverage" NAME="Submit Coverage Results" MODIFIED="1537520876830" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../sayhello/12306/train/submit" />
-    <SUITE FILE_PATH="coverage/MsgTest$12306.coverage" NAME="12306 Coverage Results" MODIFIED="1537423403992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../sayhello/12306" />
-    <SUITE FILE_PATH="coverage/MsgTest$video.coverage" NAME="video Coverage Results" MODIFIED="1533264283384" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/MsgTest$hello_pyx.coverage" NAME="hello.pyx Coverage Results" MODIFIED="1533203263224" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/MsgTest$testBox.coverage" NAME="testBox Coverage Results" MODIFIED="1536653044530" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/untitled$test.coverage" NAME="test Coverage Results" MODIFIED="1531124875067" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sayhello$Submit.coverage" NAME="Submit Coverage Results" MODIFIED="1537520876830" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../sayhello/12306/train/submit" />
+    <SUITE FILE_PATH="coverage/sayhello$query.coverage" NAME="query Coverage Results" MODIFIED="1537511950152" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../sayhello/12306/train/query" />
+    <SUITE FILE_PATH="coverage/untitled$testRedis.coverage" NAME="testRedis Coverage Results" MODIFIED="1530784557286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sayhello$testyield.coverage" NAME="testyield Coverage Results" MODIFIED="1541067009893" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/untitled$testconsumer.coverage" NAME="testconsumer Coverage Results" MODIFIED="1531365493338" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/sayhello$testpykafka.coverage" NAME="testpykafka Coverage Results" MODIFIED="1541495778788" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/sayhello$main.coverage" NAME="main Coverage Results" MODIFIED="1541144117780" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/untitled$py_test_in_MainWindow_py.coverage" NAME="py.test in MainWindow.py Coverage Results" MODIFIED="1529986931279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sayhello$sslLinux.coverage" NAME="sslLinux Coverage Results" MODIFIED="1541383668840" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sayhello$MsgSubmit.coverage" NAME="MsgSubmit Coverage Results" MODIFIED="1540954442612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/MsgTest$12306.coverage" NAME="12306 Coverage Results" MODIFIED="1537423403992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../sayhello/12306" />
+    <SUITE FILE_PATH="coverage/sayhello$KafkaManager.coverage" NAME="KafkaManager Coverage Results" MODIFIED="1541154790028" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/MsgTest$testc.coverage" NAME="testc Coverage Results" MODIFIED="1533204593622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/MsgTest$video.coverage" NAME="video Coverage Results" MODIFIED="1533264283384" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/sayhello$textitchart.coverage" NAME="textitchart Coverage Results" MODIFIED="1541063940642" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/MsgTest$demo.coverage" NAME="demo Coverage Results" MODIFIED="1536654346954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../sayhello" />
-    <SUITE FILE_PATH="coverage/sayhello$do12306.coverage" NAME="do12306 Coverage Results" MODIFIED="1537524869805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../sayhello/12306" />
+    <SUITE FILE_PATH="coverage/sayhello$easytrain.coverage" NAME="easytrain Coverage Results" MODIFIED="1537423047527" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/迅雷下载/EasyTrain-master" />
+    <SUITE FILE_PATH="coverage/sayhello$2.coverage" NAME="2 Coverage Results" MODIFIED="1539834610089" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../sayhello" />
+    <SUITE FILE_PATH="coverage/untitled$testKafka.coverage" NAME="testKafka Coverage Results" MODIFIED="1530518691809" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/untitled$BMSMessage_test.coverage" NAME="BMSMessage_test Coverage Results" MODIFIED="1530092744429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/MsgTest$hello_pyx.coverage" NAME="hello.pyx Coverage Results" MODIFIED="1533203263224" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/sayhello$MyNet.coverage" NAME="MyNet Coverage Results" MODIFIED="1537498176231" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../sayhello/12306/net" />
+    <SUITE FILE_PATH="coverage/MsgTest$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1533194820048" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/MsgTest$Flask___________myflask_manager_py_.coverage" NAME="Flask (../../../myflask/manager.py) Coverage Results" MODIFIED="1536920493376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sayhello$testC_.coverage" NAME="testC# Coverage Results" MODIFIED="1540958767282" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/MsgTest$wangyi.coverage" NAME="wangyi Coverage Results" MODIFIED="1533267917486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/sayhello$flaskecharts.coverage" NAME="flaskecharts Coverage Results" MODIFIED="1539835179734" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/sayhello$Login.coverage" NAME="Login Coverage Results" MODIFIED="1537499274120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../sayhello/12306/train/login" />
+    <SUITE FILE_PATH="coverage/sayhello$KafkaTool.coverage" NAME="KafkaTool Coverage Results" MODIFIED="1541499284757" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sayhello$kafkatest.coverage" NAME="kafkatest Coverage Results" MODIFIED="1541064041901" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/sayhello$utils.coverage" NAME="utils Coverage Results" MODIFIED="1539340364844" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:/Program Files/Anaconda3/Lib/site-packages/lml" />
+    <SUITE FILE_PATH="coverage/sayhello$do12306.coverage" NAME="do12306 Coverage Results" MODIFIED="1537524869805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../sayhello/12306" />
+    <SUITE FILE_PATH="coverage/MsgTest$textitchart.coverage" NAME="textitchart Coverage Results" MODIFIED="1532939203218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/MsgTest$testtime.coverage" NAME="testtime Coverage Results" MODIFIED="1536905391113" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/MsgTest$main.coverage" NAME="main Coverage Results" MODIFIED="1537346067428" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sayhello$main_kafkaTool.coverage" NAME="main_kafkaTool Coverage Results" MODIFIED="1541558365880" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/untitled$SMessage.coverage" NAME="SMessage Coverage Results" MODIFIED="1530605430196" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sayhello$1.coverage" NAME="1 Coverage Results" MODIFIED="1539682275957" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../sayhello" />
+    <SUITE FILE_PATH="coverage/untitled$MonitorMsgHeader.coverage" NAME="MonitorMsgHeader Coverage Results" MODIFIED="1530856546990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CoverageViewManager">
     <option name="myElementSize" value="356" />
@@ -97,21 +96,21 @@
     <session id="-1618698720">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="18" />
+          <entry key="project.closed" value="19" />
           <entry key="project.open.time.0" value="1" />
-          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.10" value="8" />
           <entry key="project.open.time.11" value="3" />
           <entry key="project.open.time.12" value="2" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.8" value="2" />
-          <entry key="project.open.time.9" value="3" />
-          <entry key="project.opened" value="21" />
+          <entry key="project.open.time.9" value="4" />
+          <entry key="project.opened" value="23" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="1756" />
+          <entry key="Python Console" value="1856" />
           <entry key="cell" value="2" />
           <entry key="cpp" value="1" />
           <entry key="dummy" value="2" />
@@ -119,7 +118,7 @@
           <entry key="html" value="1330" />
           <entry key="ini" value="491" />
           <entry key="pxd" value="70" />
-          <entry key="py" value="37419" />
+          <entry key="py" value="42399" />
           <entry key="pyx" value="666" />
           <entry key="spec" value="37" />
           <entry key="sql" value="11" />
@@ -134,7 +133,7 @@
           <entry key="HTML" value="1330" />
           <entry key="Ini" value="491" />
           <entry key="PLAIN_TEXT" value="222" />
-          <entry key="Python" value="39175" />
+          <entry key="Python" value="44255" />
           <entry key="SQL" value="11" />
           <entry key="Scratch" value="2" />
           <entry key="XML" value="138" />
@@ -158,9 +157,9 @@
           <entry key="png" value="33" />
           <entry key="pstat" value="8" />
           <entry key="pxd" value="4" />
-          <entry key="py" value="782" />
+          <entry key="py" value="818" />
           <entry key="pyd" value="1" />
-          <entry key="pyi" value="6" />
+          <entry key="pyi" value="7" />
           <entry key="pyx" value="6" />
           <entry key="qrc" value="1" />
           <entry key="spec" value="4" />
@@ -184,8 +183,8 @@
           <entry key="Markdown" value="1" />
           <entry key="PLAIN_TEXT" value="9" />
           <entry key="Profiler Session" value="8" />
-          <entry key="Python" value="782" />
-          <entry key="PythonStub" value="6" />
+          <entry key="Python" value="818" />
+          <entry key="PythonStub" value="7" />
           <entry key="Scratch" value="1" />
           <entry key="XML" value="4" />
         </counts>
@@ -228,8 +227,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/testpykafka.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+            <state relative-caret-position="228">
+              <caret line="22" column="34" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="34" />
               <folding>
                 <element signature="e#0#100#0" expanded="true" />
               </folding>
@@ -238,10 +237,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/protocol/offset_commit.py">
+        <entry file="file://$PROJECT_DIR$/main_kafkaTool.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1252">
-              <caret line="203" column="6" selection-start-line="203" selection-start-column="6" selection-end-line="203" selection-end-column="6" />
+            <state>
+              <caret column="23" lean-forward="true" selection-start-column="23" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -249,72 +248,35 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/KafkaTool.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+            <state relative-caret-position="170">
+              <caret line="10" column="47" lean-forward="true" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
-                <marker date="1541429640860" expanded="true" signature="480:606" ph="..." />
-                <marker date="1541429640860" expanded="true" signature="635:1522" ph="..." />
-                <marker date="1541429640860" expanded="true" signature="1019:1198" ph="..." />
-                <marker date="1541429640860" expanded="true" signature="1368:1374" ph="..." />
+                <element signature="e#2059#2079#0" />
+                <element signature="e#2180#2750#0" />
+                <element signature="e#2786#3990#0" />
+                <element signature="e#5468#7541#0" />
+                <element signature="e#8504#9893#0" />
+                <marker date="1541558846317" expanded="false" signature="1876:1911" ph="..." />
+                <marker date="1541558846317" expanded="true" signature="2607:4024" ph="..." />
+                <marker date="1541558846317" expanded="true" signature="3549:3555" ph="..." />
+                <marker date="1541558846317" expanded="true" signature="3834:4024" ph="..." />
+                <marker date="1541558846317" expanded="true" signature="4876:4925" ph="..." />
+                <marker date="1541558846317" expanded="true" signature="5211:5329" ph="..." />
+                <marker date="1541558846317" expanded="true" signature="9661:9738" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/cluster.py">
+        <entry file="file://$PROJECT_DIR$/MainWindow.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="418" column="8" selection-start-line="418" selection-start-column="8" selection-end-line="418" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/broker.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="560" column="41" selection-start-line="560" selection-start-column="41" selection-end-line="560" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/protocol/admin.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
-              <caret line="110" column="33" selection-start-line="110" selection-start-column="33" selection-end-line="110" selection-end-column="33" />
+            <state relative-caret-position="85">
+              <caret line="280" column="18" selection-start-line="280" selection-start-column="8" selection-end-line="280" selection-end-column="18" />
               <folding>
-                <element signature="e#20#33#0" expanded="true" />
+                <element signature="e#0#34#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/protocol/base.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="28">
-              <caret line="48" column="6" selection-start-line="48" selection-start-column="6" selection-end-line="48" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/handlers.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="80" column="6" selection-start-line="80" selection-start-column="6" selection-end-line="80" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1282051629/_thread.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="114" column="4" selection-start-line="114" selection-start-column="4" selection-end-line="114" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -334,7 +296,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>'https://kyfw.12306.cn/passport/web/login'</find>
       <find>https://kyfw.12306.cn/otn/uamauthclient</find>
       <find>seat</find>
       <find>checkUser</find>
@@ -364,6 +325,7 @@
       <find>PartitionOffsetFetchRequest</find>
       <find>ConsumerGroupProtocolMetadata</find>
       <find>describe_groups</find>
+      <find>def</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -439,9 +401,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="width" value="977" />
-    <option name="height" value="1038" />
+    <option name="x" value="1912" />
+    <option name="y" value="-8" />
+    <option name="width" value="783" />
+    <option name="height" value="830" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -450,6 +413,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -457,11 +421,20 @@
               <item name="sayhello" type="b2602c69:ProjectViewProjectNode" />
               <item name="MsgTest" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="sayhello" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MsgTest" type="462c0819:PsiDirectoryNode" />
+              <item name="PyUI" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sayhello" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MsgTest" type="462c0819:PsiDirectoryNode" />
+              <item name="UI" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -477,19 +450,19 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\users\welink\documents\sayhello" />
-      <recent name="D:\users\welink\documents\GitHub\welink\MsgTest\config" />
-      <recent name="D:\users\welink\documents\sayhello\12306\train\submit" />
-      <recent name="D:\users\welink\documents\sayhello\12306\net" />
-      <recent name="D:\users\welink\documents\sayhello\12306\adress" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\users\welink\documents\GitHub\welink\MsgTest\PyUI" />
       <recent name="D:\users\welink\documents\sayhello\12306\train" />
       <recent name="D:\users\welink\documents\sayhello\12306" />
       <recent name="D:\users\welink\documents\sayhello" />
       <recent name="D:\users\welink\documents\GitHub\welink\MsgTest" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\users\welink\documents\sayhello" />
+      <recent name="D:\users\welink\documents\GitHub\welink\MsgTest\config" />
+      <recent name="D:\users\welink\documents\sayhello\12306\train\submit" />
+      <recent name="D:\users\welink\documents\sayhello\12306\net" />
+      <recent name="D:\users\welink\documents\sayhello\12306\adress" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -504,7 +477,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.KafkaTool">
+  <component name="RunManager" selected="Python.main_kafkaTool">
     <configuration name="KafkaManager" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="untitled" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -571,7 +544,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="main_kafkaTool" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="untitled" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -584,7 +557,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main_kafkaTool.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -663,18 +636,18 @@
       <item itemvalue="Python.myflask" />
       <item itemvalue="Python.flaskecharts" />
       <item itemvalue="Python.KafkaManager" />
-      <item itemvalue="Python.main" />
       <item itemvalue="Python.sslLinux" />
       <item itemvalue="Python.testpykafka" />
       <item itemvalue="Python.KafkaTool" />
+      <item itemvalue="Python.main_kafkaTool" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main_kafkaTool" />
         <item itemvalue="Python.KafkaTool" />
         <item itemvalue="Python.testpykafka" />
         <item itemvalue="Python.sslLinux" />
         <item itemvalue="Python.KafkaManager" />
-        <item itemvalue="Python.main" />
       </list>
     </recent_temporary>
   </component>
@@ -802,26 +775,26 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" x="1983" y="151" width="339" height="571" id="Project" order="0" sideWeight="0.49315068" visible="true" weight="0.18123667" />
+      <window_info active="true" content_ui="combo" x="1983" y="151" width="339" height="571" id="Project" order="0" sideWeight="0.49315068" visible="true" weight="0.1748401" />
       <window_info id="Favorites" order="1" sideWeight="0.5068493" side_tool="true" weight="0.18364611" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.24403471" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.6536458" visible="true" weight="0.37744033" />
-      <window_info anchor="bottom" x="19" y="412" width="1492" height="229" id="Debug" order="3" weight="0.20963173" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.6536458" weight="0.22379604" />
+      <window_info anchor="bottom" x="2074" y="375" width="1415" height="526" id="Debug" order="3" type="WINDOWED" visible="true" weight="0.5509915" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32909605" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" sideWeight="0.49932975" weight="0.3286119" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.58981234" weight="0.26138827" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.58981234" visible="true" weight="0.19956616" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.41018766" side_tool="true" weight="0.26203966" />
       <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.49865952" weight="0.3275488" />
       <window_info anchor="bottom" id="Concurrent Activities Diagram" order="12" weight="0.17231639" />
       <window_info anchor="bottom" id="Database Console" order="13" sideWeight="0.49798927" weight="0.37818697" />
-      <window_info anchor="bottom" id="Python Console" order="14" weight="0.19830029" />
+      <window_info anchor="bottom" id="Python Console" order="14" weight="0.22237961" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.49895614" weight="0.25" />
@@ -1236,8 +1209,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/test/testpykafka.py</url>
-          <line>18</line>
+          <line>30</line>
           <option name="timeStamp" value="345" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/testpykafka.py</url>
+          <line>12</line>
+          <option name="timeStamp" value="350" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/KafkaTool.py</url>
+          <line>312</line>
+          <option name="timeStamp" value="363" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/KafkaTool.py</url>
+          <line>341</line>
+          <option name="timeStamp" value="374" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -1253,69 +1241,86 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="cluster.topics[b'0.0.0.0.bmsaccount']" language="Python" />
-        <watch expression="res.groups" language="Python" />
-        <watch expression="cluster.get_managed_group_descriptions()" />
-        <watch expression="descrip[b'10.1.120.111.dispatchcenter']" language="Python" />
-        <watch expression="cluster.topics[b'10.1.120.111.dispatchcenter'].earliest_available_offsets()" language="Python" />
-        <watch expression="cluster.topics[b'10.1.120.111.dispatchcenter']" language="Python" />
+        <watch expression="topic.decode()" language="Python" />
+        <watch expression="descrips[5]" language="Python" />
+        <watch expression="offset.topics[topic]" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
       <expression>
-        <expression-string>cluster.topics[b'10.1.120.111.dispatchcenter']</expression-string>
+        <expression-string>offset.topics[topic]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>cluster.topics[b'10.1.120.111.dispatchcenter'].fetch_offset_limits(1000000)</expression-string>
+        <expression-string>offset.topics</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>cluster.topics[b'10.1.120.111.dispatchcenter'].fetch_offset_limits(1000)</expression-string>
+        <expression-string>descrips[5]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>cluster.topics[b'10.1.120.111.dispatchcenter'].</expression-string>
+        <expression-string>topic.decode()</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>cluster.topics[b'10.1.120.111.dispatchcenter'].earliest_available_offsets()</expression-string>
+        <expression-string>self._topicdescrip[topic]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>cluster.topics[b'10.1.120.111.dispatchcenter'].latest_available_offsets()</expression-string>
+        <expression-string>consumers[b'10.1.120.111.DispatchCenterSave']</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>cluster.topics[b'10.1.120.111.dispatchcenter'].e</expression-string>
+        <expression-string>self._consumer_descrips.offsets[b'10.1.120.111.DispatchCenterSave']</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>descrip[b'10.1.120.111.dispatchcenter']</expression-string>
+        <expression-string>self._consumer_descrips.offsets[b'10.1.120.111.msgstatistics']</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>res.groups</expression-string>
+        <expression-string>self._consumer_descrips.offsets[consumer]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>cluster.brokers[1].des</expression-string>
+        <expression-string>topics[topic].earliest_available_offsets()</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
     <expressions id="setValue">
+      <expression>
+        <expression-string>1</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>&lt;class 'tuple'&gt;: ()</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>b'rdkafka-7fadabd8-9cde-4815-a252-0aa6898612f1'</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>GroupMember(member_id=b'rdkafka-7fadabd8-9cde-4815-a252-0aa6898612f1', client_id=b'rdkafka', client_host=b'/10.1.56.12', member_metadata=&lt;pykafka.protocol.base.ConsumerGroupProtocolMetadata object at 0x0000014855D36898&gt;, member_assignment=&lt;pykafka.protocol.base.MemberAssignment object at 0x0000014852095D30&gt;)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>bytearray(b'\x00\x00\x00\x00\x00\x00\x00\x01\x00\x1a10.1.120.111.msgstatistics\x00\x00\x00\x08\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x94\xcc\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x01\x002{&quot;consumer_id&quot;: &quot;&quot;, &quot;hostname&quot;: &quot;DESKTOP-GMSOCCM&quot;}\x00\x00\x00\x00\x00\x02\x00\x00\x00\x00\x00\x00\x00\x00\x002{&quot;consumer_id&quot;: &quot;&quot;, &quot;hostname&quot;: &quot;DESKTOP-GMSOCCM&quot;}\x00\x00\x00\x00\x00\x03\x00\x00\x00\x00\x00\x00\x00\x00\x002{&quot;consumer_id&quot;: &quot;&quot;, &quot;hostname&quot;: &quot;DESKTOP-GMSOCCM&quot;}\x00\x00\x00\x00\x00\x04\x00\x00\x00\x00\x00\x00\x00\x02\x002{&quot;consumer_id&quot;: &quot;&quot;, &quot;hostname&quot;: &quot;DESKTOP-GMSOCCM&quot;}\x00\x00\x00\x00\x00\x05\x00\x00\x00\x00\x00\x00\x00\x00\x002{&quot;consumer_id&quot;: &quot;&quot;, &quot;hostname&quot;: &quot;DESKTOP-GMSOCCM&quot;}\x00\x00\x00\x00\x00\x06\x00\x00\x00\x00\x00\x00\x00\x00\x002{&quot;consumer_id&quot;: &quot;&quot;, &quot;hostname&quot;: &quot;DESKTOP-GMSOCCM&quot;}\x00\x00\x00\x00\x00\x07\x00\x00\x00\x00\x00\x00\x00\x01\x002{&quot;consumer_id&quot;: &quot;&quot;, &quot;hostname&quot;: &quot;DESKTOP-GMSOCCM&quot;}\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x...</expression-string>
         <language-id>Python</language-id>
@@ -1346,257 +1351,13 @@
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>'https://kyfw.12306.cn/otn/leftTicket/queryA?leftTicketDTO.train_date=2018-09-21&amp;leftTicketDTO.from_station=BJP&amp;leftTicketDTO.to_station=SHH&amp;purpose_codes=ADULT'</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>'%uU5317%uU4EAC%2CBJP'</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>'https://kyfw.12306.cn/otn/leftTicket/queryZ?leftTicketDTO.train_date=2018-9-20&amp;leftTicketDTO.from_station=BJP&amp;leftTicketDTO.to_station=SHH&amp;purpose_codes=ADULT'</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>'\\'earliest\\''</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/protocol/types.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="168" selection-start-line="168" selection-end-line="168" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/protocol/struct.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="47" column="32" lean-forward="true" selection-start-line="47" selection-start-column="32" selection-end-line="47" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/protocol/commit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="206" column="26" selection-start-line="206" selection-start-column="4" selection-end-line="206" selection-end-column="26" />
-          <folding>
-            <element signature="e#190#428#0" />
-            <element signature="e#476#551#0" />
-            <element signature="e#599#674#0" />
-            <element signature="e#722#997#0" />
-            <element signature="e#1043#1441#0" />
-            <element signature="e#1487#2010#0" />
-            <element signature="e#2056#2658#0" />
-            <element signature="e#2704#2822#0" />
-            <element signature="e#2847#2953#0" />
-            <element signature="e#2977#3087#0" />
-            <element signature="e#3134#3454#0" />
-            <element signature="e#3501#3575#0" />
-            <element signature="e#3622#3995#0" />
-            <element signature="e#4042#4430#0" />
-            <element signature="e#4475#4758#0" />
-            <element signature="e#4803#4943#0" />
-            <element signature="e#4988#5315#0" />
-            <element signature="e#5360#5476#0" />
-            <element signature="e#6299#6450#0" />
-            <element signature="e#6500#6688#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="718" column="56" selection-start-line="718" selection-start-column="56" selection-end-line="718" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-            <element signature="e#23309#25603#0" />
-            <element signature="e#25757#26380#0" />
-            <element signature="e#27415#27820#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/protocol/legacy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="224" column="54" selection-start-line="224" selection-start-column="54" selection-end-line="224" selection-end-column="54" />
-          <folding>
-            <element signature="e#1375#1799#0" />
-            <element signature="e#2569#3397#0" />
-            <element signature="e#3566#4968#0" />
-            <element signature="e#5043#5438#0" />
-            <element signature="e#5548#6426#0" />
-            <element signature="e#7588#8002#0" />
-            <element signature="e#8076#8480#0" />
-            <element signature="e#8561#8934#0" />
-            <element signature="e#9013#9448#0" />
-            <element signature="e#9540#9774#0" />
-            <element signature="e#10583#10962#0" />
-            <element signature="e#11049#11698#0" />
-            <element signature="e#11779#12133#0" />
-            <element signature="e#12237#13070#0" />
-            <element signature="e#13150#13564#0" />
-            <element signature="e#13610#13832#0" />
-            <element signature="e#13904#14542#0" />
-            <element signature="e#14596#15208#0" />
-            <element signature="e#15297#15841#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/protocol/offset.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="52" column="5" lean-forward="true" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CloudMsg.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1540">
-          <caret line="1475" selection-start-line="1475" selection-end-line="1475" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-            <element signature="e#1539#1918#0" />
-            <element signature="e#3618#3683#0" />
-            <element signature="e#4196#9127#0" />
-            <element signature="e#9366#13918#0" />
-            <element signature="e#14060#18844#0" />
-            <element signature="e#30712#33930#0" />
-            <element signature="e#33975#37375#0" />
-            <element signature="e#38801#38923#0" />
-            <element signature="e#38958#39897#0" />
-            <element signature="e#39933#40018#0" />
-            <element signature="e#40064#41222#0" />
-            <element signature="e#41267#42669#0" />
-            <element signature="e#49543#51135#0" />
-            <element signature="e#51171#51228#0" />
-            <element signature="e#51274#53429#0" />
-            <element signature="e#53474#55845#0" />
-            <element signature="e#56075#56905#0" />
-            <element signature="e#56938#56972#0" />
-            <element signature="e#57025#57495#0" />
-            <element signature="e#57550#58020#0" />
-            <element signature="e#58075#58545#0" />
-            <element signature="e#58600#59070#0" />
-            <element signature="e#59107#59464#0" />
-            <element signature="e#59501#60717#0" />
-            <element signature="e#60754#61554#0" />
-            <element signature="e#61591#62157#0" />
-            <element signature="e#62194#63920#0" />
-            <element signature="e#63955#64064#0" />
-            <element signature="e#64100#65175#0" />
-            <element signature="e#65211#66077#0" />
-            <element signature="e#66113#66814#0" />
-            <element signature="e#66850#68664#0" />
-            <element signature="e#68699#68804#0" />
-            <element signature="e#68840#68949#0" />
-            <element signature="e#68995#72842#0" />
-            <element signature="e#72887#76918#0" />
-            <element signature="e#83099#83103#0" />
-            <element signature="e#83244#83248#0" />
-            <element signature="e#83382#83386#0" />
-            <element signature="e#83472#83484#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SQL.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1523">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sslLinux.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="95" column="69" selection-start-line="95" selection-start-column="69" selection-end-line="95" selection-end-column="69" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/consumer/fetcher.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="104" column="13" selection-start-line="104" selection-start-column="13" selection-end-line="104" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/client_async.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="29">
-          <caret line="774" column="8" selection-start-line="774" selection-start-column="8" selection-end-line="774" selection-end-column="8" />
-          <folding>
-            <element signature="e#1090#6990#1" />
-            <element signature="e#8109#8245#0" />
-            <element signature="e#12704#12939#0" />
-            <element signature="e#12998#14985#0" />
-            <element signature="e#16637#17111#0" />
-            <element signature="e#17155#17314#0" />
-            <element signature="e#17359#17933#0" />
-            <element signature="e#17983#18595#0" />
-            <element signature="e#18646#19277#0" />
-            <element signature="e#19344#20256#0" />
-            <element signature="e#20308#20456#0" />
-            <element signature="e#26285#26870#0" />
-            <element signature="e#26913#28648#0" />
-            <element signature="e#28692#29133#0" />
-            <element signature="e#29175#29551#0" />
-            <element signature="e#29657#32308#0" />
-            <element signature="e#32991#33264#0" />
-            <element signature="e#35133#35338#0" />
-            <element signature="e#35378#35574#0" />
-            <element signature="e#35630#35958#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/coordinator/consumer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="692" column="51" selection-start-line="692" selection-start-column="51" selection-end-line="692" selection-end-column="51" />
-          <folding>
-            <element signature="e#822#1329#0" />
-            <element signature="e#1405#5464#0" />
-            <element signature="e#1405#3778#1" />
-            <element signature="e#5497#5628#0" />
-            <element signature="e#5745#6181#0" />
-            <element signature="e#6239#7622#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/consumer/subscription_state.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="328" selection-start-line="328" selection-end-line="328" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/protocol/api.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="67" selection-start-line="67" selection-end-line="67" />
-          <folding>
-            <element signature="e#162#527#0" />
-            <element signature="e#557#1218#0" />
-            <element signature="e#1249#1654#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1609,8 +1370,6 @@
     </entry>
     <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/producer.py" />
     <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/utils/__init__.py" />
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/utils/compat.py" />
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/connection.py" />
     <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/balancedconsumer.py" />
     <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/membershipprotocol.py" />
     <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/managedbalancedconsumer.py" />
@@ -1626,33 +1385,18 @@
     <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/rdkafka/producer.py" />
     <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/partition.py" />
     <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/client.py" />
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/simpleconsumer.py" />
     <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/structs.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="169">
           <caret line="81" selection-start-line="81" selection-end-line="81" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/common.py" />
     <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/__init__.py" />
     <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/protocol/group_membership.py" />
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/protocol/__init__.py" />
     <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/tests/pykafka/test_protocol.py" />
     <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/utils/struct_helpers.py" />
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/protocol/offset.py" />
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/topic.py" />
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/protocol/metadata.py" />
-    <entry file="file://C:/Program Files/Anaconda3/Lib/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5236">
-          <caret line="308" selection-start-line="308" selection-end-line="308" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/KafkaManager.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -1663,85 +1407,271 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1282051629/_thread.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="114" column="4" selection-start-line="114" selection-start-column="4" selection-end-line="114" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/threading.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="545" column="22" selection-start-line="545" selection-start-column="22" selection-end-line="545" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/handlers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="80" column="6" selection-start-line="80" selection-start-column="6" selection-end-line="80" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/cluster.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="418" column="8" selection-start-line="418" selection-start-column="8" selection-end-line="418" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/protocol/offset_commit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1252">
-          <caret line="203" column="6" selection-start-line="203" selection-start-column="6" selection-end-line="203" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/broker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="560" column="41" selection-start-line="560" selection-start-column="41" selection-end-line="560" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/protocol/base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
+        <state relative-caret-position="748">
           <caret line="48" column="6" selection-start-line="48" selection-start-column="6" selection-end-line="48" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/protocol/offset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="147" column="6" selection-start-line="147" selection-start-column="6" selection-end-line="147" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/protocol/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="122">
-          <caret line="110" column="33" selection-start-line="110" selection-start-column="33" selection-end-line="110" selection-end-column="33" />
+          <caret line="110" column="6" selection-start-line="110" selection-start-column="6" selection-end-line="110" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/collections/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6756">
+          <caret line="355" column="4" selection-start-line="355" selection-start-column="4" selection-end-line="355" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="308" selection-start-line="308" selection-end-line="308" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1282051629/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="2766" column="6" selection-start-line="2766" selection-start-column="6" selection-end-line="2766" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/protocol/offset_commit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="310" column="26" lean-forward="true" selection-start-line="310" selection-start-column="26" selection-end-line="310" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/connection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="203" selection-start-line="203" selection-end-line="203" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/handlers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="75" selection-start-line="75" selection-end-line="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/protocol/metadata.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="115" column="6" selection-start-line="115" selection-start-column="6" selection-end-line="115" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/protocol/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="50" lean-forward="true" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/broker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="425" column="8" selection-start-line="425" selection-start-column="8" selection-end-line="425" selection-end-column="8" />
           <folding>
-            <element signature="e#20#33#0" expanded="true" />
+            <element signature="e#1835#1965#1" />
+            <element signature="e#2398#5171#0" />
+            <element signature="e#5963#8055#0" />
+            <element signature="e#9468#10280#0" />
+            <element signature="e#10341#11191#0" />
+            <element signature="e#11255#12611#0" />
+            <element signature="e#12788#14030#0" />
+            <element signature="e#14109#14580#0" />
+            <element signature="e#17095#18400#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3/threading.pyi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="88" column="60" selection-start-line="88" selection-start-column="60" selection-end-line="88" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PyUI/UI_KafkaTool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="145" column="13" selection-start-line="145" selection-start-column="13" selection-end-line="145" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1282051629/PyQt5/QtCore/QObject.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="40" column="8" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1282051629/PyQt5/QtWidgets/QAbstractItemView.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="96" lean-forward="true" selection-start-line="96" selection-end-line="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1282051629/PyQt5/QtWidgets/QTableWidget.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="461" column="43" selection-start-line="461" selection-start-column="43" selection-end-line="461" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/topic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="199" column="39" lean-forward="true" selection-start-line="199" selection-start-column="39" selection-end-line="199" selection-end-column="39" />
+          <folding>
+            <element signature="e#3732#8554#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1282051629/_thread.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/threading.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="69" column="12" lean-forward="true" selection-start-line="69" selection-start-column="7" selection-end-line="69" selection-end-column="21" />
+          <folding>
+            <element signature="e#2198#2611#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/utils/compat.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="56" column="18" selection-start-line="56" selection-start-column="8" selection-end-line="56" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/weakref.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/simpleconsumer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="312" column="19" selection-start-line="312" selection-start-column="19" selection-end-line="312" selection-end-column="19" />
+          <folding>
+            <element signature="e#1986#2036#1" />
+            <element signature="e#3010#8591#1" />
+            <element signature="e#39298#46142#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/utils/error_handlers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="23" column="39" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1282051629/PyQt5/QtWidgets/QListWidget.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/testpykafka.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+        <state relative-caret-position="228">
+          <caret line="22" column="34" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="34" />
           <folding>
             <element signature="e#0#100#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/MainWindow.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="280" column="18" selection-start-line="280" selection-start-column="8" selection-end-line="280" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1282051629/PyQt5/QtWidgets/QWidget.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="95" column="8" selection-start-line="95" selection-start-column="8" selection-end-line="95" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/cluster.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5">
+          <caret line="505" selection-start-line="505" selection-end-line="505" />
+          <folding>
+            <element signature="e#6722#9223#0" />
+            <element signature="e#10618#12487#0" />
+            <element signature="e#12539#13309#0" />
+            <element signature="e#13362#13908#0" />
+            <element signature="e#13973#16103#0" />
+            <element signature="e#16176#19014#0" />
+            <element signature="e#19070#19636#0" />
+            <element signature="e#22177#23291#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_kafkaTool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="23" lean-forward="true" selection-start-column="23" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/KafkaTool.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+        <state relative-caret-position="170">
+          <caret line="10" column="47" lean-forward="true" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
-            <marker date="1541429640860" expanded="true" signature="480:606" ph="..." />
-            <marker date="1541429640860" expanded="true" signature="635:1522" ph="..." />
-            <marker date="1541429640860" expanded="true" signature="1019:1198" ph="..." />
-            <marker date="1541429640860" expanded="true" signature="1368:1374" ph="..." />
+            <element signature="e#2059#2079#0" />
+            <element signature="e#2180#2750#0" />
+            <element signature="e#2786#3990#0" />
+            <element signature="e#5468#7541#0" />
+            <element signature="e#8504#9893#0" />
+            <marker date="1541558846317" expanded="false" signature="1876:1911" ph="..." />
+            <marker date="1541558846317" expanded="true" signature="2607:4024" ph="..." />
+            <marker date="1541558846317" expanded="true" signature="3549:3555" ph="..." />
+            <marker date="1541558846317" expanded="true" signature="3834:4024" ph="..." />
+            <marker date="1541558846317" expanded="true" signature="4876:4925" ph="..." />
+            <marker date="1541558846317" expanded="true" signature="5211:5329" ph="..." />
+            <marker date="1541558846317" expanded="true" signature="9661:9738" ph="..." />
           </folding>
         </state>
       </provider>
