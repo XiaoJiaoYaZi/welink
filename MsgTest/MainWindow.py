@@ -10,10 +10,22 @@ from KafkaManager import KafkaManager,MsMqManageer
 from configparser import ConfigParser
 from KafkaTool import KafkaTool
 from SQL import SQLView
+from PlatformPublicDefine import Old2New,New2Old
 
 _num_recv = 0
 _num_send = 0
 
+
+
+def SendFunc(func):
+    def transmsg(msg,old):
+        if old:
+            msg = Old2New(msg)
+            return func(msg)
+        else:
+            msg = New2Old(msg)
+            return func(msg)
+    return transmsg
 
 
 class Senders(object):
@@ -32,6 +44,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
     _sendData = []
     _recvData = []
     signal_recv = QtCore.pyqtSignal(bytes)
+    sender = None
     def __init__(self):
         super(BMSMsgTest,self).__init__()
         self.setupUi(self)
@@ -47,6 +60,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
     def _init(self):
         self.b_start = False
         self._brecv1 = True
+        self._isold = True
         try:
             self._config = ConfigParser()
             self._config.read(os.getcwd()+'/config/config.ini',encoding='gbk')
@@ -68,6 +82,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
 
 
     def _createconnections(self):
+        #self.comboBox_unicode.currentIndexChanged()
         self.timer = QtCore.QTimer(self)
         self.timer.timeout.connect(self.speed)
         self.timer.start(1000)
@@ -103,6 +118,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
             self.stackedWidget.insertWidget(i,self._sendData[i])
 
         self.stackedWidget.setCurrentIndex(0)
+        self.comboBox_unicode.setEnabled(False)
         self.lineEdit_topic_trans.setEnabled(False)
         self.lineEdit_trans_num.setEnabled(False)
         self.checkBox_trans_kafk.setEnabled(False)
@@ -141,6 +157,12 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self.lineEdit_trans_num.setEnabled(a0)
         self.checkBox_trans_kafk.setEnabled(a0)
         self._kafka_trans.trans = a0
+
+    def on_comboBox_unicode_currentIndexChanged(self,index):
+        self._isold = bool(index)
+
+    def on_checkBox_transmain_stateChanged(self,a0):
+        self.comboBox_unicode.setEnabled(a0)
 
     def on_lineEdit_trans_num_textChanged(self,a0):
         try:
@@ -305,6 +327,14 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
             except Exception as e:
                 print(e)
 
+    @SendFunc
+    def send(self,msg,old):
+        if self.checkBox_trans_kafk.isChecked():
+            self._kafka_trans.send(msg)
+        else:
+            self._msmq_trans.send(msg)
+
+
     def recv_func(self,kafka_message):
         #print(kafka_message)
         self._brecv1 = True
@@ -313,12 +343,9 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         global _num_time
         if self.checkBox_search.isChecked():
             if self.num_recv < self.num_trans:
-                if self.checkBox_trans_kafk.isChecked():
-                    self._kafka_trans.send(kafka_message)
-                else:
-                    self._msmq_trans.send(kafka_message)
+                self.send(kafka_message,self._isold)
             else:
-                self._kafka_trans.send(kafka_message)
+                self.send(kafka_message, self._isold)
                 print('转移完成1')
                 return False
                 #self.on_pushButton_stoprecv_pressed()

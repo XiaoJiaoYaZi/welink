@@ -40,6 +40,30 @@ def itest():
     print(val)
 
 
+import collections
+import queue
+import random
+Event = collections.namedtuple('Event','time pro action')
+
+def taxi_process(proc_num,trips_num,start_time=0):
+    time = yield Event(start_time,trips_num,'leave garage')
+    for i in range(trips_num):
+        time = yield Event(time,proc_num,'pick up people')
+        time = yield Event(time,proc_num,'drop off people')
+
+    yield Event(time,proc_num,'go home')
+
+t1 =taxi_process(1,1)
+a = next(t1)
+print(a)
+b = t1.send(a.time+6)
+print(b)
+c = t1.send(b.time+12)
+print(c)
+d = t1.send(c.time+1)
+print(d)
+
+
 
 if __name__ == '__main__':
     n = fib(10)

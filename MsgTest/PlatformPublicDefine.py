@@ -4,6 +4,7 @@ from PyQt5 import QtCore
 from BMSMessage import Datetime_dt,dt_Datetime
 import sys
 from ctypes import *
+import socket
 
 
 def Pack(ctype_instance):
@@ -44,7 +45,6 @@ class msg_header(object):
 
     def __len__(self):
         return self.__OneByte.size
-
 
 class DispatchFixedHead(object):
     __OneByte = struct.Struct("<BQIIddddiBBdHIIIIbbhbBBBII")
@@ -155,7 +155,6 @@ class DispatchFixedHead(object):
     def __len__(self):
         return self.__OneByte.size
 
-
 class DispatchFixedTail(object):
     __OneByte = struct.Struct('<BHiiBdHiBiiib')
     def __init__(self):
@@ -237,7 +236,6 @@ class Node(object):
     def __len__(self):
         return self.__OneByte.size
 
-
 class SCloudMessage(object):
     impl_type = 0x55555555
     impl_version = 0xAAAAAAAA
@@ -257,28 +255,91 @@ class SCloudMessage(object):
         ECMI_ITEM_COUNT     =12
 
 
-    def __init__(self):
+    def __init__(self,OldMessage=None,frombyte = None):
+    #
         self.msgheader = msg_header()
         self.FixHead = DispatchFixedHead()
         self.FixTail = DispatchFixedTail()
         self.node = []
         for i in range(self.ECloudMsgItem.ECMI_ITEM_COUNT.value):
             self.node.append(Node())
-
-        self._mobiles = None
-        self._acc_name =None
-        self._message = None
-        self._templateID = None
-        self._msgtemplate = None
-        self._paramtemplate = None
-        self._extnumer = None
-        self._sign = None
-        self._acc_msgid =None
-        self._mms_title = None
-        self._mms_filename = None
-        self._usr_def_id = None
+        self._mobiles = bytes(0)
+        self._acc_name =bytes(0)
+        self._message = bytes(0)
+        self._templateID = bytes(0)
+        self._msgtemplate = bytes(0)
+        self._paramtemplate = bytes(0)
+        self._extnumer = bytes(0)
+        self._sign = bytes(0)
+        self._acc_msgid =bytes(0)
+        self._mms_title = bytes(0)
+        self._mms_filename = bytes(0)
+        self._usr_def_id = bytes(0)
         self.msgheader._item_count = self.ECloudMsgItem.ECMI_ITEM_COUNT.value
         self.msgheader._offset = len(self.msgheader)+len(self.FixHead)+len(self.FixTail)
+    #
+        if OldMessage is not None:
+            self.FixHead.Priority            = OldMessage._head.Priority
+            self.FixHead.MsgId               = OldMessage._head.MsgId
+            self.FixHead.ProductExtendId     = OldMessage._head.ProductExtendId
+            self.FixHead.RealProductExtendId = OldMessage._head.RealProductExtendId
+            self.FixHead.StartSendDateTime   = OldMessage._head.StartSendDateTime
+            self.FixHead.EndSendDateTime     = OldMessage._head.EndSendDateTime
+            self.FixHead.StartSendTime       = OldMessage._head.StartSendTime
+            self.FixHead.EndSendTime         = OldMessage._head.EndSendTime
+            self.FixHead.ChargeQuantity      = OldMessage._head.ChargeQuantity
+            self.FixHead.MsgState            = OldMessage._head.MsgState
+            self.FixHead.MsgType             = OldMessage._head.MsgType
+            self.FixHead.CommitTime          = OldMessage._head.CommitTime
+            self.FixHead.Package             = OldMessage._head.Package
+            self.FixHead.MobilesContentLen   = OldMessage._head.MobilesContentLen
+            self.FixHead.MsgContentLen       = OldMessage._head.MsgContentLen
+            self.FixHead.MobilesCount        = OldMessage._head.MobilesCount
+            self.FixHead.DispatchTimes       = OldMessage._head.DispatchTimes
+            self.FixHead.Telcom              = OldMessage._head.Telcom
+            self.FixHead.ProvinceId          = OldMessage._head.ProvinceId
+            self.FixHead.CityId              = OldMessage._head.CityId
+            self.FixHead.TPCBChecked         = OldMessage._head.TPCBChecked
+            self.FixHead.SendedTimes         = OldMessage._head.SendedTimes
+            self.FixHead.DispatchFailedState = OldMessage._head.DispatchFailedState
+            self.FixHead.SubmitType          = OldMessage._head.SubmitType
+            #self.FixHead.CloudMsgTemplateID  = OldMessage._head.
+            self.FixHead.CommitIp            = int.from_bytes(socket.inet_aton(OldMessage._head.CommitIp),'little')
+            #tail
+            self.FixTail.pagetotal              = OldMessage._tail.pagetotal
+            self.FixTail.packagetotal           = OldMessage._tail.packagetotal
+            self.FixTail.typeComponentParam     = OldMessage._tail.typeComponentParam
+            self.FixTail.lastFailResourceId     = OldMessage._tail.lastFailResourceId
+            self.FixTail.failedType             = OldMessage._tail.failedType
+            self.FixTail.lastDiapatchTime       = OldMessage._tail.lastDiapatchTime
+            self.FixTail.resourceSendTimes      = OldMessage._tail.resourceSendTimes
+            self.FixTail.auditorId              = OldMessage._tail.auditorId
+            self.FixTail.totalSendTimes         = OldMessage._tail.totalSendTimes
+            self.FixTail.repResendTimeOut       = OldMessage._tail.repResendTimeOut
+            self.FixTail.innerDispatchTimes     = OldMessage._tail.innerDispatchTimes
+            self.FixTail.extComponentParam      = OldMessage._tail.extComponentParam
+            self.FixTail.m_old_struct           = 1
+            #
+            self.mobiles        = OldMessage.mobiles
+            self.acc_name       = OldMessage._head.AccountId
+            self.message        = OldMessage.message
+            self.extnumer       = OldMessage._head.ExtendNumber
+            self.sign           = self._getsign(OldMessage.message)
+            self.acc_msgid      = OldMessage._tail.clientMsgId
+            self.mms_title      = OldMessage._head.Title
+            self.mms_filename   = OldMessage._head.MmsSaveFileName
+            self.usr_def_id     = OldMessage._tail.userDefineId
+        if frombyte is not None:
+            self.fromBytes(frombyte)
+
+    def _getsign(self,msg:str):
+        if msg.count('【')>1 or msg.count('】') > 1:#有两个【】(例如【123【123】123】)认为没有签名
+            return  msg
+        left = msg.index('【')
+        right = msg.index('】')
+        if left >=0 and right>=0 and left<right:
+            return msg[left : right+1]
+        return msg
 
     def __le__(self, other):
         return self.FixHead <= other.FixHead
@@ -449,6 +510,7 @@ class SCloudMessage(object):
 
     @property
     def mobiles(self):
+
         return self._mobiles.decode('utf-8').replace('\x00','')
     @mobiles.setter
     def mobiles(self,value):
@@ -463,7 +525,10 @@ class SCloudMessage(object):
 
     @property
     def message(self):
-        return self._message.decode('utf_16_le').replace('\x00','')
+        if self.FixHead.MsgType == 1:#短信
+            return self._message.decode('utf_16_le').replace('\x00','')
+        else:#彩信
+            return self._message
     @message.setter
     def message(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_CONTENT.value[0],value)
@@ -530,7 +595,6 @@ class SCloudMessage(object):
     @usr_def_id.setter
     def usr_def_id(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_USER_DEF_ID.value[0],value)
-
 
 # SMsgSendData                                                  --- HistoryQueue
 # SMsgHisRepData                                                --- HistoryQueue
@@ -1427,3 +1491,306 @@ class SResourceState(Structure):
     @reportTime.setter
     def reportTime(self,value):
         self._reportTime = dt_Datetime(value.toPyDateTime().ctime())
+#old struct for cloudmsg
+class SOldDispatchFixedHead(Structure):
+    _fields_ = [
+        ('Priority',c_char),
+        ('MsgId',c_int64),
+        ('ProductExtendId',c_int),
+        ('RealProductExtendId',c_int),
+        ('StartSendDateTime',c_double),
+        ('EndSendDateTime',c_double),
+        ('StartSendTime',c_double),
+        ('EndSendTime',c_double),
+        ('ChargeQuantity',c_int),
+        ('MsgState',c_ubyte),
+        ('MsgType',c_ubyte),
+        ('CommitTime',c_double),
+        ('Package',c_ushort),
+        ('MobilesContentLen',c_uint),
+        ('MsgContentLen',c_uint),
+        ('MobilesCount',c_uint),
+        ('DispatchTimes',c_uint),
+        ('Telcom',c_char),
+        ('ProvinceId',c_char),
+        ('CityId',c_short),
+        ('TPCBChecked',c_bool),
+        ('SendedTimes',c_ubyte),
+        ('DispatchFailedState',c_ubyte),
+        ('SubmitType',c_ubyte),
+        ('_CommitIp',c_char*16),
+        ('_AccountId',c_char*30),
+        ('_Title',c_char*64),
+        ('_ExtendNumber',c_char*16),
+        ('_MmsSaveFileName',c_char*64),
+    ]
+    _pack_ = 1
+
+    @property
+    def CommitIp(self):
+        return self._CommitIp.decode('gbk')
+    @CommitIp.setter
+    def CommitIp(self,value):
+        self._CommitIp = value.encode('gbk')
+
+    @property
+    def AccountId(self):
+        return self._AccountId.decode('gbk')
+    @AccountId.setter
+    def AccountId(self,value):
+        self._AccountId = value.encode('gbk')
+
+    @property
+    def Title(self):
+        return self._Title.decode('gbk')
+    @Title.setter
+    def Title(self,value):
+        self._Title = value.encode('gbk')
+
+    @property
+    def ExtendNumber(self):
+        return self._ExtendNumber.decode('gbk')
+    @ExtendNumber.setter
+    def ExtendNumber(self,value):
+        self._ExtendNumber = value.encode('gbk')
+
+    @property
+    def MmsSaveFileName(self):
+        return self._MmsSaveFileName.decode('gbk')
+    @MmsSaveFileName.setter
+    def MmsSaveFileName(self,value):
+        self._MmsSaveFileName = value.encode('gbk')
+
+    # def __init__(self):
+    #     super().__init__()
+
+    # def Value(self):
+    #     return Pack(self)
+    #
+    # def fromBytes(self,b):
+    #     cstring = create_string_buffer(b)
+    #     cast(pointer(cstring),pointer(self)).contents
+    #     #self = UnPack(SOldDispatchFixedHead,b)
+
+
+class SOldDispatchFixedTail(Structure):
+    _fields_ = [
+        ('pagetotal',c_ubyte),
+        ('packagetotal',c_ushort),
+        ('_clientMsgId',c_char*16),
+        ('typeComponentParam',c_int),
+        ('lastFailResourceId',c_int),
+        ('failedType',c_ubyte),
+        ('lastDiapatchTime',c_double),
+        ('resourceSendTimes',c_ushort),
+        ('auditorId',c_int),
+        ('totalSendTimes',c_ubyte),
+        ('repResendTimeOut',c_int),
+        ('innerDispatchTimes',c_int),
+        ('extComponentParam',c_int),
+        ('_userDefineId',c_char*33),
+        ('_extend',c_char*23),
+    ]
+    _pack_ = 1
+
+    @property
+    def clientMsgId(self):
+        return self._clientMsgId.decode('gbk')
+    @clientMsgId.setter
+    def clientMsgId(self,value):
+        self._clientMsgId = value.encode('gbk')
+
+    @property
+    def userDefineId(self):
+        return self._userDefineId.decode('gbk')
+    @userDefineId.setter
+    def userDefineId(self,value):
+        self._userDefineId = value.encode('gbk')
+
+    @property
+    def extend(self):
+        return self._extend.decode('gbk')
+    @extend.setter
+    def extend(self,value):
+        self._extend = value.encode('gbk')
+
+class SOldCloudMessage():
+    def __init__(self,SNewCloudMsg:SCloudMessage = None,frombyte = None):
+        '''
+        :param SNewCloudMsg: 新消息结构
+        :param frombyte: 字节流  SNewCloudMsg and frombyte only one is not None
+        '''
+        #数据结构组成 head + mobiles + message + tail
+        self._head = SOldDispatchFixedHead()
+        self._tail = SOldDispatchFixedTail()
+        self._mobiles = bytes(0)
+        self._message = bytes(0)
+        if SNewCloudMsg is not None:
+            self._head.Priority             = SNewCloudMsg.FixHead.Priority
+            self._head.MsgId                = SNewCloudMsg.FixHead.MsgId
+            self._head.ProductExtendId      = SNewCloudMsg.FixHead.ProductExtendId
+            self._head.RealProductExtendId  = SNewCloudMsg.FixHead.RealProductExtendId
+            self._head.StartSendDateTime    = SNewCloudMsg.FixHead.StartSendDateTime
+            self._head.EndSendDateTime      = SNewCloudMsg.FixHead.EndSendDateTime
+            self._head.StartSendTime        = SNewCloudMsg.FixHead.StartSendTime
+            self._head.EndSendTime          = SNewCloudMsg.FixHead.EndSendTime
+            self._head.ChargeQuantit        = SNewCloudMsg.FixHead.ChargeQuantity
+            self._head.MsgState             = SNewCloudMsg.FixHead.MsgState
+            self._head.MsgType              = SNewCloudMsg.FixHead.MsgType
+            self._head.CommitTime           = SNewCloudMsg.FixHead.CommitTime
+            self._head.Package              = SNewCloudMsg.FixHead.Package
+            self._head.MobilesContentLen    = SNewCloudMsg.FixHead.MobilesContentLen
+            self._head.MsgContentLen        = SNewCloudMsg.FixHead.MsgContentLen
+            self._head.MobilesCount         = SNewCloudMsg.FixHead.MobilesCount
+            self._head.DispatchTimes        = SNewCloudMsg.FixHead.DispatchTimes
+            self._head.Telcom               = SNewCloudMsg.FixHead.Telcom
+            self._head.ProvinceId           = SNewCloudMsg.FixHead.ProvinceId
+            self._head.CityId               = SNewCloudMsg.FixHead.CityId
+            self._head.TPCBChecked          = SNewCloudMsg.FixHead.TPCBChecked
+            self._head.SendedTimes          = SNewCloudMsg.FixHead.SendedTimes
+            self._head.DispatchFailedState  = SNewCloudMsg.FixHead.DispatchFailedState
+            self._head.SubmitType           = SNewCloudMsg.FixHead.SubmitType
+            self._head.CommitIp             = socket.inet_ntoa(SNewCloudMsg.FixHead.CommitIp.to_bytes(4,'little'))
+            self._head.AccountId            = SNewCloudMsg.acc_name
+            self._head.Title                = SNewCloudMsg.mms_title
+            self._head.ExtendNumber         = SNewCloudMsg.extnumer
+            self._head.MmsSaveFileName      = SNewCloudMsg.mms_filename
+            #tail
+            self._tail.pagetotal            = SNewCloudMsg.FixTail.pagetotal
+            self._tail.packagetotal         = SNewCloudMsg.FixTail.packagetotal
+            self._tail.clientMsgId          = SNewCloudMsg.acc_msgid
+            self._tail.typeComponentParam   = SNewCloudMsg.FixTail.typeComponentParam
+            self._tail.lastFailResourceId   = SNewCloudMsg.FixTail.lastFailResourceId
+            self._tail.failedType           = SNewCloudMsg.FixTail.failedType
+            self._tail.lastDiapatchTime     = SNewCloudMsg.FixTail.lastDiapatchTime
+            self._tail.resourceSendTimes    = SNewCloudMsg.FixTail.resourceSendTimes
+            self._tail.auditorId            = SNewCloudMsg.FixTail.auditorId
+            self._tail.totalSendTimes       = SNewCloudMsg.FixTail.totalSendTimes
+            self._tail.repResendTimeOut     = SNewCloudMsg.FixTail.repResendTimeOut
+            self._tail.innerDispatchTimes   = SNewCloudMsg.FixTail.innerDispatchTimes
+            self._tail.extComponentParam    = SNewCloudMsg.FixTail.extComponentParam
+            self._tail.userDefineId         = SNewCloudMsg.usr_def_id
+            #self._tail.extend               = SNewCloudMsg.
+            if self._head.MsgType == 1:
+                self._message = SNewCloudMsg.message.encode('gbk','replace')
+            else:
+                self._message = SNewCloudMsg.message
+            self._mobiles = SNewCloudMsg.mobiles.encode('gbk')
+        if frombyte is not None:
+            self.fromBytes(frombyte)
+
+
+    def Value(self):
+        try:
+            value = Pack(self._head)+self._mobiles+self._message+Pack(self._tail)
+            return value
+        except Exception as e:
+            print(e)
+
+    def __len__(self):
+        return sizeof(self._head) + len(self._mobiles) + len(self._message) + sizeof(self._tail)
+
+    def fromBytes(self,b):
+        b = bytearray(b)
+        headLen = sizeof(SOldDispatchFixedHead)
+        tailLen = sizeof(SOldDispatchFixedTail)
+        self._head = UnPack(SOldDispatchFixedHead,bytes(b[ : headLen]))
+        self._mobiles = bytes(b[headLen : headLen+self._head.MobilesContentLen])
+        self._message = bytes(b[headLen+self._head.MobilesContentLen : headLen+self._head.MobilesContentLen+self._head.MsgContentLen])
+        self._tail = UnPack(SOldDispatchFixedTail,bytes(b[0-tailLen:]))
+
+    @property
+    def mobiles(self):
+        return self._mobiles.decode('gbk')
+    @mobiles.setter
+    def mobiles(self,value):
+        self._mobiles = value.encode('gbk')
+
+    @property
+    def message(self):
+        if self._head.MsgType == 1:
+            return self._message.decode('gbk')
+        else:
+            return self._message
+    @message.setter
+    def message(self,value):
+        if self._head.MsgType == 1:
+            self._message = value.encode('gbk','replace')
+        else:
+            self._message = value
+
+def Old2New(oldbyte):
+    try:
+        oldmsg = SOldCloudMessage(frombyte=oldbyte)
+        newmsg = SCloudMessage(OldMessage=oldmsg)
+        return newmsg.Value()
+    except Exception as e:
+        print(e)
+
+def New2Old(newbyte):
+    try:
+        newmsg = SCloudMessage(frombyte=newbyte)
+        oldmsg = SOldCloudMessage(SNewCloudMsg=newmsg)
+        return oldmsg.Value()
+    except Exception as e:
+        print(e)
+
+
+
+if __name__ == '__main__':
+
+    newmsg = SCloudMessage()
+    newmsg.FixHead.CommitIp = 67305985
+    newmsg.FixHead.MsgType = 1
+
+    newmsg.message = 'hello【微网通联】'
+    newmsg.mobiles = '13000000000,13000000001'
+    newmsg.FixHead.MsgContentLen = len(newmsg.message)
+    newmsg.FixHead.MobilesContentLen = len(newmsg.mobiles)
+    newmsg.usr_def_id = 'anbaili'
+    newmsg.acc_msgid = '123456'
+    newmsg.extnumer = '1069'
+    newmsg.acc_name = 'lqd'
+    newmsg.mms_title = 'world'
+    newmsg.mms_filename = 'c"\\'
+    oldmsg = SOldCloudMessage(newmsg)
+    value = oldmsg.Value()
+
+    newmsg1 = SCloudMessage(oldmsg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
