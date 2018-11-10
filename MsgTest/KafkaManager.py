@@ -2,13 +2,10 @@ from kafka import KafkaProducer,KafkaConsumer
 from kafka.errors import *
 import threading
 from configparser import ConfigParser
-import queue
 import os
-import typing
 import win32com.client
 import ctypes
-import inspect
-import pywintypes
+
 import re
 
 def _async_raise(tid, exctype):
@@ -110,7 +107,9 @@ class KafkaManager(object):
                 for message in self.__consumer:
                     if self.b_started:
                         if not func(message.value):
-                            print('转移完成2')
+                            self.__consumer.close()
+                            self.b_started = False
+                            print('接收完成')
                             return
                     else:
                         break
@@ -169,7 +168,7 @@ class KafkaManager(object):
         #self.__consumer.offsets_for_times()
 
     def close(self):
-        self.__recverror()
+        #self.__recverror()
         if self.__producer is not None:
             self.__producer.close()
         if self.__consumer is not None:
@@ -240,7 +239,8 @@ class MsMqManageer(object):
                     func(msg.Body.tobytes())
                 else:
                     func(msg.Body)
-            except:
+            except Exception as e:
+                print(e)
                 print("recv error")
         print('thread end')
         pass
@@ -298,75 +298,111 @@ class MsMqManageer(object):
             self.__producer.Close()
         pass
 
-def call(b):
-    print(b)
-if __name__ == "__main__":
-    from pykafka import KafkaClient
-    pass
-    from kafka.structs import TopicPartition,OffsetRequestPayload,OffsetCommitRequestPayload,ListOffsetRequestPayload,OffsetFetchRequestPayload,OffsetAndMetadata,MetadataRequest,ConsumerMetadataRequest
-    from kafka.client import SimpleClient,KafkaClient
-    from kafka.protocol import create_message
-    from kafka.protocol.offset import OffsetRequest_v0,OffsetResponse_v0
-    from kafka.protocol.commit import *
-    from kafka import SimpleConsumer
-    from kafka.coordinator.protocol import *
-    from kafka.coordinator.consumer import *
-    from kafka.common import *
-    from kafka.protocol.legacy import KafkaProtocol
-    import kafka.protocol.api
-    #
-    # #producer = KafkaProducer(bootstrap_servers = '192.168.18.134:9092')
-    # i=0
-    # # while i<10:
-    # #     producer.send(topic='0.0.0.0.kfk',value='hello'.encode('gbk'),partition=0)
-    # #     i+=1
-    consumer = KafkaConsumer('__consumer_offsets',group_id ='test' ,bootstrap_servers = '192.168.18.134:9092')
-    for message in consumer:
-        print(message.value)
-        res = GroupCoordinatorResponse_v1.decode(message.value)
-        res = KafkaProtocol.decode_offset_response(OffsetResponse_v0.decode(message.value))
-    #
-    #client = SimpleClient(hosts='10.1.63.126:9092,10.1.63.127:9092,10.1.63.128:9092')
-    res = None
-    #
-    client = KafkaClient(bootstrap_servers='10.1.63.126:9092,10.1.63.127:9092,10.1.63.128:9092')
-    #consumer = SimpleConsumer(client=client,group='test',topic='0.0.0.0.kfk')
-    client.send(1,OffsetRequest_v0(replica_id=-1, topics=[('10.1.120.111.dispatchcentersave', [(0, -1, 1)])]))
-    res = client.poll()
-    client.send(1,OffsetFetchRequest_v1(consumer_group = '1.1.1.1.adispatchstatisticsmonitor',topics = [('1.1.1.1.adispatchstatisticsmonitor',[0])]))
-    res = client.poll()
 
-    client = SimpleClient(hosts='10.1.63.126:9092,10.1.63.127:9092,10.1.63.128:9092')
-    while 1:
-        res = client.send_metadata_request(MetadataRequest('0.0.0.0.kfk'))
-        res = client.send_consumer_metadata_request(ConsumerMetadataRequest(['test']))
-        res = client.send_offset_request(payloads=(OffsetRequestPayload('0.0.0.0.kfk',0,1000,99999999),))
-        res = client.send_list_offset_request(payloads=(ListOffsetRequestPayload('0.0.0.0.kfk',0,1000),))
-        res = client.send_offset_fetch_request_kafka((b'kafka-python',1,'test'),[OffsetFetchRequestPayload('0.0.0.0.kfk',0)])
-    #
-    #
-    # from kafka import KafkaConsumer
-    # #consumer = KafkaConsumer('0.0.0.0.kfk',group_id ='test' ,bootstrap_servers = '192.168.18.134:9092')
-    # # for message in consumer:
-    # #     print(message.value)
-    # consumer = KafkaConsumer('0.0.0.0.kfk',group_id='test', bootstrap_servers='192.168.18.134:9092')
-    # #consumer.assign([TopicPartition('0.0.0.0.kfk',0),])
-    # partitions = consumer.partitions_for_topic('0.0.0.0.kfk')
-    # #print(consumer.assignment())
-    # print(consumer.beginning_offsets([TopicPartition('0.0.0.0.kfk',0),]))#起始偏移量
-    # print(consumer.end_offsets([TopicPartition('0.0.0.0.kfk', 0), ]))#终止偏移量
-    # print(consumer.committed(TopicPartition('0.0.0.0.kfk', 0)))
-    # consumer.seek_to_beginning(TopicPartition('0.0.0.0.kfk',0))
-    # consumer.seek(TopicPartition('0.0.0.0.kfk',0),0)
-    # print(consumer.position(TopicPartition('0.0.0.0.kfk',0)))
-    # consumer.close()
-    # consumer = KafkaConsumer('0.0.0.0.kfk',group_id='test', bootstrap_servers='192.168.18.134:9092')
-    #
-    # for message in consumer:
-    #     print(i,message.value)
-    #     i+=1
-    #
-    # #all_consumed[partition] = OffsetAndMetadata(state.position, '')
-    # #consumer.commit({TopicPartition('0.0.0.0.kfk',0):OffsetAndMetadata(0,'')})
-    # consumer.close()
+RECVFUNC = ctypes.CFUNCTYPE(None,ctypes.c_void_p,ctypes.c_int64)
+
+class MsMqManageerDLL(object):
+    def __init__(self):
+        try:
+            self._dll = ctypes.cdll.LoadLibrary('./dll/MSMQMoudle.dll')
+        except Exception as e:
+            print(e)
+        self.b_started = False
+
+    def create_producer(self,topic:str):
+        try:
+            ret = self._dll.API_CreateSender(topic.encode('gbk'))
+            if ret != 1:
+                print('create msmq sender failed,mq_name:',topic)
+        except Exception as e:
+            print(e)
+
+    def settopic_producer(self):
+        pass
+
+    def send(self,data):
+        if isinstance(data,bytes):
+            self._dll.API_Send(data,len(data))
+        elif isinstance(data,str):
+            data = data.encode('gbk')
+            self._dll.API_Send(data, len(data))
+        else:
+            raise Exception('wrong type',type(data))
+
+
+    def create_consumer(self,topic:str,groupid:str = None):
+        try:
+            ret = self._dll.API_CreateReceiver(topic.encode('gbk'))
+            if ret != 1:
+                print('create msmq receiver failed,mq_name:',topic)
+        except Exception as e:
+            print(e)
+
+    def _recv(self,msg,size):
+        msg = ctypes.string_at(msg,size)
+        return self._recvFunc(msg)
+
+
+    def startiocp_recv(self,func):
+        #self._recv_num = num
+        if not self.b_started:
+            self.b_started = True
+            self._thread = threading.Thread(target=self.__startrecv,args=(func,))
+            self._thread.start()
+
+    def __startrecv(self,func):
+        buf = ctypes.create_string_buffer(1024 * 1024 * 2)
+        size = ctypes.c_int64(ctypes.sizeof(buf))
+        while self.b_started:
+            try:
+                ret = self._dll.API_RecvOne(ctypes.pointer(buf), ctypes.byref(size))
+                if ret:
+                    ret = func(buf.raw[:size.value])
+                    if not ret:
+                        self._dll.API_CloseReceiver()
+                        break
+                else:
+                    print('time out')
+            except Exception as e:
+                print(e)
+
+        print('__startrecv return')
+
+
+        # self._recvFunc = func
+        # self.recv = RECVFUNC(self._recv)
+        # try:
+        #     ret = self._dll.API_StartReceive(self.recv)
+        #     if ret!=1:
+        #         print('start recv failed')
+        # except Exception as e:
+        #     print(e)
+
+    def recvOne(self,func):
+        try:
+            buf = ctypes.create_string_buffer(1024*1024*2)
+            size = ctypes.c_int64(ctypes.sizeof(buf))
+            ret = self._dll.API_RecvOne(ctypes.pointer(buf), ctypes.byref(size))
+            if ret:
+                func(buf.raw[:size.value])
+                return
+            #raise Exception('msmq recv one error')
+        except Exception as e:
+            print(e)
+
+    def close(self):
+
+        self._dll.API_CloseSender()
+        self._dll.API_CloseReceiver()
+        pass
+
+    def stopRecv(self):
+        self.b_started = False
+        self._thread.join()
+        self._thread = None
+
+
+
+if __name__ == "__main__":
+    pass
 

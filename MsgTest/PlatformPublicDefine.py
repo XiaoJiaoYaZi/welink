@@ -279,7 +279,7 @@ class SCloudMessage(object):
         self.msgheader._offset = len(self.msgheader)+len(self.FixHead)+len(self.FixTail)
     #
         if OldMessage is not None:
-            self.FixHead.Priority            = OldMessage._head.Priority
+            self.FixHead.Priority            = int.from_bytes(OldMessage._head.Priority,'little')
             self.FixHead.MsgId               = OldMessage._head.MsgId
             self.FixHead.ProductExtendId     = OldMessage._head.ProductExtendId
             self.FixHead.RealProductExtendId = OldMessage._head.RealProductExtendId
@@ -296,8 +296,8 @@ class SCloudMessage(object):
             self.FixHead.MsgContentLen       = OldMessage._head.MsgContentLen
             self.FixHead.MobilesCount        = OldMessage._head.MobilesCount
             self.FixHead.DispatchTimes       = OldMessage._head.DispatchTimes
-            self.FixHead.Telcom              = OldMessage._head.Telcom
-            self.FixHead.ProvinceId          = OldMessage._head.ProvinceId
+            self.FixHead.Telcom              = int.from_bytes(OldMessage._head.Telcom,'little')
+            self.FixHead.ProvinceId          = int.from_bytes(OldMessage._head.ProvinceId,'little')
             self.FixHead.CityId              = OldMessage._head.CityId
             self.FixHead.TPCBChecked         = OldMessage._head.TPCBChecked
             self.FixHead.SendedTimes         = OldMessage._head.SendedTimes
@@ -329,17 +329,18 @@ class SCloudMessage(object):
             self.mms_title      = OldMessage._head.Title
             self.mms_filename   = OldMessage._head.MmsSaveFileName
             self.usr_def_id     = OldMessage._tail.userDefineId
+            self.write_header()
         if frombyte is not None:
             self.fromBytes(frombyte)
 
     def _getsign(self,msg:str):
         if msg.count('【')>1 or msg.count('】') > 1:#有两个【】(例如【123【123】123】)认为没有签名
-            return  msg
-        left = msg.index('【')
-        right = msg.index('】')
+            return  ''
+        left = msg.find('【')
+        right = msg.find('】')
         if left >=0 and right>=0 and left<right:
             return msg[left : right+1]
-        return msg
+        return ''
 
     def __le__(self, other):
         return self.FixHead <= other.FixHead
@@ -1572,7 +1573,6 @@ class SOldDispatchFixedHead(Structure):
     #     cast(pointer(cstring),pointer(self)).contents
     #     #self = UnPack(SOldDispatchFixedHead,b)
 
-
 class SOldDispatchFixedTail(Structure):
     _fields_ = [
         ('pagetotal',c_ubyte),
@@ -1672,7 +1672,8 @@ class SOldCloudMessage():
             self._tail.userDefineId         = SNewCloudMsg.usr_def_id
             #self._tail.extend               = SNewCloudMsg.
             if self._head.MsgType == 1:
-                self._message = SNewCloudMsg.message.encode('gbk','replace')
+                self._message = SNewCloudMsg.message.encode('gbk','replace')\
+                                +SNewCloudMsg.sign.encode('gbk','replace')
             else:
                 self._message = SNewCloudMsg.message
             self._mobiles = SNewCloudMsg.mobiles.encode('gbk')
@@ -1692,12 +1693,15 @@ class SOldCloudMessage():
 
     def fromBytes(self,b):
         b = bytearray(b)
-        headLen = sizeof(SOldDispatchFixedHead)
-        tailLen = sizeof(SOldDispatchFixedTail)
-        self._head = UnPack(SOldDispatchFixedHead,bytes(b[ : headLen]))
-        self._mobiles = bytes(b[headLen : headLen+self._head.MobilesContentLen])
-        self._message = bytes(b[headLen+self._head.MobilesContentLen : headLen+self._head.MobilesContentLen+self._head.MsgContentLen])
-        self._tail = UnPack(SOldDispatchFixedTail,bytes(b[0-tailLen:]))
+        try:
+            headLen = sizeof(SOldDispatchFixedHead)
+            tailLen = sizeof(SOldDispatchFixedTail)
+            self._head = UnPack(SOldDispatchFixedHead,bytes(b[ : headLen]))
+            self._mobiles = bytes(b[headLen : headLen+self._head.MobilesContentLen])
+            self._message = bytes(b[headLen+self._head.MobilesContentLen : headLen+self._head.MobilesContentLen+self._head.MsgContentLen])
+            self._tail = UnPack(SOldDispatchFixedTail,bytes(b[0-tailLen:]))
+        except Exception as e:
+            print(e)
 
     @property
     def mobiles(self):
@@ -1721,11 +1725,13 @@ class SOldCloudMessage():
 
 def Old2New(oldbyte):
     try:
-        oldmsg = SOldCloudMessage(frombyte=oldbyte)
+        print(type(oldbyte),oldbyte)
+        oldmsg = SOldCloudMessage(frombyte=bytes(oldbyte))
         newmsg = SCloudMessage(OldMessage=oldmsg)
         return newmsg.Value()
     except Exception as e:
-        print(e)
+        print(e,'转换失败')
+        return oldbyte
 
 def New2Old(newbyte):
     try:
@@ -1733,30 +1739,33 @@ def New2Old(newbyte):
         oldmsg = SOldCloudMessage(SNewCloudMsg=newmsg)
         return oldmsg.Value()
     except Exception as e:
-        print(e)
+        print(e,'转换失败')
+        return newbyte
 
 
 
 if __name__ == '__main__':
 
-    newmsg = SCloudMessage()
-    newmsg.FixHead.CommitIp = 67305985
-    newmsg.FixHead.MsgType = 1
-
-    newmsg.message = 'hello【微网通联】'
-    newmsg.mobiles = '13000000000,13000000001'
-    newmsg.FixHead.MsgContentLen = len(newmsg.message)
-    newmsg.FixHead.MobilesContentLen = len(newmsg.mobiles)
-    newmsg.usr_def_id = 'anbaili'
-    newmsg.acc_msgid = '123456'
-    newmsg.extnumer = '1069'
-    newmsg.acc_name = 'lqd'
-    newmsg.mms_title = 'world'
-    newmsg.mms_filename = 'c"\\'
-    oldmsg = SOldCloudMessage(newmsg)
-    value = oldmsg.Value()
-
-    newmsg1 = SCloudMessage(oldmsg)
+    new = Old2New(b'\x02\xe8\x04\x00\x00\x00\x00\x00\x00{\x00\x00\x00\x0c\x00\x00\x00\x00\x00\x00\x00 L\xdd@ffff&L\xdd@\x00\x00\x00\x00\x00L\xdd@\x00\x00\x00\x00@L\xdd@\x03\x00\x00\x00\x01\x01\x00\x00\x00\x00\x00L\xdd@\x02\x00\xfc\x00\x00\x00\x10\x00\x00\x00\x15\x00\x00\x00{\x00\x00\x00\x01\x17{\x00\x01\x00\x00\x0010.1.55.114\x00\x00\x00\x00\x00samozihu\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00testinfo\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00123456\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00ZSGabcdefghijklmn\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0013000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,1300000000012345|6789|adsfg\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')
+    old = New2Old(new)
+    # newmsg = SCloudMessage()
+    # newmsg.FixHead.CommitIp = 67305985
+    # newmsg.FixHead.MsgType = 1
+    #
+    # newmsg.message = 'hello【微网通联】'
+    # newmsg.mobiles = '13000000000,13000000001'
+    # newmsg.FixHead.MsgContentLen = len(newmsg.message)
+    # newmsg.FixHead.MobilesContentLen = len(newmsg.mobiles)
+    # newmsg.usr_def_id = 'anbaili'
+    # newmsg.acc_msgid = '123456'
+    # newmsg.extnumer = '1069'
+    # newmsg.acc_name = 'lqd'
+    # newmsg.mms_title = 'world'
+    # newmsg.mms_filename = 'c"\\'
+    # oldmsg = SOldCloudMessage(newmsg)
+    # value = oldmsg.Value()
+    #
+    # newmsg1 = SCloudMessage(oldmsg)
 
 
 

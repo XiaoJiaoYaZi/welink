@@ -6,26 +6,35 @@ from CloudMsg import CloudMsg,MsgSendData,MsgHisRepData,MOData,RepNotifyData,Mon
 import time
 import os
 import threading
-from KafkaManager import KafkaManager,MsMqManageer
+from KafkaManager import KafkaManager,MsMqManageerDLL
 from configparser import ConfigParser
 from KafkaTool import KafkaTool
 from SQL import SQLView
 from PlatformPublicDefine import Old2New,New2Old
 
+
 _num_recv = 0
 _num_send = 0
 
 
-
 def SendFunc(func):
-    def transmsg(msg,old):
-        if old:
-            msg = Old2New(msg)
-            return func(msg)
-        else:
-            msg = New2Old(msg)
-            return func(msg)
+    def transmsg(cls,msg, old, needtran):
+        if needtran:
+            #print(type(msg))
+            #print(msg)
+            #print(old, needtran)
+            if old:
+                msg = Old2New(msg)
+            else:
+                msg = New2Old(msg)
+        #print((cls,msg, old, needtran))
+        return func(cls,msg, old, needtran)
+
     return transmsg
+def MsgFunc(func):
+    def transmsg(cls,msg,size,usekafka):
+        if not usekafka:
+            msg = None
 
 
 class Senders(object):
@@ -50,8 +59,8 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self.setupUi(self)
         self._kafka = KafkaManager()
         self._kafka_trans = KafkaManager()
-        self._msmq = MsMqManageer()
-        self._msmq_trans = MsMqManageer()
+        self._msmq = MsMqManageerDLL()
+        self._msmq_trans = MsMqManageerDLL()
         self._init()
         self.initUI()
 
@@ -61,6 +70,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self.b_start = False
         self._brecv1 = True
         self._isold = True
+        self.b_needtran = False
         try:
             self._config = ConfigParser()
             self._config.read(os.getcwd()+'/config/config.ini',encoding='gbk')
@@ -118,6 +128,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
             self.stackedWidget.insertWidget(i,self._sendData[i])
 
         self.stackedWidget.setCurrentIndex(0)
+        self.lineEdit_trans_num.setText(str(self.num_trans))
         self.comboBox_unicode.setEnabled(False)
         self.lineEdit_topic_trans.setEnabled(False)
         self.lineEdit_trans_num.setEnabled(False)
@@ -134,6 +145,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self.lineEdit_group.setText(self._config['MsgTest']['groupid'])
         self.lineEdit_topic_trans.setText(self._config['MsgTest']['topic_trans'])
         self.checkBox.setChecked(bool(int(self._config['MsgTest']['kafka'])))
+        self._usekafka = bool(int(self._config['MsgTest']['kafka']))
         #self.lineEdit_topick_send.textChanged()
         #self.checkBox.stateChanged()
         self.signal_recv.connect(self.analyze,QtCore.Qt.QueuedConnection)
@@ -151,6 +163,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
 
     def on_checkBox_stateChanged(self,a0):
         self._config['MsgTest']['kafka'] = str(int(bool(a0)))
+        self._usekafka = bool(a0)
 
     def on_checkBox_search_stateChanged(self,a0):
         self.lineEdit_topic_trans.setEnabled(a0)
@@ -162,7 +175,9 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self._isold = bool(index)
 
     def on_checkBox_transmain_stateChanged(self,a0):
+        print(a0)
         self.comboBox_unicode.setEnabled(a0)
+        self.b_needtran = bool(a0)
 
     def on_lineEdit_trans_num_textChanged(self,a0):
         try:
@@ -272,6 +287,9 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
 
     def on_pushButton_startrecv_pressed(self):
         self.checkBox.setEnabled(False)
+        self.num_trans = 0xffffffff
+        if self.checkBox_search.isChecked():
+            self.num_trans = int(self.lineEdit_trans_num.text())
         if not self.checkBox_trans_kafk.isChecked() and self.checkBox_search.isChecked():
             try:
                 self._msmq_trans.create_producer(self.lineEdit_topic_trans.text())
@@ -285,11 +303,13 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
                 self._msmq.startiocp_recv(self.recv_func)
             except Exception as e:
                 print(e)
+                return
             pass
         else:
             self._kafka.create_consumer(self._config['MsgTest']['topic_consumer'],
                                     self._config['MsgTest']['groupid'])
             self._kafka.startiocp_recv(self.recv_func)
+
         self.pushButton_stoprecv.setEnabled(True)
         self.pushButton_startrecv.setEnabled(False)
         pass
@@ -307,32 +327,54 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
 
     def on_pushButton_stoprecv_2_pressed(self):
         if self._brecv1:
-            #print('recv one')
+            self._brecv1 = False
+            self.num_trans = 1
             if (not self.checkBox_trans_kafk.isChecked()) and self.checkBox_search.isChecked():
                 try:
-                    self._msmq_trans.create_producer(self.lineEdit_topic_trans.text())
+                    ret = self._msmq_trans.create_producer(self.lineEdit_topic_trans.text())
+                    if not ret:
+                        self._brecv1 = True
+                        return
                 except Exception as e:
                     print(e)
                     return
-            try:
-                if int(self._config['MsgTest']['kafka']) == 0:
+            if int(self._config['MsgTest']['kafka']) == 0:
+                try:
                     self._msmq.create_consumer(self._config['MsgTest']['msmqpath_consumer'])
-                    self._msmq.recvOne(self.recv_func)
-                else:
-                    self._kafka.create_consumer(self._config['MsgTest']['topic_consumer'],
-                                                self._config['MsgTest']['groupid'])
-                    self._kafka.recvOne(self.recv_func)
-                self._brecv1 = False
-                self.pushButton_stoprecv_2.setEnabled(False)
-            except Exception as e:
-                print(e)
+                    self._msmq.startiocp_recv(self.recv_func)
+                except Exception as e:
+                    print(e)
+                    return
+                pass
+            else:
+                self._kafka.create_consumer(self._config['MsgTest']['topic_consumer'],
+                                            self._config['MsgTest']['groupid'])
+                self._kafka.startiocp_recv(self.recv_func)
+            # try:
+            #     if int(self._config['MsgTest']['kafka']) == 0:
+            #         self._msmq.create_consumer(self._config['MsgTest']['msmqpath_consumer'])
+            #         self._msmq.recvOne(self.recv_func)
+            #     else:
+            #         self._kafka.create_consumer(self._config['MsgTest']['topic_consumer'],
+            #                                     self._config['MsgTest']['groupid'])
+            #         self._kafka.recvOne(self.recv_func)
+            #     # self._brecv1 = False
+            #     # self.pushButton_stoprecv_2.setEnabled(False)
+            # except Exception as e:
+            #     print(e)
+
 
     @SendFunc
-    def send(self,msg,old):
+    def send(self,msg,old,needtran):
+        #print('send',self,msg,old,needtran)
         if self.checkBox_trans_kafk.isChecked():
             self._kafka_trans.send(msg)
         else:
             self._msmq_trans.send(msg)
+
+    # @classmethod
+    # def TransSend(cls,func):
+    #     def
 
 
     def recv_func(self,kafka_message):
@@ -341,13 +383,22 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self.num_recv += 1
         self.pushButton_stoprecv_2.setEnabled(True)
         global _num_time
-        if self.checkBox_search.isChecked():
-            if self.num_recv < self.num_trans:
-                self.send(kafka_message,self._isold)
-            else:
-                self.send(kafka_message, self._isold)
-                print('转移完成1')
-                return False
+
+        if self.num_recv < self.num_trans:
+            if self.checkBox_search.isChecked():
+                self.send(kafka_message, self._isold, self.b_needtran)
+        else:
+            if self.checkBox_search.isChecked():
+                self.send(kafka_message, self._isold, self.b_needtran)
+            return False
+
+        # if self.checkBox_search.isChecked():
+        #     if self.num_recv < self.num_trans:
+        #         self.send(kafka_message,self._isold,self.b_needtran)
+        #     else:
+        #         self.send(kafka_message, self._isold,self.b_needtran)
+        #         print('转移完成1')
+        #         return False
                 #self.on_pushButton_stoprecv_pressed()
             # if self._sendData[self.comboBox_msgtype.currentIndex()].getnext(kafka_message):
             #     print('find !')

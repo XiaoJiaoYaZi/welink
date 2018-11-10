@@ -100,7 +100,12 @@ def callFunc(a,b):
     print('callbakcfunc',a,b)
     return a-b
 
+
+
+
+
 if __name__ == '__main__':
+
     from ctypes import *
     dll = cdll.LoadLibrary('D:\\users\\welink\\documents\\visual studio 2015\\Projects\\Testkafka\\x64\\Debug/DLL1.dll')#func1
     #dll = CDLL('DLL1.dll')#func2
