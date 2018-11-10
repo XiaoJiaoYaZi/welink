@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="97d99c38-423d-44ce-b6ab-12e096a3c4b1" name="Default" comment="old2new new2old ok">
-      <change afterPath="$PROJECT_DIR$/dll/MSMQMoudle.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/untitled.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/untitled.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KafkaManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/KafkaManager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainWindow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MsgSubmit.py" beforeDir="false" afterPath="$PROJECT_DIR$/MsgSubmit.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlatformPublicDefine.py" beforeDir="false" afterPath="$PROJECT_DIR$/PlatformPublicDefine.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/testMSMQ.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/testMSMQ.py" afterDir="false" />
-    </list>
+    <list default="true" id="97d99c38-423d-44ce-b6ab-12e096a3c4b1" name="Default" comment="1、MSMQ C++ DLL&#10;2、recv thread has timeout , now do not use recvone" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +121,7 @@
           <entry key="pyx" value="666" />
           <entry key="spec" value="37" />
           <entry key="sql" value="11" />
-          <entry key="txt" value="219" />
+          <entry key="txt" value="297" />
           <entry key="xml" value="138" />
         </counts>
       </usages-collector>
@@ -142,7 +131,7 @@
           <entry key="Cython" value="736" />
           <entry key="HTML" value="1330" />
           <entry key="Ini" value="491" />
-          <entry key="PLAIN_TEXT" value="261" />
+          <entry key="PLAIN_TEXT" value="339" />
           <entry key="Python" value="53240" />
           <entry key="SQL" value="11" />
           <entry key="Scratch" value="2" />
@@ -264,8 +253,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MainWindow.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="627">
-              <caret line="327" column="47" selection-start-line="327" selection-start-column="47" selection-end-line="327" selection-end-column="47" />
+            <state relative-caret-position="-648">
+              <caret line="267" column="16" lean-forward="true" selection-start-line="267" selection-start-column="16" selection-end-line="267" selection-end-column="16" />
               <folding>
                 <element signature="e#0#34#0" expanded="true" />
                 <element signature="e#10612#10921#0" />
@@ -744,7 +733,14 @@
       <option name="project" value="LOCAL" />
       <updated>1541673837726</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="1、MSMQ C++ DLL&#10;2、recv thread has timeout , now do not use recvone">
+      <created>1541815174682</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1541815174682</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -775,7 +771,7 @@
       <window_info id="Favorites" order="1" sideWeight="0.5068493" side_tool="true" weight="0.18364611" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.22885032" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.6536458" visible="true" weight="0.16430596" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.6536458" visible="true" weight="0.28186968" />
       <window_info anchor="bottom" x="1264" y="319" width="2214" height="636" id="Debug" order="3" weight="0.2719547" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -817,7 +813,8 @@
     <MESSAGE value="ResStatus" />
     <MESSAGE value="kafkatool ok" />
     <MESSAGE value="old2new new2old ok" />
-    <option name="LAST_COMMIT_MESSAGE" value="old2new new2old ok" />
+    <MESSAGE value="1、MSMQ C++ DLL&#10;2、recv thread has timeout , now do not use recvone" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、MSMQ C++ DLL&#10;2、recv thread has timeout , now do not use recvone" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1751,8 +1748,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MainWindow.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="327" column="47" selection-start-line="327" selection-start-column="47" selection-end-line="327" selection-end-column="47" />
+        <state relative-caret-position="-648">
+          <caret line="267" column="16" lean-forward="true" selection-start-line="267" selection-start-column="16" selection-end-line="267" selection-end-column="16" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
             <element signature="e#10612#10921#0" />
