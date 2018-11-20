@@ -104,6 +104,8 @@ def callFunc(a,b):
 
 
 
+
+
 if __name__ == '__main__':
 
     from ctypes import *
@@ -115,7 +117,9 @@ if __name__ == '__main__':
 
     type_p_int = POINTER(c_int)
     temp = type_p_int(c_int(0))
-    print(dll.fnDLL2(1,c_float(2.0),c_double(3.0),'hell0'.encode('gbk'),temp))
+    temp1 = c_int(0)
+    print(dll.fnDLL2(1,c_float(2.0),c_double(3.0),'hell0'.encode('gbk'),byref(temp1)))
+    print('byref',temp1.value)
     print('int *',temp,temp[0],temp.contents)
 
     dll.fnDLL3.restype = c_char_p
@@ -175,6 +179,12 @@ if __name__ == '__main__':
     dll.fnDLL10.restype = c_wchar_p
     res = dll.fnDLL10(byref(wbuf),32)
     print("wchar--",res)
+
+    # def callback(buf,size):
+    #     string = string_at(buf,size.value)
+    #
+    # CALLBACKFUNC = CFUNCTYPE(None,c_void_p,c_int)
+    # call = CALLBACKFUNC(callback)
 
 
 

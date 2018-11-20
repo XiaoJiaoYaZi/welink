@@ -31,7 +31,8 @@ class SQLManager(object):
         try:
             self.cur.execute(sql)
             self.conn.commit()
-        except:
+        except Exception as e:
+            print(e)
             print('error ExecNoQuery')
             self.conn.rollback()
             self.conn.close()
@@ -147,10 +148,33 @@ def execute(sql,args):
 
 
 
-if __name__ == '__main__':
-    u = User(id=12345, name='Michael', email='test@orm.org', password='my-pwd')
-    u.save()
+from DBUtils.PooledDB import PooledDB
 
+def DBPool():
+    pool = PooledDB(pymssql,5,server='10.1.120.87:1435',user='sa',password='admin123!@#',database='BMSPlatform')
+    conn = pool.connection()
+    cur = conn.cursor()
+    cur.execute('SELECT TOP 501 t.* FROM BmsPlatform.dbo.T_Product t'.encode('utf-8'))
+    resList = cur.fetchall()
+    print(resList)
+
+
+if __name__ == '__main__':
+    # DBPool()
+    # u = User(id=12345, name='Michael', email='test@orm.org', password='my-pwd')
+    # u.save()
+    db = SQLManager('10.1.120.87:1433','sa','admin123!@#','MsgPlatform')
+    mobiles = ''
+    for i in range(100000):
+        mobiles += str(13200000000+i)+','
+    #mobiles
+    mobiles = mobiles[:-1]
+    sql = "UPDATE Mas_UnsendCommitMsgInfo  SET MobilePhoneSet = '%s' WHERE MsgID = 1807311005360191746" % (mobiles,)
+
+    db.ExecNoQuery(sql.encode('utf-8'))
+
+    # result = db.ExecQuery('select MobilePhoneSet from Mas_CommitMsgInfo where MsgID = 1811162127520077137'.encode('utf-8'))
+    # print(len(result[0][0].split(',')))
 
 
 

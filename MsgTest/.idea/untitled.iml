@@ -8,6 +8,7 @@
     <orderEntry type="module" module-name="12306" />
     <orderEntry type="module" module-name="sayhello" />
     <orderEntry type="module" module-name="flaskecharts" />
+    <orderEntry type="module" module-name="sayhello" />
   </component>
   <component name="TestRunnerService">
     <option name="projectConfiguration" value="pytest" />

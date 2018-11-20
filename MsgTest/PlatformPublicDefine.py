@@ -320,11 +320,30 @@ class SCloudMessage(object):
             self.FixTail.extComponentParam      = OldMessage._tail.extComponentParam
             self.FixTail.m_old_struct           = 1
             #
+
+            # ECMI_MOBILE = 0,
+            # ECMI_ACC_NAME = 1,
+            # ECMI_CONTENT = 2,
+            # ECMI_TEMPLATE_ID = 3,
+            # ECMI_MSG_TEMPLATE = 4,
+            # ECMI_PARAM_TEMPLATE = 5,
+            # ECMI_EXT_NUMBER = 6,
+            # ECMI_SIGN = 7,
+            # ECMI_ACC_MSGID = 8,
+            # ECMI_MMS_TITLE = 9,
+            # ECMI_MMS_FILENAME = 10,
+            # ECMI_USER_DEF_ID = 11,
+            # ECMI_ITEM_COUNT = 12
+            msgandsign = self._getsign(OldMessage.message)
             self.mobiles        = OldMessage.mobiles
             self.acc_name       = OldMessage._head.AccountId
-            self.message        = OldMessage.message
+            self.message        = self._getmessage(msgandsign[0])
+            self.templateID     = ''
+            self.msgtemplate    =''
+            self.paramtemplate  = ''
             self.extnumer       = OldMessage._head.ExtendNumber
-            self.sign           = self._getsign(OldMessage.message)
+            #self.message = OldMessage.message
+            self.sign           = msgandsign[1]
             self.acc_msgid      = OldMessage._tail.clientMsgId
             self.mms_title      = OldMessage._head.Title
             self.mms_filename   = OldMessage._head.MmsSaveFileName
@@ -333,14 +352,45 @@ class SCloudMessage(object):
         if frombyte is not None:
             self.fromBytes(frombyte)
 
+    def hassplit(self,msg:str):
+        if '0' < msg[:1] <= '9' and \
+                msg[1:2] == '/' and \
+                '0' < msg[2:3] <= '9' and \
+                msg[3:4] == ')':
+            return True
+        return False
+
+    def _getmessage(self,msg:str):
+        temp = msg.split('|')
+        result = ''
+        for i in temp:
+            if self.hassplit(i):
+                result = result + i[4:]
+            else:
+                result = result + i
+        return result
+
     def _getsign(self,msg:str):
-        if msg.count('【')>1 or msg.count('】') > 1:#有两个【】(例如【123【123】123】)认为没有签名
-            return  ''
-        left = msg.find('【')
-        right = msg.find('】')
-        if left >=0 and right>=0 and left<right:
-            return msg[left : right+1]
-        return ''
+        if msg[-1:] == '】':
+            left = msg.rfind('【')
+            if left>=0:
+                return msg[:left] ,msg[left:]
+        elif msg[:1] == '【':
+                leftright = msg.find('】')
+                if leftright >=0:
+                    return msg[leftright+1:],msg[:leftright+1]
+        else:
+            return msg,''
+
+        #
+        # if msg.count('【')>1 or msg.count('】') > 1:#有两个【】(例如【123【123】123】)认为没有签名
+        #     msg.rfind('】')
+        #     return  ''
+        # left = msg.find('【')
+        # right = msg.find('】')
+        # if left >=0 and right>=0 and left<right:
+        #     return msg[left : right+1]
+        # return ''
 
     def __le__(self, other):
         return self.FixHead <= other.FixHead
@@ -425,13 +475,13 @@ class SCloudMessage(object):
     def write_getsize(self,index:int,text):
         if index ==0:
             if isinstance(text,str):
-                self._mobiles = text.encode('utf-8')+b'\x00'
+                self._mobiles = text.encode('gbk')+b'\x00'
             else:
                 raise TypeError(text)
             return len(self._mobiles)
         elif index == 1:
             if isinstance(text,str):
-                self._acc_name = text.encode('utf-8')+b'\x00'
+                self._acc_name = text.encode('gbk')+b'\x00'
             else:
                 raise TypeError(text)
             return len(self._acc_name)
@@ -445,7 +495,7 @@ class SCloudMessage(object):
             return len(self._message)
         elif index == 3:
             if isinstance(text,str):
-                self._templateID = bytes(text,encoding='utf-8')+b'\x00'
+                self._templateID = bytes(text,encoding='gbk')+b'\x00'
             else:
                 raise TypeError(text)
             return len(self._templateID)
@@ -463,7 +513,7 @@ class SCloudMessage(object):
             return len(self._paramtemplate)
         elif index == 6:
             if isinstance(text,str):
-                self._extnumer = text.encode('utf-8')+b'\x00'
+                self._extnumer = text.encode('gbk')+b'\x00'
             else:
                 raise TypeError(text)
             return len(self._extnumer)
@@ -475,7 +525,7 @@ class SCloudMessage(object):
             return len(self._sign)
         elif index == 8:
             if isinstance(text,str):
-                self._acc_msgid = bytes(text,encoding='utf-8')+b'\x00'
+                self._acc_msgid = bytes(text,encoding='gbk')+b'\x00'
             else:
                 raise TypeError(text)
             return len(self._acc_msgid)
@@ -487,13 +537,13 @@ class SCloudMessage(object):
             return len(self._mms_title)
         elif index == 10:
             if isinstance(text,str):
-                self._mms_filename = bytes(text,encoding='utf-8')+b'\x00'
+                self._mms_filename = bytes(text,encoding='gbk')+b'\x00'
             else:
                 raise TypeError(text)
             return len(self._mms_filename)
         elif index == 11:
             if isinstance(text,str):
-                self._usr_def_id = bytes(text,encoding='utf-8')+b'\x00'
+                self._usr_def_id = bytes(text,encoding='gbk')+b'\x00'
             else:
                 raise TypeError(text)
             return len(self._usr_def_id)
@@ -512,14 +562,14 @@ class SCloudMessage(object):
     @property
     def mobiles(self):
 
-        return self._mobiles.decode('utf-8').replace('\x00','')
+        return self._mobiles.decode('gbk').replace('\x00','')
     @mobiles.setter
     def mobiles(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_MOBILE.value[0],value)
 
     @property
     def acc_name(self):
-        return self._acc_name.decode('utf-8').replace('\x00','')
+        return self._acc_name.decode('gbk').replace('\x00','')
     @acc_name.setter
     def acc_name(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_ACC_NAME.value[0],value)
@@ -536,7 +586,7 @@ class SCloudMessage(object):
 
     @property
     def templateID(self):
-        return self._templateID.decode('utf-8').replace('\x00','')
+        return self._templateID.decode('gbk').replace('\x00','')
     @templateID.setter
     def templateID(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_TEMPLATE_ID.value[0],value)
@@ -550,14 +600,14 @@ class SCloudMessage(object):
 
     @property
     def paramtemplate(self):
-        return self._paramtemplate.decode('utf_8').replace('\x00','')
+        return self._paramtemplate.decode('gbk').replace('\x00','')
     @paramtemplate.setter
     def paramtemplate(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_PARAM_TEMPLATE.value[0],value)
 
     @property
     def extnumer(self):
-        return self._extnumer.decode('utf-8').replace('\x00','')
+        return self._extnumer.decode('gbk').replace('\x00','')
     @extnumer.setter
     def extnumer(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_EXT_NUMBER.value[0],value)
@@ -571,7 +621,7 @@ class SCloudMessage(object):
 
     @property
     def acc_msgid(self):
-        return self._acc_msgid.decode('utf-8').replace('\x00','')
+        return self._acc_msgid.decode('gbk').replace('\x00','')
     @acc_msgid.setter
     def acc_msgid(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_ACC_MSGID.value[0],value)
@@ -585,14 +635,14 @@ class SCloudMessage(object):
 
     @property
     def mms_filename(self):
-        return self._mms_filename.decode('utf-8').replace('\x00','')
+        return self._mms_filename.decode('gbk').replace('\x00','')
     @mms_filename.setter
     def mms_filename(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_MMS_FILENAME.value[0],value)
 
     @property
     def usr_def_id(self):
-        return self._usr_def_id.decode('utf-8').replace('\x00','')
+        return self._usr_def_id.decode('gbk').replace('\x00','')
     @usr_def_id.setter
     def usr_def_id(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_USER_DEF_ID.value[0],value)
@@ -693,26 +743,26 @@ class TSMsgSendData(object):
         # self.sign                   = bytes(0)
     @property
     def accountId(self):
-        return self._accountId.decode('utf-8')
+        return self._accountId.decode('gbk')
     @accountId.setter
     def accountId(self,value:str):
-        t = value.encode('utf-8')
+        t = value.encode('gbk')
         self._accountId = t+bytes(30-len(t))
 
     @property
     def SPNo(self):
-        return self._SPNo.decode('utf-8')
+        return self._SPNo.decode('gbk')
     @SPNo.setter
     def SPNo(self,value:str):
-        t = value.encode('utf-8')
+        t = value.encode('gbk')
         self._SPNo = t+bytes(24-len(t))
 
     @property
     def clientMsgId(self):
-        return self._clientMsgId.decode('utf-8')
+        return self._clientMsgId.decode('gbk')
     @clientMsgId.setter
     def clientMsgId(self,value:str):
-        t = value.encode('utf-8')
+        t = value.encode('gbk')
         self._clientMsgId = t + bytes(16-len(t))
 
 
@@ -1380,7 +1430,7 @@ class SDispatchStatistics(object):
 
     @property
     def extendMem(self):
-        return self._extendMem.decode('utf-8').replace('\x00','')
+        return self._extendMem.decode('gbk').replace('\x00','')
     @extendMem.setter
     def extendMem(self,value:str):
         t = value.encode("utf-8")
@@ -1433,7 +1483,7 @@ class SResComStatistics(object):
 
     @property
     def extendMem(self):
-        return self._extendMem.decode('utf-8').replace('\x00','')
+        return self._extendMem.decode('gbk').replace('\x00','')
     @extendMem.setter
     def extendMem(self,value:str):
         t = value.encode("utf-8")
@@ -1725,7 +1775,7 @@ class SOldCloudMessage():
 
 def Old2New(oldbyte):
     try:
-        print(type(oldbyte),oldbyte)
+        #print(type(oldbyte),oldbyte)
         oldmsg = SOldCloudMessage(frombyte=bytes(oldbyte))
         newmsg = SCloudMessage(OldMessage=oldmsg)
         return newmsg.Value()
@@ -1742,9 +1792,30 @@ def New2Old(newbyte):
         print(e,'转换失败')
         return newbyte
 
+def hassplit( msg: str):
+    if '0' < msg[:1] <= '9' and \
+            msg[1:2] == '/' and \
+            '0' < msg[2:3] <= '9' and \
+            msg[3:4]==')':
+        return True
+    return False
 
+def _getmessage(msg: str):
+    temp = msg.split('|')
+    result = ''
+    for i in temp:
+        if hassplit(i):
+            result = result+i[4:]
+        else:
+            result = result +i
+    return result
 
 if __name__ == '__main__':
+
+    text = '15)|你好骄傲i世界第|哦啊速度|2/5)|加怕是啊山|3/5)加哦i教师的阿松i大家iOS觉得io的|4/5)加哦i教师的阿松i大家iOS觉得io的|5/5)加哦i教师的阿松i大家iOS觉得io的'
+    print(text)
+    text = _getmessage(text)
+    print(text)
 
     new = Old2New(b'\x02\xe8\x04\x00\x00\x00\x00\x00\x00{\x00\x00\x00\x0c\x00\x00\x00\x00\x00\x00\x00 L\xdd@ffff&L\xdd@\x00\x00\x00\x00\x00L\xdd@\x00\x00\x00\x00@L\xdd@\x03\x00\x00\x00\x01\x01\x00\x00\x00\x00\x00L\xdd@\x02\x00\xfc\x00\x00\x00\x10\x00\x00\x00\x15\x00\x00\x00{\x00\x00\x00\x01\x17{\x00\x01\x00\x00\x0010.1.55.114\x00\x00\x00\x00\x00samozihu\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00testinfo\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00123456\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00ZSGabcdefghijklmn\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0013000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,1300000000012345|6789|adsfg\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')
     old = New2Old(new)

@@ -340,19 +340,35 @@ class MsMqManageerDLL(object):
 
     def _recv(self,msg,size):
         msg = ctypes.string_at(msg,size)
+        #print(msg)
         return self._recvFunc(msg)
 
 
-    def startiocp_recv(self,func):
+    def startiocp_recv(self,func,recvone = False):
+
+        if not recvone:
+            self._recvFunc = func
+            self.recv = RECVFUNC(self._recv)
+            self._dll.API_RecvOne.restype = ctypes.c_bool
+            try:
+                ret = self._dll.API_StartReceive(self.recv)
+                if not ret:
+                    print('start recv failed')
+            except Exception as e:
+                print(e)
+
         #self._recv_num = num
-        if not self.b_started:
-            self.b_started = True
-            self._thread = threading.Thread(target=self.__startrecv,args=(func,))
-            self._thread.start()
+        else:
+            if not self.b_started:
+                self.b_started = True
+                self._thread = threading.Thread(target=self.__startrecv,args=(func,))
+                self._thread.start()
 
     def __startrecv(self,func):
-        buf = ctypes.create_string_buffer(1024 * 1024 * 2)
+        buf = ctypes.create_string_buffer(1024 * 1024 * 3)
         size = ctypes.c_int64(ctypes.sizeof(buf))
+        self._dll.API_RecvOne.restype = ctypes.c_bool
+        ret = 0
         while self.b_started:
             try:
                 ret = self._dll.API_RecvOne(ctypes.pointer(buf), ctypes.byref(size))
@@ -365,15 +381,17 @@ class MsMqManageerDLL(object):
                     print('time out')
             except Exception as e:
                 print(e)
-
+        self.b_started = False
+        buf =None
         print('__startrecv return')
 
 
         # self._recvFunc = func
         # self.recv = RECVFUNC(self._recv)
+        # self._dll.API_RecvOne.restype = ctypes.c_bool
         # try:
         #     ret = self._dll.API_StartReceive(self.recv)
-        #     if ret!=1:
+        #     if not ret:
         #         print('start recv failed')
         # except Exception as e:
         #     print(e)
@@ -391,16 +409,16 @@ class MsMqManageerDLL(object):
             print(e)
 
     def close(self):
-
         self._dll.API_CloseSender()
         self._dll.API_CloseReceiver()
         pass
 
     def stopRecv(self):
-        self.b_started = False
-        self._thread.join()
-        self._thread = None
-
+        if self.b_started:
+            self.b_started = False
+            self._thread.join()
+            self._thread = None
+        self._dll.API_CloseReceiver()
 
 
 if __name__ == "__main__":

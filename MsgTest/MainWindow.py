@@ -48,7 +48,7 @@ class Senders(object):
         else:
             self._msmq.send(msg)
 
-
+f = open('mobiles.data','wb')
 class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
     _sendData = []
     _recvData = []
@@ -341,7 +341,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
             if int(self._config['MsgTest']['kafka']) == 0:
                 try:
                     self._msmq.create_consumer(self._config['MsgTest']['msmqpath_consumer'])
-                    self._msmq.startiocp_recv(self.recv_func)
+                    self._msmq.startiocp_recv(self.recv_func,True)
                 except Exception as e:
                     print(e)
                     return
@@ -379,11 +379,15 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
 
     def recv_func(self,kafka_message):
         #print(kafka_message)
+        f.write(kafka_message)
         self._brecv1 = True
         self.num_recv += 1
         self.pushButton_stoprecv_2.setEnabled(True)
         global _num_time
-
+        #return True
+        if self.checkBox_Play.isChecked() and not self.checkBox_search.isChecked():
+            time.sleep(0.0001)
+            self.signal_recv.emit(kafka_message)
         if self.num_recv < self.num_trans:
             if self.checkBox_search.isChecked():
                 self.send(kafka_message, self._isold, self.b_needtran)
@@ -391,6 +395,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
             if self.checkBox_search.isChecked():
                 self.send(kafka_message, self._isold, self.b_needtran)
             return False
+        return True
 
         # if self.checkBox_search.isChecked():
         #     if self.num_recv < self.num_trans:
@@ -403,10 +408,8 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
             # if self._sendData[self.comboBox_msgtype.currentIndex()].getnext(kafka_message):
             #     print('find !')
             #     pass
-        if self.checkBox_Play.isChecked() and not self.checkBox_search.isChecked():
-            time.sleep(0.0001)
-            self.signal_recv.emit(kafka_message)
-        return True
+
+
 
 
     def analyze(self,value):
@@ -435,6 +438,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self.on_pushButton_stoprecv_pressed()
         self.on_pushButton_stopsend_pressed()
         self._msmq.close()
+        self._msmq_trans.close()
         self._kafka.close()
         self._kafka_trans.close()
         event.accept()
