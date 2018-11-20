@@ -48,7 +48,6 @@ class Senders(object):
         else:
             self._msmq.send(msg)
 
-f = open('mobiles.data','wb')
 class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
     _sendData = []
     _recvData = []
@@ -379,7 +378,6 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
 
     def recv_func(self,kafka_message):
         #print(kafka_message)
-        f.write(kafka_message)
         self._brecv1 = True
         self.num_recv += 1
         self.pushButton_stoprecv_2.setEnabled(True)
