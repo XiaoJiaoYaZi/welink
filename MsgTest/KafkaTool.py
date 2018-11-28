@@ -1,5 +1,6 @@
 from PyQt5 import QtWidgets, QtCore
 from PyUI.UI_KafkaTool import Ui_KafkaTool
+from PyUI.UI_Descrip_Consumer import Ui_Descrip
 from pykafka import Cluster,handlers
 from threading import Thread,Event,Lock
 import time
@@ -23,6 +24,21 @@ Topic2Consumer = namedtuple('topic2consumer',
 TopicDescrip = namedtuple('TopicDescrip',
     ['Partition','Leader','Replicas','ISR','earlist','latist']
 )
+
+class topic2group(dict):
+    def __init__(self):
+        super().__init__()
+        pass
+
+    def add(self,topick,consumer):
+        if self.__contains__(topick):
+            self[topick].add(consumer)
+        else:
+            temp = set()
+            temp.add(consumer)
+            self[topick] = temp
+
+
 
 class Descrip4Consumer(object):
     def __init__(self,descrip_consumer:dict):
@@ -99,10 +115,8 @@ class AutoLock:
     def __init__(self):
         self._lock = Lock()
     def __enter__(self):
-        print('lock')
         self._lock.acquire()
     def __exit__(self, exc_type, exc_val, exc_tb):
-        print('unlock')
         self._lock.release()
 
 
@@ -117,7 +131,7 @@ class ClusterManager(Thread):
         self._lock_topic = AutoLock()
         self._handler = handlers.ThreadingHandler()
         self._cluster = Cluster(hosts=self._host,handler=self._handler)
-        self._topic2consumer = {}
+        self._topic2group = topic2group()
 
 
     def cancel(self):
@@ -139,10 +153,24 @@ class ClusterManager(Thread):
             self._topic_descrips = Descrip4Topic(self._cluster.topics)
 
     #待定是否实现topic到consumer的对应关系
-    # def gettopic2consumer(self):
-    #     consumers = self._cluster.get_managed_group_descriptions()
-    #     for consumer in consumers:
-    #
+    def gettopic2grou(self,topic):
+        if topic in self._topic2group:
+            return self._topic2group[topic]
+        return {}
+
+
+
+    def updatetopic2group(self):
+        group_descrips = self._cluster.get_managed_group_descriptions()
+        for group_id,descrips in group_descrips.items():
+            if group_id == b'KafkaManagerOffsetCache' or descrips[5] == {}:
+                continue
+            for member_id,groupMember in descrips[5].items():
+                topics = groupMember[3].topic_names
+                for topic in topics:
+                    self._topic2group.add(topic,group_id)
+
+
 
     def getoffsets(self,group_id):
         with self._lock_consumer:
@@ -152,7 +180,8 @@ class ClusterManager(Thread):
                     return None
                 descrips = group_descrips[group_id]
                 if descrips[5] != {}:
-                    descrip = {}
+
+                    descrip4topic = {}
                     for member_id, groupMember in descrips[5].items():
                         partitions = groupMember[4].partition_assignment[0][1]
                         topics = groupMember[3].topic_names
@@ -161,7 +190,7 @@ class ClusterManager(Thread):
                                     self._cluster.topics[topic].partitions]
                             offset = self._cluster.get_group_coordinator(group_id).fetch_consumer_group_offsets(
                                 group_id, reqs)
-
+                            descrip = {}
                             for partition in partitions:
                                 descrip[partition] = ConsumerDescrip(partition,
                                                                       offset.topics[topic][partition].offset,
@@ -170,11 +199,12 @@ class ClusterManager(Thread):
                                                                       groupMember[1],
                                                                       groupMember[2],
                                                                       groupMember[3].topic_names,
-                                                                      )
-                    print(descrip)
-                    return descrip
+                                                                        )
+                            descrip4topic[topic] = descrip
+                    return descrip4topic
                 else:
                     descrip = {}
+                    descrip4topic = {}
                     for i in range(8):
                         descrip[i] = ConsumerDescrip(i,
                                                  0,
@@ -184,17 +214,8 @@ class ClusterManager(Thread):
                                                  b'-',
                                                  [b'-'],
                                                  )
-                    return descrip
-
-
-                # topics = self._consumer_descrips.offsets[group_id][0].topic
-                # descrip = {}
-                # for topic in topics:
-                #     reqs = [PartitionOffsetFetchRequest(topic,i)for i in  self._cluster.topics[topic].partitions]
-                #     offset = self._cluster.get_group_coordinator(group_id).fetch_consumer_group_offsets(group_id,reqs)
-                #
-                #     print(offset.topics)
-
+                    descrip4topic[b''] = descrip
+                    return descrip4topic
             return None
 
     def getoffsets_topic(self,topic):
@@ -236,6 +257,8 @@ class ClusterManager(Thread):
     def _update(self):
         start = time.time()
         self._cluster.update()
+        self.updatetopic2group()
+        print('update use : {}'.format(time.time()-start))
         #self._get_group_descrips()
         #self._get_topic_descrips()
 
@@ -245,6 +268,26 @@ class ClusterManager(Thread):
             time.sleep(self._interval)
 
         print('run')
+
+
+class Table_Consumer(Ui_Descrip,QtWidgets.QTableWidget):
+    def __init__(self,topicoffsets,descrips:dict,parent = None):
+        super(Table_Consumer,self).__init__(parent=parent)
+        self.setupUi(self)
+        self.setdata(topicoffsets,descrips)
+
+    def setdata(self,topicoffsets,descrips:dict):
+        for id, descrip in descrips.items():
+            self.consumer_descrips.setItem(id, 0, QTableWidgetItem(str(id)))
+            self.consumer_descrips.setItem(id, 1, QTableWidgetItem(str(topicoffsets[id].latist)))
+            self.consumer_descrips.setItem(id, 2, QTableWidgetItem(str(descrip.LogSize)))
+            self.consumer_descrips.setItem(id, 3, QTableWidgetItem(str(topicoffsets[id].latist - descrip.LogSize)))
+            self.consumer_descrips.setItem(id, 4, QTableWidgetItem(str(descrip.group_id.decode('utf-8'))))
+            self.consumer_descrips.setItem(id, 5, QTableWidgetItem(str(descrip.member_id.decode('utf-8'))))
+            self.consumer_descrips.setItem(id, 6, QTableWidgetItem(str(descrip.client_id.decode('utf-8'))))
+            self.consumer_descrips.setItem(id, 7, QTableWidgetItem(str(descrip.client_host.decode('utf-8'))))
+
+
 
 
 
@@ -264,6 +307,8 @@ class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
         self.topic.setSortingEnabled(True)
         self.consumer.setSortingEnabled(True)
         self.stackedWidget.setEnabled(False)
+        self.tabWidget.clear()
+        #self.tabWidget.addTab(Table_Consumer(self.tabWidget),'123')
 
 
     def _createconnections(self):
@@ -274,11 +319,13 @@ class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
         self.topic.doubleClicked.connect(self.showtopic)
         self.freshconsumer.pressed.connect(self._fresh_consumer)
         self.consumer.doubleClicked.connect(self.showconsumer)
+        self.lineEdit_search_topic.textChanged.connect(self.search_topic)
+        self.lineEdit_search_consume.textChanged.connect(self.search_consume)
 
     def _connect(self):
         self._host = self.host.text()
         try:
-            self._cluster = ClusterManager(host=self._host)
+            self._cluster = ClusterManager(host=self._host,timeInterval=5)
             self._cluster.start()
             self._started = True
             self.stackedWidget.setEnabled(True)
@@ -295,6 +342,22 @@ class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
         self.unconnect.setEnabled(False)
         self.connect.setEnabled(True)
 
+    def search_topic(self,a0):
+        num = self.topic.count()
+        for i in range(num):
+            self.topic.item(i).setHidden(True)
+        items = self.topic.findItems(a0,QtCore.Qt.MatchContains)
+        for item in items:
+            item.setHidden(False)
+
+    def search_consume(self,a0):
+        num = self.consumer.count()
+        for i in range(num):
+            self.consumer.item(i).setHidden(True)
+        items = self.consumer.findItems(a0,QtCore.Qt.MatchContains)
+        for item in items:
+            item.setHidden(False)
+
     def _fresh_topic(self):
         try:
             self.topic.clear()
@@ -305,9 +368,16 @@ class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
         except Exception as e:
             print(e)
 
+    def updategrouplist(self,group_ids):
+        self.consumer.clear()
+        for group_id in group_ids:
+            self.consumer.addItem(group_id.decode('utf-8'))
+
     def showtopic(self,index):
         try:
             topic = index.data()
+            group_ids = self._cluster.gettopic2grou(topic.encode('utf-8'))
+            self.updategrouplist(group_ids)
             offsets = self._cluster.getoffsets_topic(topic.encode('utf-8'))
             total_offset = 0
             self.topic_decrips.clear()
@@ -328,34 +398,39 @@ class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
     def _fresh_consumer(self):
         try:
             consumers = self._cluster.getconsumers()
-            self.consumer.clear()
-            for consumer in consumers:
-                self.consumer.addItem(consumer.decode('utf-8'))
+            self.updategrouplist(consumers)
         except Exception as e:
             print(e)
+
+    def gettopic2group(self):
+        pass
 
     def showconsumer(self,index):
         try:
             consumer = index.data()
-            offsets = self._cluster.getoffsets(consumer.encode('utf-8'))
-            if offsets is not None:
-                topic = offsets[0].topic
-                topicoffsets = self._cluster.getoffsets_topic(topic[0])
-                print(topicoffsets)
-                self.consumer_descrips.clear()
-                self.consumer_descrips.setHorizontalHeaderLabels(['Partition','LogSize','Offset','Lag','group_id','member_id','client_id','client_host'])
-                try:
-                    for id,descrip in offsets.items():
-                        self.consumer_descrips.setItem(id, 0, QTableWidgetItem(str(id)))
-                        self.consumer_descrips.setItem(id, 1, QTableWidgetItem(str(topicoffsets[id].latist)))
-                        self.consumer_descrips.setItem(id, 2, QTableWidgetItem(str(descrip.LogSize)))
-                        self.consumer_descrips.setItem(id, 3, QTableWidgetItem(str(topicoffsets[id].latist-descrip.LogSize)))
-                        self.consumer_descrips.setItem(id, 4, QTableWidgetItem(str(descrip.group_id.decode('utf-8'))))
-                        self.consumer_descrips.setItem(id, 5, QTableWidgetItem(str(descrip.member_id.decode('utf-8'))))
-                        self.consumer_descrips.setItem(id, 6, QTableWidgetItem(str(descrip.client_id.decode('utf-8'))))
-                        self.consumer_descrips.setItem(id, 7, QTableWidgetItem(str(descrip.client_host.decode('utf-8'))))
-                except Exception as e:
-                    print(e)
+            offsets4topic = self._cluster.getoffsets(consumer.encode('utf-8'))
+            self.tabWidget.clear()
+            if offsets4topic is not None:
+                for topic,offsets in offsets4topic.items():
+                    #topic = offsets[0].topic
+                    #print(topic)
+                    topicoffsets = self._cluster.getoffsets_topic(topic)
+                    self.tabWidget.addTab(Table_Consumer(topicoffsets,offsets,self.tabWidget),topic.decode('utf-8','replace'))
+                    #print(topicoffsets)
+                    # self.consumer_descrips.clear()
+                    # self.consumer_descrips.setHorizontalHeaderLabels(['Partition','LogSize','Offset','Lag','group_id','member_id','client_id','client_host'])
+                    # try:
+                    #     for id,descrip in offsets.items():
+                    #         self.consumer_descrips.setItem(id, 0, QTableWidgetItem(str(id)))
+                    #         self.consumer_descrips.setItem(id, 1, QTableWidgetItem(str(topicoffsets[id].latist)))
+                    #         self.consumer_descrips.setItem(id, 2, QTableWidgetItem(str(descrip.LogSize)))
+                    #         self.consumer_descrips.setItem(id, 3, QTableWidgetItem(str(topicoffsets[id].latist-descrip.LogSize)))
+                    #         self.consumer_descrips.setItem(id, 4, QTableWidgetItem(str(descrip.group_id.decode('utf-8'))))
+                    #         self.consumer_descrips.setItem(id, 5, QTableWidgetItem(str(descrip.member_id.decode('utf-8'))))
+                    #         self.consumer_descrips.setItem(id, 6, QTableWidgetItem(str(descrip.client_id.decode('utf-8'))))
+                    #         self.consumer_descrips.setItem(id, 7, QTableWidgetItem(str(descrip.client_host.decode('utf-8'))))
+                    # except Exception as e:
+                    #     print(e)
         except Exception as e:
             print(e)
     def closeEvent(self,e):
@@ -366,8 +441,8 @@ class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
 
 if __name__ == '__main__':
     pass
-    clust = ClusterManager('10.1.63.126:9092,10.1.63.127:9092,10.1.63.128:9092')
-    clust.start()
+    # clust = ClusterManager('10.1.63.126:9092,10.1.63.127:9092,10.1.63.128:9092')
+    # clust.start()
     # time.sleep(5)
     # print(clust.getoffsets(b'10.1.120.111.dispatchcenter'))
     # time.sleep(20)

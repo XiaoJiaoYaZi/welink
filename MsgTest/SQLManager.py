@@ -1,5 +1,4 @@
 import pymssql
-from DBUtils.PersistentDB import PersistentDB
 class SQLManager(object):
     def __init__(self,host,usr,pwd,db):
         self.host = host
@@ -164,12 +163,14 @@ if __name__ == '__main__':
     # u = User(id=12345, name='Michael', email='test@orm.org', password='my-pwd')
     # u.save()
     db = SQLManager('10.1.120.87:1433','sa','admin123!@#','MsgPlatform')
-    mobiles = ''
-    for i in range(100000):
-        mobiles += str(13200000000+i)+','
-    #mobiles
-    mobiles = mobiles[:-1]
-    sql = "UPDATE Mas_UnsendCommitMsgInfo  SET MobilePhoneSet = '%s' WHERE MsgID = 1807311005360191746" % (mobiles,)
+
+    productid = 20181123
+    ResourceIdList = 201811231706
+    ForbiddenAreaSet    = 0
+    BlacklistRank   =0
+
+
+
 
     db.ExecNoQuery(sql.encode('utf-8'))
 

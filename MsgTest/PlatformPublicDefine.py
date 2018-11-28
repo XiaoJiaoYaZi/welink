@@ -7,6 +7,8 @@ from ctypes import *
 import socket
 
 
+SignDll = CDLL('./dll/Sign')
+
 def Pack(ctype_instance):
     return string_at(addressof(ctype_instance),sizeof(ctype_instance))
 
@@ -334,7 +336,11 @@ class SCloudMessage(object):
             # ECMI_MMS_FILENAME = 10,
             # ECMI_USER_DEF_ID = 11,
             # ECMI_ITEM_COUNT = 12
-            msgandsign = self._getsign(OldMessage.message)
+            #print(OldMessage.message)
+            msg = self._getmessage(OldMessage.message)
+            #print(msg)
+            msgandsign = self._getsign(msg)
+            #print(msgandsign)
             self.mobiles        = OldMessage.mobiles
             self.acc_name       = OldMessage._head.AccountId
             self.message        = self._getmessage(msgandsign[0])
@@ -371,16 +377,26 @@ class SCloudMessage(object):
         return result
 
     def _getsign(self,msg:str):
-        if msg[-1:] == '】':
-            left = msg.rfind('【')
-            if left>=0:
-                return msg[:left] ,msg[left:]
-        elif msg[:1] == '【':
-                leftright = msg.find('】')
-                if leftright >=0:
-                    return msg[leftright+1:],msg[:leftright+1]
-        else:
-            return msg,''
+
+        start = c_int(0)
+        end = c_int(0)
+        #msgtemp = self._getmessage(msg)
+        SignDll.findSign(msg.encode('utf_16_le'),len(msg),byref(start),byref(end))
+        if start.value>=0 and end.value>=0:
+            return msg[:start.value]+msg[end.value+1:],msg[start.value:end.value+1]
+
+        return msg,''
+        #
+        # if msg[-1:] == '】':
+        #     left = msg.rfind('【')
+        #     if left>=0:
+        #         return msg[:left] ,msg[left:]
+        # elif msg[:1] == '【':
+        #         leftright = msg.find('】')
+        #         if leftright >=0:
+        #             return msg[leftright+1:],msg[:leftright+1]
+        # else:
+        #     return msg,''
 
         #
         # if msg.count('【')>1 or msg.count('】') > 1:#有两个【】(例如【123【123】123】)认为没有签名
@@ -1811,14 +1827,35 @@ def _getmessage(msg: str):
     return result
 
 if __name__ == '__main__':
+    pass
+    from ctypes import *
 
-    text = '15)|你好骄傲i世界第|哦啊速度|2/5)|加怕是啊山|3/5)加哦i教师的阿松i大家iOS觉得io的|4/5)加哦i教师的阿松i大家iOS觉得io的|5/5)加哦i教师的阿松i大家iOS觉得io的'
-    print(text)
+    dll = CDLL('D:\\users\\welink\\documents\\visual studio 2015\\Projects\\Testkafka\\x64\\Release\\Sign.dll')
+    print(dll)
+
+    text = '1/3)【微网通联】您的验证码是：1234,重磅 ｜《2018年锂电池行业研究报告》，从锂电池材料、设备、电芯等为你解读锂电池行业发展，戳|2/3) http://xincailiao.com/url/288马上看，或直接联系相关工作人员13652401660（同微信），回N退订【|3/3)新材料在线】'
     text = _getmessage(text)
     print(text)
 
-    new = Old2New(b'\x02\xe8\x04\x00\x00\x00\x00\x00\x00{\x00\x00\x00\x0c\x00\x00\x00\x00\x00\x00\x00 L\xdd@ffff&L\xdd@\x00\x00\x00\x00\x00L\xdd@\x00\x00\x00\x00@L\xdd@\x03\x00\x00\x00\x01\x01\x00\x00\x00\x00\x00L\xdd@\x02\x00\xfc\x00\x00\x00\x10\x00\x00\x00\x15\x00\x00\x00{\x00\x00\x00\x01\x17{\x00\x01\x00\x00\x0010.1.55.114\x00\x00\x00\x00\x00samozihu\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00testinfo\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00123456\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00ZSGabcdefghijklmn\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0013000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,1300000000012345|6789|adsfg\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')
-    old = New2Old(new)
+    start = c_int(0)
+    end = c_int(0)
+    buf = text.encode('utf_16_le')
+    print(buf )
+    print(len(text))
+    SignDll.findSign(buf,len(text),byref(start),byref(end))
+    print(text[:start.value] + text[end.value + 1:], text[start.value:end.value + 1])
+    print(start,end)
+    sign = text[start.value:end.value + 1]
+    print(sign.encode('utf_16_le'))
+
+
+    # text = '15)|你好骄傲i世界第|哦啊速度|2/5)|加怕是啊山|3/5)加哦i教师的阿松i大家iOS觉得io的|4/5)加哦i教师的阿松i大家iOS觉得io的|5/5)加哦i教师的阿松i大家iOS觉得io的'
+    # print(text)
+    # text = _getmessage(text)
+    # print(text)
+    #
+    # new = Old2New(b'\x02\xe8\x04\x00\x00\x00\x00\x00\x00{\x00\x00\x00\x0c\x00\x00\x00\x00\x00\x00\x00 L\xdd@ffff&L\xdd@\x00\x00\x00\x00\x00L\xdd@\x00\x00\x00\x00@L\xdd@\x03\x00\x00\x00\x01\x01\x00\x00\x00\x00\x00L\xdd@\x02\x00\xfc\x00\x00\x00\x10\x00\x00\x00\x15\x00\x00\x00{\x00\x00\x00\x01\x17{\x00\x01\x00\x00\x0010.1.55.114\x00\x00\x00\x00\x00samozihu\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00testinfo\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00123456\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00ZSGabcdefghijklmn\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0013000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,13000000000,1300000000012345|6789|adsfg\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')
+    # old = New2Old(new)
     # newmsg = SCloudMessage()
     # newmsg.FixHead.CommitIp = 67305985
     # newmsg.FixHead.MsgType = 1
