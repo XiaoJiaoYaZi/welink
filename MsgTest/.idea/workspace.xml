@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="97d99c38-423d-44ce-b6ab-12e096a3c4b1" name="Default" comment="kafkaTool 可删除队列">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KafkaTool.py" beforeDir="false" afterPath="$PROJECT_DIR$/KafkaTool.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PyUI/UI_KafkaTool.py" beforeDir="false" afterPath="$PROJECT_DIR$/PyUI/UI_KafkaTool.py" afterDir="false" />
-    </list>
+    <list default="true" id="97d99c38-423d-44ce-b6ab-12e096a3c4b1" name="Default" comment="kafkaTool 可删除队列" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -258,8 +254,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/KafkaTool.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="518">
-              <caret line="295" column="13" selection-start-line="295" selection-start-column="13" selection-end-line="295" selection-end-column="13" />
+            <state relative-caret-position="586">
+              <caret line="287" column="77" lean-forward="true" selection-start-line="287" selection-start-column="77" selection-end-line="287" selection-end-column="77" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
                 <element signature="e#1093#2931#0" />
@@ -682,10 +678,10 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="SQL Server (Microsoft)" />
     <property name="database.console.LAST_STATE" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../MsgTest" />
+    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/GitHubDesktop/GitHubDesktop.exe" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyDependenciesConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.externalTools" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -1005,7 +1001,14 @@
       <option name="project" value="LOCAL" />
       <updated>1543557634950</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="kafkaTool 可删除队列">
+      <created>1543564312494</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1543564312494</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1030,7 +1033,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" x="1983" y="151" width="339" height="571" id="Project" order="0" sideWeight="0.49315068" visible="true" weight="0.119936034" />
       <window_info id="Favorites" order="1" sideWeight="0.5068493" side_tool="true" weight="0.18364611" />
@@ -2226,8 +2228,8 @@ UnicodeDecodeError: \\'utf-8\\' codec can\\'t decode byte 0xcd in position 2: in
     </entry>
     <entry file="file://$PROJECT_DIR$/KafkaTool.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
-          <caret line="295" column="13" selection-start-line="295" selection-start-column="13" selection-end-line="295" selection-end-column="13" />
+        <state relative-caret-position="586">
+          <caret line="287" column="77" lean-forward="true" selection-start-line="287" selection-start-column="77" selection-end-line="287" selection-end-column="77" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
             <element signature="e#1093#2931#0" />
