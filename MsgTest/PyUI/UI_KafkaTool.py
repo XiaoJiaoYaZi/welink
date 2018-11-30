@@ -106,7 +106,7 @@ class Ui_KafkaTool(object):
         self.topic_decrips.setHorizontalHeaderItem(5, item)
         item = QtWidgets.QTableWidgetItem()
         self.topic_decrips.setHorizontalHeaderItem(6, item)
-        self.topic_decrips.horizontalHeader().setVisible(False)
+        self.topic_decrips.horizontalHeader().setVisible(True)
         self.topic_decrips.horizontalHeader().setDefaultSectionSize(80)
         self.topic_decrips.horizontalHeader().setHighlightSections(True)
         self.topic_decrips.verticalHeader().setVisible(False)

@@ -71,8 +71,6 @@ class Descrip4Topic(object):
         self._topicdescrip = {}
         for topic in topics:
             descrips = topics[topic]
-            # earlistoffset = descrips.earliest_available_offsets()
-            # latestoffset = descrips.latest_available_offsets()
             topicdescrip = {}
             for id, partition in descrips.partitions.items():
                 leader = partition.leader.id
@@ -82,8 +80,6 @@ class Descrip4Topic(object):
                     Replicas.append(i.id)
                 for i in partition.isr:
                     isr.append(i.id)
-                # offsets1 = earlistoffset[id].offset[0]
-                # offsets2 = latestoffset[id].offset[0]
                 topicdescrip[id] = TopicDescrip(id, leader, Replicas, isr, [0], [0])
 
             self._topicdescrip[topic] = topicdescrip
@@ -120,14 +116,6 @@ class ClusterManager(Thread):
     def cancel(self):
         self.finished.set()
 
-    def _get_group_descrips(self):
-        start = time.time()
-        consumers = self._cluster.get_managed_group_descriptions()
-        print('use111 {}s'.format((time.time() - start)))
-        start = time.time()
-        self._consumer_descrips = Descrip4Consumer(consumers)
-        print('use222 {}s'.format((time.time() - start)))
-
     def gettopic(self):
         return self._cluster.topics.keys()
 
@@ -139,10 +127,6 @@ class ClusterManager(Thread):
             except Exception as e:
                 pass
         pass
-
-    def _get_topic_descrips(self):
-        with self._lock_topic:
-            self._topic_descrips = Descrip4Topic(self._cluster.topics)
 
     #待定是否实现topic到consumer的对应关系
     def gettopic2group(self, topic):
@@ -245,8 +229,6 @@ class ClusterManager(Thread):
         self._cluster.update()
         self.updatetopic2group()
         print('update use : {}'.format(time.time()-start))
-        #self._get_group_descrips()
-        #self._get_topic_descrips()
 
     def run(self):
         while not self.finished.is_set():
@@ -272,8 +254,10 @@ class Table_Consumer(Ui_Descrip,QtWidgets.QTableWidget):
             self.consumer_descrips.setItem(id, 6, QTableWidgetItem(str(descrip.client_id.decode('utf-8'))))
             self.consumer_descrips.setItem(id, 7, QTableWidgetItem(str(descrip.client_host.decode('utf-8'))))
 
+class Table_Topic():
+    pass
+
 class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
-    sendCmd_signal = QtCore.pyqtSignal(str)
     def __init__(self,parent = None):
         super(KafkaTool,self).__init__(parent=parent)
         self.setupUi(self)
@@ -288,14 +272,12 @@ class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
         self.consumer.setSortingEnabled(True)
         self.stackedWidget.setEnabled(False)
         self.tabWidget.clear()
-        #self.tabWidget.addTab(Table_Consumer(self.tabWidget),'123')
         self.topic_menu = QtWidgets.QMenu(self.topic)
         self.topic_menu.addAction(self.action_delete)
         self.topic_menu.addAction(self.action_fresh)
         self.topic.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
 
     def _createconnections(self):
-
         self.connect.pressed.connect(self._connect)
         self.unconnect.pressed.connect(self._unconnect)
         self.fresh.pressed.connect(self._fresh_topic)

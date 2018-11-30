@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="97d99c38-423d-44ce-b6ab-12e096a3c4b1" name="Default" comment="转移队列数据">
-      <change afterPath="$PROJECT_DIR$/dll/Sign.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/func__XX___.py" afterDir="false" />
+    <list default="true" id="97d99c38-423d-44ce-b6ab-12e096a3c4b1" name="Default" comment="kafkaTool 可删除队列">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KafkaTool.py" beforeDir="false" afterPath="$PROJECT_DIR$/KafkaTool.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlatformPublicDefine.py" beforeDir="false" afterPath="$PROJECT_DIR$/PlatformPublicDefine.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PyUI/UI_KafkaTool.py" beforeDir="false" afterPath="$PROJECT_DIR$/PyUI/UI_KafkaTool.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SQLManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/SQLManager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/UI_KafkaTool.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/UI_KafkaTool.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/kafka_base.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config/kafka_base.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.data" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,8 +19,8 @@
     <SUITE FILE_PATH="coverage/sayhello$pytest_in_MsgSubmit_py.coverage" NAME="pytest in MsgSubmit.py Coverage Results" MODIFIED="1541740193850" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/untitled$testRedis.coverage" NAME="testRedis Coverage Results" MODIFIED="1530784557286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/untitled$testconsumer.coverage" NAME="testconsumer Coverage Results" MODIFIED="1531365493338" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/sayhello$testmetaclass.coverage" NAME="testmetaclass Coverage Results" MODIFIED="1541604641294" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/sayhello$testyield.coverage" NAME="testyield Coverage Results" MODIFIED="1541673095444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/sayhello$testmetaclass.coverage" NAME="testmetaclass Coverage Results" MODIFIED="1543550436287" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/sayhello$sslLinux.coverage" NAME="sslLinux Coverage Results" MODIFIED="1541383668840" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/sayhello$KafkaManager.coverage" NAME="KafkaManager Coverage Results" MODIFIED="1541154790028" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/sayhello$testMSMQ.coverage" NAME="testMSMQ Coverage Results" MODIFIED="1541759325918" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
@@ -48,10 +40,10 @@
     <SUITE FILE_PATH="coverage/sayhello$SQLManager.coverage" NAME="SQLManager Coverage Results" MODIFIED="1542689400328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/untitled$test.coverage" NAME="test Coverage Results" MODIFIED="1531124875067" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/sayhello$Submit.coverage" NAME="Submit Coverage Results" MODIFIED="1537520876830" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../sayhello/12306/train/submit" />
-    <SUITE FILE_PATH="coverage/sayhello$func__XX___.coverage" NAME="func__XX___ Coverage Results" MODIFIED="1542965809354" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/sayhello$func__XX___.coverage" NAME="func__XX___ Coverage Results" MODIFIED="1543474798505" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/sayhello$testpykafka.coverage" NAME="testpykafka Coverage Results" MODIFIED="1541495778788" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/untitled$py_test_in_MainWindow_py.coverage" NAME="py.test in MainWindow.py Coverage Results" MODIFIED="1529986931279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/sayhello$main.coverage" NAME="main Coverage Results" MODIFIED="1543306996100" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sayhello$main.coverage" NAME="main Coverage Results" MODIFIED="1543388103904" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MsgTest$12306.coverage" NAME="12306 Coverage Results" MODIFIED="1537423403992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../sayhello/12306" />
     <SUITE FILE_PATH="coverage/sayhello$MsgSubmit.coverage" NAME="MsgSubmit Coverage Results" MODIFIED="1541830808166" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MsgTest$testc.coverage" NAME="testc Coverage Results" MODIFIED="1533204593622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
@@ -64,12 +56,12 @@
     <SUITE FILE_PATH="coverage/sayhello$testC_.coverage" NAME="testC# Coverage Results" MODIFIED="1540958767282" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/sayhello$PlatformPublicDefine.coverage" NAME="PlatformPublicDefine Coverage Results" MODIFIED="1542806115032" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/sayhello$flaskecharts.coverage" NAME="flaskecharts Coverage Results" MODIFIED="1539835179734" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/sayhello$KafkaTool.coverage" NAME="KafkaTool Coverage Results" MODIFIED="1542941240428" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sayhello$KafkaTool.coverage" NAME="KafkaTool Coverage Results" MODIFIED="1543557378654" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/sayhello$utils.coverage" NAME="utils Coverage Results" MODIFIED="1539340364844" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:/Program Files/Anaconda3/Lib/site-packages/lml" />
     <SUITE FILE_PATH="coverage/MsgTest$textitchart.coverage" NAME="textitchart Coverage Results" MODIFIED="1532939203218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/MsgTest$testtime.coverage" NAME="testtime Coverage Results" MODIFIED="1536905391113" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/MsgTest$main.coverage" NAME="main Coverage Results" MODIFIED="1537346067428" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/sayhello$main_kafkaTool.coverage" NAME="main_kafkaTool Coverage Results" MODIFIED="1543303879163" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sayhello$main_kafkaTool.coverage" NAME="main_kafkaTool Coverage Results" MODIFIED="1543561969453" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/untitled$MonitorMsgHeader.coverage" NAME="MonitorMsgHeader Coverage Results" MODIFIED="1530856546990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CoverageViewManager">
@@ -109,6 +101,14 @@
         <item name="dbo: schema" type="3adcb6a6:MssqlImplModel$Schema" />
         <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@10.1.120.87 :1433" type="feb32156:DbDataSourceImpl" />
+        <item name="MsgPlatform: database" type="bdf80c8a:MssqlImplModel$Database" />
+        <item name="dbo: schema" type="3adcb6a6:MssqlImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="Mas_AccountMsgTemplateSeparate: table" type="a00791b9:MssqlImplModel$Table" />
+      </path>
     </expand>
     <select />
   </component>
@@ -122,16 +122,16 @@
           <entry key="project.open.time.10" value="10" />
           <entry key="project.open.time.11" value="4" />
           <entry key="project.open.time.12" value="2" />
-          <entry key="project.open.time.14" value="3" />
+          <entry key="project.open.time.14" value="4" />
           <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.8" value="3" />
           <entry key="project.open.time.9" value="4" />
-          <entry key="project.opened" value="31" />
+          <entry key="project.opened" value="32" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="2666" />
+          <entry key="Python Console" value="2990" />
           <entry key="cell" value="157" />
           <entry key="cpp" value="1" />
           <entry key="dummy" value="10" />
@@ -139,11 +139,11 @@
           <entry key="html" value="1330" />
           <entry key="ini" value="544" />
           <entry key="pxd" value="70" />
-          <entry key="py" value="55695" />
+          <entry key="py" value="58793" />
           <entry key="pyx" value="666" />
           <entry key="spec" value="47" />
           <entry key="sql" value="102" />
-          <entry key="txt" value="381" />
+          <entry key="txt" value="417" />
           <entry key="xml" value="138" />
         </counts>
       </usages-collector>
@@ -153,8 +153,8 @@
           <entry key="Cython" value="736" />
           <entry key="HTML" value="1330" />
           <entry key="Ini" value="544" />
-          <entry key="PLAIN_TEXT" value="438" />
-          <entry key="Python" value="58360" />
+          <entry key="PLAIN_TEXT" value="474" />
+          <entry key="Python" value="61782" />
           <entry key="SQL" value="14" />
           <entry key="Scratch" value="246" />
           <entry key="XML" value="138" />
@@ -174,7 +174,9 @@
           <entry key="ico" value="1" />
           <entry key="ini" value="48" />
           <entry key="jpg" value="2" />
-          <entry key="js" value="5" />
+          <entry key="js" value="6" />
+          <entry key="mas_accountmsgtemplateseparate" value="1" />
+          <entry key="mas_accountmsgtemplateseparatemodify" value="1" />
           <entry key="mas_commitmsginfo" value="1" />
           <entry key="mas_product" value="1" />
           <entry key="mas_productextend" value="1" />
@@ -183,13 +185,13 @@
           <entry key="png" value="38" />
           <entry key="pstat" value="9" />
           <entry key="pxd" value="5" />
-          <entry key="py" value="948" />
+          <entry key="py" value="998" />
           <entry key="pyd" value="1" />
-          <entry key="pyi" value="15" />
+          <entry key="pyi" value="20" />
           <entry key="pyx" value="6" />
           <entry key="qrc" value="2" />
           <entry key="spec" value="6" />
-          <entry key="sql" value="4" />
+          <entry key="sql" value="5" />
           <entry key="t_product" value="3" />
           <entry key="table_name" value="1" />
           <entry key="tables" value="1" />
@@ -202,16 +204,17 @@
           <entry key="C++" value="10" />
           <entry key="CSS" value="1" />
           <entry key="Cython" value="11" />
-          <entry key="Database Element" value="9" />
+          <entry key="Database Element" value="11" />
           <entry key="HTML" value="27" />
           <entry key="Image" value="41" />
           <entry key="Ini" value="48" />
-          <entry key="JavaScript" value="5" />
+          <entry key="JavaScript" value="6" />
           <entry key="Markdown" value="1" />
           <entry key="PLAIN_TEXT" value="15" />
           <entry key="Profiler Session" value="9" />
-          <entry key="Python" value="948" />
-          <entry key="PythonStub" value="15" />
+          <entry key="Python" value="998" />
+          <entry key="PythonStub" value="20" />
+          <entry key="SQL" value="1" />
           <entry key="Scratch" value="4" />
           <entry key="XML" value="5" />
         </counts>
@@ -252,31 +255,145 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/KafkaTool.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="36" column="24" lean-forward="true" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
+            <state relative-caret-position="518">
+              <caret line="295" column="13" selection-start-line="295" selection-start-column="13" selection-end-line="295" selection-end-column="13" />
               <folding>
-                <element signature="e#0#35#0" expanded="true" />
-                <element signature="e#1048#2886#0" />
-                <element signature="e#2922#4126#0" />
-                <marker date="1543306972137" expanded="true" signature="5526:5596" ph="..." />
-                <marker date="1543306972137" expanded="true" signature="5624:6071" ph="..." />
-                <marker date="1543306972137" expanded="true" signature="14437:14568" ph="..." />
-                <marker date="1543306972137" expanded="true" signature="16068:16087" ph="..." />
+                <element signature="e#0#41#0" expanded="true" />
+                <element signature="e#1093#2931#0" />
+                <element signature="e#1143#2193#0" />
+                <element signature="e#2316#2931#0" />
+                <element signature="e#2967#4171#0" />
+                <element signature="e#3879#3904#0" />
+                <element signature="e#3988#4171#0" />
+                <element signature="e#4194#4375#0" />
+                <element signature="e#4463#4825#0" />
+                <element signature="e#4858#4877#0" />
+                <element signature="e#5248#5282#0" />
+                <element signature="e#5064#5277#0" />
+                <element signature="e#5496#5588#0" />
+                <element signature="e#5672#6103#0" />
+                <element signature="e#6110#8626#0" />
+                <element signature="e#8674#10098#0" />
+                <element signature="e#10136#10196#0" />
+                <element signature="e#10231#10445#0" />
+                <element signature="e#10474#10595#0" />
+                <element signature="e#14446#14562#0" />
+                <element signature="e#14603#15843#0" />
+                <marker date="1543563062875" expanded="true" signature="4690:4691" ph="..." />
+                <marker date="1543563062875" expanded="true" signature="10975:10986" ph="..." />
+                <marker date="1543563062875" expanded="true" signature="12599:12710" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sslLinux.py">
+        <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1282051629/builtins.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="89" column="62" selection-start-line="89" selection-start-column="62" selection-end-line="89" selection-end-column="62" />
+            <state relative-caret-position="169">
+              <caret line="5431" column="8" selection-start-line="5431" selection-start-column="8" selection-end-line="5431" selection-end-column="8" />
               <folding>
-                <element signature="e#0#15#0" expanded="true" />
+                <element signature="e#19500#19650#0" />
+                <element signature="e#19710#19966#0" />
+                <element signature="e#20023#20292#0" />
+                <element signature="e#20653#20809#0" />
+                <element signature="e#20934#21875#0" />
+                <element signature="e#21920#22698#0" />
+                <element signature="e#22737#23683#0" />
+                <element signature="e#23716#24146#0" />
+                <element signature="e#24177#24305#0" />
+                <element signature="e#24339#24776#0" />
+                <element signature="e#24810#25552#0" />
+                <element signature="e#25572#28740#0" />
+                <element signature="e#28776#30729#0" />
+                <element signature="e#30768#31104#0" />
+                <element signature="e#31145#31468#0" />
+                <element signature="e#31508#31815#0" />
+                <element signature="e#31855#32165#0" />
+                <element signature="e#32203#33486#0" />
+                <element signature="e#33749#44646#0" />
+                <element signature="e#44671#46129#0" />
+                <element signature="e#46168#46272#0" />
+                <element signature="e#46319#46418#0" />
+                <element signature="e#46455#46758#0" />
+                <element signature="e#46790#67371#0" />
+                <element signature="e#67399#85139#0" />
+                <element signature="e#85172#85496#0" />
+                <element signature="e#85532#85957#0" />
+                <element signature="e#85998#86105#0" />
+                <element signature="e#86139#87599#0" />
+                <element signature="e#87629#92592#0" />
+                <element signature="e#92647#92753#0" />
+                <element signature="e#92807#92913#0" />
+                <element signature="e#92965#93069#0" />
+                <element signature="e#93111#93451#0" />
+                <element signature="e#93478#98770#0" />
+                <element signature="e#98802#100119#0" />
+                <element signature="e#100153#100467#0" />
+                <element signature="e#100506#100613#0" />
+                <element signature="e#100654#100756#0" />
+                <element signature="e#100785#101826#0" />
+                <element signature="e#101854#109752#0" />
+                <element signature="e#109803#110125#0" />
+                <element signature="e#110157#114808#0" />
+                <element signature="e#114845#115232#0" />
+                <element signature="e#115275#115595#0" />
+                <element signature="e#115632#116246#0" />
+                <element signature="e#116284#116639#0" />
+                <element signature="e#116676#117661#0" />
+                <element signature="e#117706#117814#0" />
+                <element signature="e#117851#118170#0" />
+                <element signature="e#118208#118526#0" />
+                <element signature="e#118566#118675#0" />
+                <element signature="e#118716#118841#0" />
+                <element signature="e#118888#119206#0" />
+                <element signature="e#119242#119464#0" />
+                <element signature="e#119491#124714#0" />
+                <element signature="e#124740#125752#0" />
+                <element signature="e#125789#126093#0" />
+                <element signature="e#126126#131042#0" />
+                <element signature="e#131078#131392#0" />
+                <element signature="e#131434#131557#0" />
+                <element signature="e#131595#131912#0" />
+                <element signature="e#131960#132297#0" />
+                <element signature="e#132342#132667#0" />
+                <element signature="e#132716#133096#0" />
+                <element signature="e#133135#133245#0" />
+                <element signature="e#133287#133392#0" />
+                <element signature="e#137047#140284#0" />
+                <element signature="e#140328#140643#0" />
+                <element signature="e#140683#141018#0" />
+                <element signature="e#141057#141392#0" />
+                <element signature="e#141423#142639#0" />
+                <element signature="e#142677#143022#0" />
+                <element signature="e#143048#149780#0" />
+                <element signature="e#149808#151937#0" />
+                <element signature="e#151972#153268#0" />
+                <element signature="e#153312#153643#0" />
+                <element signature="e#153682#153939#0" />
+                <element signature="e#153966#173317#0" />
+                <element signature="e#173345#175603#0" />
+                <element signature="e#175641#175976#0" />
+                <element signature="e#176013#176498#0" />
+                <element signature="e#176538#176783#0" />
+                <element signature="e#176825#176948#0" />
+                <element signature="e#176984#177087#0" />
+                <element signature="e#177115#180213#0" />
+                <element signature="e#183394#183712#0" />
+                <element signature="e#183755#184092#0" />
+                <element signature="e#184128#184465#0" />
+                <element signature="e#184504#184816#0" />
+                <element signature="e#184863#185910#0" />
+                <element signature="e#185958#187005#0" />
+                <element signature="e#187056#188106#0" />
+                <element signature="e#188145#188541#0" />
+                <element signature="e#188576#188913#0" />
+                <element signature="e#188962#189311#0" />
+                <element signature="e#189337#190490#0" />
+                <element signature="e#190523#192561#0" />
               </folding>
             </state>
           </provider>
@@ -285,8 +402,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/KafkaManager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5083">
-              <caret line="420" column="37" selection-start-line="420" selection-start-column="37" selection-end-line="420" selection-end-column="37" />
+            <state relative-caret-position="238">
+              <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
                 <element signature="e#5900#9594#0" />
@@ -296,11 +413,114 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../../../sayhello/demo.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/func__XX___.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="96" column="23" lean-forward="true" selection-start-line="96" selection-start-column="23" selection-end-line="96" selection-end-column="23" />
+            <state relative-caret-position="442">
+              <caret line="104" lean-forward="true" selection-start-line="104" selection-end-line="104" />
+              <folding>
+                <element signature="e#0#58#0" expanded="true" />
+                <marker date="1543478396071" expanded="true" signature="1644:1822" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/testmetaclass.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2329">
+              <caret line="137" column="23" lean-forward="true" selection-start-line="137" selection-start-column="23" selection-end-line="137" selection-end-column="23" />
+              <folding>
+                <marker date="1543550436268" expanded="true" signature="1989:2305" ph="..." />
+                <marker date="1543550436268" expanded="true" signature="2450:2697" ph="..." />
+                <marker date="1543550436268" expanded="true" signature="2749:2750" ph="..." />
+                <marker date="1543550436268" expanded="true" signature="3262:3805" ph="..." />
+                <marker date="1543550436268" expanded="true" signature="3494:3531" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MainWindow.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="986">
+              <caret line="58" column="36" lean-forward="true" selection-start-line="58" selection-start-column="36" selection-end-line="58" selection-end-column="36" />
+              <folding>
+                <element signature="e#0#34#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/cluster.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="291">
+              <caret line="225" column="8" selection-start-line="225" selection-start-column="8" selection-end-line="225" selection-end-column="8" />
+              <folding>
+                <element signature="e#6201#6334#1" />
+                <element signature="e#9257#9481#0" />
+                <element signature="e#9651#10219#0" />
+                <element signature="e#10266#10345#0" />
+                <element signature="e#10413#10545#0" />
+                <element signature="e#10618#12487#0" />
+                <element signature="e#12539#13309#0" />
+                <element signature="e#13362#13908#0" />
+                <element signature="e#13973#16103#0" />
+                <element signature="e#19070#19636#0" />
+                <element signature="e#19696#19906#0" />
+                <element signature="e#19969#22133#0" />
+                <element signature="e#22177#23291#0" />
+                <element signature="e#22353#22690#0" />
+                <element signature="e#23323#24551#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="22" lean-forward="true" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/broker.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="117">
+              <caret line="243" column="36" selection-start-line="243" selection-start-column="36" selection-end-line="243" selection-end-column="36" />
+              <folding>
+                <element signature="e#5963#8055#0" />
+                <element signature="e#8945#9136#0" />
+                <element signature="e#9199#9423#0" />
+                <element signature="e#11255#12611#0" />
+                <element signature="e#14109#14580#0" />
+                <element signature="e#14667#15235#0" />
+                <element signature="e#15310#16740#0" />
+                <element signature="e#17095#18400#0" />
+                <element signature="e#18477#19420#0" />
+                <element signature="e#19720#20823#0" />
+                <element signature="e#20902#21549#0" />
+                <element signature="e#21660#22897#0" />
+                <element signature="e#22989#23839#0" />
+                <element signature="e#23983#24123#0" />
+                <element signature="e#24195#24498#0" />
+                <element signature="e#25889#26089#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/connection.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-489">
+              <caret line="112" column="8" selection-start-line="112" selection-start-column="8" selection-end-line="112" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -320,8 +540,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>_groups</find>
-      <find>correlation_id</find>
       <find>_encode_message_header</find>
       <find>deserializer</find>
       <find>key_deserializer</find>
@@ -350,6 +568,8 @@
       <find>utf_16_le</find>
       <find>start recv failed</find>
       <find>findItems</find>
+      <find>PartitionFetchRequest</find>
+      <find>41</find>
     </findStrings>
     <replaceStrings>
       <replace>gbk</replace>
@@ -368,7 +588,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../../../sayhello/12306/net/login/Content.py" />
         <option value="$PROJECT_DIR$/../../../sayhello/12306/net/MyNets.py" />
         <option value="D:/迅雷下载/EasyTrain-master/net/NetUtils.py" />
         <option value="$PROJECT_DIR$/../../../sayhello/12306/adress/CityCode.py" />
@@ -409,16 +628,17 @@
         <option value="$PROJECT_DIR$/MsgSubmit.py" />
         <option value="$PROJECT_DIR$/../../../sayhello/1.py" />
         <option value="$PROJECT_DIR$/test/vedio.py" />
-        <option value="$PROJECT_DIR$/test/testmetaclass.py" />
         <option value="$PROJECT_DIR$/config/config.ini" />
-        <option value="$PROJECT_DIR$/KafkaManager.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/06bb600b-1d84-4535-8d1a-27879b514f0e/console.sql" />
         <option value="$PROJECT_DIR$/MainWindow.py" />
         <option value="$PROJECT_DIR$/PlatformPublicDefine.py" />
-        <option value="$PROJECT_DIR$/test/func__XX___.py" />
         <option value="$PROJECT_DIR$/config/kafka_base.ini" />
-        <option value="$PROJECT_DIR$/KafkaTool.py" />
         <option value="$PROJECT_DIR$/SQLManager.py" />
+        <option value="$PROJECT_DIR$/test/func__XX___.py" />
+        <option value="$PROJECT_DIR$/KafkaManager.py" />
+        <option value="$PROJECT_DIR$/test/testmetaclass.py" />
+        <option value="$PROJECT_DIR$/PyUI/UI_KafkaTool.py" />
+        <option value="$PROJECT_DIR$/KafkaTool.py" />
       </list>
     </option>
   </component>
@@ -429,10 +649,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1898" />
-    <option name="y" value="-13" />
-    <option name="width" value="1276" />
-    <option name="height" value="832" />
+    <option name="x" value="844" />
+    <option name="y" value="-21" />
+    <option name="width" value="3090" />
+    <option name="height" value="882" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -468,19 +688,19 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyDependenciesConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\users\welink\documents\GitHub\welink\MsgTest\PyUI" />
-      <recent name="D:\users\welink\documents\GitHub\welink\MsgTest\test" />
-      <recent name="D:\users\welink\documents\GitHub\welink\MsgTest" />
-      <recent name="D:\users\welink\documents\sayhello\12306\train" />
-      <recent name="D:\users\welink\documents\sayhello\12306" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\users\welink\documents\GitHub\welink\MsgTest\dll" />
       <recent name="D:\users\welink\documents\sayhello" />
       <recent name="D:\users\welink\documents\GitHub\welink\MsgTest\config" />
       <recent name="D:\users\welink\documents\sayhello\12306\train\submit" />
       <recent name="D:\users\welink\documents\sayhello\12306\net" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\users\welink\documents\GitHub\welink\MsgTest" />
+      <recent name="D:\users\welink\documents\GitHub\welink\MsgTest\PyUI" />
+      <recent name="D:\users\welink\documents\GitHub\welink\MsgTest\test" />
+      <recent name="D:\users\welink\documents\sayhello\12306\train" />
+      <recent name="D:\users\welink\documents\sayhello\12306" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -495,7 +715,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.main_kafkaTool">
     <configuration name="KafkaTool" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="untitled" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -510,28 +730,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/KafkaTool.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="PlatformPublicDefine" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="untitled" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PlatformPublicDefine.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -606,20 +804,42 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="testmetaclass" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="untitled" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/testmetaclass.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.main" />
-      <item itemvalue="Python.PlatformPublicDefine" />
       <item itemvalue="Python.KafkaTool" />
       <item itemvalue="Python.func__XX___" />
       <item itemvalue="Python.main_kafkaTool" />
+      <item itemvalue="Python.testmetaclass" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main" />
         <item itemvalue="Python.main_kafkaTool" />
-        <item itemvalue="Python.func__XX___" />
         <item itemvalue="Python.KafkaTool" />
-        <item itemvalue="Python.PlatformPublicDefine" />
+        <item itemvalue="Python.testmetaclass" />
+        <item itemvalue="Python.func__XX___" />
+        <item itemvalue="Python.main" />
       </list>
     </recent_temporary>
   </component>
@@ -771,7 +991,21 @@
       <option name="project" value="LOCAL" />
       <updated>1542727620778</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="kafkaTool update">
+      <created>1543373235330</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1543373235330</updated>
+    </task>
+    <task id="LOCAL-00021" summary="kafkaTool 可删除队列">
+      <created>1543557634950</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1543557634950</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -798,7 +1032,33 @@
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" x="1983" y="151" width="339" height="571" id="Project" order="0" sideWeight="0.49315068" visible="true" weight="0.11886994" />
+      <window_info content_ui="combo" x="1983" y="151" width="339" height="571" id="Project" order="0" sideWeight="0.49315068" visible="true" weight="0.119936034" />
+      <window_info id="Favorites" order="1" sideWeight="0.5068493" side_tool="true" weight="0.18364611" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.1778742" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.6536458" weight="0.22885032" />
+      <window_info anchor="bottom" x="1264" y="319" width="2214" height="636" id="Debug" order="3" weight="0.39154014" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3286119" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" sideWeight="0.49932975" weight="0.3286119" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.58981234" weight="0.14099783" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.41018766" side_tool="true" weight="0.26203966" />
+      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.49865952" weight="0.3264642" />
+      <window_info anchor="bottom" id="Concurrent Activities Diagram" order="12" weight="0.26789588" />
+      <window_info anchor="bottom" id="Database Console" order="13" sideWeight="0.49798927" weight="0.1735358" />
+      <window_info anchor="bottom" id="Python Console" order="14" weight="0.28416485" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.49895614" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" weight="0.29157782" />
+      <window_info anchor="right" id="Coverage" order="4" side_tool="true" weight="0.32995737" />
+      <window_info anchor="right" id="SciView" order="5" weight="0.32942432" />
+      <window_info anchor="right" id="Structure" order="6" sideWeight="0.50104386" side_tool="true" weight="0.19829424" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" x="1983" y="151" width="339" height="571" id="Project" order="0" sideWeight="0.49315068" visible="true" weight="0.119936034" />
       <window_info id="Favorites" order="1" sideWeight="0.5068493" side_tool="true" weight="0.18364611" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.22885032" />
@@ -809,23 +1069,49 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3286119" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" sideWeight="0.49932975" weight="0.3286119" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.58981234" visible="true" weight="0.14099783" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.58981234" weight="0.14099783" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.41018766" side_tool="true" weight="0.26203966" />
       <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.49865952" weight="0.3264642" />
       <window_info anchor="bottom" id="Concurrent Activities Diagram" order="12" weight="0.26789588" />
-      <window_info active="true" anchor="bottom" id="Database Console" order="13" sideWeight="0.49798927" visible="true" weight="0.37818697" />
+      <window_info anchor="bottom" id="Database Console" order="13" sideWeight="0.49798927" weight="0.1735358" />
       <window_info anchor="bottom" id="Python Console" order="14" weight="0.18221258" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.49895614" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.15778251" />
+      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.29157782" />
       <window_info anchor="right" id="Coverage" order="4" side_tool="true" weight="0.32995737" />
       <window_info anchor="right" id="SciView" order="5" weight="0.32942432" />
       <window_info anchor="right" id="Structure" order="6" sideWeight="0.50104386" side_tool="true" weight="0.19829424" />
-    </layout>
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -847,7 +1133,9 @@
     <MESSAGE value="1、MSMQ C++ DLL&#10;2、recv thread has timeout , now do not use recvone" />
     <MESSAGE value="msmqdll for release" />
     <MESSAGE value="转移队列数据" />
-    <option name="LAST_COMMIT_MESSAGE" value="转移队列数据" />
+    <MESSAGE value="kafkaTool update" />
+    <MESSAGE value="kafkaTool 可删除队列" />
+    <option name="LAST_COMMIT_MESSAGE" value="kafkaTool 可删除队列" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1257,9 +1545,14 @@
           <option name="timeStamp" value="435" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/test/func__XX___.py</url>
-          <line>56</line>
-          <option name="timeStamp" value="437" />
+          <url>file://$PROJECT_DIR$/test/testmetaclass.py</url>
+          <line>137</line>
+          <option name="timeStamp" value="442" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://C:/Program Files/Anaconda3/Lib/abc.py</url>
+          <line>132</line>
+          <option name="timeStamp" value="443" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -1273,9 +1566,19 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="self._cluster.topics[b'0.0.0.0.kfk']" language="Python" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>self._cluster.topics[b'0.0.0.0.kfk']</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>msg[index+2:index+3]</expression-string>
         <language-id>Python</language-id>
@@ -1318,11 +1621,6 @@
       </expression>
       <expression>
         <expression-string>OldMessage._head.Priority</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>self.__OneByte.pack(*(self._length,self._type,self._version,self._offset,self._item_count,self._item_total_size))</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -1387,319 +1685,432 @@ UnicodeDecodeError: \\'utf-8\\' codec can\\'t decode byte 0xcd in position 2: in
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/SMessage.py">
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/wxpy/api/bot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="260" selection-start-line="260" selection-end-line="260" />
+        <state relative-caret-position="365">
+          <caret line="382" column="11" lean-forward="true" selection-start-line="382" selection-start-column="11" selection-end-line="382" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobiles.data" />
-    <entry file="das://06bb600b-1d84-4535-8d1a-27879b514f0e/database/msgplatform/schema/dbo/table/mas_unsendcommitmsginfo">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+    <entry file="file://$PROJECT_DIR$/sslLinux.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1513">
+          <caret line="89" column="62" selection-start-line="89" selection-start-column="62" selection-end-line="89" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../sayhello/demo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="87" column="31" lean-forward="true" selection-start-line="87" selection-start-column="31" selection-end-line="87" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../sayhello/web.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../sayhello/1.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../sayhello/2.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/kafka/producer/kafka.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="98" lean-forward="true" selection-start-line="98" selection-end-line="98" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://06bb600b-1d84-4535-8d1a-27879b514f0e/database/msgplatform/schema/dbo/table/mas_commitmsginfo">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CloudMsg.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-22988">
-          <caret line="222" column="17" selection-start-line="222" selection-start-column="17" selection-end-line="222" selection-end-column="17" />
           <folding>
-            <element signature="e#0#34#0" expanded="true" />
-            <element signature="e#841#1509#0" />
-            <element signature="e#1539#1918#0" />
-            <element signature="e#1950#2067#0" />
-            <element signature="e#2092#2198#0" />
-            <element signature="e#2230#2465#0" />
-            <element signature="e#2502#2621#0" />
-            <element signature="e#2659#2714#0" />
-            <element signature="e#2750#2791#0" />
-            <element signature="e#2823#2961#0" />
+            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MsgSubmit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="177" column="44" selection-start-line="177" selection-start-column="4" selection-end-line="177" selection-end-column="44" />
+    <entry file="das://06bb600b-1d84-4535-8d1a-27879b514f0e/database/msgplatform/schema/dbo/table/mas_accountmsgtemplateseparatemodify">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1282051629/_ctypes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="274" column="6" selection-start-line="274" selection-start-column="6" selection-end-line="274" selection-end-column="6" />
+    <entry file="das://06bb600b-1d84-4535-8d1a-27879b514f0e/database/msgplatform/schema/dbo/table/mas_accountmsgtemplateseparate">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/ctypes/__init__.py">
+    <entry file="dbSrc:///f5b90c5a/06bb600b-1d84-4535-8d1a-27879b514f0e/database/msgplatform/schema/dbo/table/mas_accountmsgtemplateseparate/trigger/tr_mas_accountmsgtemplateseparate_insert.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="277" column="4" selection-start-line="277" selection-start-column="4" selection-end-line="277" selection-end-column="4" />
+        <state relative-caret-position="102">
+          <caret line="6" column="75" lean-forward="true" selection-start-line="6" selection-start-column="75" selection-end-line="6" selection-end-column="75" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/06bb600b-1d84-4535-8d1a-27879b514f0e/console.sql">
+    <entry file="file://C:/Program Files/Anaconda3/Lib/queue.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="55" selection-start-line="9" selection-start-column="55" selection-end-line="9" selection-end-column="55" />
+        <state relative-caret-position="297">
+          <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/simpleconsumer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MainWindow.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="318" selection-start-line="318" selection-end-line="318" />
+        <state relative-caret-position="257">
+          <caret line="526" column="53" selection-start-line="526" selection-start-column="53" selection-end-line="526" selection-end-column="53" />
           <folding>
-            <element signature="e#12656#12662#0" />
+            <element signature="e#13504#14156#0" />
+            <element signature="e#14426#16704#0" />
+            <element signature="e#16757#17040#0" />
+            <element signature="e#23176#26536#0" />
+            <element signature="e#26575#30000#0" />
+            <element signature="e#30063#35317#0" />
+            <element signature="e#35348#38523#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1018">
+          <caret line="34" column="6" selection-start-line="34" selection-start-column="6" selection-end-line="34" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/protocol/offset_commit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="93">
+          <caret line="191" column="47" lean-forward="true" selection-start-line="191" selection-start-column="47" selection-end-line="191" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/protocol/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="36" lean-forward="true" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../sayhello/static/pyechartjs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../sayhello/12306/do12306.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3/argparse.pyi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5253" />
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3/typing.pyi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="230" column="10" selection-start-line="230" selection-start-column="10" selection-end-line="230" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3/collections/__init__.pyi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-204" />
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/_collections_abc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="18" column="24" lean-forward="true" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3/queue.pyi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="25" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_rc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-51" />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1282051629/_collections.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="49" column="49" lean-forward="true" selection-start-line="49" selection-start-column="49" selection-end-line="49" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1282051629/PyQt5/QtWidgets/QWidget.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="917" column="8" selection-start-line="917" selection-start-column="8" selection-end-line="917" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1282051629/PyQt5/QtWidgets/QMenu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="131" column="8" selection-start-line="131" selection-start-column="8" selection-end-line="131" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1282051629/PyQt5/QtGui/QCursor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/protocol/fetch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="25" column="7" lean-forward="true" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/collections/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="1095" column="18" selection-start-line="1095" selection-start-column="18" selection-end-line="1095" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/handlers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="212" selection-start-line="212" selection-end-line="212" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/protocol/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="63" column="22" selection-start-line="63" selection-start-column="22" selection-end-line="63" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/exceptions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="130" lean-forward="true" selection-start-line="130" selection-end-line="130" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_kafkaTool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/protocol/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="322" column="6" selection-start-line="322" selection-start-column="6" selection-end-line="322" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/heapq.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="154" column="7" lean-forward="true" selection-start-line="154" selection-start-column="7" selection-end-line="154" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1282051629/select.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#376#1475#0" />
+            <element signature="e#1516#2799#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/selectors.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="205" column="39" lean-forward="true" selection-start-line="205" selection-start-column="39" selection-end-line="205" selection-end-column="39" />
+          <folding>
+            <element signature="e#133#172#0" expanded="true" />
+            <element signature="e#406#1009#0" />
+            <element signature="e#1715#2233#0" />
+            <element signature="e#2924#3527#0" />
+            <element signature="e#3592#3994#0" />
+            <element signature="e#4054#4522#0" />
+            <element signature="e#4588#5253#0" />
+            <element signature="e#5284#5412#0" />
+            <element signature="e#5454#5849#0" />
+            <element signature="e#5902#5992#0" />
+            <element signature="e#6414#7092#0" />
+            <element signature="e#7154#7575#0" />
+            <element signature="e#7620#7816#0" />
+            <element signature="e#7876#8425#0" />
+            <element signature="e#8456#8504#0" />
+            <element signature="e#8537#8553#0" />
+            <element signature="e#8595#8881#0" />
+            <element signature="e#8929#10336#0" />
+            <element signature="e#10372#12004#0" />
+            <element signature="e#12041#14257#0" />
+            <element signature="e#14296#16113#0" />
+            <element signature="e#16151#18681#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://C:/Program Files/Anaconda3/Lib/codecs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
+        <state relative-caret-position="211">
           <caret line="310" selection-start-line="310" selection-end-line="310" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/persion.pxd">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PlatformPublicDefine.py">
+    <entry file="file://C:/Program Files/Anaconda3/Lib/_weakrefset.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5763">
-          <caret line="345" column="16" selection-start-line="345" selection-start-column="16" selection-end-line="345" selection-end-column="16" />
+        <state relative-caret-position="391">
+          <caret line="35" column="8" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/abc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="148" selection-start-line="148" selection-end-line="148" />
           <folding>
-            <element signature="e#0#13#0" expanded="true" />
-            <marker date="1542807024971" expanded="false" signature="404:406" ph="..." />
-            <marker date="1542807024971" expanded="true" signature="14153:14357" ph="..." />
-            <marker date="1542807024971" expanded="true" signature="14387:14615" ph="..." />
-            <marker date="1542807024971" expanded="true" signature="15638:15647" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/config.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://06bb600b-1d84-4535-8d1a-27879b514f0e/database/msgplatform/schema/dbo/table/mas_productextend">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://06bb600b-1d84-4535-8d1a-27879b514f0e/database/msgplatform/schema/dbo/table/mas_product">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/func__XX___.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="63" selection-start-line="63" selection-end-line="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3/typing.pyi">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="344" column="8" selection-start-line="344" selection-start-column="8" selection-end-line="344" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/UI/add.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/UI/101.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/UI/button_cancel.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1282051629/PyQt5/QtWidgets/QListWidget.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="149" column="8" selection-start-line="149" selection-start-column="8" selection-end-line="149" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1282051629/PyQt5/QtWidgets/QTabWidget.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1282051629/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="756" column="8" selection-start-line="756" selection-start-column="8" selection-end-line="756" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PyUI/UI_KafkaTool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1289">
-          <caret line="132" column="55" lean-forward="true" selection-start-line="132" selection-start-column="55" selection-end-line="132" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1282051629/PyQt5/QtWidgets/QTableWidget.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7905">
-          <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/PyQt5/QtCore.pyi">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="289" column="14" selection-start-line="289" selection-start-column="14" selection-end-line="289" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1282051629/py/builtin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="215" column="8" selection-start-line="215" selection-start-column="8" selection-end-line="215" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/cluster.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="418" column="8" selection-start-line="418" selection-start-column="8" selection-end-line="418" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/kafka_base.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="70" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main_kafkaTool.spec">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="19" lean-forward="true" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main_kafkaTool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/UI/LM.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/UI/edit_remove.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/UI/main.qrc">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BMSMessage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1733">
-          <caret line="390" selection-start-line="390" selection-end-line="390" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-            <element signature="e#32285#32436#0" />
-            <element signature="e#32481#33463#0" />
-            <element signature="e#33508#34708#0" />
-            <element signature="e#34826#35417#0" />
+            <element signature="e#5516#5911#0" />
+            <element signature="e#5963#6570#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SQLManager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2346">
-          <caret column="14" selection-start-column="14" selection-end-column="14" />
+        <state relative-caret-position="255">
+          <caret line="36" column="29" lean-forward="true" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
           <folding>
             <marker date="1543309685750" expanded="true" signature="4294:4598" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SQL.py">
+    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-1282051629/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="169">
+          <caret line="5431" column="8" selection-start-line="5431" selection-start-column="8" selection-end-line="5431" selection-end-column="8" />
           <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MsgType.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/KafkaTool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="24" lean-forward="true" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-            <element signature="e#1048#2886#0" />
-            <element signature="e#2922#4126#0" />
-            <marker date="1543306972137" expanded="true" signature="5526:5596" ph="..." />
-            <marker date="1543306972137" expanded="true" signature="5624:6071" ph="..." />
-            <marker date="1543306972137" expanded="true" signature="14437:14568" ph="..." />
-            <marker date="1543306972137" expanded="true" signature="16068:16087" ph="..." />
+            <element signature="e#19500#19650#0" />
+            <element signature="e#19710#19966#0" />
+            <element signature="e#20023#20292#0" />
+            <element signature="e#20653#20809#0" />
+            <element signature="e#20934#21875#0" />
+            <element signature="e#21920#22698#0" />
+            <element signature="e#22737#23683#0" />
+            <element signature="e#23716#24146#0" />
+            <element signature="e#24177#24305#0" />
+            <element signature="e#24339#24776#0" />
+            <element signature="e#24810#25552#0" />
+            <element signature="e#25572#28740#0" />
+            <element signature="e#28776#30729#0" />
+            <element signature="e#30768#31104#0" />
+            <element signature="e#31145#31468#0" />
+            <element signature="e#31508#31815#0" />
+            <element signature="e#31855#32165#0" />
+            <element signature="e#32203#33486#0" />
+            <element signature="e#33749#44646#0" />
+            <element signature="e#44671#46129#0" />
+            <element signature="e#46168#46272#0" />
+            <element signature="e#46319#46418#0" />
+            <element signature="e#46455#46758#0" />
+            <element signature="e#46790#67371#0" />
+            <element signature="e#67399#85139#0" />
+            <element signature="e#85172#85496#0" />
+            <element signature="e#85532#85957#0" />
+            <element signature="e#85998#86105#0" />
+            <element signature="e#86139#87599#0" />
+            <element signature="e#87629#92592#0" />
+            <element signature="e#92647#92753#0" />
+            <element signature="e#92807#92913#0" />
+            <element signature="e#92965#93069#0" />
+            <element signature="e#93111#93451#0" />
+            <element signature="e#93478#98770#0" />
+            <element signature="e#98802#100119#0" />
+            <element signature="e#100153#100467#0" />
+            <element signature="e#100506#100613#0" />
+            <element signature="e#100654#100756#0" />
+            <element signature="e#100785#101826#0" />
+            <element signature="e#101854#109752#0" />
+            <element signature="e#109803#110125#0" />
+            <element signature="e#110157#114808#0" />
+            <element signature="e#114845#115232#0" />
+            <element signature="e#115275#115595#0" />
+            <element signature="e#115632#116246#0" />
+            <element signature="e#116284#116639#0" />
+            <element signature="e#116676#117661#0" />
+            <element signature="e#117706#117814#0" />
+            <element signature="e#117851#118170#0" />
+            <element signature="e#118208#118526#0" />
+            <element signature="e#118566#118675#0" />
+            <element signature="e#118716#118841#0" />
+            <element signature="e#118888#119206#0" />
+            <element signature="e#119242#119464#0" />
+            <element signature="e#119491#124714#0" />
+            <element signature="e#124740#125752#0" />
+            <element signature="e#125789#126093#0" />
+            <element signature="e#126126#131042#0" />
+            <element signature="e#131078#131392#0" />
+            <element signature="e#131434#131557#0" />
+            <element signature="e#131595#131912#0" />
+            <element signature="e#131960#132297#0" />
+            <element signature="e#132342#132667#0" />
+            <element signature="e#132716#133096#0" />
+            <element signature="e#133135#133245#0" />
+            <element signature="e#133287#133392#0" />
+            <element signature="e#137047#140284#0" />
+            <element signature="e#140328#140643#0" />
+            <element signature="e#140683#141018#0" />
+            <element signature="e#141057#141392#0" />
+            <element signature="e#141423#142639#0" />
+            <element signature="e#142677#143022#0" />
+            <element signature="e#143048#149780#0" />
+            <element signature="e#149808#151937#0" />
+            <element signature="e#151972#153268#0" />
+            <element signature="e#153312#153643#0" />
+            <element signature="e#153682#153939#0" />
+            <element signature="e#153966#173317#0" />
+            <element signature="e#173345#175603#0" />
+            <element signature="e#175641#175976#0" />
+            <element signature="e#176013#176498#0" />
+            <element signature="e#176538#176783#0" />
+            <element signature="e#176825#176948#0" />
+            <element signature="e#176984#177087#0" />
+            <element signature="e#177115#180213#0" />
+            <element signature="e#183394#183712#0" />
+            <element signature="e#183755#184092#0" />
+            <element signature="e#184128#184465#0" />
+            <element signature="e#184504#184816#0" />
+            <element signature="e#184863#185910#0" />
+            <element signature="e#185958#187005#0" />
+            <element signature="e#187056#188106#0" />
+            <element signature="e#188145#188541#0" />
+            <element signature="e#188576#188913#0" />
+            <element signature="e#188962#189311#0" />
+            <element signature="e#189337#190490#0" />
+            <element signature="e#190523#192561#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/KafkaManager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5083">
-          <caret line="420" column="37" selection-start-line="420" selection-start-column="37" selection-end-line="420" selection-end-column="37" />
+        <state relative-caret-position="238">
+          <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
             <element signature="e#5900#9594#0" />
@@ -1708,67 +2119,141 @@ UnicodeDecodeError: \\'utf-8\\' codec can\\'t decode byte 0xcd in position 2: in
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sslLinux.py">
+    <entry file="file://$PROJECT_DIR$/test/testmetaclass.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="89" column="62" selection-start-line="89" selection-start-column="62" selection-end-line="89" selection-end-column="62" />
+        <state relative-caret-position="2329">
+          <caret line="137" column="23" lean-forward="true" selection-start-line="137" selection-start-column="23" selection-end-line="137" selection-end-column="23" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <marker date="1543550436268" expanded="true" signature="1989:2305" ph="..." />
+            <marker date="1543550436268" expanded="true" signature="2450:2697" ph="..." />
+            <marker date="1543550436268" expanded="true" signature="2749:2750" ph="..." />
+            <marker date="1543550436268" expanded="true" signature="3262:3805" ph="..." />
+            <marker date="1543550436268" expanded="true" signature="3494:3531" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/wxpy/utils/misc.py">
+    <entry file="file://$PROJECT_DIR$/test/func__XX___.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="107" column="4" selection-start-line="107" selection-start-column="4" selection-end-line="107" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/wxpy/api/messages/message_config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="19" column="26" lean-forward="true" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+        <state relative-caret-position="442">
+          <caret line="104" lean-forward="true" selection-start-line="104" selection-end-line="104" />
           <folding>
-            <element signature="e#16#55#0" expanded="true" />
+            <element signature="e#0#58#0" expanded="true" />
+            <marker date="1543478396071" expanded="true" signature="1644:1822" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3/functools.pyi">
+    <entry file="file://$PROJECT_DIR$/PyUI/UI_KafkaTool.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-672">
+        <state relative-caret-position="257">
+          <caret line="100" column="43" lean-forward="true" selection-start-line="100" selection-start-column="43" selection-end-line="100" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MainWindow.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="986">
+          <caret line="58" column="36" lean-forward="true" selection-start-line="58" selection-start-column="36" selection-end-line="58" selection-end-column="36" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#0#34#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/itchat/components/__init__.py">
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/cluster.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="225" column="8" selection-start-line="225" selection-start-column="8" selection-end-line="225" selection-end-column="8" />
+          <folding>
+            <element signature="e#6201#6334#1" />
+            <element signature="e#9257#9481#0" />
+            <element signature="e#9651#10219#0" />
+            <element signature="e#10266#10345#0" />
+            <element signature="e#10413#10545#0" />
+            <element signature="e#10618#12487#0" />
+            <element signature="e#12539#13309#0" />
+            <element signature="e#13362#13908#0" />
+            <element signature="e#13973#16103#0" />
+            <element signature="e#19070#19636#0" />
+            <element signature="e#19696#19906#0" />
+            <element signature="e#19969#22133#0" />
+            <element signature="e#22177#23291#0" />
+            <element signature="e#22353#22690#0" />
+            <element signature="e#23323#24551#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+          <caret line="2" column="22" lean-forward="true" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/itchat/core.py">
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/broker.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="314" column="8" selection-start-line="314" selection-start-column="8" selection-end-line="314" selection-end-column="8" />
+        <state relative-caret-position="117">
+          <caret line="243" column="36" selection-start-line="243" selection-start-column="36" selection-end-line="243" selection-end-column="36" />
+          <folding>
+            <element signature="e#5963#8055#0" />
+            <element signature="e#8945#9136#0" />
+            <element signature="e#9199#9423#0" />
+            <element signature="e#11255#12611#0" />
+            <element signature="e#14109#14580#0" />
+            <element signature="e#14667#15235#0" />
+            <element signature="e#15310#16740#0" />
+            <element signature="e#17095#18400#0" />
+            <element signature="e#18477#19420#0" />
+            <element signature="e#19720#20823#0" />
+            <element signature="e#20902#21549#0" />
+            <element signature="e#21660#22897#0" />
+            <element signature="e#22989#23839#0" />
+            <element signature="e#23983#24123#0" />
+            <element signature="e#24195#24498#0" />
+            <element signature="e#25889#26089#0" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/wxpy/api/bot.py">
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/connection.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="382" column="11" lean-forward="true" selection-start-line="382" selection-start-column="11" selection-end-line="382" selection-end-column="11" />
+        <state relative-caret-position="-489">
+          <caret line="112" column="8" selection-start-line="112" selection-start-column="8" selection-end-line="112" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../sayhello/demo.py">
+    <entry file="file://$PROJECT_DIR$/KafkaTool.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="96" column="23" lean-forward="true" selection-start-line="96" selection-start-column="23" selection-end-line="96" selection-end-column="23" />
+        <state relative-caret-position="518">
+          <caret line="295" column="13" selection-start-line="295" selection-start-column="13" selection-end-line="295" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#1093#2931#0" />
+            <element signature="e#1143#2193#0" />
+            <element signature="e#2316#2931#0" />
+            <element signature="e#2967#4171#0" />
+            <element signature="e#3879#3904#0" />
+            <element signature="e#3988#4171#0" />
+            <element signature="e#4194#4375#0" />
+            <element signature="e#4463#4825#0" />
+            <element signature="e#4858#4877#0" />
+            <element signature="e#5248#5282#0" />
+            <element signature="e#5064#5277#0" />
+            <element signature="e#5496#5588#0" />
+            <element signature="e#5672#6103#0" />
+            <element signature="e#6110#8626#0" />
+            <element signature="e#8674#10098#0" />
+            <element signature="e#10136#10196#0" />
+            <element signature="e#10231#10445#0" />
+            <element signature="e#10474#10595#0" />
+            <element signature="e#14446#14562#0" />
+            <element signature="e#14603#15843#0" />
+            <marker date="1543563062875" expanded="true" signature="4690:4691" ph="..." />
+            <marker date="1543563062875" expanded="true" signature="10975:10986" ph="..." />
+            <marker date="1543563062875" expanded="true" signature="12599:12710" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
