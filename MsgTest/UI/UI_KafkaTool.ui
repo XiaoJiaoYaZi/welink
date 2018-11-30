@@ -130,7 +130,7 @@
             <enum>Qt::SolidLine</enum>
            </property>
            <attribute name="horizontalHeaderVisible">
-            <bool>true</bool>
+            <bool>false</bool>
            </attribute>
            <attribute name="horizontalHeaderDefaultSectionSize">
             <number>80</number>
@@ -388,13 +388,35 @@
       <zorder></zorder>
       <zorder></zorder>
       <zorder></zorder>
-      <zorder></zorder>
      </widget>
      <widget class="QWidget" name="page_2"/>
     </widget>
    </item>
   </layout>
+  <action name="action_delete">
+   <property name="icon">
+    <iconset resource="main.qrc">
+     <normaloff>:/image/edit_remove.png</normaloff>:/image/edit_remove.png</iconset>
+   </property>
+   <property name="text">
+    <string>删除</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;删除主题&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </action>
+  <action name="action_fresh">
+   <property name="icon">
+    <iconset resource="main.qrc">
+     <normaloff>:/image/refresh.png</normaloff>:/image/refresh.png</iconset>
+   </property>
+   <property name="text">
+    <string>刷新</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="main.qrc"/>
+ </resources>
  <connections/>
 </ui>

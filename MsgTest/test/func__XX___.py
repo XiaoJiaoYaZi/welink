@@ -1,69 +1,112 @@
+from collections import ChainMap,Counter,deque,defaultdict
+import os,argparse
 
-from SQLManager import SQLManager
+dict1 = {'a':1,'b':2}
+dict2 = {'a':3,'c':2}
 
-db = SQLManager('10.1.120.87:1433', 'sa', 'admin123!@#', 'MsgPlatform')
+#拼接字典
+chain_dict = ChainMap(dict1,dict2,dict())
+print(chain_dict['a'])
+dict1.update(dict2)#deep copy
+print(dict1)
+dict2['c'] = 6
+print(dict1)
+print(chain_dict)
 
-ProductId = 20181123
-ResourceIdList = 201811231706
-ForbiddenAreaSet = 0
-BlacklistRank = 0
-KeywordRank = 0
-AppType =0
-ExtendState = 0
-TelecomSet = 0
-BusinessType = 0
-MsgPriority = 0
-SingleCharCount = 0
-MaxCharCount = 0
-IsNumberExtend = 0
-IsUpload = 0
-StartSendTime = 0
-EndSendTime = 0
-TestSingleMsgCount = 0
-TestDailyMsgCount = 0
-IsSign = 0
-IsPackageStatistic = 0
-AuditStrategy = 0
-LongSMSType = 0
-MinuteIncrement = 0
-BakProductExtendId = 0
-LastTime = 0
-BitsFlag = 0
-Remark = 'remark'
-MinPkgCount = 0
-MaxPkgCount = 0
-AuditAttribute = 'AuditAttribute'
-IsAccountBind = 0
-ReplaceProductExtendId = 0
-SignalRegExp = 'SignalRegExp'
-ForceCheckMaxNo = 0
-SignNoReportBackupPrdEX = 0
-WhiteMobilesBackupPrdEX = 0
-TestProductExtendId = 0
-DayMobileLimit = 0
-TimePeriodMobileLimit = 0
-RedListBackupPrdId = 0
-DayContentLimit = 0
-TimePeriodContentLimit = 0
-PrivateBListLv = 0
-RepTimeOut = 0
-ResendTimes = 0
-PreventComplaintsPrdEX = 0
-PrivateKeywordRank = 0
-ProductExtendNumber = 0
 
-i = 100
-while i<1000:
-    sql = "UPDATE [MsgPlatform].[dbo].[Mas_ProductExtend] SET [ResourceIdList] = '{}' WHERE [ProductExtendId] = 101288871".format(i)
-    i = i+1
-    db.ExecNoQuery(sql.encode('utf-8'))
+#统计出现次数
+cnt = Counter('abcdeabcdabcaba')
+print(cnt)
+print(cnt.most_common(1))
+print('.'.join(sorted(cnt.elements())))
+print(cnt.items())
+for elem in 'shazi':
+    cnt[elem] +=1
+print(cnt)
 
-"INSERT INTO [MsgPlatform].[dbo].[Mas_ProductExtend] ([ProductExtendId], [ProductId], [ResourceIdList], [ForbiddenAreaSet], [BlacklistRank], [KeywordRank], [AppType], [ExtendState], [TelecomSet], [BusinessType], [MsgPriority], [SingleCharCount], [MaxCharCount], [IsNumberExtend], [IsUpload], [StartSendTime], [EndSendTime], [TestSingleMsgCount], [TestDailyMsgCount], [IsSign], [IsPackageStatistic], [AuditStrategy], [LongSMSType], [MinuteIncrement], [BakProductExtendId], [LastTime], [BitsFlag], [Remark], [MinPkgCount], [MaxPkgCount], [AuditAttribute], [IsAccountBind], [ReplaceProductExtendId], [SignalRegExp], [ForceCheckMaxNo], [SignNoReportBackupPrdEX], [WhiteMobilesBackupPrdEX], [TestProductExtendId], [DayMobileLimit], [TimePeriodMobileLimit], [RedListBackupPrdId], [DayContentLimit], [TimePeriodContentLimit], [PrivateBListLv], [RepTimeOut], [ResendTimes], [PreventComplaintsPrdEX], [PrivateKeywordRank], [ProductExtendNumber]) VALUES (2018112300, 20181123, '999', 0, 2, 3, 1, 1, 1, 1, 5, 70, 350, 1, 1, '2000-01-01 00:00:00.000', '2000-01-01 23:59:59.000', 0, 0, 0, 0, 2, 2, 1440, 1012888351, '2017-06-01 14:17:09.343', 451602, '【掌上车店】独享', 1, 1, '免审子产品—注意审核内容！！', 0, 0, '[【][^】]{1,24}[】]$', 0, 0, 0, 0, 200, 0, 0, 5000, 5000, 2, 0, 1, 0, 0, 12)"
+cnt1 = Counter('adadsfas')
+cnt.update(cnt1)#deep copy
+print(cnt)
+cnt1['a']+=1
+print(cnt)
+
+
+#线程安全的双端队列
+d = deque('123')
+for i in d:
+    print(i)
+
+d.append('4')
+d.appendleft('0')
+d.insert(1,'1')
+print(d)
+print(d.pop())
+
+import queue
+q = queue.Queue()#非线程安全的双端队列
+
+
+#defaultdict 提供可指定value的dict
+
+d = defaultdict(list)
+s = [('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]
+for k,v in s:
+    d[k].append(v)
+print(d)
+
+
+#nametuple
 
 
 
+#orderedDoct
+from collections import OrderedDict
+d = {'banana': 3, 'apple': 4, 'pear': 1, 'orange': 2}
+d = OrderedDict(sorted(d.items(),key = lambda t:t[0]))
+print(d)
+d = OrderedDict(sorted(d.items(),key = lambda t:t[1]))
+print(d)
+d = OrderedDict(sorted(d.items(),key = lambda t:len(t[0])))
+print(d)
 
 
+from collections import UserDict,UserString
+
+import functools
+
+
+@functools.lru_cache(maxsize=3)
+def fib(n):
+    if n < 2:
+        return n
+    return fib(n - 1) + fib(n - 2)
+
+
+print([fib(n) for n in range(4)])
+print(fib.cache_info())
+
+
+#泛型方法
+@functools.singledispatch
+def fun(arg,verbose = False):
+    if verbose:
+        print('Let me just say:',end=' ')
+    print(arg)
+#重载方法
+@fun.register(int)
+def _(arg,verbose = False):
+    if verbose:
+        print('accept int param:',end=' ')
+    print(arg)
+
+fun('123',True)
+fun(123,True)
+
+
+import selectors
+import socket
+
+sel = selectors.DefaultSelector()
 
 
 

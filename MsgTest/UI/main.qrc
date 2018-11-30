@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="image">
+    <file>refresh.png</file>
     <file>LM.png</file>
     <file>button_cancel.png</file>
     <file>edit_remove.png</file>
