@@ -8,12 +8,12 @@ from PyUI.UI_SMsgHisRepData import Ui_SMsgHisRepData
 from PyUI.UI_SRepNotifyData_Cloud import Ui_SRepNotifyData
 from PyUI.UI_Monitor_Cloud import Ui_Monitor_Cloud
 from PyUI.UI_SMOData import Ui_SMOData
-from PlatformPublicDefine import SCloudMessage,SMsgSendData,SMsgHisRepData,SMOData,SRepNotifyData,ResourceStateNotify,SDispatchStatistics,SResComStatistics,SResourceState
+from PlatformPublicDefine import SCloudMessage,SMsgSendData,SMsgHisRepData,SMOData,SRepNotifyData,ResourceStateNotify,SDispatchStatistics,SResComStatistics,SResourceState,SPackageStatStruct
 from BMSMessage import dt_Datetime,Datetime_dt,bytes2int,int2ipbyte
 import os
 import sys
 
-
+#f = open('message.txt','w')
 m_section = ['SCloudMsg','MsgSendData','MsgHisRepData','MOData','RepNotifyData','ResourceStateNotify','SDispatchStatistics','SResComStatistics','SResourceState']
 
 m_keys_cloudmsg = (
@@ -188,6 +188,17 @@ m_keys_resourcestate = (
 '状态',
 )
 
+m_keys_SPackageStat = (
+    'MsgId',
+'SendSuccess',
+'SendFails',
+'SendFailTimes',
+'BlackLists',
+'Cancels',
+'ReportSuccess',
+'ReportFails',
+)
+
 
 class MsgBase(QtWidgets.QWidget):
     def __init__(self):
@@ -258,7 +269,7 @@ class CloudMsg(QtWidgets.QWidget,Ui_CloudMsg):
             data.FixHead.MsgContentLen           = int(self.MsgContentLen.text())
             data.FixHead.MobilesCount            = int(self.MobilesCount.text())
             data.FixHead.DispatchTimes           = int(self.DispatchTimes.text())
-            data.FixHead.Telcom                  = self.Telcom.currentIndex()
+            data.FixHead.Telcom                  = 1<<self.Telcom.currentIndex()
             data.FixHead.ProvinceId              = int(self.ProvinceId.text())
             data.FixHead.CityId                  = int(self.CityId.text())
             data.FixHead.TPCBChecked             = int(self.TPCBChecked.text())
@@ -517,6 +528,7 @@ class CloudMsg(QtWidgets.QWidget,Ui_CloudMsg):
                 self.__data.usr_def_id,]
 
             self._f.write('\t'.join(data)+'\n')
+            self._f.flush()
         except Exception as e:
             print(e)
     def getnext(self,b):
@@ -585,6 +597,9 @@ class CloudMsg(QtWidgets.QWidget,Ui_CloudMsg):
             self.mms_title.setText(self.__data.mms_title)
             self.mms_path.setText(self.__data.mms_filename)
             self.user_defid.setText(self.__data.usr_def_id)
+
+            self.save2file()
+
 
         except Exception as e:
             print(e)
@@ -1595,3 +1610,42 @@ class Monitor_Cloud(QtWidgets.QWidget,Ui_Monitor_Cloud):
 
     def getnext(self,b):
         return False
+
+class SPackageStat(QtWidgets.QWidget):
+    def __init__(self):
+        super(SPackageStat,self).__init__()
+        self.__data = SPackageStatStruct()
+        self._f = open('./data/SPackageStat.txt','w')
+        self._f.write('\t'.join(m_keys_SPackageStat)+'\r\n')
+
+    def getValue(self):
+        self.__data.MsgId = 0
+        self.__data.SendSuccess = 1
+        self.__data.SendFails = 2
+        self.__data.SendFailTimes = 3
+        self.__data.BlackLists = 4
+        self.__data.Cancels = 5
+        self.__data.ReportSuccess = 6
+        self.__data.ReportFails = 7
+        return self.__data.Value()
+        pass
+    def analyze(self,b):
+        self.__data.fromByte(b)
+        data = [str(self.__data.MsgId),
+                str(self.__data.SendSuccess),
+                str(self.__data.SendFails),
+                str(self.__data.SendFailTimes),
+                str(self.__data.BlackLists),
+                str(self.__data.Cancels),
+                str(self.__data.ReportSuccess),
+                str(self.__data.ReportFails),]
+        self._f.write('\t'.join(data)+'\r\n')
+        self._f.flush()
+
+        pass
+    def updatedata(self):
+        pass
+    def saveConfig(self, filename):
+        pass
+    def loadConfig(self, filename):
+        pass

@@ -1826,6 +1826,36 @@ def _getmessage(msg: str):
             result = result +i
     return result
 
+class SPackageStatStruct(Structure):
+    _fields_ = [
+        ('MsgId',c_int64),
+        ('SendSuccess', c_int),
+        ('SendFails', c_int),
+        ('SendFailTimes', c_int),
+        ('BlackLists', c_int),
+        ('Cancels', c_int),
+        ('ReportSuccess', c_int),
+        ('ReportFails', c_int),
+    ]
+    _pack_ = 1
+
+    def Value(self):
+        return Pack(self)
+
+    def fromByte(self,b):
+        data = UnPack(SPackageStatStruct, b)
+        self.MsgId = data.MsgId
+        self.SendSuccess = data.SendSuccess
+        self.SendFails = data.SendFails
+        self.SendFailTimes = data.SendFailTimes
+        self.BlackLists = data.BlackLists
+        self.Cancels = data.Cancels
+        self.ReportSuccess = data.ReportSuccess
+        self.ReportFails = data.ReportFails
+
+
+
+
 if __name__ == '__main__':
     pass
     from ctypes import *
