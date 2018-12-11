@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets,QtCore
 from PyUI.UI_MainWindow import Ui_MainWindow
 from BMSMessage import BMSMessage,BMSSHisSendData,BMSSHisRepData,BMSSRepNotifyData,BMSSHisMOData,BMSMoAccBlist,BMSMonitor
-from CloudMsg import CloudMsg,MsgSendData,MsgHisRepData,MOData,RepNotifyData,Monitor_Cloud
+from CloudMsg import CloudMsg,MsgSendData,MsgHisRepData,MOData,RepNotifyData,Monitor_Cloud,SPackageStat
 
 import time
 import os
@@ -111,6 +111,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self._sendData.append(MOData())
         self._sendData.append(RepNotifyData())
         self._sendData.append(Monitor_Cloud())
+        self._sendData.append(SPackageStat())
 
         self._recvData.append(BMSMessage)
         self._recvData.append(BMSSHisSendData)
@@ -349,19 +350,6 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
                 self._kafka.create_consumer(self._config['MsgTest']['topic_consumer'],
                                             self._config['MsgTest']['groupid'])
                 self._kafka.startiocp_recv(self.recv_func)
-            # try:
-            #     if int(self._config['MsgTest']['kafka']) == 0:
-            #         self._msmq.create_consumer(self._config['MsgTest']['msmqpath_consumer'])
-            #         self._msmq.recvOne(self.recv_func)
-            #     else:
-            #         self._kafka.create_consumer(self._config['MsgTest']['topic_consumer'],
-            #                                     self._config['MsgTest']['groupid'])
-            #         self._kafka.recvOne(self.recv_func)
-            #     # self._brecv1 = False
-            #     # self.pushButton_stoprecv_2.setEnabled(False)
-            # except Exception as e:
-            #     print(e)
-
 
     @SendFunc
     def send(self,msg,old,needtran):
@@ -370,11 +358,6 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
             self._kafka_trans.send(msg)
         else:
             self._msmq_trans.send(msg)
-
-    # @classmethod
-    # def TransSend(cls,func):
-    #     def
-
 
     def recv_func(self,kafka_message):
         #print(kafka_message)
@@ -395,19 +378,6 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
             return False
         return True
 
-        # if self.checkBox_search.isChecked():
-        #     if self.num_recv < self.num_trans:
-        #         self.send(kafka_message,self._isold,self.b_needtran)
-        #     else:
-        #         self.send(kafka_message, self._isold,self.b_needtran)
-        #         print('转移完成1')
-        #         return False
-                #self.on_pushButton_stoprecv_pressed()
-            # if self._sendData[self.comboBox_msgtype.currentIndex()].getnext(kafka_message):
-            #     print('find !')
-            #     pass
-
-
 
 
     def analyze(self,value):
@@ -417,7 +387,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         except Exception as e:
             print(e)
             print('analyze error')
-        #QtCore.QCoreApplication.processEvents()
+
 
     def speed(self):
         QtCore.QCoreApplication.processEvents()
