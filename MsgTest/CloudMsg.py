@@ -8,10 +8,12 @@ from PyUI.UI_SMsgHisRepData import Ui_SMsgHisRepData
 from PyUI.UI_SRepNotifyData_Cloud import Ui_SRepNotifyData
 from PyUI.UI_Monitor_Cloud import Ui_Monitor_Cloud
 from PyUI.UI_SMOData import Ui_SMOData
-from PlatformPublicDefine import SCloudMessage,SMsgSendData,SMsgHisRepData,SMOData,SRepNotifyData,ResourceStateNotify,SDispatchStatistics,SResComStatistics,SResourceState,SPackageStatStruct
+from PlatformPublicDefine import SCloudMessage,SMsgSendData,SMsgHisRepData,SMOData,SRepNotifyData,ResourceStateNotify,SDispatchStatistics,SResComStatistics,SResourceState,\
+    SPackageStatStruct,SPackageStatStructRetry
 from BMSMessage import dt_Datetime,Datetime_dt,bytes2int,int2ipbyte
 import os
 import sys
+from ctypes import *
 
 #f = open('message.txt','w')
 m_section = ['SCloudMsg','MsgSendData','MsgHisRepData','MOData','RepNotifyData','ResourceStateNotify','SDispatchStatistics','SResComStatistics','SResourceState']
@@ -1615,6 +1617,7 @@ class SPackageStat(QtWidgets.QWidget):
     def __init__(self):
         super(SPackageStat,self).__init__()
         self.__data = SPackageStatStruct()
+        self.__dataRetry = SPackageStatStructRetry()
         self._f = open('./data/SPackageStat.txt','w')
         self._f.write('\t'.join(m_keys_SPackageStat)+'\r\n')
 
@@ -1630,16 +1633,29 @@ class SPackageStat(QtWidgets.QWidget):
         return self.__data.Value()
         pass
     def analyze(self,b):
-        self.__data.fromByte(b)
-        data = [str(self.__data.MsgId),
-                str(self.__data.SendSuccess),
-                str(self.__data.SendFails),
-                str(self.__data.SendFailTimes),
-                str(self.__data.BlackLists),
-                str(self.__data.Cancels),
-                str(self.__data.ReportSuccess),
-                str(self.__data.ReportFails),]
-        self._f.write('\t'.join(data)+'\r\n')
+        data = None
+        if len(b) == sizeof(SPackageStatStructRetry):
+            self.__dataRetry.fromByte(b)
+            data = [str(self.__dataRetry.MsgId),
+                    str(self.__dataRetry.SendSuccess),
+                    str(self.__dataRetry.SendFails),
+                    str(self.__dataRetry.SendFailTimes),
+                    str(self.__dataRetry.BlackLists),
+                    str(self.__dataRetry.Cancels),
+                    str(self.__dataRetry.ReportSuccess),
+                    str(self.__dataRetry.ReportFails),
+                    str(self.__dataRetry.preTime)]
+        else:
+            self.__data.fromByte(b)
+            data = [str(self.__data.MsgId),
+                    str(self.__data.SendSuccess),
+                    str(self.__data.SendFails),
+                    str(self.__data.SendFailTimes),
+                    str(self.__data.BlackLists),
+                    str(self.__data.Cancels),
+                    str(self.__data.ReportSuccess),
+                    str(self.__data.ReportFails),]
+        self._f.write(str(len(b))+'\t'+'\t'.join(data)+'\r\n')
         self._f.flush()
 
         pass
