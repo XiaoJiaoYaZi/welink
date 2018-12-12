@@ -1837,7 +1837,6 @@ class SPackageStatStruct(Structure):
         ('ReportSuccess', c_int),
         ('ReportFails', c_int),
     ]
-    _pack_ = 1
 
     def Value(self):
         return Pack(self)
@@ -1853,7 +1852,33 @@ class SPackageStatStruct(Structure):
         self.ReportSuccess = data.ReportSuccess
         self.ReportFails = data.ReportFails
 
+class SPackageStatStructRetry(Structure):
+    _fields_ = [
+        ('MsgId',c_int64),
+        ('SendSuccess', c_int),
+        ('SendFails', c_int),
+        ('SendFailTimes', c_int),
+        ('BlackLists', c_int),
+        ('Cancels', c_int),
+        ('ReportSuccess', c_int),
+        ('ReportFails', c_int),
+        ('preTime',c_int64)
+    ]
 
+    def Value(self):
+        return Pack(self)
+
+    def fromByte(self,b):
+        data = UnPack(SPackageStatStruct, b)
+        self.MsgId = data.MsgId
+        self.SendSuccess = data.SendSuccess
+        self.SendFails = data.SendFails
+        self.SendFailTimes = data.SendFailTimes
+        self.BlackLists = data.BlackLists
+        self.Cancels = data.Cancels
+        self.ReportSuccess = data.ReportSuccess
+        self.ReportFails = data.ReportFails
+        self.preTime = data.preTime
 
 
 if __name__ == '__main__':
