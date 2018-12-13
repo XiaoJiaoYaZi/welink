@@ -636,9 +636,9 @@ class MsgSendData(QtWidgets.QWidget,Ui_SMsgSendData):
 
     def getValue(self,data=None):
         if data is None:
-            self.__getValue(self.__data)
+            return self.__getValue(self.__data)
         else:
-            self.__getValue(data)
+            return self.__getValue(data)
 
     def __getValue(self,data):
         try:
