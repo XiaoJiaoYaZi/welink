@@ -77,9 +77,9 @@ class KafkaManager(object):
         topic = topic.lower()
         self._topick = topic
 
-    def send(self,data):
+    def send(self,data,partition = None):
         if isinstance(data,bytes):
-            self.__producer.send(self._topick,data)
+            self.__producer.send(self._topick,data,partition = partition)
 
     def create_consumer(self,topic:str,groupid:str = None):
         try:

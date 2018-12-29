@@ -60,7 +60,7 @@ class ModelMetaclass(type):
         mapping = {}
         for k,v in attrs.items():
             if isinstance(v,Field):
-                print('Found mapping:%s ==> %s' %(k,v))
+                #print('Found mapping:%s ==> %s' %(k,v))
                 mapping[k] = v
         for k in mapping.keys():
             attrs.pop(k)

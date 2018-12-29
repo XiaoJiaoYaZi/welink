@@ -70,6 +70,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self._brecv1 = True
         self._isold = True
         self.b_needtran = False
+        self.i_partition = None
         try:
             self._config = ConfigParser()
             self._config.read(os.getcwd()+'/config/config.ini',encoding='gbk')
@@ -95,6 +96,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self.timer = QtCore.QTimer(self)
         self.timer.timeout.connect(self.speed)
         self.timer.start(1000)
+        self.comboBoxpartition.currentIndexChanged.connect(self.set_partition)
 
 
     def _initData(self):
@@ -160,6 +162,14 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
 
     def _showtime(self):
         self.label_status.setText(time.asctime())
+
+    def set_partition(self,index):
+        temp = self.comboBoxpartition.currentText()
+        if temp == '-1':
+            self.i_partition = None
+        else:
+            self.i_partition = int(temp)
+        #print(self.i_partition)
 
     def on_checkBox_stateChanged(self,a0):
         self._config['MsgTest']['kafka'] = str(int(bool(a0)))
@@ -233,7 +243,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
                 self._msmq.create_producer(self._config['MsgTest']['msmqpath_producer'])
                 self._msmq.send(data)
             else:
-                self._kafka.send(data)
+                self._kafka.send(data,partition=self.i_partition)
             self.num_send += 1
         except Exception as e:
             print(e)
@@ -271,7 +281,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
                 if int(self._config['MsgTest']['kafka']) == 0:
                     self._msmq.send(data)
                 else:
-                    self._kafka.send(data)
+                    self._kafka.send(data,partition=self.i_partition)
             except Exception as e:
                 print(e)
 
@@ -280,6 +290,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
             if self.b_start:
                 self.b_start = False
                 self._thread.join()
+                self.num_send = 0
                 self.pushButton_stopsend.setEnabled(False)
                 self.pushButton_threadsend.setEnabled(True)
         except Exception as e:
