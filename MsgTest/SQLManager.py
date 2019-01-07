@@ -11,6 +11,7 @@ class SQLManager(object):
         if not self.db:
             raise (NameError,"没有设置数据库")
         self.conn = pymssql.connect(server=self.host,user=self.usr,password=self.pwd,database=self.db)
+        #cur = self.conn.cursor(as_dict=True) 返回的结果集是个dict
         cur = self.conn.cursor()
         if not cur:
             raise (NameError,"链接数据库失败")
@@ -162,17 +163,18 @@ if __name__ == '__main__':
     # DBPool()
     # u = User(id=12345, name='Michael', email='test@orm.org', password='my-pwd')
     # u.save()
-    db = SQLManager('10.1.120.87:1433','sa','admin123!@#','MsgPlatform')
+    db = SQLManager('10.1.120.87:1433','sa','admin123!@#','DevelopData')
 
     productid = 20181123
     ResourceIdList = 201811231706
     ForbiddenAreaSet    = 0
     BlacklistRank   =0
 
+    sql = "exec ProcGetModuleListByConfigName @ConfigName = 'Web.config'"
 
 
 
-    db.ExecNoQuery(sql.encode('utf-8'))
+    db.ExecQuery(sql.encode('utf-8'))
 
     # result = db.ExecQuery('select MobilePhoneSet from Mas_CommitMsgInfo where MsgID = 1811162127520077137'.encode('utf-8'))
     # print(len(result[0][0].split(',')))
