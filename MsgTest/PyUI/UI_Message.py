@@ -1,0 +1,90 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'UI_Message.ui'
+#
+# Created by: PyQt5 UI code generator 5.11.3
+#
+# WARNING! All changes made in this file will be lost!
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+class Ui_Message(object):
+    def setupUi(self, Message):
+        Message.setObjectName("Message")
+        Message.resize(830, 409)
+        self.gridLayout = QtWidgets.QGridLayout(Message)
+        self.gridLayout.setObjectName("gridLayout")
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.pushButton_save = QtWidgets.QPushButton(Message)
+        self.pushButton_save.setObjectName("pushButton_save")
+        self.horizontalLayout.addWidget(self.pushButton_save)
+        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem)
+        self.gridLayout.addLayout(self.horizontalLayout, 0, 0, 1, 1)
+        self.treeWidget = QtWidgets.QTreeWidget(Message)
+        self.treeWidget.setSelectionMode(QtWidgets.QAbstractItemView.ContiguousSelection)
+        self.treeWidget.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.treeWidget.setObjectName("treeWidget")
+        item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget)
+        item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget)
+        item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget)
+        item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget)
+        item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget)
+        item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget)
+        item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget)
+        self.treeWidget.header().setDefaultSectionSize(50)
+        self.treeWidget.header().setMinimumSectionSize(10)
+        self.gridLayout.addWidget(self.treeWidget, 1, 0, 1, 1)
+
+        self.retranslateUi(Message)
+        QtCore.QMetaObject.connectSlotsByName(Message)
+
+    def retranslateUi(self, Message):
+        _translate = QtCore.QCoreApplication.translate
+        Message.setWindowTitle(_translate("Message", "Dialog"))
+        self.pushButton_save.setText(_translate("Message", "save"))
+        self.treeWidget.headerItem().setText(0, _translate("Message", "offset"))
+        self.treeWidget.headerItem().setText(1, _translate("Message", "value"))
+        self.treeWidget.headerItem().setText(2, _translate("Message", "New Column"))
+        self.treeWidget.headerItem().setText(3, _translate("Message", "New Column"))
+        self.treeWidget.headerItem().setText(4, _translate("Message", "New Column"))
+        __sortingEnabled = self.treeWidget.isSortingEnabled()
+        self.treeWidget.setSortingEnabled(False)
+        self.treeWidget.topLevelItem(0).setText(0, _translate("Message", "0"))
+        self.treeWidget.topLevelItem(0).setText(1, _translate("Message", "212121212121212121212121212121212121212121212121212121212121212121212121212121213"))
+        self.treeWidget.topLevelItem(0).setText(2, _translate("Message", "2"))
+        self.treeWidget.topLevelItem(0).setText(3, _translate("Message", "3"))
+        self.treeWidget.topLevelItem(0).setText(4, _translate("Message", "4"))
+        self.treeWidget.topLevelItem(1).setText(0, _translate("Message", "1"))
+        self.treeWidget.topLevelItem(1).setText(1, _translate("Message", "213"))
+        self.treeWidget.topLevelItem(1).setText(2, _translate("Message", "123"))
+        self.treeWidget.topLevelItem(1).setText(3, _translate("Message", "123"))
+        self.treeWidget.topLevelItem(1).setText(4, _translate("Message", "123"))
+        self.treeWidget.topLevelItem(2).setText(0, _translate("Message", "2"))
+        self.treeWidget.topLevelItem(2).setText(1, _translate("Message", "123"))
+        self.treeWidget.topLevelItem(2).setText(2, _translate("Message", "123"))
+        self.treeWidget.topLevelItem(2).setText(3, _translate("Message", "13"))
+        self.treeWidget.topLevelItem(2).setText(4, _translate("Message", "123"))
+        self.treeWidget.topLevelItem(3).setText(0, _translate("Message", "3"))
+        self.treeWidget.topLevelItem(3).setText(1, _translate("Message", "123"))
+        self.treeWidget.topLevelItem(3).setText(2, _translate("Message", "123"))
+        self.treeWidget.topLevelItem(3).setText(3, _translate("Message", "123"))
+        self.treeWidget.topLevelItem(3).setText(4, _translate("Message", "123"))
+        self.treeWidget.topLevelItem(4).setText(0, _translate("Message", "4"))
+        self.treeWidget.topLevelItem(4).setText(1, _translate("Message", "123"))
+        self.treeWidget.topLevelItem(4).setText(2, _translate("Message", "123"))
+        self.treeWidget.topLevelItem(4).setText(3, _translate("Message", "123"))
+        self.treeWidget.topLevelItem(4).setText(4, _translate("Message", "123"))
+        self.treeWidget.topLevelItem(5).setText(0, _translate("Message", "5"))
+        self.treeWidget.topLevelItem(5).setText(1, _translate("Message", "123"))
+        self.treeWidget.topLevelItem(5).setText(2, _translate("Message", "123"))
+        self.treeWidget.topLevelItem(5).setText(3, _translate("Message", "123"))
+        self.treeWidget.topLevelItem(5).setText(4, _translate("Message", "123"))
+        self.treeWidget.topLevelItem(6).setText(0, _translate("Message", "6"))
+        self.treeWidget.topLevelItem(6).setText(1, _translate("Message", "123"))
+        self.treeWidget.topLevelItem(6).setText(2, _translate("Message", "123"))
+        self.treeWidget.topLevelItem(6).setText(3, _translate("Message", "13"))
+        self.treeWidget.topLevelItem(6).setText(4, _translate("Message", "12"))
+        self.treeWidget.setSortingEnabled(__sortingEnabled)
+

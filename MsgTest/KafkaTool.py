@@ -2,6 +2,7 @@ from PyQt5 import QtWidgets, QtCore,QtGui
 from PyUI.UI_KafkaTool import Ui_KafkaTool
 from PyUI.UI_Descrip_Consumer import Ui_Descrip
 from PyUI.UI_ReadMessage import Ui_Dialog_ReadMessage
+from PyUI.UI_Message import Ui_Message
 from pykafka import Cluster,handlers
 from threading import Thread,Event,Lock
 import time
@@ -10,6 +11,14 @@ from pykafka.protocol import PartitionOffsetFetchRequest,PartitionFetchRequest,m
 from PyQt5.QtWidgets import QTableWidgetItem
 from collections import defaultdict
 
+
+class Message(QtWidgets.QDialog,Ui_Message):
+    def __init__(self,data,parent = None):
+        super(Message,self).__init__(parent=parent)
+        self.setupUi(self)
+
+    def _analyze(self,data):
+        pass
 
 class ReadMsg(QtWidgets.QDialog,Ui_Dialog_ReadMessage):
     signal_messagecfg = QtCore.pyqtSignal(tuple)
