@@ -1,0 +1,93 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'UI_ReadMessage.ui'
+#
+# Created by: PyQt5 UI code generator 5.6
+#
+# WARNING! All changes made in this file will be lost!
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+class Ui_Dialog_ReadMessage(object):
+    def setupUi(self, Dialog_ReadMessage):
+        Dialog_ReadMessage.setObjectName("Dialog_ReadMessage")
+        Dialog_ReadMessage.resize(337, 141)
+        Dialog_ReadMessage.setMaximumSize(QtCore.QSize(337, 141))
+        self.gridLayout = QtWidgets.QGridLayout(Dialog_ReadMessage)
+        self.gridLayout.setObjectName("gridLayout")
+        self.verticalLayout = QtWidgets.QVBoxLayout()
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.label = QtWidgets.QLabel(Dialog_ReadMessage)
+        self.label.setObjectName("label")
+        self.horizontalLayout.addWidget(self.label)
+        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem)
+        self.lineEdit = QtWidgets.QLineEdit(Dialog_ReadMessage)
+        self.lineEdit.setMinimumSize(QtCore.QSize(154, 0))
+        self.lineEdit.setObjectName("lineEdit")
+        self.horizontalLayout.addWidget(self.lineEdit)
+        self.verticalLayout.addLayout(self.horizontalLayout)
+        self.checkBox = QtWidgets.QCheckBox(Dialog_ReadMessage)
+        self.checkBox.setTristate(False)
+        self.checkBox.setObjectName("checkBox")
+        self.verticalLayout.addWidget(self.checkBox)
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.label_2 = QtWidgets.QLabel(Dialog_ReadMessage)
+        self.label_2.setObjectName("label_2")
+        self.horizontalLayout_2.addWidget(self.label_2)
+        self.comboBox = QtWidgets.QComboBox(Dialog_ReadMessage)
+        self.comboBox.setObjectName("comboBox")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.horizontalLayout_2.addWidget(self.comboBox)
+        self.verticalLayout.addLayout(self.horizontalLayout_2)
+        self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
+        self.buttonBox = QtWidgets.QDialogButtonBox(Dialog_ReadMessage)
+        self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
+        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
+        self.buttonBox.setObjectName("buttonBox")
+        self.gridLayout.addWidget(self.buttonBox, 1, 0, 1, 1)
+
+        self.retranslateUi(Dialog_ReadMessage)
+        self.buttonBox.accepted.connect(Dialog_ReadMessage.accept)
+        self.buttonBox.rejected.connect(Dialog_ReadMessage.reject)
+        QtCore.QMetaObject.connectSlotsByName(Dialog_ReadMessage)
+
+    def retranslateUi(self, Dialog_ReadMessage):
+        _translate = QtCore.QCoreApplication.translate
+        Dialog_ReadMessage.setWindowTitle(_translate("Dialog_ReadMessage", "读取队列内容"))
+        self.label.setText(_translate("Dialog_ReadMessage", "要读取的偏移量"))
+        self.checkBox.setText(_translate("Dialog_ReadMessage", "显示二进制数据,如果不想查看请选择要转换的数据类型"))
+        self.label_2.setText(_translate("Dialog_ReadMessage", "要转换的数据类型"))
+        self.comboBox.setItemText(0, _translate("Dialog_ReadMessage", "SBMSMessage"))
+        self.comboBox.setItemText(1, _translate("Dialog_ReadMessage", "BMSSHisSendData"))
+        self.comboBox.setItemText(2, _translate("Dialog_ReadMessage", "新建项目"))
+        self.comboBox.setItemText(3, _translate("Dialog_ReadMessage", "新建项目"))
+        self.comboBox.setItemText(4, _translate("Dialog_ReadMessage", "新建项目"))
+        self.comboBox.setItemText(5, _translate("Dialog_ReadMessage", "新建项目"))
+        self.comboBox.setItemText(6, _translate("Dialog_ReadMessage", "新建项目"))
+        self.comboBox.setItemText(7, _translate("Dialog_ReadMessage", "新建项目"))
+        self.comboBox.setItemText(8, _translate("Dialog_ReadMessage", "新建项目"))
+        self.comboBox.setItemText(9, _translate("Dialog_ReadMessage", "新建项目"))
+        self.comboBox.setItemText(10, _translate("Dialog_ReadMessage", "新建项目"))
+        self.comboBox.setItemText(11, _translate("Dialog_ReadMessage", "新建项目"))
+        self.comboBox.setItemText(12, _translate("Dialog_ReadMessage", "新建项目"))
+        self.comboBox.setItemText(13, _translate("Dialog_ReadMessage", "新建项目"))
+        self.comboBox.setItemText(14, _translate("Dialog_ReadMessage", "新建项目"))
+

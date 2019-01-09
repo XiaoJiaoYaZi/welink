@@ -106,7 +106,7 @@ class Ui_KafkaTool(object):
         self.topic_decrips.setHorizontalHeaderItem(5, item)
         item = QtWidgets.QTableWidgetItem()
         self.topic_decrips.setHorizontalHeaderItem(6, item)
-        self.topic_decrips.horizontalHeader().setVisible(True)
+        self.topic_decrips.horizontalHeader().setVisible(False)
         self.topic_decrips.horizontalHeader().setDefaultSectionSize(80)
         self.topic_decrips.horizontalHeader().setHighlightSections(True)
         self.topic_decrips.verticalHeader().setVisible(False)
@@ -203,6 +203,8 @@ class Ui_KafkaTool(object):
         icon1.addPixmap(QtGui.QPixmap(":/image/refresh.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.action_fresh.setIcon(icon1)
         self.action_fresh.setObjectName("action_fresh")
+        self.action_ReadMessage = QtWidgets.QAction(KafkaTool)
+        self.action_ReadMessage.setObjectName("action_ReadMessage")
 
         self.retranslateUi(KafkaTool)
         self.tabWidget.setCurrentIndex(0)
@@ -286,5 +288,6 @@ class Ui_KafkaTool(object):
         self.action_delete.setText(_translate("KafkaTool", "删除"))
         self.action_delete.setToolTip(_translate("KafkaTool", "<html><head/><body><p>删除主题</p><p><br/></p></body></html>"))
         self.action_fresh.setText(_translate("KafkaTool", "刷新"))
+        self.action_ReadMessage.setText(_translate("KafkaTool", "读取消息"))
 
 import main_rc

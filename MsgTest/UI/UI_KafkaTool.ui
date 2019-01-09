@@ -414,6 +414,11 @@
     <string>刷新</string>
    </property>
   </action>
+  <action name="action_ReadMessage">
+   <property name="text">
+    <string>读取消息</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="main.qrc"/>

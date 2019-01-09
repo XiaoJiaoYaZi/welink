@@ -1,13 +1,38 @@
 from PyQt5 import QtWidgets, QtCore,QtGui
 from PyUI.UI_KafkaTool import Ui_KafkaTool
 from PyUI.UI_Descrip_Consumer import Ui_Descrip
+from PyUI.UI_ReadMessage import Ui_Dialog_ReadMessage
 from pykafka import Cluster,handlers
 from threading import Thread,Event,Lock
 import time
 from collections import namedtuple
-from pykafka.protocol import PartitionOffsetFetchRequest
+from pykafka.protocol import PartitionOffsetFetchRequest,PartitionFetchRequest,message
 from PyQt5.QtWidgets import QTableWidgetItem
 from collections import defaultdict
+
+
+class ReadMsg(QtWidgets.QDialog,Ui_Dialog_ReadMessage):
+    signal_messagecfg = QtCore.pyqtSignal(tuple)
+    def __init__(self,parent = None):
+        super(ReadMsg,self).__init__(parent=parent)
+        self.setupUi(self)
+        self.__initUI()
+        self._createConnections()
+
+    def __initUI(self):
+        pass
+
+    def _createConnections(self):
+        self.checkBox.clicked.connect(self.change)
+        self.buttonBox.accepted.connect(self.onOK)
+
+    def change(self,checked):
+        self.comboBox.setEnabled(not checked)
+
+    def onOK(self):
+        self.signal_messagecfg.emit((self.checkBox.isChecked(),int(self.lineEdit.text().strip())))
+
+
 
 
 ConsumerDescrip = namedtuple('ConsumerDescrip',
@@ -235,7 +260,13 @@ class ClusterManager(Thread):
             self._update()
             time.sleep(self._interval)
 
-        print('run')
+        print('run end')
+
+    def getMessage(self,topic,partition,offset):
+        for id,broker in self._cluster.brokers.items():
+            request = PartitionFetchRequest(topic,partition,offset,1024*1024*5)
+            message = broker.fetch_messages({request})
+            print(message)
 
 class Table_Consumer(Ui_Descrip,QtWidgets.QTableWidget):
     def __init__(self,topicoffsets,descrips:dict,parent = None):
@@ -272,10 +303,19 @@ class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
         self.consumer.setSortingEnabled(True)
         self.stackedWidget.setEnabled(False)
         self.tabWidget.clear()
+        self._initMenu()
+        self.topic.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        self.topic_decrips.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        self.Dialog_ReadMsg = ReadMsg(self)
+
+
+    def _initMenu(self):
         self.topic_menu = QtWidgets.QMenu(self.topic)
         self.topic_menu.addAction(self.action_delete)
         self.topic_menu.addAction(self.action_fresh)
-        self.topic.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+
+        self.topic_decrips_menu = QtWidgets.QMenu(self.topic_decrips)
+        self.topic_decrips_menu.addAction(self.action_ReadMessage)
 
     def _createconnections(self):
         self.connect.pressed.connect(self._connect)
@@ -289,6 +329,19 @@ class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
         self.topic.customContextMenuRequested.connect(self.show_topic_menu)
         self.action_delete.triggered.connect(self.delete_topic)
         self.action_fresh.triggered.connect(self._fresh_topic)
+        self.topic_decrips.customContextMenuRequested.connect(self.showReadMenu)
+        self.action_ReadMessage.triggered.connect(self.showgetMessage)
+        self.Dialog_ReadMsg.signal_messagecfg.connect(self.ReadMessage)
+
+    def showReadMenu(self,pos):
+        self.topic_decrips_menu.exec(QtGui.QCursor.pos())
+
+    def showgetMessage(self):
+        self.Dialog_ReadMsg.show()
+
+    def ReadMessage(self,partition):
+        print(partition)
+
 
     def show_topic_menu(self,pos):
         self.topic_menu.exec(QtGui.QCursor.pos())
