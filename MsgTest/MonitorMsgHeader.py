@@ -79,6 +79,13 @@ class SubmitMonitorMsgDefine(Structure):
     def __len__(self):
         return self.__OneByte.size
 
+    def toList(self):
+        return [
+            str(self._succ),
+            str(self._fail),
+            str(self._succ_fee)
+        ]
+
 class SubmitMonitorMsg(Structure):
     class ItemIndex(Enum):
         ITEM_CNT     = 0
@@ -117,6 +124,9 @@ class SubmitMonitorMsg(Structure):
         self.baseheader.fromBytes(b[:l])
         self.define.fromBytes(b[l:])
 
+    def toList(self):
+        return self.baseheader.toList() + self.define.toList()
+
 
 class DispatchMonitorMsgDefine(Structure):
     _fields_ = [
@@ -144,6 +154,11 @@ class DispatchMonitorMsgDefine(Structure):
 
     def __len__(self):
         return self.__OneByte.size
+
+    def toList(self):
+        return [str(list([self.dispatch_states[i] for i in range(32)])),
+               str(list([self.dispatch_province[i] for i in range(36)])),
+               str([self.dispatch_telcom[i] for i in range(8)])]
 
 
 class DispatchMonitorMsg(Structure):
@@ -183,6 +198,9 @@ class DispatchMonitorMsg(Structure):
         l = len(self.baseheader)
         self.baseheader.fromBytes(b[:l])
         self.define.fromBytes(b[l:])
+
+    def toList(self):
+        return self.baseheader.toList() +  self.define.toList()
 
 class SResourceStateDefine(Structure):
     _fields_ = [
@@ -245,6 +263,25 @@ class SResourceStateDefine(Structure):
     def __len__(self):
         return self.__OneByte.size
 
+    def toList(self):
+        return [
+            str(self.resourceId),
+            Datetime_dt(self.reportTime),
+            str(self.statisticsConfig),
+            str(self.currentStock),
+            str(self.lastStock),
+            str(self.reportTimeInterval),
+            str(self.submitTotal),
+            str(self.currentSubmitSuccess),
+            str(self.currentSubmitFail),
+            str(self.reportTotal),
+            str(self.currentReportSuccess),
+            str(self.currentReportFail),
+            str(self.moTotal),
+            str(self.currentMoTotal),
+            str(self.state)
+        ]
+
 class SResourceState(Structure):
     class ItemIndex(Enum):
         ITEM_CNT     = 0
@@ -283,6 +320,9 @@ class SResourceState(Structure):
         self.baseheader.fromBytes(b[:l])
         self.define.fromBytes(b[l:])
 
+    def toList(self):
+        return self.baseheader.toList() + self.define.toList()
+
 class HisPreDealMonitorDefine(Structure):
     _fields_ = [
         ('rcvCnt',c_long),
@@ -316,6 +356,16 @@ class HisPreDealMonitorDefine(Structure):
 
     def __len__(self):
         return self.__OneByte.size
+
+    def toList(self):
+        return [
+            str(self.rcvCnt),
+            str(self.perRcvCnt),
+            str(self.mtchCnt),
+            str(self.sndFldRsndCnt),
+            str(self.repFldRsndCnt),
+            str(self.repTmoutRsndCnt),
+        ]
 
 class HisPreDealMonitorData(Structure):
     class ItemIndex(Enum):
@@ -355,6 +405,9 @@ class HisPreDealMonitorData(Structure):
         self.baseheader.fromBytes(b[:l])
         self.define.fromBytes(b[l:])
 
+    def toList(self):
+        return self.baseheader.toList() + self.define.toList()
+
 class HisCenterMonitorDefine(Structure):
     _fields_ = [
         ('preCnt',c_long),
@@ -391,6 +444,17 @@ class HisCenterMonitorDefine(Structure):
 
     def __len__(self):
         return self.__OneByte.size
+
+    def toList(self):
+        return [
+            str(self.preCnt),
+            str(self.rcvMsgCnt),
+            str(self.directInstCnt),
+            str(self.repMtchCnt),
+            str(self.repRtryMtchCnt),
+            str(self.repDismtchCnt),
+            str(self.moMsgCnt),
+        ]
 
 class HisCenterMonitorData(Structure):
     class ItemIndex(Enum):
@@ -430,6 +494,8 @@ class HisCenterMonitorData(Structure):
         self.baseheader.fromBytes(b[:l])
         self.define.fromBytes(b[l:])
 
+    def toList(self):
+        return self.baseheader.toList() + self.define.toList()
 
 class SHeartBeatDefine(Structure):
     _fields_ = [
@@ -455,6 +521,13 @@ class SHeartBeatDefine(Structure):
 
     def __len__(self):
         return self.__OneByte.size
+
+    def toList(self):
+        return [
+            str(self.timeInterval),
+            Datetime_dt(self.alarmTime),
+            str(self.stat),
+        ]
 
 class SHeartBeat(Structure):
     class ItemIndex(Enum):
@@ -545,6 +618,9 @@ class SHeartBeat(Structure):
     def module(self):
         return self.alarm_module.decode('gbk')
 
+    def toList(self):
+        return self.define.toList() + [self.module]
+
 class log_struct_define(Structure):
     _fields_ = [
         ('level',c_int),
@@ -569,6 +645,13 @@ class log_struct_define(Structure):
 
     def __len__(self):
         return self.__OneByte.size
+
+    def toList(self):
+        return [
+            str(self.level),
+            str(self.ip),
+            Datetime_dt(self.time),
+        ]
 
 class log_struct(Structure):
     class ItemIndex(Enum):
@@ -667,6 +750,9 @@ class log_struct(Structure):
             self.node[i].fromBytes(b[l1+l2+i*l4:l1+l2+(i+1)*l4])
         self.name = bytes(b[l5+self.node[0].m_offset:l5+self.node[0].m_offset+self.node[0].m_size])
         self.msg = bytes(b[l5 + self.node[1].m_offset:l5 + self.node[1].m_offset + self.node[1].m_size])
+
+    def toList(self):
+        return self.define.toList() + [self.names,self.msgs]
 
     @property
     def names(self):

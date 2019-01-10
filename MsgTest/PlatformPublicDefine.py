@@ -4,6 +4,7 @@ from PyQt5 import QtCore
 from BMSMessage import Datetime_dt,dt_Datetime
 import sys
 from ctypes import *
+import functions
 import socket
 
 
@@ -157,6 +158,36 @@ class DispatchFixedHead(object):
     def __len__(self):
         return self.__OneByte.size
 
+    def toList(self):
+        return [
+            str(self.Priority),
+            str(self.MsgId),
+            str(self.ProductExtendId),
+            str(self.RealProductExtendId),
+            functions.Datetime_dt(self.StartSendDateTime),
+            functions.Datetime_dt(self.EndSendDateTime),
+            functions.Datetime_dt(self.StartSendTime),
+            functions.Datetime_dt(self.EndSendTime),
+            str(self.ChargeQuantity),
+            str(self.MsgState),
+            str(self.MsgType),
+            functions.Datetime_dt(self.CommitTime),
+            str(self.Package),
+            str(self.MobilesContentLen),
+            str(self.MsgContentLen),
+            str(self.MobilesCount),
+            str(self.DispatchTimes),
+            str(self.Telcom),
+            str(self.ProvinceId),
+            str(self.CityId),
+            str(self.TPCBChecked),
+            str(self.SendedTimes),
+            str(self.DispatchFailedState),
+            str(self.SubmitType),
+            str(self.CloudMsgTemplateID),
+            str(self.CommitIp),
+        ]
+
 class DispatchFixedTail(object):
     __OneByte = struct.Struct('<BHiiBdHiBiiib')
     def __init__(self):
@@ -215,6 +246,23 @@ class DispatchFixedTail(object):
 
     def __len__(self):
         return self.__OneByte.size
+
+    def toList(self):
+        return [
+            str(self.pagetotal),
+            str(self.packagetotal),
+            str(self.typeComponentParam),
+            str(self.lastFailResourceId),
+            str(self.failedType),
+            functions.Datetime_dt(self.lastDiapatchTime),
+            str(self.resourceSendTimes),
+            str(self.auditorId),
+            str(self.totalSendTimes),
+            str(self.repResendTimeOut),
+            str(self.innerDispatchTimes),
+            str(self.extComponentParam),
+            str(self.m_old_struct)
+        ]
 
 class Node(object):
     __OneByte = struct.Struct("<II")
@@ -472,6 +520,12 @@ class SCloudMessage(object):
             self._usr_def_id        = bytes(b[l5+self.node[11].m_offset:l5+self.node[11].m_offset+self.node[11].m_size])
         except Exception as e:
             print(e)
+
+    def toList(self):
+        return self.FixHead.toList() + self.FixTail.toList() +[
+            self.mobiles,self.acc_name,self.message,self.templateID,self.msgtemplate,self.paramtemplate,self.extnumer,self.sign,
+            self.acc_msgid,self.mms_title,self.mms_filename,self.usr_def_id
+        ]
 
     def write_header(self):
         self.msgheader._type = self.impl_type
@@ -759,7 +813,7 @@ class TSMsgSendData(object):
         # self.sign                   = bytes(0)
     @property
     def accountId(self):
-        return self._accountId.decode('gbk')
+        return self._accountId.decode('gbk').replace('\x00','')
     @accountId.setter
     def accountId(self,value:str):
         t = value.encode('gbk')
@@ -767,7 +821,7 @@ class TSMsgSendData(object):
 
     @property
     def SPNo(self):
-        return self._SPNo.decode('gbk')
+        return self._SPNo.decode('gbk').replace('\x00','')
     @SPNo.setter
     def SPNo(self,value:str):
         t = value.encode('gbk')
@@ -775,7 +829,7 @@ class TSMsgSendData(object):
 
     @property
     def clientMsgId(self):
-        return self._clientMsgId.decode('gbk')
+        return self._clientMsgId.decode('gbk').replace('\x00','')
     @clientMsgId.setter
     def clientMsgId(self,value:str):
         t = value.encode('gbk')
@@ -847,6 +901,34 @@ class TSMsgSendData(object):
 
     def __len__(self):
         return self.__OneByte.size
+
+    def toList(self):
+        return [
+            str(self.productExtendId),
+            str(self.msgId),
+            functions.Datetime_dt(self.sendedTime),
+            functions.Datetime_dt(self.submitTime),
+            str(self.mobilePhone),
+            str(self.matchId),
+            str(self.realProductExtendId),
+            str(self.resourceId),
+            str(self.chargeQuantity),
+            str(self.propertyComponent),
+            str(self.sendTimes),
+            str(self.msgType),
+            str(self.accountId),
+            str(self.SPNo),
+            str(self.clientMsgId),
+            str(self.sendState),
+            str(self.msgLen),
+            str(self.SendResultLen),
+            str(self.TitleLen),
+            str(self.cycletimes),
+            str(self.Priority),
+            str(self.typeComponentParam),
+            str(self.rmReSendTimes),
+            str(self.repResendTimeOut),
+        ]
 
 class SMsgSendData(object):
     CType = MSG_HIS_MT
@@ -925,6 +1007,11 @@ class SMsgSendData(object):
         self._totalMsgLen = 0
         self._totalMsg = bytes(0)
         self._sign = bytes(0)
+
+    def toList(self):
+        return self._body.toList() +[
+            self.msgContent,self.sendResultInfo,self.title,self.userDefineId,str(self.totalMsgLen),self.totalMsg,self.sign
+        ]
 
     @property
     def msgContent(self):
@@ -1027,6 +1114,19 @@ class TSMsgHisRepData(object):
     def __len__(self):
         return self.__OneByte.size
 
+    def toList(self):
+        return [
+            str(self.mobilePhone),
+            str(self.matchId),
+            str(self.resourceId),
+            functions.Datetime_dt(self._reportTime),
+            str(self.reportState),
+            str(self.reportResultInfo),
+            functions.Datetime_dt(self._reportLocalTime),
+            str(self.componentFlg),
+            str(self.cycletimes)
+        ]
+
     @property
     def reportResultInfo(self):
         return self._reportResultInfo.decode('gbk').replace('\x00','')
@@ -1083,6 +1183,9 @@ class SMsgHisRepData(object):
         self._head.Version = self.CVersion
         self._head.Length = len(self._head)+len(self._body)
 
+    def toList(self):
+        return self._body.toList()
+
 class SMOData(object):
     __OneByte = struct.Struct("<qq32sdii256sB30s")
     def __init__(self):
@@ -1098,6 +1201,19 @@ class SMOData(object):
 
     def __len__(self):
         return self.__OneByte.size
+
+    def toList(self):
+        return [
+            str(self.msgId),
+            str(self.mobilePhone),
+            str(self.SPNo),
+            functions.Datetime_dt(self._MOTime),
+            str(self.resourceId),
+            str(self.MOContentLength),
+            str(self.MOContent),
+            str(self.msgType),
+            str(self.accountId),
+        ]
 
     @property
     def SPNo(self):
@@ -1189,6 +1305,29 @@ class SRepNotifyData(object):
 
     def __len__(self):
         return self.__OneByte.size
+
+    def toList(self):
+        return [
+            str(self.version),
+            str(self.msgId),
+            str(self.accountId),
+            str(self.mobilePhone),
+            str(self.sendState),
+            str(self.reportState),
+            functions.Datetime_dt(self._sendedTime),
+            functions.Datetime_dt(self._reportTime),
+            str(self.sendResultInfo),
+            str(self.reportResultInfo),
+            str(self.spno),
+            str(self.clientMsgId),
+            functions.Datetime_dt(self._reportLocalTime),
+            str(self.extendNum),
+            str(self.pk_total),
+            str(self.pk_num),
+            str(self.combinationVal),
+            str(self._userDefineId),
+
+        ]
 
     @property
     def accountId(self):
@@ -1391,6 +1530,20 @@ class ResourceStateNotify(object):
             raise Exception("module:{} func:{} line:{} error".format(
                 __file__,sys._getframe().f_code.co_name,sys._getframe().f_lineno))
 
+    def toList(self):
+        return [
+            str(self.ResourceId),
+            functions.Datetime_dt(self._NotifyTime),
+            str(self.RunTimeState),
+            str(self.QueueStock),
+            str(self.lastTimeQueueStock),
+            str(self.reportTimeInterval),
+            str(self.submitTotal),
+            str(self.submitFail),
+            str(self.reportTotal),
+            str(self.reportFail),
+        ]
+
 class SDispatchStatistics(object):
     CType = MSG_DSP_STC
     CVersion = 0x10
@@ -1444,6 +1597,15 @@ class SDispatchStatistics(object):
         self._head.Version = self.CVersion
         self._head.Length = len(self._head)+self.__OneByte.size
 
+    def toList(self):
+        return [
+            str(self.dispatchCenterId),
+            str(self.totalDispatchCnt),
+            str(self.succDispatchCnt),
+            str(self.failDispatchCnt),
+            str(self.cycleTime),
+        ]
+
     @property
     def extendMem(self):
         return self._extendMem.decode('gbk').replace('\x00','')
@@ -1496,6 +1658,13 @@ class SResComStatistics(object):
             raise Exception("module:{} func:{} line:{} error".format(
                 __file__, sys._getframe().f_code.co_name, sys._getframe().f_lineno))
 
+    def toList(self):
+        return [
+            str(self.resourceId),
+            str(self.succCnt),
+            str(self.failCnt),
+            str(self.cycleTime),
+        ]
 
     @property
     def extendMem(self):
@@ -1558,6 +1727,26 @@ class SResourceState(Structure):
     @reportTime.setter
     def reportTime(self,value):
         self._reportTime = dt_Datetime(value.toPyDateTime().ctime())
+
+    def toList(self):
+        return [
+            str(self.resourceId),
+            functions.Datetime_dt(self._reportTime),
+            str(self.statisticsConfig),
+            str(self.currentStock),
+            str(self.lastStock),
+            str(self.reportTimeInterval),
+            str(self.submitTotal),
+            str(self.currentSubmitSuccess),
+            str(self.currentSubmitFail),
+            str(self.reportTotal),
+            str(self.currentReportSuccess),
+            str(self.currentReportFail),
+            str(self.moTotal),
+            str(self.currentMoTotal),
+            str(self.state),
+        ]
+
 #old struct for cloudmsg
 class SOldDispatchFixedHead(Structure):
     _fields_ = [
