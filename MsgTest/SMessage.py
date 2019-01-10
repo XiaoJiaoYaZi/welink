@@ -1,6 +1,11 @@
 from ctypes import *
 import struct
 from enum import Enum
+import time
+from PyQt5 import QtCore
+from functions import *
+
+
 
 
 
@@ -123,6 +128,15 @@ class SBmsMessageDispatchHead(Structure):
     def __len__(self):
         return self.__OneByte.size
 
+    def toList(self):
+        return [str(self.Priority),str(self.MsgFormat),str(self.MsgId),
+                                     str(self.PrdExId), str(self.SubmitPrdExId),
+                                     Datetime_dt(self.StartSendDateTime),
+                                     Datetime_dt(self.EndSendDateTime), time_dt(self.StartSendTime), time_dt(self.EndSendTime),
+                                     Datetime_dt(self.CommitTime), str(self.ChargeQuantity), str(self.MsgState), str(self.MsgType),
+                                     str(self.MobilesCount), str(self.SubmitType), str(self.AccId), str(self.AuditorId),
+                                     ip_int2str(self.CommitIp)]
+
 
 class SBmsMessageDispatchTail(Structure):
     _fields_ = [
@@ -167,6 +181,14 @@ class SBmsMessageDispatchTail(Structure):
 
     def __len__(self):
         return self.__OneByte.size
+
+    def toList(self):
+        return [str(self.InnerDispatchTimes),str(self.Pagetotal),
+                                      str(self.FlagBits),str(self.LastFailResId),
+                                      str(self.FailedType),str(self.FailedState),
+                                      Datetime_dt(self.LastDiapatchTime),str(self.ResSendTimes),
+                                      str(self.TotalSndFldResndTimes),str(self.TotalRepFldResndTimes),
+                                      str(self.PackageTotal),str(self.PackageNum)]
 
 
 class Node(Structure):
@@ -270,6 +292,13 @@ class SBmsMessage(Structure):
     def __init__(self):
         self.msgheader._item_count = self.EBmsMsgItem.EBMI_ITEM_COUNT.value
         self.msgheader._offset = len(self.msgheader)+len(self.SBmsMsgHead)+len(self.SBmsMsgTail)
+
+    def toList(self):
+        return self.SBmsMsgHead.toList() + self.SBmsMsgTail.toList() +[
+            self.mobiles,self.messages,self.signs,self.extnumbers,self.accmsgids,self.titles,self.path
+        ]
+
+
 
     def write_header(self):
         self.msgheader._type = self.impl_type
@@ -490,6 +519,32 @@ class SHisSendFixedData(Structure):
     def __len__(self):
         return self.__OneByte.size
 
+    def toList(self):
+        return [
+            str(self.msgId),
+            str(self.accId),
+            str(self.prdExId),
+            str(self.submitPrdExid),
+            str(self.resId),
+            Datetime_dt(self.sendDateTime),
+            Datetime_dt(self.commitDateTime),
+            str(self.mobile),
+            str(self.matchId),
+            str(self.pkTotal),
+            str(self.pkNum),
+            str(self.chargeQuantity),
+            str(self.sendTimes),
+            str(self.msgType),
+            str(int(self.sendState)),
+            str(self.priority),
+            str(self.flagBits),
+            str(self.rmSndFldRsndTimes),
+            str(self.rmRepFldRsndTimes),
+            str(self.dealTimes),
+            str(self.MsgFormat)
+        ]
+
+
 
 class SHisSendData(Structure):
     class ItemIndex(Enum):
@@ -562,6 +617,11 @@ class SHisSendData(Structure):
                                       self._sendResultInfo + b'\x00' +
                                       self._title + b'\x00\x00',))
         return value
+
+    def toList(self):
+        return self.Data.toList()+[
+            self.message,self.whlMsg,self.sign,self.spno,self.extnum,self.accmsgid,self.sendresult,self.title
+        ]
 
     def fromBytes(self,b):
         try:
@@ -729,6 +789,17 @@ class SHisRepFixedData(Structure):
     def __len__(self):
         return self.__OneByte.size
 
+    def toList(self):
+        return [
+            str(self.mobile),
+            str(self.matchId),
+            str(self.resId),
+            Datetime_dt(self.reportDateTime),
+            str(self.reportState),
+            str(self.flagBits),
+            str(self.retryTimes)
+        ]
+
 
 class SHisRepData(Structure):
     class ItemIndex(Enum):
@@ -816,6 +887,10 @@ class SHisRepData(Structure):
     def repResultInfo(self):
         return self._repResultInfo.decode('gbk').replace('\x00','')
 
+    def toList(self):
+        return self.Data.toList()+[self.repResultInfo]
+
+
 
 class SRepNotifyFixedData(Structure):
     _fields_ = [
@@ -878,6 +953,21 @@ class SRepNotifyFixedData(Structure):
 
     def __len__(self):
         return self.__OneByte.size
+
+    def toList(self):
+        return [
+            str(self.msgId),
+            str(self.accId),
+            str(self.mobile),
+            str(self.sendState),
+            str(self.reportState),
+            Datetime_dt(self.sendDateTime),
+            Datetime_dt(self.reportDateTime),
+            Datetime_dt(self.recvReportDateTime),
+            str(self.pk_total),
+            str(self.pk_num),
+            str(self.flagBits),
+        ]
 
 class SRepNotifyData(Structure):
     class ItemIndex(Enum):
@@ -1013,6 +1103,11 @@ class SRepNotifyData(Structure):
         self._acc_msgid      = bytes(b[l5 + self.node[3].m_offset:l5 + self.node[3].m_offset + self.node[3].m_size])
         self._extnumber      = bytes(b[l5 + self.node[4].m_offset:l5 + self.node[4].m_offset + self.node[4].m_size])
 
+    def toList(self):
+        return self.Data.toList()+[
+            self.sendResultInfo,self.repResultInfo,self.spno,self.acc_msgid,self.extnumber
+        ]
+
     @property
     def sendResultInfo(self):
         return self._sendResultInfo.decode('gbk').replace('\x00','')
@@ -1068,6 +1163,17 @@ class SHisMOFixedData(Structure):
 
     def __len__(self):
         return self.__OneByte.size
+
+    def toList(self):
+        return [
+            str(self.msgId),
+            str(self.msgType),
+            str(self.accId),
+            str(self.mobile),
+            Datetime_dt(self.moTime),
+            str(self.resId),
+            str(self.dealTimes)
+        ]
 
 class SHisMOData(Structure):
     class ItemIndex(Enum):
@@ -1168,12 +1274,24 @@ class SHisMOData(Structure):
         self._MoContent = bytes(b[l5 + self.node[0].m_offset:l5 + self.node[0].m_offset + self.node[0].m_size])
         self._SpNum  = bytes(b[l5 + self.node[1].m_offset:l5 + self.node[1].m_offset + self.node[1].m_size])
 
+    def toList(self):
+        return self.Data.toList() + [
+            self.MoContent,self.SpNum
+        ]
+
     @property
     def MoContent(self):
         return self._MoContent.decode('utf_16_le').replace('\x00','')
+    @MoContent.setter
+    def MoContent(self,value):
+        self.__write_item(self.ItemIndex.MOCONTENT_IND.value, value)
+
     @property
     def SpNum(self):
         return self._SpNum.decode('gbk').replace('\x00','')
+    @SpNum.setter
+    def SpNum(self,value):
+        self.__write_item(self.ItemIndex.SPNO_IND.value, value)
 
 class SMoAccBlist(Structure):
     _fields_ = [
@@ -1202,6 +1320,14 @@ class SMoAccBlist(Structure):
 
     def __len__(self):
         return self.__OneByte.size
+
+    def toList(self):
+        return [
+            str(self.mobile),
+            str(self.accid),
+            str(self.level),
+            str(self.flag),
+        ]
 
 class MoAccBlist(Structure):
     class ItemIndex(Enum):
@@ -1302,9 +1428,21 @@ class MoAccBlist(Structure):
         self._operator = bytes(b[l5 + self.node[0].m_offset:l5 + self.node[0].m_offset + self.node[0].m_size])
         self._remark  = bytes(b[l5 + self.node[1].m_offset:l5 + self.node[1].m_offset + self.node[1].m_size])
 
+    def toList(self):
+        return self.Data.toList() + [
+            self.operator,self.remark
+        ]
+
     @property
     def operator(self):
         return self._operator.decode('gbk')
+    @operator.setter
+    def operator(self,value):
+        self.__write_item(self.ItemIndex.OPERATOR_CNT.value, value)
+
     @property
     def remark(self):
         return self._remark.decode('gbk')
+    @remark.setter
+    def remark(self,value):
+        self.__write_item(self.ItemIndex.REMARK_CNT.value, value)

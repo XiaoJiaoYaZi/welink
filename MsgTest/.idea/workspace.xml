@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="97d99c38-423d-44ce-b6ab-12e096a3c4b1" name="Default" comment="kafkaTool 可删除队列" />
+    <list default="true" id="97d99c38-423d-44ce-b6ab-12e096a3c4b1" name="Default" comment="kafkaTool 可删除队列">
+      <change afterPath="$PROJECT_DIR$/functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BMSMessage.py" beforeDir="false" afterPath="$PROJECT_DIR$/BMSMessage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KafkaTool.py" beforeDir="false" afterPath="$PROJECT_DIR$/KafkaTool.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PyUI/UI_Message.py" beforeDir="false" afterPath="$PROJECT_DIR$/PyUI/UI_Message.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SMessage.py" beforeDir="false" afterPath="$PROJECT_DIR$/SMessage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/UI_Message.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/UI_Message.ui" afterDir="false" />
+    </list>
     <ignored path="F:\PycharProject\welink\MsgTest\.idea\shelf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -10,57 +19,57 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/sayhello$testmetaclass.coverage" NAME="testmetaclass Coverage Results" MODIFIED="1543550436287" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/sayhello$MsgType.coverage" NAME="MsgType Coverage Results" MODIFIED="1541578720234" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/sayhello$flaskecharts.coverage" NAME="flaskecharts Coverage Results" MODIFIED="1539835179734" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/MsgTest$Flask___________myflask_manager_py_.coverage" NAME="Flask (../../../myflask/manager.py) Coverage Results" MODIFIED="1536920493376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/sayhello$sslLinux.coverage" NAME="sslLinux Coverage Results" MODIFIED="1541383668840" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sayhello$easytrain.coverage" NAME="easytrain Coverage Results" MODIFIED="1537423047527" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/迅雷下载/EasyTrain-master" />
+    <SUITE FILE_PATH="coverage/sayhello$textitchart.coverage" NAME="textitchart Coverage Results" MODIFIED="1541063940642" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/untitled$testconsumer.coverage" NAME="testconsumer Coverage Results" MODIFIED="1531365493338" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/sayhello$2.coverage" NAME="2 Coverage Results" MODIFIED="1539834610089" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="F:/sayhello" />
+    <SUITE FILE_PATH="coverage/sayhello$vedio.coverage" NAME="vedio Coverage Results" MODIFIED="1541839246534" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/sayhello$KafkaTool.coverage" NAME="KafkaTool Coverage Results" MODIFIED="1543568748674" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/sayhello$utils.coverage" NAME="utils Coverage Results" MODIFIED="1539340364844" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:/Program Files/Anaconda3/Lib/site-packages/lml" />
-    <SUITE FILE_PATH="coverage/sayhello$pytest_in_MsgSubmit_py.coverage" NAME="pytest in MsgSubmit.py Coverage Results" MODIFIED="1541740193850" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/MsgTest$main.coverage" NAME="main Coverage Results" MODIFIED="1537346067428" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/sayhello$PlatformPublicDefine.coverage" NAME="PlatformPublicDefine Coverage Results" MODIFIED="1542806115032" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/untitled$main.coverage" NAME="main Coverage Results" MODIFIED="1531731596425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/sayhello$1.coverage" NAME="1 Coverage Results" MODIFIED="1539682275957" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="F:/sayhello" />
-    <SUITE FILE_PATH="coverage/MsgTest$textitchart.coverage" NAME="textitchart Coverage Results" MODIFIED="1532939203218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/untitled$MonitorMsgHeader.coverage" NAME="MonitorMsgHeader Coverage Results" MODIFIED="1530856546990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/sayhello$SQLManager.coverage" NAME="SQLManager Coverage Results" MODIFIED="1542689400328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/sayhello$KafkaManager.coverage" NAME="KafkaManager Coverage Results" MODIFIED="1541154790028" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/sayhello$testyield.coverage" NAME="testyield Coverage Results" MODIFIED="1541673095444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/sayhello$query.coverage" NAME="query Coverage Results" MODIFIED="1537511950152" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="F:/sayhello/12306/train/query" />
-    <SUITE FILE_PATH="coverage/sayhello$MsgSubmit.coverage" NAME="MsgSubmit Coverage Results" MODIFIED="1541830808166" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/MsgTest$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1533194820048" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/sayhello$func__XX___.coverage" NAME="func__XX___ Coverage Results" MODIFIED="1543474798505" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/sayhello$testMSMQ.coverage" NAME="testMSMQ Coverage Results" MODIFIED="1541759325918" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/sayhello$main.coverage" NAME="main Coverage Results" MODIFIED="1543388103904" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/sayhello$do12306.coverage" NAME="do12306 Coverage Results" MODIFIED="1537524869805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="F:/sayhello/12306" />
-    <SUITE FILE_PATH="coverage/sayhello$easytrain.coverage" NAME="easytrain Coverage Results" MODIFIED="1537423047527" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/迅雷下载/EasyTrain-master" />
-    <SUITE FILE_PATH="coverage/sayhello$main_kafkaTool.coverage" NAME="main_kafkaTool Coverage Results" MODIFIED="1543561969453" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/MsgTest$testBox.coverage" NAME="testBox Coverage Results" MODIFIED="1536653044530" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/sayhello$Login.coverage" NAME="Login Coverage Results" MODIFIED="1537499274120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="F:/sayhello/12306/train/login" />
+    <SUITE FILE_PATH="coverage/sayhello$testmetaclass.coverage" NAME="testmetaclass Coverage Results" MODIFIED="1543550436287" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/MsgTest$testc.coverage" NAME="testc Coverage Results" MODIFIED="1533204593622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/MsgTest$12306.coverage" NAME="12306 Coverage Results" MODIFIED="1537423403992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="F:/sayhello/12306" />
-    <SUITE FILE_PATH="coverage/untitled$testconsumer.coverage" NAME="testconsumer Coverage Results" MODIFIED="1531365493338" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/sayhello$sslLinux.coverage" NAME="sslLinux Coverage Results" MODIFIED="1541383668840" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sayhello$testpykafka.coverage" NAME="testpykafka Coverage Results" MODIFIED="1541495778788" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/MsgTest$video.coverage" NAME="video Coverage Results" MODIFIED="1533264283384" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/sayhello$query.coverage" NAME="query Coverage Results" MODIFIED="1537511950152" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="F:/sayhello/12306/train/query" />
+    <SUITE FILE_PATH="coverage/untitled$BMSMessage_test.coverage" NAME="BMSMessage_test Coverage Results" MODIFIED="1530092744429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/MsgTest$Flask___________myflask_manager_py_.coverage" NAME="Flask (../../../myflask/manager.py) Coverage Results" MODIFIED="1536920493376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/untitled$py_test_in_MainWindow_py.coverage" NAME="py.test in MainWindow.py Coverage Results" MODIFIED="1529986931279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/untitled$testRedis.coverage" NAME="testRedis Coverage Results" MODIFIED="1530784557286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/MsgTest$hello_pyx.coverage" NAME="hello.pyx Coverage Results" MODIFIED="1533203263224" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/untitled$MonitorMsgHeader.coverage" NAME="MonitorMsgHeader Coverage Results" MODIFIED="1530856546990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/MsgTest$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1533194820048" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/MsgTest$main.coverage" NAME="main Coverage Results" MODIFIED="1537346067428" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sayhello$do12306.coverage" NAME="do12306 Coverage Results" MODIFIED="1537524869805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="F:/sayhello/12306" />
+    <SUITE FILE_PATH="coverage/sayhello$main_kafkaTool.coverage" NAME="main_kafkaTool Coverage Results" MODIFIED="1543561969453" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sayhello$pytest_in_MsgSubmit_py.coverage" NAME="pytest in MsgSubmit.py Coverage Results" MODIFIED="1541740193850" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sayhello$MyNet.coverage" NAME="MyNet Coverage Results" MODIFIED="1537498176231" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="F:/sayhello/12306/net" />
+    <SUITE FILE_PATH="coverage/MsgTest$testBox.coverage" NAME="testBox Coverage Results" MODIFIED="1536653044530" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/untitled$SMessage.coverage" NAME="SMessage Coverage Results" MODIFIED="1530605430196" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/untitled$testKafka.coverage" NAME="testKafka Coverage Results" MODIFIED="1530518691809" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sayhello$PlatformPublicDefine.coverage" NAME="PlatformPublicDefine Coverage Results" MODIFIED="1542806115032" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sayhello$Pandas.coverage" NAME="Pandas基础 Coverage Results" MODIFIED="1543832493977" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="F:/Numpy/Pandas" />
+    <SUITE FILE_PATH="coverage/untitled$main.coverage" NAME="main Coverage Results" MODIFIED="1531731596425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/MsgTest$wangyi.coverage" NAME="wangyi Coverage Results" MODIFIED="1533267917486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/sayhello$kafkatest.coverage" NAME="kafkatest Coverage Results" MODIFIED="1541064041901" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/MsgTest$testc.coverage" NAME="testc Coverage Results" MODIFIED="1533204593622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/untitled$test.coverage" NAME="test Coverage Results" MODIFIED="1531124875067" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/untitled$BMSMessage_test.coverage" NAME="BMSMessage_test Coverage Results" MODIFIED="1530092744429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/sayhello$2.coverage" NAME="2 Coverage Results" MODIFIED="1539834610089" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="F:/sayhello" />
-    <SUITE FILE_PATH="coverage/sayhello$testpykafka.coverage" NAME="testpykafka Coverage Results" MODIFIED="1541495778788" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/sayhello$testC_.coverage" NAME="testC# Coverage Results" MODIFIED="1540958767282" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/sayhello$textitchart.coverage" NAME="textitchart Coverage Results" MODIFIED="1541063940642" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/sayhello$Pandas.coverage" NAME="Pandas基础 Coverage Results" MODIFIED="1543832493977" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="F:/Numpy/Pandas" />
-    <SUITE FILE_PATH="coverage/sayhello$MyNet.coverage" NAME="MyNet Coverage Results" MODIFIED="1537498176231" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="F:/sayhello/12306/net" />
-    <SUITE FILE_PATH="coverage/untitled$SMessage.coverage" NAME="SMessage Coverage Results" MODIFIED="1530605430196" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/untitled$testRedis.coverage" NAME="testRedis Coverage Results" MODIFIED="1530784557286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/sayhello$func__XX___.coverage" NAME="func__XX___ Coverage Results" MODIFIED="1543474798505" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/sayhello$Submit.coverage" NAME="Submit Coverage Results" MODIFIED="1537520876830" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="F:/sayhello/12306/train/submit" />
-    <SUITE FILE_PATH="coverage/MsgTest$hello_pyx.coverage" NAME="hello.pyx Coverage Results" MODIFIED="1533203263224" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/MsgTest$video.coverage" NAME="video Coverage Results" MODIFIED="1533264283384" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/untitled$py_test_in_MainWindow_py.coverage" NAME="py.test in MainWindow.py Coverage Results" MODIFIED="1529986931279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/MsgTest$testtime.coverage" NAME="testtime Coverage Results" MODIFIED="1536905391113" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/untitled$testKafka.coverage" NAME="testKafka Coverage Results" MODIFIED="1530518691809" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/sayhello$vedio.coverage" NAME="vedio Coverage Results" MODIFIED="1541839246534" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/MsgTest$demo.coverage" NAME="demo Coverage Results" MODIFIED="1536654346954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="F:/sayhello" />
-    <SUITE FILE_PATH="coverage/sayhello$testMSMQ.coverage" NAME="testMSMQ Coverage Results" MODIFIED="1541759325918" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/sayhello$Login.coverage" NAME="Login Coverage Results" MODIFIED="1537499274120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="F:/sayhello/12306/train/login" />
+    <SUITE FILE_PATH="coverage/sayhello$1.coverage" NAME="1 Coverage Results" MODIFIED="1539682275957" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="F:/sayhello" />
+    <SUITE FILE_PATH="coverage/sayhello$flaskecharts.coverage" NAME="flaskecharts Coverage Results" MODIFIED="1539835179734" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/sayhello$KafkaManager.coverage" NAME="KafkaManager Coverage Results" MODIFIED="1541154790028" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sayhello$testC_.coverage" NAME="testC# Coverage Results" MODIFIED="1540958767282" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/sayhello$MsgType.coverage" NAME="MsgType Coverage Results" MODIFIED="1541578720234" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sayhello$SQLManager.coverage" NAME="SQLManager Coverage Results" MODIFIED="1542689400328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/MsgTest$textitchart.coverage" NAME="textitchart Coverage Results" MODIFIED="1532939203218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/sayhello$testyield.coverage" NAME="testyield Coverage Results" MODIFIED="1541673095444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/sayhello$Submit.coverage" NAME="Submit Coverage Results" MODIFIED="1537520876830" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="F:/sayhello/12306/train/submit" />
+    <SUITE FILE_PATH="coverage/sayhello$MsgSubmit.coverage" NAME="MsgSubmit Coverage Results" MODIFIED="1541830808166" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/MsgTest$testtime.coverage" NAME="testtime Coverage Results" MODIFIED="1536905391113" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/untitled$test.coverage" NAME="test Coverage Results" MODIFIED="1531124875067" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CoverageViewManager">
     <option name="myElementSize" value="356" />
@@ -89,11 +98,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/KafkaTool.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+            <state relative-caret-position="442">
+              <caret line="39" column="38" selection-start-line="39" selection-start-column="38" selection-end-line="39" selection-end-column="38" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -102,10 +111,100 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PyUI/UI_ReadMessage.py">
+        <entry file="file://$PROJECT_DIR$/main_kafkaTool.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1140">
-              <caret line="60" column="41" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
+            <state relative-caret-position="102">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/BMSMessage.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="589">
+              <caret line="944" column="62" lean-forward="true" selection-start-line="944" selection-start-column="62" selection-end-line="944" selection-end-column="62" />
+              <folding>
+                <element signature="e#0#34#0" expanded="true" />
+                <element signature="e#876#1378#0" />
+                <element signature="e#1406#1770#0" />
+                <element signature="e#1800#1897#0" />
+                <element signature="e#1930#2135#0" />
+                <element signature="e#2164#2267#0" />
+                <element signature="e#2296#2370#0" />
+                <element signature="e#2402#2432#0" />
+                <element signature="e#2468#2574#0" />
+                <element signature="e#2609#2733#0" />
+                <element signature="e#2764#3052#0" />
+                <element signature="e#3080#3127#0" />
+                <element signature="e#3149#3190#0" />
+                <element signature="e#3224#3250#0" />
+                <element signature="e#4661#8437#0" />
+                <element signature="e#8628#12093#0" />
+                <element signature="e#12139#15788#0" />
+                <element signature="e#31182#35417#0" />
+                <element signature="e#35485#42892#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SMessage.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="488">
+              <caret line="1432" column="37" lean-forward="true" selection-start-line="1432" selection-start-column="37" selection-end-line="1432" selection-end-column="37" />
+              <folding>
+                <element signature="e#0#20#0" expanded="true" />
+                <element signature="e#17192#18137#0" />
+                <element signature="e#22171#24089#0" />
+                <element signature="e#24138#24402#0" />
+                <element signature="e#33351#34611#0" />
+                <element signature="e#44474#44993#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PlatformPublicDefine.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="20519">
+              <caret line="1213" column="31" selection-start-line="1213" selection-start-column="31" selection-end-line="1213" selection-end-column="31" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+                <element signature="e#58293#60530#0" />
+                <element signature="e#60576#61704#0" />
+                <element signature="e#61736#67535#0" />
+                <element signature="e#67563#67818#0" />
+                <element signature="e#67846#68058#0" />
+                <element signature="e#68089#68256#0" />
+                <element signature="e#68289#68466#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/functions.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="21" column="51" lean-forward="true" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="25" lean-forward="true" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+              <folding>
+                <element signature="e#0#33#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -125,7 +224,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>write_header</find>
       <find>MmsSaveFileName</find>
       <find>checkBox_transmain</find>
       <find>recv error</find>
@@ -155,6 +253,7 @@
       <find>PartitionFetchRequest</find>
       <find>-1</find>
       <find>_rd_kafka</find>
+      <find>yy</find>
     </findStrings>
     <replaceStrings>
       <replace>gbk</replace>
@@ -179,8 +278,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="F:/sayhello/12306/train/ticketDetails.py" />
-        <option value="F:/sayhello/12306/train/login/Capthca.py" />
         <option value="F:/sayhello/12306/train/TrainFuncs.py" />
         <option value="F:/sayhello/12306/adress/Urls.py" />
         <option value="F:/sayhello/12306/net/MyNet.py" />
@@ -197,7 +294,6 @@
         <option value="F:/flaskecharts/app.py" />
         <option value="F:/flaskecharts/templates/bar1.html" />
         <option value="$PROJECT_DIR$/main_kafkaTool.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="F:/sayhello/2.py" />
         <option value="$PROJECT_DIR$/test/testC#.py" />
         <option value="$PROJECT_DIR$/test/textitchart.py" />
@@ -205,7 +301,6 @@
         <option value="$PROJECT_DIR$/config/compare.ini" />
         <option value="$PROJECT_DIR$/sslLinux.py" />
         <option value="$PROJECT_DIR$/test/testpykafka.py" />
-        <option value="$PROJECT_DIR$/SMessage.py" />
         <option value="$PROJECT_DIR$/MsgType.py" />
         <option value="$PROJECT_DIR$/test/testyield.py" />
         <option value="$PROJECT_DIR$/test/testMSMQ.py" />
@@ -229,15 +324,19 @@
         <option value="$PROJECT_DIR$/test/testGevent.py" />
         <option value="$PROJECT_DIR$/test/ascii.txt" />
         <option value="$PROJECT_DIR$/test/testKMP.py" />
+        <option value="$PROJECT_DIR$/functions.py" />
         <option value="$PROJECT_DIR$/KafkaTool.py" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/SMessage.py" />
+        <option value="$PROJECT_DIR$/BMSMessage.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="1551" />
+    <option name="height" value="839" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -246,13 +345,28 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="sayhello" type="b2602c69:ProjectViewProjectNode" />
               <item name="MsgTest" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sayhello" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MsgTest" type="462c0819:PsiDirectoryNode" />
+              <item name="UI" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Scope 'Changed Files'; set:Changed Files; ALL; class com.intellij.packageDependencies.ChangeListScope">
+          <expand>
+            <path>
+              <item name="sayhello" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
             </path>
           </expand>
           <select />
@@ -267,14 +381,14 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="SQL Server (Microsoft)" />
     <property name="database.console.LAST_STATE" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../testPySide" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.stylelint" value="true" />
     <property name="node.js.path.for.package.stylelint" value="project" />
     <property name="node.js.selected.package.stylelint" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="preferences.externalTools" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -286,19 +400,19 @@
     </option>
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\users\welink\documents\GitHub\welink\MsgTest\PyUI" />
-      <recent name="D:\users\welink\documents\GitHub\welink\MsgTest" />
-      <recent name="D:\users\welink\documents\GitHub\welink\MsgTest\test" />
-      <recent name="D:\users\welink\documents\sayhello\12306\train" />
-      <recent name="D:\users\welink\documents\sayhello\12306" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\users\welink\documents\GitHub\welink\MsgTest\dll" />
       <recent name="D:\users\welink\documents\sayhello" />
       <recent name="D:\users\welink\documents\GitHub\welink\MsgTest\config" />
       <recent name="D:\users\welink\documents\sayhello\12306\train\submit" />
       <recent name="D:\users\welink\documents\sayhello\12306\net" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\users\welink\documents\GitHub\welink\MsgTest\PyUI" />
+      <recent name="D:\users\welink\documents\GitHub\welink\MsgTest" />
+      <recent name="D:\users\welink\documents\GitHub\welink\MsgTest\test" />
+      <recent name="D:\users\welink\documents\sayhello\12306\train" />
+      <recent name="D:\users\welink\documents\sayhello\12306" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -478,6 +592,8 @@
       <option name="presentableId" value="Default" />
       <updated>1524462391589</updated>
       <workItem from="1547045647092" duration="11000" />
+      <workItem from="1547109234657" duration="3323000" />
+      <workItem from="1547113128493" duration="2367000" />
     </task>
     <task id="LOCAL-00001">
       <created>1531794724502</created>
@@ -683,7 +799,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11000" />
+    <option name="totallyTimeSpent" value="5701000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -696,13 +812,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" x="1983" y="151" width="339" height="571" id="Project" order="0" sideWeight="0.4923077" visible="true" weight="0.12260128" />
-      <window_info id="Favorites" order="1" sideWeight="0.50769234" side_tool="true" weight="0.123667374" />
+      <window_info content_ui="combo" x="1983" y="151" width="339" height="571" id="Project" order="0" sideWeight="0.4910913" visible="true" weight="0.12526652" />
+      <window_info id="Favorites" order="1" sideWeight="0.5089087" side_tool="true" weight="0.12526652" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.22068231" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.6536458" visible="true" weight="0.266147" />
-      <window_info anchor="bottom" x="1264" y="319" width="2214" height="636" id="Debug" order="3" weight="0.22383073" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.6536458" weight="0.18596882" />
+      <window_info anchor="bottom" x="1264" y="319" width="2214" height="636" id="Debug" order="3" weight="0.29175946" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32850778" />
@@ -717,10 +834,10 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.49895614" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" sideWeight="0.49566162" visible="true" weight="0.23187633" />
+      <window_info anchor="right" id="Database" order="3" sideWeight="0.4941349" weight="0.23123324" />
       <window_info anchor="right" id="Coverage" order="4" side_tool="true" weight="0.32995737" />
       <window_info anchor="right" id="SciView" order="5" weight="0.29758713" />
-      <window_info anchor="right" id="Structure" order="6" sideWeight="0.5043384" side_tool="true" visible="true" weight="0.23187633" />
+      <window_info active="true" anchor="right" id="Structure" order="6" sideWeight="0.50512445" side_tool="true" visible="true" weight="0.23081024" />
       <window_info anchor="right" x="0" y="0" width="337" height="638" id="Documentation" order="7" sideWeight="0.5033408" side_tool="true" visible="true" weight="0.23187633" />
     </layout>
     <layout-to-restore>
@@ -863,29 +980,9 @@
           <option name="timeStamp" value="76" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/SMessage.py</url>
-          <line>561</line>
-          <option name="timeStamp" value="92" />
-        </line-breakpoint>
-        <line-breakpoint suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/SMessage.py</url>
-          <line>794</line>
-          <option name="timeStamp" value="101" />
-        </line-breakpoint>
-        <line-breakpoint suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/SMessage.py</url>
-          <line>781</line>
-          <option name="timeStamp" value="102" />
-        </line-breakpoint>
-        <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/BMSMessage.py</url>
           <line>653</line>
           <option name="timeStamp" value="103" />
-        </line-breakpoint>
-        <line-breakpoint suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/BMSMessage.py</url>
-          <line>635</line>
-          <option name="timeStamp" value="104" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/BMSMessage.py</url>
@@ -899,12 +996,7 @@
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/SMessage.py</url>
-          <line>977</line>
-          <option name="timeStamp" value="113" />
-        </line-breakpoint>
-        <line-breakpoint suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/SMessage.py</url>
-          <line>828</line>
+          <line>903</line>
           <option name="timeStamp" value="114" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
@@ -924,7 +1016,7 @@
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/SMessage.py</url>
-          <line>1118</line>
+          <line>1224</line>
           <option name="timeStamp" value="119" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
@@ -979,16 +1071,6 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/BMSMessage.py</url>
-          <line>394</line>
-          <option name="timeStamp" value="153" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/SMessage.py</url>
-          <line>404</line>
-          <option name="timeStamp" value="155" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/BMSMessage.py</url>
           <line>427</line>
           <option name="timeStamp" value="159" />
         </line-breakpoint>
@@ -999,28 +1081,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/BMSMessage.py</url>
-          <line>411</line>
-          <option name="timeStamp" value="161" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/BMSMessage.py</url>
-          <line>399</line>
-          <option name="timeStamp" value="162" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/BMSMessage.py</url>
           <line>576</line>
           <option name="timeStamp" value="163" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/SMessage.py</url>
-          <line>569</line>
-          <option name="timeStamp" value="164" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/SMessage.py</url>
-          <line>549</line>
-          <option name="timeStamp" value="165" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/test/test.py</url>
@@ -1248,11 +1310,6 @@
           <option name="timeStamp" value="453" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/PlatformPublicDefine.py</url>
-          <line>1210</line>
-          <option name="timeStamp" value="454" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/CloudMsg.py</url>
           <line>1139</line>
           <option name="timeStamp" value="455" />
@@ -1263,19 +1320,9 @@
           <option name="timeStamp" value="456" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/PlatformPublicDefine.py</url>
-          <line>1218</line>
-          <option name="timeStamp" value="457" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/test/testGevent.py</url>
           <line>34</line>
           <option name="timeStamp" value="458" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/KafkaTool.py</url>
-          <line>16</line>
-          <option name="timeStamp" value="463" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -1289,13 +1336,50 @@
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="message.topics" language="Python" />
+        <watch expression="message.topics[topic][partition].messages" language="Python" />
+        <watch expression="temp.timestamp_dt" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
       <expression>
+        <expression-string>temp.timestamp_dt</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>message.topics[topic][partition].messages</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>message.topics[topic][partition]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>message.topics[topic][partition].message</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>message.topics[topic]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>message.topics</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>self._cluster.brokers</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>self._cluster.brokers[0]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -1306,41 +1390,6 @@
       </expression>
       <expression>
         <expression-string>self.cur['ID']</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>self._cluster.topics[b'0.0.0.0.kfk']</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>msg[index+2:index+3]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>'0'&lt;msg[index+3:index+4]&lt;'9'</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>'0'&lt;msg[index+1:index+2]&lt;'9'</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>msg[index+1:index+2]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>self._mobiles[-1:]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>self._mobiles[-1]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -1405,64 +1454,6 @@ UnicodeDecodeError: \\'utf-8\\' codec can\\'t decode byte 0xcd in position 2: in
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/gevent/lock.py" />
-    <entry file="file://$PROJECT_DIR$/test/ascii.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="11" column="18" lean-forward="true" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/gevent/_semaphore.py" />
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/gevent/__init__.py" />
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/gevent/pool.py" />
-    <entry file="file://$PROJECT_DIR$/CloudMsg.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19448">
-          <caret line="1159" column="61" selection-start-line="1159" selection-start-column="61" selection-end-line="1159" selection-end-column="61" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MainWindow.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6647">
-          <caret line="403" selection-start-line="403" selection-end-line="403" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PlatformPublicDefine.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20009">
-          <caret line="1183" column="40" selection-start-line="1183" selection-start-column="40" selection-end-line="1183" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-            <element signature="e#58293#60530#0" />
-            <element signature="e#60576#61704#0" />
-            <element signature="e#61736#67535#0" />
-            <element signature="e#67563#67818#0" />
-            <element signature="e#67846#68058#0" />
-            <element signature="e#68089#68256#0" />
-            <element signature="e#68289#68466#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/config.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/kafka_base.ini">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -1501,16 +1492,6 @@ UnicodeDecodeError: \\'utf-8\\' codec can\\'t decode byte 0xcd in position 2: in
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" selection-start-line="6" selection-end-line="6" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Program Files/Anaconda3/Lib/urllib/parse.py" />
     <entry file="file://C:/Program Files/Anaconda3/Lib/xml/sax/saxutils.py" />
     <entry file="file://C:/Program Files/Anaconda3/Lib/ntpath.py" />
@@ -1542,32 +1523,212 @@ UnicodeDecodeError: \\'utf-8\\' codec can\\'t decode byte 0xcd in position 2: in
     <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/protocol/metadata.py" />
     <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/cluster.py" />
     <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/utils/__init__.py" />
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/protocol/fetch.py" />
     <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/handlers.py" />
     <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/broker.py" />
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/__init__.py" />
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/protocol/__init__.py" />
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/protocol/message.py" />
-    <entry file="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/-1282051629/PyQt5/QtWidgets/QDialog.py" />
-    <entry file="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/-1282051629/PyQt5/QtWidgets/QWidget.py" />
-    <entry file="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/-1282051629/builtins.py" />
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/PyQt5/QtCore.pyi" />
-    <entry file="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/-1282051629/PyQt5/QtCore/pyqtSignal.py" />
-    <entry file="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/-1282051629/PyQt5/QtWidgets/QDialogButtonBox.py" />
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/protocol/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="36" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/-1282051629/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85238">
+          <caret line="5014" column="8" selection-start-line="5014" selection-start-column="8" selection-end-line="5014" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/PyQt5/QtCore.pyi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/-1282051629/PyQt5/QtCore/pyqtSignal.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/-1282051629/PyQt5/QtWidgets/QDialogButtonBox.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="13" column="22" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PyUI/UI_ReadMessage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="60" column="41" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/protocol/fetch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="18" column="6" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+          <folding>
+            <element signature="e#500#978#0" />
+            <element signature="e#1014#4486#0" />
+            <element signature="e#5200#5986#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/-1282051629/PyQt5/QtWidgets/QWidget.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="87" column="8" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pykafka/protocol/message.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="171" lean-forward="true" selection-start-line="171" selection-end-line="171" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/-1282051629/PyQt5/QtWidgets/QTreeWidget.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="661">
+          <caret line="429" column="8" selection-start-line="429" selection-start-column="8" selection-end-line="429" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/-1282051629/PyQt5/QtWidgets/QDialog.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2040">
+          <caret line="124" column="8" selection-start-line="124" selection-start-column="8" selection-end-line="124" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/PyQt5/QtWidgets.pyi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="9280" column="8" selection-start-line="9280" selection-start-column="8" selection-end-line="9280" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/-1282051629/PyQt5/QtWidgets/QTreeView.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="190" column="8" selection-start-line="190" selection-start-column="8" selection-end-line="190" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PyUI/UI_Message.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/KafkaTool.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        <state relative-caret-position="442">
+          <caret line="39" column="38" selection-start-line="39" selection-start-column="38" selection-end-line="39" selection-end-column="38" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PyUI/UI_ReadMessage.py">
+    <entry file="file://$PROJECT_DIR$/main_kafkaTool.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1140">
-          <caret line="60" column="41" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
+        <state relative-caret-position="102">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PlatformPublicDefine.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20519">
+          <caret line="1213" column="31" selection-start-line="1213" selection-start-column="31" selection-end-line="1213" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#58293#60530#0" />
+            <element signature="e#60576#61704#0" />
+            <element signature="e#61736#67535#0" />
+            <element signature="e#67563#67818#0" />
+            <element signature="e#67846#68058#0" />
+            <element signature="e#68089#68256#0" />
+            <element signature="e#68289#68466#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="25" lean-forward="true" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="51" lean-forward="true" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SMessage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="488">
+          <caret line="1432" column="37" lean-forward="true" selection-start-line="1432" selection-start-column="37" selection-end-line="1432" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+            <element signature="e#17192#18137#0" />
+            <element signature="e#22171#24089#0" />
+            <element signature="e#24138#24402#0" />
+            <element signature="e#33351#34611#0" />
+            <element signature="e#44474#44993#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BMSMessage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="589">
+          <caret line="944" column="62" lean-forward="true" selection-start-line="944" selection-start-column="62" selection-end-line="944" selection-end-column="62" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+            <element signature="e#876#1378#0" />
+            <element signature="e#1406#1770#0" />
+            <element signature="e#1800#1897#0" />
+            <element signature="e#1930#2135#0" />
+            <element signature="e#2164#2267#0" />
+            <element signature="e#2296#2370#0" />
+            <element signature="e#2402#2432#0" />
+            <element signature="e#2468#2574#0" />
+            <element signature="e#2609#2733#0" />
+            <element signature="e#2764#3052#0" />
+            <element signature="e#3080#3127#0" />
+            <element signature="e#3149#3190#0" />
+            <element signature="e#3224#3250#0" />
+            <element signature="e#4661#8437#0" />
+            <element signature="e#8628#12093#0" />
+            <element signature="e#12139#15788#0" />
+            <element signature="e#31182#35417#0" />
+            <element signature="e#35485#42892#0" />
+          </folding>
         </state>
       </provider>
     </entry>

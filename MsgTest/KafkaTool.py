@@ -10,15 +10,46 @@ from collections import namedtuple
 from pykafka.protocol import PartitionOffsetFetchRequest,PartitionFetchRequest,message
 from PyQt5.QtWidgets import QTableWidgetItem
 from collections import defaultdict
+from BMSMessage import m_key
+from SMessage import SBmsMessage,SHisSendData,SHisRepData,SRepNotifyData,SHisMOData,MoAccBlist
 
+
+Message_Type = [
+    SBmsMessage(),
+    SHisSendData(),
+    SHisRepData(),
+    SRepNotifyData(),
+    SHisMOData(),
+    MoAccBlist()
+]
 
 class Message(QtWidgets.QDialog,Ui_Message):
-    def __init__(self,data,parent = None):
+    def __init__(self,data,param,parent = None):
         super(Message,self).__init__(parent=parent)
         self.setupUi(self)
+        if param[0]:
+            self._decode_byte(data)
+        else:
+            self._decode(data,param[2])
 
-    def _analyze(self,data):
-        pass
+    def _decode_byte(self,data):
+        self.treeWidget.clear()
+        self.treeWidget.setHeaderLabels(['offset','value'])
+        for temp in data:
+            item = QtWidgets.QTreeWidgetItem(self.treeWidget,[str(temp.offset),str(temp.value)])
+            self.treeWidget.addTopLevelItem(item)
+
+    def _decode(self,data,type):
+        self.treeWidget.clear()
+        self.treeWidget.setHeaderLabels(['offset']+list(m_key[type]))
+        # self.treeWidget.header().setDragDropMode(QtWidgets.QAbstractItemView.NoDragDrop)
+        # self.treeWidget.setDragDropMode(QtWidgets.QAbstractItemView.NoDragDrop)
+        for temp in data:
+            Message_Type[type].fromBytes(temp.value)
+            item = QtWidgets.QTreeWidgetItem(self.treeWidget,[str(temp.offset)]+Message_Type[type].toList())
+            self.treeWidget.addTopLevelItem(item)
+
+
 
 class ReadMsg(QtWidgets.QDialog,Ui_Dialog_ReadMessage):
     signal_messagecfg = QtCore.pyqtSignal(tuple)
@@ -39,7 +70,7 @@ class ReadMsg(QtWidgets.QDialog,Ui_Dialog_ReadMessage):
         self.comboBox.setEnabled(not checked)
 
     def onOK(self):
-        self.signal_messagecfg.emit((self.checkBox.isChecked(),int(self.lineEdit.text().strip())))
+        self.signal_messagecfg.emit((self.checkBox.isChecked(),int(self.lineEdit.text().strip()),self.comboBox.currentIndex()))
 
 
 
@@ -271,11 +302,10 @@ class ClusterManager(Thread):
 
         print('run end')
 
-    def getMessage(self,topic,partition,offset):
-        for id,broker in self._cluster.brokers.items():
-            request = PartitionFetchRequest(topic,partition,offset,1024*1024*5)
-            message = broker.fetch_messages({request})
-            print(message)
+    def getMessage(self,broker,topic,partition,offset):
+        request = PartitionFetchRequest(topic,partition,offset,1024*1024*5)
+        message = self._cluster.brokers[broker].fetch_messages({request})
+        return message.topics[topic][partition].messages
 
 class Table_Consumer(Ui_Descrip,QtWidgets.QTableWidget):
     def __init__(self,topicoffsets,descrips:dict,parent = None):
@@ -348,8 +378,16 @@ class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
     def showgetMessage(self):
         self.Dialog_ReadMsg.show()
 
-    def ReadMessage(self,partition):
-        print(partition)
+    def ReadMessage(self,offset):
+        print(offset)
+        topic = self.topic.currentItem().text().encode('gbk')
+        row = self.topic_decrips.currentItem().row()
+        partition = int(self.topic_decrips.item(row,0).text())
+        broker = int(self.topic_decrips.item(row,1).text())
+        print(topic,partition,offset,broker)
+        message = self._cluster.getMessage(broker,topic,partition,offset[1])
+        label = Message(message,offset,self)
+        label.exec()
 
 
     def show_topic_menu(self,pos):

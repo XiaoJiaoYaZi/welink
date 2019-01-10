@@ -847,8 +847,8 @@ class BMSSHisMOData(QtWidgets.QWidget,Ui_SHisMOData):
             self.__data.Data.timeStamp  = int(time.time())
             self.__data.Data.dealTimes  = int(self.lineEdit_dealTimes.text())
 
-            self.__data.write_MoContent(self.textEdit.toPlainText())
-            self.__data.write_SpNum(self.lineEdit_SpNum.text())
+            self.__data.MoContent = self.textEdit.toPlainText()
+            self.__data.SpNum = self.lineEdit_SpNum.text()
 
             self.__data.write_header()
 
@@ -941,8 +941,8 @@ class BMSMoAccBlist(QtWidgets.QWidget,Ui_MoAccBlist):
             self.__data.Data.level  = int(self.lineEdit_level.text())
             self.__data.Data.flag   = int(self.lineEdit_flag.text())
 
-            self.__data.write_operator(self.lineEdit_opertor.text())
-            self.__data.write_remark(  self.lineEdit_remark.text())
+            self.__data.operator = self.lineEdit_opertor.text()
+            self.__data.remark   = self.lineEdit_remark.text()
             self.__data.write_header()
             return self.__data.Value()
         except:

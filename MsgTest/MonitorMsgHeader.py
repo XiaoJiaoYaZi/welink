@@ -4,6 +4,7 @@ from SMessage import msg_header,BMSEMsgType,Node
 from ctypes import *
 import struct
 from enum import Enum
+from functions import *
 
 __all__ = ['SubmitMonitorMsg','DispatchMonitorMsg','SResourceState','HisCenterMonitorData','HisPreDealMonitorData',
            'SHeartBeat','log_struct']
@@ -44,6 +45,13 @@ class SMonitorDataBase(msg_header):
 
     def __len__(self):
         return self.__OneByte.size
+
+    def toList(self):
+        return [
+            str(self._id),
+            Datetime_dt(self._time),
+            str(self._period)
+        ]
 
 
 class SubmitMonitorMsgDefine(Structure):
