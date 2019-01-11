@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'UI_KafkaTool.ui'
 #
-# Created by: PyQt5 UI code generator 5.6
+# Created by: PyQt5 UI code generator 5.11.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -43,7 +43,6 @@ class Ui_KafkaTool(object):
         self.page = QtWidgets.QWidget()
         self.page.setObjectName("page")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.page)
-        self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_3.setObjectName("gridLayout_3")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout()
         self.verticalLayout_3.setObjectName("verticalLayout_3")
@@ -106,7 +105,7 @@ class Ui_KafkaTool(object):
         self.topic_decrips.setHorizontalHeaderItem(5, item)
         item = QtWidgets.QTableWidgetItem()
         self.topic_decrips.setHorizontalHeaderItem(6, item)
-        self.topic_decrips.horizontalHeader().setVisible(False)
+        self.topic_decrips.horizontalHeader().setVisible(True)
         self.topic_decrips.horizontalHeader().setDefaultSectionSize(80)
         self.topic_decrips.horizontalHeader().setHighlightSections(True)
         self.topic_decrips.verticalHeader().setVisible(False)

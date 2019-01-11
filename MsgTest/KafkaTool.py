@@ -6,10 +6,9 @@ from PyUI.UI_Message import Ui_Message
 from pykafka import Cluster,handlers
 from threading import Thread,Event,Lock
 import time
-from collections import namedtuple
+from collections import namedtuple,defaultdict
 from pykafka.protocol import PartitionOffsetFetchRequest,PartitionFetchRequest,message
 from PyQt5.QtWidgets import QTableWidgetItem
-from collections import defaultdict
 from BMSMessage import m_key
 from SMessage import SBmsMessage,SHisSendData,SHisRepData,SRepNotifyData,SHisMOData,MoAccBlist
 
@@ -32,6 +31,8 @@ class Message(QtWidgets.QDialog,Ui_Message):
         else:
             self._decode(data,param[2])
 
+        self.messages = defaultdict()
+
     def _decode_byte(self,data):
         self.treeWidget.clear()
         self.treeWidget.setHeaderLabels(['offset','value'])
@@ -42,13 +43,21 @@ class Message(QtWidgets.QDialog,Ui_Message):
     def _decode(self,data,type):
         self.treeWidget.clear()
         self.treeWidget.setHeaderLabels(['offset']+list(m_key[type]))
-        # self.treeWidget.header().setDragDropMode(QtWidgets.QAbstractItemView.NoDragDrop)
-        # self.treeWidget.setDragDropMode(QtWidgets.QAbstractItemView.NoDragDrop)
         for temp in data:
-            Message_Type[type].fromBytes(temp.value)
-            item = QtWidgets.QTreeWidgetItem(self.treeWidget,[str(temp.offset)]+Message_Type[type].toList())
-            self.treeWidget.addTopLevelItem(item)
+            try:
+                Message_Type[type].fromBytes(temp.value)
+                _data = Message_Type[type].toList()
+                item = QtWidgets.QTreeWidgetItem(self.treeWidget,[str(temp.offset)]+_data)
+                self.treeWidget.addTopLevelItem(item)
+                self.messages[temp.offset] = _data
+            except Exception as e:
+                print(e)
+                print('解析消息失败 offset:{}'.format(temp.offset))
+                self.treeWidget.addTopLevelItem(QtWidgets.QTreeWidgetItem(self.treeWidget,[str(temp.offset),str(temp.value)]))
 
+    def _saveMessages(self):
+        with open('./data/') as f:
+            pass
 
 
 class ReadMsg(QtWidgets.QDialog,Ui_Dialog_ReadMessage):
@@ -60,6 +69,7 @@ class ReadMsg(QtWidgets.QDialog,Ui_Dialog_ReadMessage):
         self._createConnections()
 
     def __initUI(self):
+        self.lineEdit.setText('0')
         pass
 
     def _createConnections(self):
@@ -370,7 +380,7 @@ class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
         self.action_fresh.triggered.connect(self._fresh_topic)
         self.topic_decrips.customContextMenuRequested.connect(self.showReadMenu)
         self.action_ReadMessage.triggered.connect(self.showgetMessage)
-        self.Dialog_ReadMsg.signal_messagecfg.connect(self.ReadMessage)
+        self.Dialog_ReadMsg.signal_messagecfg.connect(self.ReadMessage,QtCore.Qt.QueuedConnection)
 
     def showReadMenu(self,pos):
         self.topic_decrips_menu.exec(QtGui.QCursor.pos())
