@@ -42,8 +42,22 @@ def match(src,pattern):
         return False
 
 
+# region Description
+class Test(object):
+    a = None
+
+    @classmethod
+    def func(cls):
+        pass
+# endregion
+
+
 if __name__ == '__main__':
     src  = "BBC AAAABCDAB ABCDABCDABDE"
     pattern = "AAAAB"
     res = match(src,pattern)
     print(res)
+    import pandas as np
+    with open('data.csv','w') as f:
+        data = np.DataFrame(['12','123']).T
+        data.to_csv(f, mode='a', header=False, index=False)

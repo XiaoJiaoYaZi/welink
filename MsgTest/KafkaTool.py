@@ -5,13 +5,13 @@ from PyUI.UI_ReadMessage import Ui_Dialog_ReadMessage
 from PyUI.UI_Message import Ui_Message
 from pykafka import Cluster,handlers
 from threading import Thread,Event,Lock
-import time
 from collections import namedtuple,defaultdict
 from pykafka.protocol import PartitionOffsetFetchRequest,PartitionFetchRequest,message
 from PyQt5.QtWidgets import QTableWidgetItem
 from BMSMessage import m_key
 from SMessage import SBmsMessage,SHisSendData,SHisRepData,SRepNotifyData,SHisMOData,MoAccBlist
-
+import pandas as np
+import time
 
 Message_Type = [
     SBmsMessage(),
@@ -26,12 +26,14 @@ class Message(QtWidgets.QDialog,Ui_Message):
     def __init__(self,data,param,parent = None):
         super(Message,self).__init__(parent=parent)
         self.setupUi(self)
+        self.pushButton_save.pressed.connect(self._saveMessages)
         if param[0]:
             self._decode_byte(data)
         else:
             self._decode(data,param[2])
 
         self.messages = defaultdict()
+        self._header = []
 
     def _decode_byte(self,data):
         self.treeWidget.clear()
@@ -42,12 +44,13 @@ class Message(QtWidgets.QDialog,Ui_Message):
 
     def _decode(self,data,type):
         self.treeWidget.clear()
-        self.treeWidget.setHeaderLabels(['offset']+list(m_key[type]))
+        self._header = ['offset']+list(m_key[type])
+        self.treeWidget.setHeaderLabels(self._header)
         for temp in data:
             try:
                 Message_Type[type].fromBytes(temp.value)
-                _data = Message_Type[type].toList()
-                item = QtWidgets.QTreeWidgetItem(self.treeWidget,[str(temp.offset)]+_data)
+                _data = [str(temp.offset)]+Message_Type[type].toList()
+                item = QtWidgets.QTreeWidgetItem(self.treeWidget,_data)
                 self.treeWidget.addTopLevelItem(item)
                 self.messages[temp.offset] = _data
             except Exception as e:
@@ -56,8 +59,12 @@ class Message(QtWidgets.QDialog,Ui_Message):
                 self.treeWidget.addTopLevelItem(QtWidgets.QTreeWidgetItem(self.treeWidget,[str(temp.offset),str(temp.value)]))
 
     def _saveMessages(self):
-        with open('./data/') as f:
-            pass
+        filename = QtWidgets.QInputDialog.getText(self,'保存文件','文件名')
+        with open('./data/{}.csv'.format(filename)) as f:
+            for data in self.messages.values():
+                temp = np.DataFrame(data).T
+                temp.to_csv(f,mode='a',header= False,index=False)
+
 
 
 class ReadMsg(QtWidgets.QDialog,Ui_Dialog_ReadMessage):
