@@ -539,6 +539,8 @@ class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
         offset = _min
         messages = []
         while True:
+            if offset>=_max:
+                break
             message = self._cluster.getMessage(broker, topic, partition, offset)
             if find_by_time:
                 _time_min = message[0].timestamp
@@ -550,15 +552,41 @@ class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
                     offset += len(message)
                     continue
                 for data in message:
-                    if data.timestamp >=_min and data.timestamp < _max:
+                    if data.timestamp >=param[1] and data.timestamp <= param[2]:
                         messages.append(data)
+                offset += len(messages)
                 self.signal_find.emit(messages)
             else:
-                pass
-
-            Message_Type[param[0]].fromBytes(message[-1].value)
+                _id_max = KafkaTool.getMsgId(Message_Type[param[0]].fromBytes(message[-1].value))
+                _id_min = KafkaTool.getMsgId(Message_Type[param[0]].fromBytes(message[0].value))
+                if _id_min > param[4]:
+                    print('can not fine message min_msgid for offset:{},max_msgid for find:{}'.format(_id_min, param[4]))
+                    break
+                if _id_max < param[3]:
+                    offset += len(message)
+                    continue
+                for data in message:
+                    _id = KafkaTool.getMsgId(Message_Type[param[0]].fromBytes(message[-1].value))
+                    if _id >= param[3] and _id <= param[4]:
+                        messages.append(data)
+                offset += len(messages)
+                self.signal_find.emit(messages)
         return
 
+    @classmethod
+    def getMsgId(cls,data):
+        if isinstance(data,SCloudMessage):
+            return data.FixHead.MsgId
+        elif isinstance(data,SMsgSendData):
+            return data._body.msgId
+        elif isinstance(data,SMOData):
+            return data.msgId
+        elif isinstance(data,SRepNotifyData):
+            return data.msgId
+        elif isinstance(data,SPackageStatStructRetry):
+            return data.MsgId
+        else:
+            raise TypeError
 
 
     def showReadMenu(self,pos):
