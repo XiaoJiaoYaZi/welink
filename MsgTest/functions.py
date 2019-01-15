@@ -16,6 +16,9 @@ def dt_Datetime(time_str):
 def Datetime_dt(value):
     return QtCore.QDateTime.fromTime_t((value-25569.333333333332)*3600*24).toString("yyyy-MM-dd hh:mm:ss")
 
+def Datetime_dt_1970(value):
+    return QtCore.QDateTime.fromTime_t(value).toString("yyyy-MM-dd hh:mm:ss")
+
 def ip_int2str(n:int):
     if n>0xffffffff:
         raise ValueError('n out of range')

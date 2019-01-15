@@ -59,5 +59,6 @@ if __name__ == '__main__':
     print(res)
     import pandas as np
     with open('data.csv','w') as f:
-        data = np.DataFrame(['12','123']).T
+        data = np.DataFrame([['12','123'],['23',23],['123','123'],['123','123']]).T
+        print(data)
         data.to_csv(f, mode='a', header=False, index=False)

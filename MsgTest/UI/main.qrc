@@ -1,10 +1,13 @@
 <RCC>
   <qresource prefix="image">
     <file>refresh.png</file>
+    <file>tools.png</file>
     <file>LM.png</file>
     <file>button_cancel.png</file>
     <file>edit_remove.png</file>
     <file>add.png</file>
     <file>101.png</file>
+    <file>search.png</file>
+    <file>type_list.png</file>
   </qresource>
 </RCC>

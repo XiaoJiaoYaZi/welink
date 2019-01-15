@@ -165,12 +165,14 @@ m_keys_sdispatchstatistics = (
     '调度成功',
     '调度失败',
     '循环次数',
+    '创建时间'
 )
 m_keys_srescomstatistics = (
     '资源id',
     '成功数',
     '失败数',
     '循环次数',
+    '创建时间'
 )
 m_keys_resourcestate = (
     '资源ID',
@@ -192,15 +194,28 @@ m_keys_resourcestate = (
 
 m_keys_SPackageStat = (
     'MsgId',
-'SendSuccess',
-'SendFails',
-'SendFailTimes',
-'BlackLists',
-'Cancels',
-'ReportSuccess',
-'ReportFails',
+    'SendSuccess',
+    'SendFails',
+    'SendFailTimes',
+    'BlackLists',
+    'Cancels',
+    'ReportSuccess',
+    'ReportFails',
+)
+m_keys_SPackageStatRetry = (
+    'MsgId',
+    'SendSuccess',
+    'SendFails',
+    'SendFailTimes',
+    'BlackLists',
+    'Cancels',
+    'ReportSuccess',
+    'ReportFails',
+    'preTime'
 )
 
+m_keys_umc = [m_keys_cloudmsg,m_keys_msgsenddata,m_keys_msghisrepdata,m_keys_modata,m_keys_repnotifydata,m_keys_resoucestatenotify,
+              m_keys_sdispatchstatistics,m_keys_srescomstatistics,m_keys_resourcestate,m_keys_SPackageStat,m_keys_SPackageStatRetry]
 
 class MsgBase(QtWidgets.QWidget):
     def __init__(self):

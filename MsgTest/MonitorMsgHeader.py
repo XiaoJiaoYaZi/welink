@@ -6,8 +6,9 @@ import struct
 from enum import Enum
 from functions import *
 
-__all__ = ['SubmitMonitorMsg','DispatchMonitorMsg','SResourceState','HisCenterMonitorData','HisPreDealMonitorData',
-           'SHeartBeat','log_struct']
+__all__ = ['SBmsSubmitMonitorMsg', 'SBmsDispatchMonitorMsg', 'SBmsResourceState', 'SBmsHisCenterMonitorData',
+           'SBmsHisPreDealMonitorData',
+           'SBmsHeartBeat', 'SBmslog_struct']
 
 class SMonitorDataBase(msg_header):
     _fields_ = [
@@ -49,10 +50,9 @@ class SMonitorDataBase(msg_header):
     def toList(self):
         return [
             str(self._id),
-            Datetime_dt(self._time),
+            Datetime_dt_1970(self._time),
             str(self._period)
         ]
-
 
 class SubmitMonitorMsgDefine(Structure):
     _fields_ = [
@@ -86,7 +86,7 @@ class SubmitMonitorMsgDefine(Structure):
             str(self._succ_fee)
         ]
 
-class SubmitMonitorMsg(Structure):
+class SBmsSubmitMonitorMsg(Structure):
     class ItemIndex(Enum):
         ITEM_CNT     = 0
 
@@ -127,7 +127,6 @@ class SubmitMonitorMsg(Structure):
     def toList(self):
         return self.baseheader.toList() + self.define.toList()
 
-
 class DispatchMonitorMsgDefine(Structure):
     _fields_ = [
         ('dispatch_states',c_uint*32),
@@ -160,8 +159,7 @@ class DispatchMonitorMsgDefine(Structure):
                str(list([self.dispatch_province[i] for i in range(36)])),
                str([self.dispatch_telcom[i] for i in range(8)])]
 
-
-class DispatchMonitorMsg(Structure):
+class SBmsDispatchMonitorMsg(Structure):
     class ItemIndex(Enum):
         ITEM_CNT     = 0
 
@@ -266,7 +264,7 @@ class SResourceStateDefine(Structure):
     def toList(self):
         return [
             str(self.resourceId),
-            Datetime_dt(self.reportTime),
+            Datetime_dt_1970(self.reportTime),
             str(self.statisticsConfig),
             str(self.currentStock),
             str(self.lastStock),
@@ -282,7 +280,7 @@ class SResourceStateDefine(Structure):
             str(self.state)
         ]
 
-class SResourceState(Structure):
+class SBmsResourceState(Structure):
     class ItemIndex(Enum):
         ITEM_CNT     = 0
 
@@ -367,7 +365,7 @@ class HisPreDealMonitorDefine(Structure):
             str(self.repTmoutRsndCnt),
         ]
 
-class HisPreDealMonitorData(Structure):
+class SBmsHisPreDealMonitorData(Structure):
     class ItemIndex(Enum):
         ITEM_CNT     = 0
 
@@ -456,7 +454,7 @@ class HisCenterMonitorDefine(Structure):
             str(self.moMsgCnt),
         ]
 
-class HisCenterMonitorData(Structure):
+class SBmsHisCenterMonitorData(Structure):
     class ItemIndex(Enum):
         ITEM_CNT     = 0
 
@@ -515,9 +513,9 @@ class SHeartBeatDefine(Structure):
 
     def fromBytes(self,b):
         data = self.__OneByte.unpack(b)
-        self.alarmTime      = data[0]
-        self.stat           = data[1]
-        self.timeInterval   = data[2]
+        self.timeInterval      = data[0]
+        self.alarmTime           = data[1]
+        self.stat   = data[2]
 
     def __len__(self):
         return self.__OneByte.size
@@ -525,11 +523,11 @@ class SHeartBeatDefine(Structure):
     def toList(self):
         return [
             str(self.timeInterval),
-            Datetime_dt(self.alarmTime),
+            Datetime_dt_1970(self.alarmTime),
             str(self.stat),
         ]
 
-class SHeartBeat(Structure):
+class SBmsHeartBeat(Structure):
     class ItemIndex(Enum):
         MOUDULE_CNT  = 0
         ITEM_CNT     = 1
@@ -649,11 +647,11 @@ class log_struct_define(Structure):
     def toList(self):
         return [
             str(self.level),
-            str(self.ip),
-            Datetime_dt(self.time),
+            ip_int2str(self.ip),
+            Datetime_dt_1970(self.time),
         ]
 
-class log_struct(Structure):
+class SBmslog_struct(Structure):
     class ItemIndex(Enum):
         NAME_CNT    = 0
         MSG_CNT     = 1
@@ -733,7 +731,7 @@ class log_struct(Structure):
         for i in range(self.ItemIndex.ITEM_CNT.value):
             value += self.node[i].Value()
         # 动长
-        value += self.__OneByte.pack(*(self.name + b'\x00',
+        value += self.__OneByte.pack(*(self.name + b'\x00' +\
                                        self.msg + b'\x00'
                                        ,))
         return value

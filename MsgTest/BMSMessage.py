@@ -6,7 +6,7 @@ from PyUI.UI_SRepNotifyData import Ui_SRepNotifyData
 from PyUI.UI_SHisMOData import Ui_SHisMOData
 from PyUI.UI_MoAccBlist import Ui_MoAccBlist
 from PyUI.UI_Monitor import Ui_Monitor
-from SMessage import SBmsMessage,SHisSendData,SHisRepData,SRepNotifyData,SHisMOData,MoAccBlist
+from SMessage import SBmsMessage,SBmsHisSendData,SBmsHisRepData,SBmsRepNotifyData,SBmsHisMOData,SBmsMoAccBlist
 from MonitorMsgHeader import *
 import time
 import socket
@@ -139,6 +139,11 @@ m_keys_MoAccBlist = (
     "Operator",
     "Remark",
 )
+m_keys_MonitorHeader = (
+    'id',
+    'time',
+    'period'
+)
 m_keys_SubmitMonitor = (
     'succ',
     'fail',
@@ -179,12 +184,14 @@ m_keys_ResouseState = (
 )
 m_keys_HeartBeat = (
     'timeInterval',
+    'alarmTime',
     'stat',
     'alarm_module',
 )
 m_keys_log = (
     'level',
     'ip',
+    'time',
     'name',
     'msg',
 )
@@ -449,7 +456,7 @@ class BMSSHisSendData(QtWidgets.QWidget,Ui_SHisSendData):
     def __init__(self):
         super(BMSSHisSendData,self).__init__()
         self.setupUi(self)
-        self.__data = SHisSendData()
+        self.__data = SBmsHisSendData()
 
     def getValue(self):
         try:
@@ -625,7 +632,7 @@ class BMSSHisRepData(QtWidgets.QWidget,Ui_SHisRepData):
     def __init__(self):
         super(BMSSHisRepData,self).__init__()
         self.setupUi(self)
-        self.__data = SHisRepData()
+        self.__data = SBmsHisRepData()
 
     def getValue(self):
         try:
@@ -710,7 +717,7 @@ class BMSSRepNotifyData(QtWidgets.QWidget,Ui_SRepNotifyData):
     def __init__(self):
         super(BMSSRepNotifyData,self).__init__()
         self.setupUi(self)
-        self.__data = SRepNotifyData()
+        self.__data = SBmsRepNotifyData()
 
     def getValue(self):
         try:
@@ -833,7 +840,7 @@ class BMSSHisMOData(QtWidgets.QWidget,Ui_SHisMOData):
     def __init__(self):
         super(BMSSHisMOData,self).__init__()
         self.setupUi(self)
-        self.__data = SHisMOData()
+        self.__data = SBmsHisMOData()
 
     def getValue(self):
         try:
@@ -931,7 +938,7 @@ class BMSMoAccBlist(QtWidgets.QWidget,Ui_MoAccBlist):
     def __init__(self):
         super(BMSMoAccBlist,self).__init__()
         self.setupUi(self)
-        self.__data = MoAccBlist()
+        self.__data = SBmsMoAccBlist()
 
     def getValue(self):
         try:
@@ -1024,13 +1031,13 @@ class BMSMonitor(QtWidgets.QWidget,Ui_Monitor):
 
     def _init(self):
         self.__data = {}
-        self.__data['SubmitMonitorMsg'] = SubmitMonitorMsg()
-        self.__data['HisPreDealMonitorData'] = HisPreDealMonitorData()
-        self.__data['HisCenterMonitorData'] = HisCenterMonitorData()
-        self.__data['SResourceState'] = SResourceState()
-        self.__data['SHeartBeat'] = SHeartBeat()
-        self.__data['log'] = log_struct()
-        self.__data['DispatchMonitorMsg'] = DispatchMonitorMsg()
+        self.__data['SubmitMonitorMsg'] = SBmsSubmitMonitorMsg()
+        self.__data['HisPreDealMonitorData'] = SBmsHisPreDealMonitorData()
+        self.__data['HisCenterMonitorData'] = SBmsHisCenterMonitorData()
+        self.__data['SResourceState'] = SBmsResourceState()
+        self.__data['SHeartBeat'] = SBmsHeartBeat()
+        self.__data['log'] = SBmslog_struct()
+        self.__data['DispatchMonitorMsg'] = SBmsDispatchMonitorMsg()
 
         self.get_func = {}
         self.get_func['SHeartBeat']             = self.__get_SHeartBeat
@@ -1202,15 +1209,15 @@ class BMSMonitor(QtWidgets.QWidget,Ui_Monitor):
             config.add_section(m_section[12])
             config.set(m_section[12], m_keys_log[0], self.lineEdit_level.text())
             config.set(m_section[12], m_keys_log[1], self.lineEdit_ip.text())
-            config.set(m_section[12], m_keys_log[2], self.lineEdit_name.text())
-            config.set(m_section[12], m_keys_log[3], self.lineEdit_msg.text())
+            config.set(m_section[12], m_keys_log[3], self.lineEdit_name.text())
+            config.set(m_section[12], m_keys_log[4], self.lineEdit_msg.text())
 
     def __loadConfig_log(self,config):
         if isinstance(config,ConfigParser):
             self.lineEdit_level.setText(config[m_section[12]][m_keys_log[0]])
             self.lineEdit_ip.setText(config[m_section[12]][m_keys_log[1]])
-            self.lineEdit_name.setText(config[m_section[12]][m_keys_log[2]])
-            self.lineEdit_msg.setText(config[m_section[12]][m_keys_log[3]])
+            self.lineEdit_name.setText(config[m_section[12]][m_keys_log[3]])
+            self.lineEdit_msg.setText(config[m_section[12]][m_keys_log[4]])
 
     def __get_DispatchMonitorMsg(self):
         self.__data['DispatchMonitorMsg'].clear()

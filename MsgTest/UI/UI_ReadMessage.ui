@@ -19,156 +19,218 @@
   <property name="windowTitle">
    <string>读取队列内容</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>要读取的偏移量</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="lineEdit">
-         <property name="minimumSize">
-          <size>
-           <width>154</width>
-           <height>0</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <widget class="QCheckBox" name="checkBox">
-       <property name="text">
-        <string>显示二进制数据,如果不想查看请选择要转换的数据类型</string>
-       </property>
-       <property name="tristate">
-        <bool>false</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>要转换的数据类型</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="comboBox">
-         <item>
-          <property name="text">
-           <string>SBMSMessage</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>BMSSHisSendData</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>新建项目</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>新建项目</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>新建项目</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>新建项目</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>新建项目</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>新建项目</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>新建项目</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>新建项目</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>新建项目</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>新建项目</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>新建项目</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>新建项目</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>新建项目</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-      </layout>
-     </item>
-    </layout>
+  <widget class="QDialogButtonBox" name="buttonBox">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>105</y>
+     <width>156</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="standardButtons">
+    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+   </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>要读取的偏移量</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEdit">
+      <property name="minimumSize">
+       <size>
+        <width>154</width>
+        <height>0</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QCheckBox" name="checkBox">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>43</y>
+     <width>317</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>显示二进制数据,如果不想查看请选择要转换的数据类型</string>
+   </property>
+   <property name="tristate">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>169</x>
+     <y>73</y>
+     <width>157</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="sizeAdjustPolicy">
+    <enum>QComboBox::AdjustToContents</enum>
+   </property>
+   <item>
+    <property name="text">
+     <string>SBmsMessage</string>
+    </property>
    </item>
-   <item row="1" column="0">
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-     </property>
-    </widget>
+   <item>
+    <property name="text">
+     <string>SBmsHisSendData</string>
+    </property>
    </item>
-  </layout>
+   <item>
+    <property name="text">
+     <string>SBmsHisRepData</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SBmsRepNotifyData</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SBmsHisMOData</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SBmsMoAccBlistData</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SBmsSubmitMonitorData</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SBmsHisPreDealMonitorData</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SBmsHisCenterMonitorData</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SBmsResourceState</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SBmsHeartBeat</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SBmsDispatchMonitorMsg</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SBmslog_struct</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SCloudMessage</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SMsgSendData</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SMsgHisRepData</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SMOData</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SRepNotifyData</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>ResourceStateNotify</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SDispatchStatistics</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SResComStatistics</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SResourceState</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SPackageStatStruct</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SPackageStatStructRetry</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>11</x>
+     <y>73</y>
+     <width>152</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>要转换的数据类型</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections>

@@ -39,7 +39,6 @@ class BMSEMsgType(Enum):
     RESCOMSTATIS_MONITOR = 0x1008,
     ALLOW_MONITOR =0x1080
 
-
 class msg_header(Structure):
     _fields_ = [("_length",c_uint),
                 ("_type", c_uint),
@@ -65,7 +64,6 @@ class msg_header(Structure):
 
     def __len__(self):
         return self.__OneByte.size
-
 
 class SBmsMessageDispatchHead(Structure):
     _fields_ = [
@@ -137,7 +135,6 @@ class SBmsMessageDispatchHead(Structure):
                                      str(self.MobilesCount), str(self.SubmitType), str(self.AccId), str(self.AuditorId),
                                      ip_int2str(self.CommitIp)]
 
-
 class SBmsMessageDispatchTail(Structure):
     _fields_ = [
         ("InnerDispatchTimes",c_int),
@@ -190,7 +187,6 @@ class SBmsMessageDispatchTail(Structure):
                                       str(self.TotalSndFldResndTimes),str(self.TotalRepFldResndTimes),
                                       str(self.PackageTotal),str(self.PackageNum)]
 
-
 class Node(Structure):
     _fields_ = [
         ("m_offset",c_uint),
@@ -215,8 +211,6 @@ class Node(Structure):
     @classmethod
     def len(cls):
         return cls.__len__(cls)
-
-
 
 class SBmsMessage(Structure):
     class EBmsMsgItem(Enum):
@@ -436,7 +430,6 @@ class SBmsMessage(Structure):
     def mobiles(self,value):
         self.__write_item(SBmsMessage.EBmsMsgItem.EBMI_MOBILE.value, value)
 
-
 class SHisSendFixedData(Structure):
     _fields_=[
         ("msgId",c_int64),
@@ -544,9 +537,7 @@ class SHisSendFixedData(Structure):
             str(self.MsgFormat)
         ]
 
-
-
-class SHisSendData(Structure):
+class SBmsHisSendData(Structure):
     class ItemIndex(Enum):
         MSGCONTENT_IND  = 0#// 信息内容
         WHLMSG_IND      = 1#// 长短信总内容（信息自动重发用）
@@ -748,7 +739,6 @@ class SHisSendData(Structure):
     def title(self):
         return self._title.decode('utf_16_le').replace('\x00','')
 
-
 class SHisRepFixedData(Structure):
     _fields_=[
         ('mobile',c_int64),
@@ -800,8 +790,7 @@ class SHisRepFixedData(Structure):
             str(self.retryTimes)
         ]
 
-
-class SHisRepData(Structure):
+class SBmsHisRepData(Structure):
     class ItemIndex(Enum):
         REPINFO = 0
         ITEM_CNT = 1
@@ -839,7 +828,7 @@ class SHisRepData(Structure):
     def write_getsize(self,index,text):
         if index ==0:
             if isinstance(text,str):
-                self._repResultInfo = text.encode('utf_8')#+'\x00\x00'.encode('utf_8')
+                self._repResultInfo = text.encode('gbk')#+'\x00\x00'.encode('utf_8')
             else:
                 raise TypeError(text)
             return len(self._repResultInfo) + 1
@@ -889,8 +878,6 @@ class SHisRepData(Structure):
 
     def toList(self):
         return self.Data.toList()+[self.repResultInfo]
-
-
 
 class SRepNotifyFixedData(Structure):
     _fields_ = [
@@ -969,7 +956,7 @@ class SRepNotifyFixedData(Structure):
             str(self.flagBits),
         ]
 
-class SRepNotifyData(Structure):
+class SBmsRepNotifyData(Structure):
     class ItemIndex(Enum):
         SENDRESINFO_IND =0  #//发送结果内容
         REPRESINFO_IND  =1  #//状态报告结果内容
@@ -1175,7 +1162,7 @@ class SHisMOFixedData(Structure):
             str(self.dealTimes)
         ]
 
-class SHisMOData(Structure):
+class SBmsHisMOData(Structure):
     class ItemIndex(Enum):
         MOCONTENT_IND   =0  #//上行信息内容
         SPNO_IND        =1  #//服务商号码
@@ -1329,7 +1316,7 @@ class SMoAccBlist(Structure):
             str(self.flag),
         ]
 
-class MoAccBlist(Structure):
+class SBmsMoAccBlist(Structure):
     class ItemIndex(Enum):
         OPERATOR_CNT = 0
         REMARK_CNT   = 1

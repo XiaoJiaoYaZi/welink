@@ -19,6 +19,10 @@
   <property name="windowTitle">
    <string>KafkaTool</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="main.qrc">
+    <normaloff>:/image/tools.png</normaloff>:/image/tools.png</iconset>
+  </property>
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout_6">
@@ -415,8 +419,30 @@
    </property>
   </action>
   <action name="action_ReadMessage">
+   <property name="icon">
+    <iconset resource="main.qrc">
+     <normaloff>:/image/type_list.png</normaloff>:/image/type_list.png</iconset>
+   </property>
    <property name="text">
     <string>读取消息</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
+   </property>
+  </action>
+  <action name="action_findmessage">
+   <property name="icon">
+    <iconset resource="main.qrc">
+     <normaloff>:/image/search.png</normaloff>:/image/search.png</iconset>
+   </property>
+   <property name="text">
+    <string>查找消息</string>
+   </property>
+   <property name="toolTip">
+    <string>查找某个消息</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
    </property>
   </action>
  </widget>

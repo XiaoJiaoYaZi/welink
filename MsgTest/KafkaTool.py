@@ -3,35 +3,103 @@ from PyUI.UI_KafkaTool import Ui_KafkaTool
 from PyUI.UI_Descrip_Consumer import Ui_Descrip
 from PyUI.UI_ReadMessage import Ui_Dialog_ReadMessage
 from PyUI.UI_Message import Ui_Message
+from PyUI.UI_Search import Ui_FindMessage
 from pykafka import Cluster,handlers
 from threading import Thread,Event,Lock
 from collections import namedtuple,defaultdict
 from pykafka.protocol import PartitionOffsetFetchRequest,PartitionFetchRequest,message
 from PyQt5.QtWidgets import QTableWidgetItem
-from BMSMessage import m_key
-from SMessage import SBmsMessage,SHisSendData,SHisRepData,SRepNotifyData,SHisMOData,MoAccBlist
+from BMSMessage import m_key,m_keys_MonitorHeader
+from CloudMsg import m_keys_umc
+from SMessage import SBmsMessage,SBmsHisSendData,SBmsHisRepData,SBmsRepNotifyData,SBmsHisMOData,SBmsMoAccBlist
+from MonitorMsgHeader import SBmsSubmitMonitorMsg,SBmsDispatchMonitorMsg,SBmsResourceState,SBmsHisCenterMonitorData,SBmsHisPreDealMonitorData,SBmsHeartBeat,SBmslog_struct
+from PlatformPublicDefine import *
 import pandas as np
 import time
 
+m_keys = m_key.copy()
+for i in range(6,12):
+    if i == 10 or i == 12:
+        continue
+    m_keys[i] = m_keys_MonitorHeader + m_key[i]
+m_keys += m_keys_umc
+
 Message_Type = [
+    # region BMC
     SBmsMessage(),
-    SHisSendData(),
-    SHisRepData(),
+    SBmsHisSendData(),
+    SBmsHisRepData(),
+    SBmsRepNotifyData(),
+    SBmsHisMOData(),
+    SBmsMoAccBlist(),
+    SBmsSubmitMonitorMsg(),
+    SBmsHisPreDealMonitorData(),
+    SBmsHisCenterMonitorData(),
+    SBmsResourceState(),
+    SBmsHeartBeat(),
+    SBmsDispatchMonitorMsg(),
+    SBmslog_struct(),
+    # endregion
+
+    # region UMC
+    SCloudMessage(),
+    SMsgSendData(),
+    SMsgHisRepData(),
+    SMOData(),
     SRepNotifyData(),
-    SHisMOData(),
-    MoAccBlist()
+    ResourceStateNotify(),
+    SDispatchStatistics(),
+    SResComStatistics(),
+    SResourceState(),
+    SPackageStatStruct(),
+    SPackageStatStructRetry()
+    # endregion
 ]
 
+Message_Descrip = [
+    '重客主消息数据',
+    '重客历史预处理数据',
+    '重客状态报告数据',
+    '重客状态报告通知数据',
+    '重客历史上行数据',
+    '重客账号黑名单数据',
+    '重客提交统计数据',
+    '重客历史预处理统计数据',
+    '重客历史中心统计数据',
+    '重客资源状态数据',
+    '重客心跳数据',
+    '重客调度统计数据',
+    '重客日志告警数据',
+
+    ########################
+    '云平台主消息数据',
+    '云平台下行数据',
+    '云平台状态报告数据',
+    '云平台上行数据',
+    '云平台状态报告通知数据',
+    '云平台资源状态报告数据',
+    '云平台调度统计数据',
+    '云平台资源统计数据',
+    '云平台资源状态数据',
+    '云平台打包状态数据',
+    '云平台导报状态重试数据',
+]
+
+
+
+# <editor-fold desc="MessageBox for Struct">
 class Message(QtWidgets.QDialog,Ui_Message):
     def __init__(self,data,param,parent = None):
         super(Message,self).__init__(parent=parent)
         self.setupUi(self)
-        self.pushButton_save.pressed.connect(self._saveMessages)
+        self._init()
+        self.pushButton_save.pressed.connect(self._saveMessages,QtCore.Qt.QueuedConnection)
         if param[0]:
             self._decode_byte(data)
         else:
             self._decode(data,param[2])
 
+    def _init(self):
         self.messages = defaultdict()
         self._header = []
 
@@ -44,29 +112,31 @@ class Message(QtWidgets.QDialog,Ui_Message):
 
     def _decode(self,data,type):
         self.treeWidget.clear()
-        self._header = ['offset']+list(m_key[type])
+        self._header = ['offset','timestamp']+list(m_keys[type])
         self.treeWidget.setHeaderLabels(self._header)
         for temp in data:
             try:
                 Message_Type[type].fromBytes(temp.value)
-                _data = [str(temp.offset)]+Message_Type[type].toList()
+                _data = [str(temp.offset),temp.timestamp_dt.strftime('%Y-%m-%d %H:%M:%S:%f')]+Message_Type[type].toList()
                 item = QtWidgets.QTreeWidgetItem(self.treeWidget,_data)
                 self.treeWidget.addTopLevelItem(item)
                 self.messages[temp.offset] = _data
             except Exception as e:
                 print(e)
                 print('解析消息失败 offset:{}'.format(temp.offset))
-                self.treeWidget.addTopLevelItem(QtWidgets.QTreeWidgetItem(self.treeWidget,[str(temp.offset),str(temp.value)]))
+                #self.treeWidget.addTopLevelItem(QtWidgets.QTreeWidgetItem(self.treeWidget,[str(temp.offset),str(temp.value)]))
 
     def _saveMessages(self):
         filename = QtWidgets.QInputDialog.getText(self,'保存文件','文件名')
-        with open('./data/{}.csv'.format(filename)) as f:
-            for data in self.messages.values():
-                temp = np.DataFrame(data).T
-                temp.to_csv(f,mode='a',header= False,index=False)
+        if not filename[1]:
+            return
+        #with open('./data/{}.csv'.format(filename[0]),'w') as f:
+        data = [self._header] + [x for x in self.messages.values()]
+        temp = np.DataFrame(data)
+        temp.to_excel('./data/{}.xlsx'.format(filename[0]),header=False, index=False, encoding='utf-16')
+# </editor-fold>
 
-
-
+# <editor-fold desc="Read Meesage Box">
 class ReadMsg(QtWidgets.QDialog,Ui_Dialog_ReadMessage):
     signal_messagecfg = QtCore.pyqtSignal(tuple)
     def __init__(self,parent = None):
@@ -77,21 +147,63 @@ class ReadMsg(QtWidgets.QDialog,Ui_Dialog_ReadMessage):
 
     def __initUI(self):
         self.lineEdit.setText('0')
-        pass
+
+    def _showDescrip(self,index):
+        QtWidgets.QToolTip.showText(QtGui.QCursor.pos(),Message_Descrip[index])
 
     def _createConnections(self):
         self.checkBox.clicked.connect(self.change)
         self.buttonBox.accepted.connect(self.onOK)
+        self.comboBox.highlighted.connect(self._showDescrip)
 
     def change(self,checked):
         self.comboBox.setEnabled(not checked)
 
     def onOK(self):
         self.signal_messagecfg.emit((self.checkBox.isChecked(),int(self.lineEdit.text().strip()),self.comboBox.currentIndex()))
+# </editor-fold>
+
+# <editor-fold desc="Find Message Box">
+class SearchMsg(QtWidgets.QDialog,Ui_FindMessage):
+    signal_serarchCfg = QtCore.pyqtSignal(tuple)
+    def __init__(self,parent = None):
+        super(SearchMsg,self).__init__(parent=parent)
+        self.setupUi(self)
+        self._initUI()
+        self._init()
+        self._createConnections()
+
+    def _initUI(self):
+        #self.setWindowFlags(QtCore.Qt.WindowCloseButtonHint)
+        # self.lineEdit_min.setValidator(QtGui.QIntValidator(0,0xffffffff))
+        # self.lineEdit_max.setValidator(QtGui.QIntValidator(0,0xffffffff))
+        pass
+
+    def _init(self):
+        self._starttime = 0
+        self._endtime = 0
+        self._max = 0
+        self._min = 0
+
+    def _createConnections(self):
+        self.buttonBox.accepted.connect(self.onOK)
+        self.buttonBox.rejected.connect(self.close)
+
+    def onOK(self):
+        self._type = self.comboBox.currentIndex()
+        if self.checkBox_time.isChecked():
+            self._starttime = dt_Datetime(self.dateTimeEdit_start.dateTime().toPyDateTime().ctime())
+            self._endtime = dt_Datetime(self.dateTimeEdit_end.dateTime().toPyDateTime().ctime())
+        if self.checkBox_id.isChecked():
+            self._max = int(self.lineEdit_max.text())
+            self._min = int(self.lineEdit_min.text())
+        self.signal_serarchCfg.emit((self._type,self._starttime,self._endtime,self._max,self._min))
+        self.accept()
+
+# </editor-fold>
 
 
-
-
+# region namedtuple for kafka
 ConsumerDescrip = namedtuple('ConsumerDescrip',
     ['Partition','LogSize','group_id','member_id','client_id','client_host','topic']
 )
@@ -107,7 +219,7 @@ Topic2Consumer = namedtuple('topic2consumer',
 TopicDescrip = namedtuple('TopicDescrip',
     ['Partition','Leader','Replicas','ISR','earlist','latist']
 )
-
+# endregion
 
 class Descrip4Consumer(object):
     def __init__(self,descrip_consumer:dict):
@@ -192,7 +304,7 @@ class ClusterManager(Thread):
         self._lock_consumer = AutoLock()
         self._lock_topic = AutoLock()
         self._handler = handlers.ThreadingHandler()
-        self._cluster = Cluster(hosts=self._host,handler=self._handler)
+        self._cluster = Cluster(hosts=self._host,handler=self._handler,broker_version='0.11.0')
         self._topic2group = defaultdict(set)
 
     def cancel(self):
@@ -320,7 +432,7 @@ class ClusterManager(Thread):
         print('run end')
 
     def getMessage(self,broker,topic,partition,offset):
-        request = PartitionFetchRequest(topic,partition,offset,1024*1024*5)
+        request = PartitionFetchRequest(topic,partition,offset,1024*1024*2)
         message = self._cluster.brokers[broker].fetch_messages({request})
         return message.topics[topic][partition].messages
 
@@ -344,7 +456,18 @@ class Table_Consumer(Ui_Descrip,QtWidgets.QTableWidget):
 class Table_Topic():
     pass
 
+
+class ProgressBar(QtWidgets.QProgressBar):
+    def __init__(self,parent = None):
+        super().__init__(parent=parent)
+
+    def _init(self):
+        self.setStyleSheet('')
+        self.setAlignment(QtCore.Qt.AlignHCenter)
+
+
 class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
+    signal_find = QtCore.pyqtSignal(list)
     def __init__(self,parent = None):
         super(KafkaTool,self).__init__(parent=parent)
         self.setupUi(self)
@@ -363,6 +486,7 @@ class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
         self.topic.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.topic_decrips.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.Dialog_ReadMsg = ReadMsg(self)
+        self.Dialog_SearchMsg = SearchMsg(self)
 
 
     def _initMenu(self):
@@ -372,6 +496,7 @@ class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
 
         self.topic_decrips_menu = QtWidgets.QMenu(self.topic_decrips)
         self.topic_decrips_menu.addAction(self.action_ReadMessage)
+        self.topic_decrips_menu.addAction(self.action_findmessage)
 
     def _createconnections(self):
         self.connect.pressed.connect(self._connect)
@@ -388,12 +513,59 @@ class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
         self.topic_decrips.customContextMenuRequested.connect(self.showReadMenu)
         self.action_ReadMessage.triggered.connect(self.showgetMessage)
         self.Dialog_ReadMsg.signal_messagecfg.connect(self.ReadMessage,QtCore.Qt.QueuedConnection)
+        self.action_findmessage.triggered.connect(self.findMessage)
+        self.Dialog_SearchMsg.signal_serarchCfg.connect(self.searchMessage)
+
+    def findMessage(self):
+        self.Dialog_SearchMsg.exec()
+        pass
+
+    def searchMessage(self,param):
+        thread = Thread(target=self._searchMessage,args=(param,),daemon=True)
+        thread.start()
+
+    def _searchMessage(self,param):
+        print('start to search...')
+        print(param)
+        find_by_time = False
+        if param[0]==0 and param[1]==0:
+            find_by_time = True
+        topic = self.topic.currentItem().text().encode('gbk')
+        row = self.topic_decrips.currentItem().row()
+        partition = int(self.topic_decrips.item(row,0).text())
+        broker = int(self.topic_decrips.item(row,1).text())
+        _max = int(self.topic_decrips.item(row,5).text())
+        _min = int(self.topic_decrips.item(row,4).text())
+        offset = _min
+        messages = []
+        while True:
+            message = self._cluster.getMessage(broker, topic, partition, offset)
+            if find_by_time:
+                _time_min = message[0].timestamp
+                _time_max = message[-1].timestamp
+                if _time_min > param[2]:#如果最小offset的时间戳比要找得数据时间戳的最大值还大，不可能找到
+                    print('can not fine message min_time for offset:{},max_time for find:{}'.format(_time_min,param[2]))
+                    break
+                if _time_max <param[1]:#如果最大offset的时间戳比要找数据时间戳的最小值还小，直接去寻找下一段
+                    offset += len(message)
+                    continue
+                for data in message:
+                    if data.timestamp >=_min and data.timestamp < _max:
+                        messages.append(data)
+                self.signal_find.emit(messages)
+            else:
+                pass
+
+            Message_Type[param[0]].fromBytes(message[-1].value)
+        return
+
+
 
     def showReadMenu(self,pos):
         self.topic_decrips_menu.exec(QtGui.QCursor.pos())
 
     def showgetMessage(self):
-        self.Dialog_ReadMsg.show()
+        self.Dialog_ReadMsg.exec()
 
     def ReadMessage(self,offset):
         print(offset)

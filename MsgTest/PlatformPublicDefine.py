@@ -670,7 +670,7 @@ class SCloudMessage(object):
 
     @property
     def paramtemplate(self):
-        return self._paramtemplate.decode('gbk').replace('\x00','')
+        return self._paramtemplate.decode('utf_16_le').replace('\x00','')
     @paramtemplate.setter
     def paramtemplate(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_PARAM_TEMPLATE.value[0],value)
@@ -717,6 +717,7 @@ class SCloudMessage(object):
     def usr_def_id(self,value):
         self.__write_item(SCloudMessage.ECloudMsgItem.ECMI_USER_DEF_ID.value[0],value)
 
+# region  descrip
 # SMsgSendData                                                  --- HistoryQueue
 # SMsgHisRepData                                                --- HistoryQueue
 # SMOData                                                       --- HistoryQueue
@@ -725,6 +726,7 @@ class SCloudMessage(object):
 # ResourceStateNotify                                           --- MMSPortSend,SMSPortSend
 # SDispatchStatistics                                           --- MsgDispatchCenter
 # SResComStatistics                                             --- MsgDispatchCenter
+#end region
 
 class EMsgType(Enum):
     MSG_DSP_STC     = 0x01
@@ -911,8 +913,8 @@ class TSMsgSendData(object):
             str(self.mobilePhone),
             str(self.matchId),
             str(self.realProductExtendId),
-            str(self.resourceId),
             str(self.chargeQuantity),
+            str(self.resourceId),
             str(self.propertyComponent),
             str(self.sendTimes),
             str(self.msgType),
@@ -1010,7 +1012,7 @@ class SMsgSendData(object):
 
     def toList(self):
         return self._body.toList() +[
-            self.msgContent,self.sendResultInfo,self.title,self.userDefineId,str(self.totalMsgLen),self.totalMsg,self.sign
+            self.userDefineId,self.title,self.sign,str(self.totalMsgLen),self.totalMsg,self.sendResultInfo,self.msgContent,
         ]
 
     @property
@@ -1121,10 +1123,10 @@ class TSMsgHisRepData(object):
             str(self.resourceId),
             functions.Datetime_dt(self._reportTime),
             str(self.reportState),
-            str(self.reportResultInfo),
             functions.Datetime_dt(self._reportLocalTime),
             str(self.componentFlg),
-            str(self.cycletimes)
+            str(self.cycletimes),
+            str(self.reportResultInfo),
         ]
 
     @property
@@ -1206,13 +1208,13 @@ class SMOData(object):
         return [
             str(self.msgId),
             str(self.mobilePhone),
-            str(self.SPNo),
             functions.Datetime_dt(self._MOTime),
+            str(self.SPNo),
             str(self.resourceId),
             str(self.MOContentLength),
-            str(self.MOContent),
             str(self.msgType),
             str(self.accountId),
+            str(self.MOContent),
         ]
 
     @property
@@ -1316,17 +1318,16 @@ class SRepNotifyData(object):
             str(self.reportState),
             functions.Datetime_dt(self._sendedTime),
             functions.Datetime_dt(self._reportTime),
-            str(self.sendResultInfo),
-            str(self.reportResultInfo),
             str(self.spno),
             str(self.clientMsgId),
-            functions.Datetime_dt(self._reportLocalTime),
             str(self.extendNum),
+            functions.Datetime_dt(self._reportLocalTime),
             str(self.pk_total),
             str(self.pk_num),
             str(self.combinationVal),
-            str(self._userDefineId),
-
+            str(self.userDefineId),
+            str(self.sendResultInfo),
+            str(self.reportResultInfo),
         ]
 
     @property
@@ -1604,6 +1605,7 @@ class SDispatchStatistics(object):
             str(self.succDispatchCnt),
             str(self.failDispatchCnt),
             str(self.cycleTime),
+            functions.Datetime_dt_1970(self.createTime)
         ]
 
     @property
@@ -1611,7 +1613,7 @@ class SDispatchStatistics(object):
         return self._extendMem.decode('gbk').replace('\x00','')
     @extendMem.setter
     def extendMem(self,value:str):
-        t = value.encode("utf-8")
+        t = value.encode("gbk")
         self._extendMem = t + bytes(64-len(t))
 
 class SResComStatistics(object):
@@ -1664,6 +1666,7 @@ class SResComStatistics(object):
             str(self.succCnt),
             str(self.failCnt),
             str(self.cycleTime),
+            functions.Datetime_dt_1970(self.createTime)
         ]
 
     @property
@@ -1671,7 +1674,7 @@ class SResComStatistics(object):
         return self._extendMem.decode('gbk').replace('\x00','')
     @extendMem.setter
     def extendMem(self,value:str):
-        t = value.encode("utf-8")
+        t = value.encode("gbk")
         self._extendMem = t + bytes(64-len(t))
 
 class SResourceState(Structure):
@@ -1736,12 +1739,12 @@ class SResourceState(Structure):
             str(self.currentStock),
             str(self.lastStock),
             str(self.reportTimeInterval),
-            str(self.submitTotal),
-            str(self.currentSubmitSuccess),
-            str(self.currentSubmitFail),
             str(self.reportTotal),
             str(self.currentReportSuccess),
             str(self.currentReportFail),
+            str(self.submitTotal),
+            str(self.currentSubmitSuccess),
+            str(self.currentSubmitFail),
             str(self.moTotal),
             str(self.currentMoTotal),
             str(self.state),
