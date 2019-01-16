@@ -224,7 +224,7 @@ class Ui_KafkaTool(object):
         _translate = QtCore.QCoreApplication.translate
         KafkaTool.setWindowTitle(_translate("KafkaTool", "KafkaTool"))
         self.label.setText(_translate("KafkaTool", "Host"))
-        self.host.setText(_translate("KafkaTool", "10.1.63.126:9092,10.1.63.127:9092,10.1.63.128:9092"))
+        self.host.setText(_translate("KafkaTool", "10.1.120.132:9092,10.1.120.133:9092,10.1.120.135:9092"))
         self.connect.setText(_translate("KafkaTool", "链接"))
         self.unconnect.setText(_translate("KafkaTool", "断开"))
         self.label_5.setText(_translate("KafkaTool", "Topic"))

@@ -20,14 +20,10 @@ _num_send = 0
 def SendFunc(func):
     def transmsg(cls,msg, old, needtran):
         if needtran:
-            #print(type(msg))
-            #print(msg)
-            #print(old, needtran)
             if old:
                 msg = Old2New(msg)
             else:
                 msg = New2Old(msg)
-        #print((cls,msg, old, needtran))
         return func(cls,msg, old, needtran)
 
     return transmsg

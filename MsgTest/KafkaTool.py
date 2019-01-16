@@ -1,3 +1,4 @@
+import PyQt5.sip
 from PyQt5 import QtWidgets, QtCore,QtGui
 from PyUI.UI_KafkaTool import Ui_KafkaTool
 from PyUI.UI_Descrip_Consumer import Ui_Descrip
@@ -16,6 +17,7 @@ from MonitorMsgHeader import SBmsSubmitMonitorMsg,SBmsDispatchMonitorMsg,SBmsRes
 from PlatformPublicDefine import *
 import pandas as np
 import time
+
 
 m_keys = m_key.copy()
 for i in range(6,12):
@@ -114,12 +116,15 @@ class Message(QtWidgets.QDialog,Ui_Message):
         self.treeWidget.clear()
         self._header = ['offset','timestamp']+list(m_keys[type])
         self.treeWidget.setHeaderLabels(self._header)
+        num = 0
         for temp in data:
             try:
                 Message_Type[type].fromBytes(temp.value)
-                _data = [str(temp.offset),temp.timestamp_dt.strftime('%Y-%m-%d %H:%M:%S:%f')]+Message_Type[type].toList()
-                item = QtWidgets.QTreeWidgetItem(self.treeWidget,_data)
-                self.treeWidget.addTopLevelItem(item)
+                _data = [str(temp.offset),functions.dt_Datetime_1970_local(temp.timestamp/1000.0)]+Message_Type[type].toList()
+                if num < 20:
+                    item = QtWidgets.QTreeWidgetItem(self.treeWidget, _data)
+                    self.treeWidget.addTopLevelItem(item)
+                num+=1
                 self.messages[temp.offset] = _data
             except Exception as e:
                 print(e)
@@ -147,6 +152,7 @@ class ReadMsg(QtWidgets.QDialog,Ui_Dialog_ReadMessage):
 
     def __initUI(self):
         self.lineEdit.setText('0')
+        self.comboBox.hidePopup()
 
     def _showDescrip(self,index):
         QtWidgets.QToolTip.showText(QtGui.QCursor.pos(),Message_Descrip[index])
@@ -192,12 +198,16 @@ class SearchMsg(QtWidgets.QDialog,Ui_FindMessage):
     def onOK(self):
         self._type = self.comboBox.currentIndex()
         if self.checkBox_time.isChecked():
-            self._starttime = dt_Datetime(self.dateTimeEdit_start.dateTime().toPyDateTime().ctime())
-            self._endtime = dt_Datetime(self.dateTimeEdit_end.dateTime().toPyDateTime().ctime())
+            self._starttime = self.dateTimeEdit_start.dateTime().toTime_t()*1000
+            self._endtime = self.dateTimeEdit_end.dateTime().toTime_t()*1000
+            self._max = 0
+            self._min = 0
         if self.checkBox_id.isChecked():
             self._max = int(self.lineEdit_max.text())
             self._min = int(self.lineEdit_min.text())
-        self.signal_serarchCfg.emit((self._type,self._starttime,self._endtime,self._max,self._min))
+            self._starttime =0
+            self._endtime  = 0
+        self.signal_serarchCfg.emit((self._type,self._starttime,self._endtime,self._min,self._max))
         self.accept()
 
 # </editor-fold>
@@ -467,7 +477,7 @@ class ProgressBar(QtWidgets.QProgressBar):
 
 
 class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
-    signal_find = QtCore.pyqtSignal(list)
+    signal_find = QtCore.pyqtSignal(tuple)
     def __init__(self,parent = None):
         super(KafkaTool,self).__init__(parent=parent)
         self.setupUi(self)
@@ -515,6 +525,11 @@ class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
         self.Dialog_ReadMsg.signal_messagecfg.connect(self.ReadMessage,QtCore.Qt.QueuedConnection)
         self.action_findmessage.triggered.connect(self.findMessage)
         self.Dialog_SearchMsg.signal_serarchCfg.connect(self.searchMessage)
+        self.signal_find.connect(self.showMessage,QtCore.Qt.QueuedConnection)
+
+    def showMessage(self,param):
+        label = Message(param[-1],param[0:-1],self)
+        label.exec()
 
     def findMessage(self):
         self.Dialog_SearchMsg.exec()
@@ -528,7 +543,7 @@ class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
         print('start to search...')
         print(param)
         find_by_time = False
-        if param[0]==0 and param[1]==0:
+        if param[1]!=0 and param[2]!=0:
             find_by_time = True
         topic = self.topic.currentItem().text().encode('gbk')
         row = self.topic_decrips.currentItem().row()
@@ -539,38 +554,47 @@ class KafkaTool(QtWidgets.QWidget,Ui_KafkaTool):
         offset = _min
         messages = []
         while True:
-            if offset>=_max:
-                break
-            message = self._cluster.getMessage(broker, topic, partition, offset)
-            if find_by_time:
-                _time_min = message[0].timestamp
-                _time_max = message[-1].timestamp
-                if _time_min > param[2]:#如果最小offset的时间戳比要找得数据时间戳的最大值还大，不可能找到
-                    print('can not fine message min_time for offset:{},max_time for find:{}'.format(_time_min,param[2]))
+            try:
+                if offset>=_max:
                     break
-                if _time_max <param[1]:#如果最大offset的时间戳比要找数据时间戳的最小值还小，直接去寻找下一段
+                message = self._cluster.getMessage(broker, topic, partition, offset)
+                if find_by_time:
+                    _time_min = message[0].timestamp
+                    _time_max = message[-1].timestamp
+                    if _time_min > param[2]:#如果最小offset的时间戳比要找得数据时间戳的最大值还大，不可能找到
+                        print('can not fine message min_time for offset:{},max_time for find:{}'.format(_time_min,param[2]))
+                        break
+                    if _time_max <param[1]:#如果最大offset的时间戳比要找数据时间戳的最小值还小，直接去寻找下一段
+                        offset += len(message)
+                        continue
+                    for data in message:
+                        if data.timestamp >=param[1] and data.timestamp <= param[2]:
+                            messages.append(data)
                     offset += len(message)
-                    continue
-                for data in message:
-                    if data.timestamp >=param[1] and data.timestamp <= param[2]:
-                        messages.append(data)
-                offset += len(messages)
-                self.signal_find.emit(messages)
-            else:
-                _id_max = KafkaTool.getMsgId(Message_Type[param[0]].fromBytes(message[-1].value))
-                _id_min = KafkaTool.getMsgId(Message_Type[param[0]].fromBytes(message[0].value))
-                if _id_min > param[4]:
-                    print('can not fine message min_msgid for offset:{},max_msgid for find:{}'.format(_id_min, param[4]))
-                    break
-                if _id_max < param[3]:
+
+                else:
+                    Message_Type[param[0]].fromBytes(message[-1].value)
+                    _id_max = KafkaTool.getMsgId(Message_Type[param[0]])
+                    Message_Type[param[0]].fromBytes(message[0].value)
+                    _id_min = KafkaTool.getMsgId(Message_Type[param[0]])
+                    if _id_min > param[4]:
+                        print('can not fine message min_msgid for offset:{},max_msgid for find:{}'.format(_id_min, param[4]))
+                        break
+                    if _id_max < param[3]:
+                        offset += len(message)
+                        continue
+                    for data in message:
+                        Message_Type[param[0]].fromBytes(data.value)
+                        _id = KafkaTool.getMsgId(Message_Type[param[0]])
+                        if _id >= param[3] and _id <= param[4]:
+                            messages.append(data)
                     offset += len(message)
-                    continue
-                for data in message:
-                    _id = KafkaTool.getMsgId(Message_Type[param[0]].fromBytes(message[-1].value))
-                    if _id >= param[3] and _id <= param[4]:
-                        messages.append(data)
-                offset += len(messages)
-                self.signal_find.emit(messages)
+            except:
+                print('thread error')
+                return
+
+        self.signal_find.emit((False, partition, param[0], messages))
+        print('find {} message!'.format(len(messages)))
         return
 
     @classmethod

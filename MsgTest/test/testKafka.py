@@ -17,7 +17,7 @@ class MyEnum(c_int):
 
 
 print(sizeof(MyEnum))
-from SMessage import SBmsMessage,SHisSendData
+from SMessage import SBmsMessage,SBmsHisSendData
 print(MyEnum.a)
 def worker():
     producer = KafkaProducer(bootstrap_servers = '192.168.18.134:9092')
@@ -30,7 +30,7 @@ def worker():
     # msg.write_mms_title("标题")
     # msg.write_mms_path("123123")
     # msg.write_header()
-    msg = SHisSendData()
+    msg = SBmsHisSendData()
     msg.Data.timeStamp = int(time.time())
     msg.write_message('你好')
     msg.write_whlMsg('你好，整包信息')

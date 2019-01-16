@@ -572,12 +572,14 @@ class SCloudMessage(object):
         elif index == 4:
             if isinstance(text,str):
                 self._msgtemplate = bytes(text,encoding='utf_16_le')+b'\x00\x00'
+                self._msgtemplate = len(self._msgtemplate).to_bytes(4,'little')+bytes(4)+self._msgtemplate
             else:
                 raise TypeError(text)
             return len(self._msgtemplate)
         elif index == 5:
             if isinstance(text,str):
-                self._paramtemplate = bytes(text,encoding='utf_16_le')+b'\x00'
+                self._paramtemplate = bytes(text,encoding='utf_16_le')+b'\x00\x00'
+                self._paramtemplate = len(self._paramtemplate).to_bytes(4, 'little') + bytes(4) + self._paramtemplate
             else:
                 raise TypeError(text)
             return len(self._paramtemplate)
