@@ -8,7 +8,7 @@ import functions
 import socket
 
 
-SignDll = CDLL('./dll/Sign')
+SignDll = CDLL('./dll/Sign.dll')
 
 def Pack(ctype_instance):
     return string_at(addressof(ctype_instance),sizeof(ctype_instance))
@@ -2074,28 +2074,44 @@ class SPackageStatStructRetry(Structure):
         self.ReportFails = data.ReportFails
         self.preTime = data.preTime
 
+class DispatchNofify(Structure):
+    _fields_ = [
+        ('MsgId',c_uint64),
+        ('DispatchFlag', c_bool),
+        ('NotifyDateTime', c_double),
+    ]
+    _pack_ = 1
+
+    def Value(self):
+        return Pack(self)
+
+    def fromByte(self,b):
+        data = UnPack(DispatchNofify, b)
+        self.MsgId = data.MsgId
+        self.DispatchFlag = data.DispatchFlag
+        self.NotifyDateTime = data.NotifyDateTime
 
 if __name__ == '__main__':
     pass
-    from ctypes import *
-
-    dll = CDLL('D:\\users\\welink\\documents\\visual studio 2015\\Projects\\Testkafka\\x64\\Release\\Sign.dll')
-    print(dll)
-
-    text = '1/3)【微网通联】您的验证码是：1234,重磅 ｜《2018年锂电池行业研究报告》，从锂电池材料、设备、电芯等为你解读锂电池行业发展，戳|2/3) http://xincailiao.com/url/288马上看，或直接联系相关工作人员13652401660（同微信），回N退订【|3/3)新材料在线】'
-    text = _getmessage(text)
-    print(text)
-
-    start = c_int(0)
-    end = c_int(0)
-    buf = text.encode('utf_16_le')
-    print(buf )
-    print(len(text))
-    SignDll.findSign(buf,len(text),byref(start),byref(end))
-    print(text[:start.value] + text[end.value + 1:], text[start.value:end.value + 1])
-    print(start,end)
-    sign = text[start.value:end.value + 1]
-    print(sign.encode('utf_16_le'))
+    # from ctypes import *
+    #
+    # dll = CDLL('D:\\users\\welink\\documents\\visual studio 2015\\Projects\\Testkafka\\x64\\Release\\Sign.dll')
+    # print(dll)
+    #
+    # text = '1/3)【微网通联】您的验证码是：1234,重磅 ｜《2018年锂电池行业研究报告》，从锂电池材料、设备、电芯等为你解读锂电池行业发展，戳|2/3) http://xincailiao.com/url/288马上看，或直接联系相关工作人员13652401660（同微信），回N退订【|3/3)新材料在线】'
+    # text = _getmessage(text)
+    # print(text)
+    #
+    # start = c_int(0)
+    # end = c_int(0)
+    # buf = text.encode('utf_16_le')
+    # print(buf )
+    # print(len(text))
+    # SignDll.findSign(buf,len(text),byref(start),byref(end))
+    # print(text[:start.value] + text[end.value + 1:], text[start.value:end.value + 1])
+    # print(start,end)
+    # sign = text[start.value:end.value + 1]
+    # print(sign.encode('utf_16_le'))
 
 
     # text = '15)|你好骄傲i世界第|哦啊速度|2/5)|加怕是啊山|3/5)加哦i教师的阿松i大家iOS觉得io的|4/5)加哦i教师的阿松i大家iOS觉得io的|5/5)加哦i教师的阿松i大家iOS觉得io的'

@@ -116,6 +116,11 @@
               <string>SPackageStat</string>
              </property>
             </item>
+            <item>
+             <property name="text">
+              <string>DispatchNofify</string>
+             </property>
+            </item>
            </widget>
           </item>
          </layout>

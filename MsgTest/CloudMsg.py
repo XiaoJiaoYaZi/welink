@@ -8,8 +8,9 @@ from PyUI.UI_SMsgHisRepData import Ui_SMsgHisRepData
 from PyUI.UI_SRepNotifyData_Cloud import Ui_SRepNotifyData
 from PyUI.UI_Monitor_Cloud import Ui_Monitor_Cloud
 from PyUI.UI_SMOData import Ui_SMOData
+from PyUI.DispatchNofify import Ui_DispatchNofify
 from PlatformPublicDefine import SCloudMessage,SMsgSendData,SMsgHisRepData,SMOData,SRepNotifyData,ResourceStateNotify,SDispatchStatistics,SResComStatistics,SResourceState,\
-    SPackageStatStruct,SPackageStatStructRetry
+    SPackageStatStruct,SPackageStatStructRetry,DispatchNofify
 from BMSMessage import dt_Datetime,Datetime_dt,bytes2int,int2ipbyte
 import os
 import sys
@@ -1673,6 +1674,27 @@ class SPackageStat(QtWidgets.QWidget):
         self._f.write(str(len(b))+'\t'+'\t'.join(data)+'\r\n')
         self._f.flush()
 
+        pass
+    def updatedata(self):
+        pass
+    def saveConfig(self, filename):
+        pass
+    def loadConfig(self, filename):
+        pass
+
+class SDispatchNofify(QtWidgets.QWidget,Ui_DispatchNofify):
+    def __init__(self):
+        super(SDispatchNofify,self).__init__()
+        self.setupUi(self)
+        self.__data = DispatchNofify()
+
+    def getValue(self):
+        self.__data.MsgId = int(self.lineEdit_msgid.text())
+        self.__data.DispatchFlag = int(self.lineEdit_flag.text())
+        self.__data.NotifyDateTime = dt_Datetime(self.dateTimeEdit.dateTime().toPyDateTime().ctime())
+        return self.__data.Value()
+        pass
+    def analyze(self,b):
         pass
     def updatedata(self):
         pass

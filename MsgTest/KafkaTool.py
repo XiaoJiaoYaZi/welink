@@ -1,4 +1,3 @@
-import PyQt5.sip
 from PyQt5 import QtWidgets, QtCore,QtGui
 from PyUI.UI_KafkaTool import Ui_KafkaTool
 from PyUI.UI_Descrip_Consumer import Ui_Descrip
@@ -17,7 +16,6 @@ from MonitorMsgHeader import SBmsSubmitMonitorMsg,SBmsDispatchMonitorMsg,SBmsRes
 from PlatformPublicDefine import *
 import pandas as np
 import time
-
 
 m_keys = m_key.copy()
 for i in range(6,12):
@@ -129,7 +127,8 @@ class Message(QtWidgets.QDialog,Ui_Message):
             except Exception as e:
                 print(e)
                 print('解析消息失败 offset:{}'.format(temp.offset))
-                #self.treeWidget.addTopLevelItem(QtWidgets.QTreeWidgetItem(self.treeWidget,[str(temp.offset),str(temp.value)]))
+                self.messages[temp.offset] = [str(temp.offset),functions.dt_Datetime_1970_local(temp.timestamp/1000.0),str(temp.value)]
+                self.treeWidget.addTopLevelItem(QtWidgets.QTreeWidgetItem(self.treeWidget,[str(temp.offset),functions.dt_Datetime_1970_local(temp.timestamp/1000.0),str(temp.value)]))
 
     def _saveMessages(self):
         filename = QtWidgets.QInputDialog.getText(self,'保存文件','文件名')

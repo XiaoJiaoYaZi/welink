@@ -1,8 +1,7 @@
 from PyQt5 import QtWidgets,QtCore
 from PyUI.UI_MainWindow import Ui_MainWindow
 from BMSMessage import BMSMessage,BMSSHisSendData,BMSSHisRepData,BMSSRepNotifyData,BMSSHisMOData,BMSMoAccBlist,BMSMonitor
-from CloudMsg import CloudMsg,MsgSendData,MsgHisRepData,MOData,RepNotifyData,Monitor_Cloud,SPackageStat
-
+from CloudMsg import CloudMsg,MsgSendData,MsgHisRepData,MOData,RepNotifyData,Monitor_Cloud,SPackageStat,SDispatchNofify
 import time
 import os
 import threading
@@ -110,6 +109,7 @@ class BMSMsgTest(QtWidgets.QMainWindow,Ui_MainWindow):
         self._sendData.append(RepNotifyData())
         self._sendData.append(Monitor_Cloud())
         self._sendData.append(SPackageStat())
+        self._sendData.append(SDispatchNofify())
 
         self._recvData.append(BMSMessage)
         self._recvData.append(BMSSHisSendData)

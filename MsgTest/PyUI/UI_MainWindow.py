@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'UI_MainWindow.ui'
 #
-# Created by: PyQt5 UI code generator 5.6
+# Created by: PyQt5 UI code generator 5.11.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -33,6 +33,7 @@ class Ui_MainWindow(object):
         self.comboBox_msgtype.setMaxVisibleItems(20)
         self.comboBox_msgtype.setSizeAdjustPolicy(QtWidgets.QComboBox.AdjustToContents)
         self.comboBox_msgtype.setObjectName("comboBox_msgtype")
+        self.comboBox_msgtype.addItem("")
         self.comboBox_msgtype.addItem("")
         self.comboBox_msgtype.addItem("")
         self.comboBox_msgtype.addItem("")
@@ -321,6 +322,7 @@ class Ui_MainWindow(object):
         self.comboBox_msgtype.setItemText(11, _translate("MainWindow", "RepNotifyData"))
         self.comboBox_msgtype.setItemText(12, _translate("MainWindow", "Monitor_Cloud"))
         self.comboBox_msgtype.setItemText(13, _translate("MainWindow", "SPackageStat"))
+        self.comboBox_msgtype.setItemText(14, _translate("MainWindow", "DispatchNofify"))
         self.pushButton_save.setText(_translate("MainWindow", "保存配置"))
         self.pushButton_load.setText(_translate("MainWindow", "加载配置"))
         self.checkBox.setText(_translate("MainWindow", "kafka队列"))

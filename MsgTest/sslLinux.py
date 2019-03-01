@@ -87,14 +87,15 @@ class Linux(object):
         return result
 
 if __name__ == '__main__':
-    l = Linux('10.1.63.127',55519,'welinkde','aUmMZbhZ88Am31llaAgykfjYhArcjjWA')
-    l.connect()
-    text,r = l.send('kafka-consumer-groups.sh --bootstrap-server 10.1.63.127:9092 --list --new-consumer')
-    print(text)
-    text = text.split('\r\n')
-    print(text)
-    text,r = l.send('kafka-run-class.sh kafka.admin.ConsumerGroupCommand --bootstrap-server 10.1.63.127:9092 --describe --group 10.1.120.111.msgstatistics')
-    text = text.split('\r\n')
-    print(text)
+    pass
+    # l = Linux('10.1.63.127',55519,'welinkde','aUmMZbhZ88Am31llaAgykfjYhArcjjWA')
+    # l.connect()
+    # text,r = l.send('kafka-consumer-groups.sh --bootstrap-server 10.1.63.127:9092 --list --new-consumer')
+    # print(text)
+    # text = text.split('\r\n')
+    # print(text)
+    # text,r = l.send('kafka-run-class.sh kafka.admin.ConsumerGroupCommand --bootstrap-server 10.1.63.127:9092 --describe --group 10.1.120.111.msgstatistics')
+    # text = text.split('\r\n')
+    # print(text)
 
 

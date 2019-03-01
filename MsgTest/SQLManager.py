@@ -160,17 +160,18 @@ def DBPool():
 
 
 if __name__ == '__main__':
+    pass
     # DBPool()
     # u = User(id=12345, name='Michael', email='test@orm.org', password='my-pwd')
     # u.save()
-    db = SQLManager('10.1.120.87:1433','sa','admin123!@#','DevelopData')
-
-    productid = 20181123
-    ResourceIdList = 201811231706
-    ForbiddenAreaSet    = 0
-    BlacklistRank   =0
-
-    sql = "exec ProcGetModuleListByConfigName @ConfigName = 'Web.config'"
+    # db = SQLManager('10.1.120.87:1433','sa','admin123!@#','DevelopData')
+    #
+    # productid = 20181123
+    # ResourceIdList = 201811231706
+    # ForbiddenAreaSet    = 0
+    # BlacklistRank   =0
+    #
+    # sql = "exec ProcGetModuleListByConfigName @ConfigName = 'Web.config'"
 
 
 

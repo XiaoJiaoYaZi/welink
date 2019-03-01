@@ -24,3 +24,7 @@ for i in range(height):
 
 with open('ascii.txt','w') as f:
     f.write(txt)
+
+import requests
+from urllib import request
+request.urlretrieve('https://m10.music.126.net/20190228152428/f6b7161c97c307aea2716dc73110c773/ymusic/0f0b/0609/015c/8a6a8ac59c1ce4f63e75668f4c3a16ca.mp3','1.mp3')
